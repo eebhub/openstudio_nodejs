@@ -27,6 +27,11 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.getHome);
+app.get('/form', routes.getForm);
+
+app.post('/rmt', function(req, res){
+    console.log(req.body);
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
