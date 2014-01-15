@@ -1,12 +1,15 @@
 #!/usr/bin/ruby -w
  
 require 'openstudio'
+require 'fileutils'
 require 'VirtualPULSEModel'
 require 'AddIDFTables'
 
 # save_dir is the directory where this Ruby script will put the ENERGYPLUS, osm, and idf folders in
 # if this directory does not work on your machine, change it accordingly
-save_dir = "/home/platform/openstudio/outputs"
+save_dir = "/home/user/outputs"
+
+FileUtils.mkdir_p save_dir
 
 #---------------------------------------- Read Input Parameters ----------------------------------------#
 	
@@ -178,6 +181,7 @@ save_dir = "/home/platform/openstudio/outputs"
 		            		"NREL_reference_building_primary_space_type" => _NREL_reference_building_primary_space_type,
 		            		"NREL_reference_building_secondary_space_type" => _NREL_reference_building_secondary_space_type})  
 
+	
 	puts "Space type added. #{Time.now()}"
 
 	#add densities
@@ -212,6 +216,8 @@ save_dir = "/home/platform/openstudio/outputs"
 #####################################################################################################
 
 	# load a new model from the osm file	
+	osm_path = "/home/user/osm"
+	FileUtils.mkdir_p osm_path
 	model1 = VirtualPULSEModel::load(OpenStudio::Path.new("#{save_dir}/osm/Simulation_#{submission_id}.osm")).get;
 
         #idf_save_directory = params["idf_save_directory"]

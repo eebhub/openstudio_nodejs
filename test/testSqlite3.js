@@ -4,14 +4,14 @@
 var sqlite3 = require('sqlite3').verbose();
 
 // example of database
-function queryData () {
+function queryData (sqlFile, stmt) {
 
-    var db = new sqlite3.Database('Output/example.sql');
+    var db = new sqlite3.Database(sqlFile);
 
     if (db) {
-        console.log("\nconnected to database [SUCCESS]\n");
+        console.log("\nconnected to database " + sqlFile + " [SUCCESS]");
     } else {
-        console.log("could not connect to database [FAILED]");
+        console.log("\ncould not connect to database " + sqlFile + "[FAILED]");
     }
 
     // query statement
@@ -25,7 +25,11 @@ function queryData () {
     db.close(); 
 }
 
-queryData();
+var sqlFile = 'Output/example.sql'; 
+var statement = 'select rowname, value, units from tabulardatawithstrings where tablename like "Site and Source Energy";';
+
+console.log('Test sqlite3 \n=====================================\nfile: '+ sqlFile + '\nstatement: ' + statement);
+queryData(sqlFile, statement);
 
 
 

@@ -231,6 +231,11 @@ class VirtualPULSEModel < OpenStudio::Model::Model
     generator.setArgumentValue("NREL_reference_building_primary_space_type", nrel_reference_building_primary_space_type)
     generator.setArgumentValue("NREL_reference_building_secondary_space_type", nrel_reference_building_secondary_space_type)
     
+    puts "#{nrel_reference_building_vintage}"
+    puts "#{climate_zone}"
+    puts "#{nrel_reference_building_primary_space_type}"
+    puts "#{nrel_reference_building_secondary_space_type}"
+
     versionTranslator = OpenStudio::OSVersion::VersionTranslator.new
     
     #first check local library for the component
