@@ -1,0 +1,24 @@
+Program: simreadx
+Time:  Tue Jan 14 20:24:25 2014
+Parameter: temporary-8.9408-270.prj
+SimReadX v1.0
+SIM file header data: (24)
+ Number of zones:       40
+ Number of paths:      144
+ Number of species:      0
+ Number of junctions:    0
+ Number of ducts:        0
+ Listing time step:   3600 s
+ Initial date:           1
+ Initial time:           0 s
+ Final date:             1
+ Final time:             0 s
+ Link flow results available
+ Node flow results available
+ Node mass results not available
+ Number of flow nodes:  41
+ Number of mass nodes:   0
+ Number of flow links: 144
+Data begins at 1548 in SIM file.
+
+Results available from Jan01 00:00:00 to Jan01 00:00:00
