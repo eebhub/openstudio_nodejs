@@ -7,6 +7,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var routes = require('./routes/routes.js');
+var openstudio = require('./routes/openstudio.js');
 
 var app = express();
 
@@ -29,9 +30,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.getHome);
 app.get('/form', routes.getForm);
 
-app.post('/rmt', function(req, res){
-    console.log(req.body);
-});
+app.post('/rmt', openstudio.simulateOpenstudio);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
