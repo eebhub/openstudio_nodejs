@@ -33,17 +33,17 @@ app.get('/form', routes.getForm);
 app.get('/eplus_out', function(req, res){
    var sqlite3 = require('sqlite3').verbose();
    var db = new sqlite3.Database('test/eem_1.sql');
-
+var str = '';
 db.serialize(function() {
-//console.log('db connected!');
+
 db.each("SELECT * FROM Surfaces", function(err, row){
-    var str = row.SurfaceIndex + ',' + row.SurfaceName + ',' + row.Area + '\n';
-  console.log(str);
+    str = str + row.SurfaceIndex + ',' + row.SurfaceName + ',' + row.Area + '\n';
+  //console.log(str);
   
 });
 });
 db.close(); 
-
+res.send(str);
 });
 
 app.post('/rmt', openstudio.simulateOpenstudio);
