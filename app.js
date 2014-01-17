@@ -30,6 +30,22 @@ if ('development' == app.get('env')) {
 app.get('/', routes.getHome);
 app.get('/form', routes.getForm);
 
+app.get('/eplus_out', function(req, res){
+   var sqlite3 = require('sqlite3').verbose();
+   var db = new sqlite3.Database('test/eem_1.sql');
+
+db.serialize(function() {
+//console.log('db connected!');
+db.each("SELECT * FROM Surfaces", function(err, row){
+    var str = row.SurfaceIndex + ',' + row.SurfaceName + ',' + row.Area + '\n';
+  console.log(str);
+  
+});
+});
+db.close(); 
+
+});
+
 app.post('/rmt', openstudio.simulateOpenstudio);
 
 http.createServer(app).listen(app.get('port'), function(){
