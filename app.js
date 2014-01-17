@@ -38,7 +38,7 @@ app.get('/tracking-sheet.html', routes.getTrackingSheet);
 
 
 app.get('/eplus_out', function(req, res){
-<<<<<<< HEAD
+
    var sqlite3 = require('sqlite3').verbose();
    var db = new sqlite3.Database('test/eem_1.sql');
    var str = '';
@@ -52,7 +52,7 @@ app.get('/eplus_out', function(req, res){
    });
    db.close(); 
    res.send(str);
-=======
+
     
 /*test simple selections*/
 //   var sqlite3 = require('sqlite3').verbose();
@@ -73,9 +73,6 @@ app.get('/eplus_out', function(req, res){
 var sqlite3= require('./lib/eeb_sqlite3.js');
 sqlite3.getValues('ENVELOPE%', 'ENTIRE%', 'Opaque Exterior', 'Btu%', 'test/eem_1.sql');
 
-
-
->>>>>>> 9855ed1af5e53d26989feb85e2520511ce43777b
 });
 
 app.post('/rmt', openstudio.simulateOpenstudio);
