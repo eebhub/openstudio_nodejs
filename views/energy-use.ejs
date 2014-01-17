@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>EEB Hub Simulation Tools: Comprehensive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+	<link href="css/comprehensive.css" rel="stylesheet">    
+
+    <style>
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Navbar 
+    ================================================== -->
+    
+			<div class="navbar navbar-inverse navbar-fixed-top">
+		    <div class="navbar-inner">
+		    <div class="container-fluid" >
+		      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="brand pull-left" href="http://tools.eebhub.org/">EEB Hub Simulation Platform</a>
+		      <div class="nav-collapse collapse">
+		        <ul class="nav">
+		          <li class="">
+		            <a href="http://tools.eebhub.org/lite">LITE</a>
+		          </li>
+		          <li class="">
+		            <a href="http://tools.eebhub.org/partial">PARTIAL</a>
+		          </li>
+		          <li class="">
+		            <a href="http://tools.eebhub.org/substantial">SUBSTANTIAL</a>
+		          </li>
+		          <li class="active">
+		            <a href="http://tools.eebhub.org/comprehensive">COMPREHENSIVE</a>
+		          </li>
+		        </ul>
+		      </div>
+		    </div>
+		  	</div>
+			</div>
+    <!-- Container -->
+    <div class="container">
+
+    <!-- Switch Pacakge -->
+        
+			<form action="" method="post">
+				<div style="font-size: 25px; font-weight: bold; color: #eee; margin-top: 20px;">
+				<select id="num_package" name="num_package" onchange="this.form.submit();"><option value="">Simulation_2652.idf</option><option value="Simulation_2652.idf">Simulation_2652.idf</option>				</select></div>
+			</form>
+        <!-- Sub-Nav-bar -->
+        
+			<!-- Sub-Nav-bar -->
+			<div class="navbar">
+			  <div class="navbar-inner">
+			    <a class="brand" href="#">Open Studio SDK And Energy Plus</a>
+			    <ul class="nav">
+			      <li class="active"><a href="./energy-use.html">Energy</a></li>
+				  <li class=""><a href="./energy-intensity.html">Energy Intensity</a></li>
+			      <li class=""><a href="./zone-component-load.html">Zone Loads</a></li>
+			      <li class=""><a href="./energy-cost.html">Energy Cost</a></li>
+			      <li class=""><a href="./tracking-sheet.html">Tracking Sheet</a></li>
+			    </ul>
+			  </div>
+			</div> 
+
+      <!-- Tab Content -->
+        <!-- Electricity Consumption Bar Chart -->
+        <div id="Electricity-Consumption-Bar-Chart" style="width: 50%; min-width: 400px; height: 500px; float:left;"></div>
+         
+        <!-- Natural Gas Consumption Bar Chart -->
+        <div id="Natural-Gas-Consumption-Bar-Chart" style="width: 50%; min-width: 400px; height: 500px; float: left; margin-bottom: 25px;"></div>
+
+        <!-- Electricity Consumption Table -->
+        <table class="table table-striped table-bordered" style="margin: 40px auto; width: 100%">
+          <caption style="background: purple; color: #fff;"> <h3>Electricity Energy Consumption (kWh)<h3> </caption>
+          <tr id="table-row-head">
+            <th> -
+            </th>
+            <th> Jan
+            </th>
+            <th> Feb
+            </th>
+            <th> Mar
+            </th>
+            <th> Apr
+            </th>
+            <th> May
+            </th>
+            <th> Jun
+            </th>
+            <th> Jul
+            </th>
+            <th> Aug
+            </th>
+            <th> Sep
+            </th>
+            <th> Oct
+            </th>
+            <th> Nov
+            </th>
+            <th> Dec
+            </th>
+          </tr>
+          <tr class="table-row-even">
+            <th> Heating
+            </th>
+           	<td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>          </tr>
+          <tr class="table-row-odd">
+            <th> Cooling
+            </th>
+            <td> 15.0 </td><td> 1.3 </td><td> 127.9 </td><td> 1157.6 </td><td> 4154.3 </td><td> 19018.1 </td><td> 37361.7 </td><td> 30712.9 </td><td> 13331.9 </td><td> 1394.5 </td><td> 835.4 </td><td> 161.6 </td>          </tr>
+          <tr class="table-row-even">
+            <th> Interior Lighting
+            </th>
+           	<td> 21895.3 </td><td> 19752.8 </td><td> 21648.4 </td><td> 21552.8 </td><td> 21090.8 </td><td> 21552.8 </td><td> 22452.8 </td><td> 21090.8 </td><td> 21552.8 </td><td> 21895.3 </td><td> 20748.4 </td><td> 22452.8 </td>          </tr>
+          <tr class="table-row-odd">
+            <th> Interior Equipment
+            </th>
+            <td> 32062.4 </td><td> 28976.0 </td><td> 31938.9 </td><td> 31365.5 </td><td> 31441.1 </td><td> 31365.5 </td><td> 32560.2 </td><td> 31441.1 </td><td> 31365.5 </td><td> 32062.4 </td><td> 30744.2 </td><td> 32560.2 </td>          </tr>
+          <tr class="table-row-even">
+            <th> Fans
+            </th>
+             <td> 2851.3 </td><td> 2557.9 </td><td> 2713.6 </td><td> 2395.3 </td><td> 2523.0 </td><td> 2706.5 </td><td> 2946.9 </td><td> 2868.9 </td><td> 2651.9 </td><td> 2609.3 </td><td> 2648.7 </td><td> 2824.8 </td>          </tr>
+          <tr class="table-row-odd">
+            <th> Pumps
+            </th>
+            <td> 2105.2 </td><td> 1894.0 </td><td> 1804.6 </td><td> 1083.8 </td><td> 246.4 </td><td> 4.3 </td><td> 0.7 </td><td> 0.7 </td><td> 74.4 </td><td> 1173.2 </td><td> 1655.1 </td><td> 2029.8 </td>          </tr>
+          <tr class="table-row-even">
+            <th> Heat Rejection
+            </th>
+            <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>          </tr>
+          <tr class="table-row-odd">
+            <th> Humidification
+            </th>
+            <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>          </tr>
+          <tr class="table-row-even">
+            <th> Heat Recovery
+            </th>
+             <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>          </tr>
+			<tr class="table-row-odd">
+		    <th> Water Systems
+		    </th>
+		    <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>
+		  </tr>
+		  <tr class="table-row-even">
+		    <th> Regrigeration
+		    </th>
+		     <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>		  </tr>
+ 		  <tr class="table-row-even">
+		    <th> Generation
+		    </th>
+		     <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>		  </tr>
+          </table>
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+
+    <!-- load highchart libs -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="js/Highcharts-3.0.4/js/highcharts.js"></script>
+    <script src="js/Highcharts-3.0.4/js/modules/exporting.js"></script>
+     <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- Charts' Defination -->
+    <script>
+      // Eletricity Consumption Bar Chart Defination-->
+      $(function () {
+              $('#Electricity-Consumption-Bar-Chart').highcharts({
+                  chart: {
+                      type: 'column'
+                  },
+                  title: {
+                      text: 'Electricity Consumption (kWh)'
+                  },
+                  xAxis: {
+                      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                  },
+                  yAxis: {
+                      min: 0,
+                      title: {
+                          text: '(x0000) '
+                      },
+                      stackLabels: {
+                          enabled: true,
+						  rotation: -45,
+						  y: -20,
+                          style: {
+                              fontWeight: 'bold',
+                              color: (Highcharts.theme && Highcharts.theme.textColor) || 'grey'
+                          }
+                      }
+                  },
+                  legend: {
+                      align: 'center',
+                      x: 0,
+                      verticalAlign: 'bottom',
+                      y: 0,
+                      floating: false,
+                      backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                      borderColor: '#CCC',
+                      borderWidth: 1,
+                      shadow: true
+                  },
+                  tooltip: {
+                      formatter: function() {
+                          return '<b>'+ this.x +'</b><br/>'+
+                              this.series.name +': '+ this.y +'<br/>'+
+                              'Total: '+ this.point.stackTotal;
+                      }
+                  },
+                  plotOptions: {
+                      column: {
+                          stacking: 'normal',
+                          dataLabels: {
+                              enabled: false,
+                              color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                          }
+                      }
+                  },
+                  series: [{
+                      name: 'Pumps',
+                      data: [2105.2, 1894.0, 1804.6, 1083.8, 246.4, 4.3, 0.7, 0.7, 74.4, 1173.2, 1655.1, 2029.8, ]                  },{
+                      name: 'Fans',
+                      data: [2851.3, 2557.9, 2713.6, 2395.3, 2523.0, 2706.5, 2946.9, 2868.9, 2651.9, 2609.3, 2648.7, 2824.8, ]                  }, {
+                      name: 'Cooling',
+                      data: [15.0, 1.3, 127.9, 1157.6, 4154.3, 19018.1, 37361.7, 30712.9, 13331.9, 1394.5, 835.4, 161.6, ]                  }, {
+                      name: 'Interior Lighting',
+                      data: [21895.3, 19752.8, 21648.4, 21552.8, 21090.8, 21552.8, 22452.8, 21090.8, 21552.8, 21895.3, 20748.4, 22452.8, ]                  }, {
+                      name: 'Interior Equipment',
+                      data: [32062.4, 28976.0, 31938.9, 31365.5, 31441.1, 31365.5, 32560.2, 31441.1, 31365.5, 32062.4, 30744.2, 32560.2, ]                  }, {
+                      name: 'Heating',
+                      color: 'red',
+                       visible: false,
+                      data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, ]                  }, {
+                      name: 'Exterior Lighting',
+                 	  visible: false,
+                      data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, ]                  }, {
+                      name: 'Heat Rejection',
+                      color: 'orange',
+	 				  visible: false,
+                      data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, ]                  }, {
+                      name: 'Humidification',
+                   visible: false,
+                      data: []                  }, {
+                      name: 'Heating Recovery',
+                      visible: false,
+                      data: []                  },{
+                      name: 'Water Systems',
+                       visible: false,
+                      data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, ]                  }, {
+                      name: 'Refrigeration',
+                      visible: false,
+                      data: []                  }, {
+                      name: 'Generation',
+                      visible: false,
+                      data: []                  }]
+              });
+      });
+
+      // Natural Gas Consumption Bar Chart Defination-->
+      $(function () {
+              $('#Natural-Gas-Consumption-Bar-Chart').highcharts({
+                  chart: {
+                      type: 'column'
+                  },
+                  title: {
+                      text: 'Natural Gas Consumption (MBtu)'
+                  },
+                  xAxis: {
+                      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                  },
+                  yAxis: {
+                      min: 0,
+                      title: {
+                          text: '(x000,000)'
+                      },
+                      stackLabels: {
+                          enabled: true,
+                          style: {
+                              fontWeight: 'bold',
+                              color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                          }
+                      }
+                  },
+                  legend: {
+                      align: 'center',
+                      x: 0,
+                      verticalAlign: 'bottom',
+                      y: 0,
+                      floating: false,
+                      backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                      borderColor: '#CCC',
+                      borderWidth: 1,
+                      shadow: true
+                  },
+                  tooltip: {
+                      formatter: function() {
+                          return '<b>'+ this.x +'</b><br/>'+
+                              this.series.name +': '+ this.y +'<br/>'+
+                              'Total: '+ this.point.stackTotal;
+                      }
+                  },
+                  plotOptions: {
+                      column: {
+                          stacking: 'normal',
+                          dataLabels: {
+                              enabled: false,
+                              color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                          }
+                      }
+                  },
+                  series: [{
+                      name: 'Heating',
+                      color: 'red',
+                      data: [8862.6, 6517.3, 3431.1, 1260.8, 100.6, 0.7, 0.4, 0.5, 13.2, 1228.9, 3401.8, 5631.6, ]                  }]
+              });
+      });
+    </script>
+  </body>
+</html>

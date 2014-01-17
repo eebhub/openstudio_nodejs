@@ -29,21 +29,28 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.getHome);
 app.get('/form', routes.getForm);
+app.get('/energy-use.html', routes.getEnergyUse);
+app.get('/energy-intensity.html', routes.getEnergyIntensity);
+app.get('/energy-cost.html', routes.getEnergyCost);
+app.get('/zone-component-load.html', routes.getZoneLoads);
+app.get('/measure-list.html', routes.getMeasureList);
+app.get('/tracking-sheet.html', routes.getTrackingSheet);
+
 
 app.get('/eplus_out', function(req, res){
    var sqlite3 = require('sqlite3').verbose();
    var db = new sqlite3.Database('test/eem_1.sql');
-var str = '';
-db.serialize(function() {
+   var str = '';
+   db.serialize(function() {
 
-db.each("SELECT * FROM Surfaces", function(err, row){
-    str = str + row.SurfaceIndex + ',' + row.SurfaceName + ',' + row.Area + '\n';
-  //console.log(str);
+      db.each("SELECT * FROM Surfaces", function(err, row){
+         str = str + row.SurfaceIndex + ',' + row.SurfaceName + ',' + row.Area + '\n';
+         console.log(str);
   
-});
-});
-db.close(); 
-res.send(str);
+      });
+   });
+   db.close(); 
+   res.send(str);
 });
 
 app.post('/rmt', openstudio.simulateOpenstudio);
