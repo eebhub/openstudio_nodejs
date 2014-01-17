@@ -31,19 +31,28 @@ app.get('/', routes.getHome);
 app.get('/form', routes.getForm);
 
 app.get('/eplus_out', function(req, res){
-   var sqlite3 = require('sqlite3').verbose();
-   var db = new sqlite3.Database('test/eem_1.sql');
-var str = '';
-db.serialize(function() {
+    
+/*test simple selections*/
+//   var sqlite3 = require('sqlite3').verbose();
+//   var db = new sqlite3.Database('test/eem_1.sql');
+// var str = '';
+// db.serialize(function() {
 
-db.each("SELECT * FROM Surfaces", function(err, row){
-    str = str + row.SurfaceIndex + ',' + row.SurfaceName + ',' + row.Area + '\n';
-  //console.log(str);
+// db.each("SELECT * FROM Surfaces", function(err, row){
+//     str = row.SurfaceIndex + ',' + row.SurfaceName + ',' + row.Area + '\n';
+//   console.log(str);
   
-});
-});
-db.close(); 
-res.send(str);
+// });
+// });
+// db.close(); 
+
+
+/*test getValue*/
+var sqlite3= require('./lib/eeb_sqlite3.js');
+sqlite3.getValues('ENVELOPE%', 'ENTIRE%', 'Opaque Exterior', 'Btu%', 'test/eem_1.sql');
+
+
+
 });
 
 app.post('/rmt', openstudio.simulateOpenstudio);
