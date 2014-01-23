@@ -48,8 +48,16 @@ app.get('/eplus_out', function(req, res){
 
 
 /*test getValue*/
-var sqlite3= require('./lib/eeb_sqlite3.js');
-sqlite3.getValues('ENVELOPE%', 'ENTIRE%', 'Opaque Exterior', 'Btu%', 'test/eem_1.sql');
+// var sqlite3= require('./lib/eeb_sqlite3.js');
+// sqlite3.getValues('ENVELOPE%', 'ENTIRE%', 'Opaque Exterior', 'Btu%', 'test/eem_1.sql');
+
+/*test getReportForStrings*/
+// var sqlite3= require('./lib/eeb_sqlite3.js');
+// sqlite3.getReportForStrings('ShadingSummary', 'test/eem_1.sql');
+
+/*test getValuesByMonthly*/
+var sqlite3 = require('./lib/eeb_sqlite3.js');
+sqlite3.getValuesByMonthly('ENVELOPE%', 'ENTIRE%', 'Opaque Exterior', 'Btu%', 'test/eem_1.sql');
 
 
 
