@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>EEB Hub Simulation Tools: Comprehensive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+	<link href="css/comprehensive.css" rel="stylesheet">    
+
+    <style>
+    </style>
+  </head>
+
+  <body>
+	<!-- Navbar 
+    ================================================== -->
+    
+			<div class="navbar navbar-inverse navbar-fixed-top">
+		    <div class="navbar-inner">
+		    <div class="container-fluid" >
+		      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="brand pull-left" href="http://tools.eebhub.org/">EEB Hub Simulation Platform</a>
+		      <div class="nav-collapse collapse">
+		        <ul class="nav">
+		          <li class="">
+		            <a href="http://tools.eebhub.org/lite">LITE</a>
+		          </li>
+		          <li class="">
+		            <a href="http://tools.eebhub.org/partial">PARTIAL</a>
+		          </li>
+		          <li class="">
+		            <a href="http://tools.eebhub.org/substantial">SUBSTANTIAL</a>
+		          </li>
+		          <li class="active">
+		            <a href="http://tools.eebhub.org/comprehensive">COMPREHENSIVE</a>
+		          </li>
+		        </ul>
+		      </div>
+		    </div>
+		  	</div>
+			</div>
+    <!-- Container -->
+    <div class="container">
+
+    <!-- Switch Pacakge -->
+        
+			<form action="" method="post">
+				<div style="font-size: 25px; font-weight: bold; color: #eee; margin-top: 20px;">
+				<select id="num_package" name="num_package" onchange="this.form.submit();"><option value="">Simulation_2652.idf</option><option value="Simulation_2652.idf">Simulation_2652.idf</option>				</select></div>
+			</form>
+        <!-- Sub-Nav-bar -->
+        
+			<!-- Sub-Nav-bar -->
+			<div class="navbar">
+			  <div class="navbar-inner">
+			    <a class="brand" href="#">Open Studio SDK And Energy Plus</a>
+			    <ul class="nav">
+			      <li class=""><a href="./energy-use.html">Energy</a></li>
+				  <li class=""><a href="./energy-intensity.html">Energy Intensity</a></li>
+			      <li class=""><a href="./zone-component-load.html">Zone Loads</a></li>
+			      <li class="active"><a href="./energy-cost.html">Energy Cost</a></li>
+			      <li class=""><a href="./tracking-sheet.html">Tracking Sheet</a></li>
+			    </ul>
+			  </div>
+			</div> 		
+        <!-- Energy Intensity div -->
+        <div>
+          <div id="electricity_monthly_cost_chart" style="min-width: 400px; height: 400px; margin: 40px auto"></div>
+          <!-- Electricity Consumption Table -->
+          <table class="table table-striped table-bordered" style="margin: 40px auto; width: 100%">
+            <caption style="background: purple; color: #fff;"> <h3>Electricity Monthly Cost<h3> </caption>
+            <tr id="table-row-head">
+              <th> 
+              </th>
+              <th> Jan
+              </th>
+              <th> Feb
+              </th>
+              <th> Mar
+              </th>
+              <th> Apr
+              </th>
+              <th> May
+              </th>
+              <th> Jun
+              </th>
+              <th> Jul
+              </th>
+              <th> Aug
+              </th>
+              <th> Sep
+              </th>
+              <th> Oct
+              </th>
+              <th> Nov
+              </th>
+              <th> Dec
+              </th>
+              <th> Annual
+              </th>
+				<th> Max
+              </th>
+            </tr>
+            <tr class="table-row-even">
+              <th> Energy Charges ($)
+              </th>
+             <td> 8663.3 </td><td> 7818.4 </td><td> 8561.0 </td><td> 8461.3 </td><td> 8740.7 </td><td> 10974.0 </td><td> 14013.5 </td><td> 12659.8 </td><td> 10140.3 </td><td> 8693.5 </td><td> 8325.5 </td><td> 8825.0 </td><td> 115876.2 </td><td> 14013.5 </td>            </tr>
+            <tr class="table-row-odd">
+              <th> Demand Charges ($)
+              </th>
+              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+            <tr class="table-row-even">
+              <th> Service Charge ($)
+              </th>
+              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+            <tr class="table-row-odd">
+              <th> Adjustment ($)
+              </th>
+              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+            <tr class="table-row-odd">
+              <th> Taxes ($)
+              </th>
+              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+              <tr class="table-row-odd">
+              <th> Total ($)
+              </th>
+              <td> 8663.3 </td><td> 7818.4 </td><td> 8561.0 </td><td> 8461.3 </td><td> 8740.7 </td><td> 10974.0 </td><td> 14013.5 </td><td> 12659.8 </td><td> 10140.3 </td><td> 8693.5 </td><td> 8325.5 </td><td> 8825.0 </td><td> 115876.2 </td><td> 14013.5 </td>            </tr>
+           
+          </table>
+
+          <div id="natural_gas_monthly_cost_chart" style="min-width: 400px; height: 400px; margin: 40px auto"></div>
+          <table class="table table-striped table-bordered" style="margin: 40px auto; width: 100%">
+            <caption style="background: purple; color: #fff;"> <h3>Natural Gas Monthly Cost<h3> </caption>
+            <tr id="table-row-head">
+              <th> 
+              </th>
+              <th> Jan
+              </th>
+              <th> Feb
+              </th>
+              <th> Mar
+              </th>
+              <th> Apr
+              </th>
+              <th> May
+              </th>
+              <th> Jun
+              </th>
+              <th> Jul
+              </th>
+              <th> Aug
+              </th>
+              <th> Sep
+              </th>
+              <th> Oct
+              </th>
+              <th> Nov
+              </th>
+              <th> Dec
+              </th>
+              <th> Annual
+              </th>
+				<th> Max
+              </th>
+            </tr>
+            <tr class="table-row-even">
+              <th> Energy Charges ($)
+              </th>
+             <td> 11956.5 </td><td> 8792.5 </td><td> 4628.9 </td><td> 1701.0 </td><td> 135.7 </td><td> 1.0 </td><td> 0.6 </td><td> 0.6 </td><td> 17.8 </td><td> 1657.9 </td><td> 4589.4 </td><td> 7597.6 </td><td> 41079.3 </td><td> 11956.5 </td>            </tr>
+            <tr class="table-row-odd">
+              <th> Demand Charges ($)
+              </th>
+              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+            <tr class="table-row-even">
+              <th> Service Charge ($)
+              </th>
+              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+            <tr class="table-row-odd">
+              <th> Adjustment ($)
+              </th>
+              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+            <tr class="table-row-odd">
+              <th> Taxes ($)
+              </th>
+              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+              <tr class="table-row-odd">
+              <th> Total ($)
+              </th>
+              <td> 11956.5 </td><td> 8792.5 </td><td> 4628.9 </td><td> 1701.0 </td><td> 135.7 </td><td> 1.0 </td><td> 0.6 </td><td> 0.6 </td><td> 17.8 </td><td> 1657.9 </td><td> 4589.4 </td><td> 7597.6 </td><td> 41079.3 </td><td> 11956.5 </td>            </tr>
+           
+            </table>
+        </div>
+
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- load highchart libs -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="js/Highcharts-3.0.4/js/highcharts.js"></script>
+    <script src="js/Highcharts-3.0.4/js/modules/exporting.js"></script>
+    
+     <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- Highcharts -->
+    <script>
+      $(function () {
+          $('#electricity_monthly_cost_chart').highcharts({
+              chart: {
+                  zoomType: 'xy'
+              },
+              title: {
+                  text: 'Electricity Monthly Cost ($)'
+              },
+              xAxis: {
+                  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Max']
+              },
+              yAxis: {
+                  min: 0,
+                  title: {
+                      text: 'dollars ($) '
+                  },
+                  stackLabels: {
+                      enabled: true,
+                      style: {
+                          fontWeight: 'bold',
+                          color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                      }
+                  }
+              },
+              legend: {
+                  align: 'center',
+                  x: 0,
+                  verticalAlign: 'bottom',
+                  y: 0,
+                  floating: false,
+                  backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                  borderColor: '#CCC',
+                  borderWidth: 1,
+                  shadow: true
+              },
+              tooltip: {
+                  formatter: function() {
+                      return '<b>'+ this.x +'</b><br/>'+
+                          this.series.name +': '+ this.y +'<br/>'+
+                          'Total: '+ this.point.stackTotal;
+                  }
+              },
+              plotOptions: {
+                  column: {
+                      stacking: 'normal',
+                      dataLabels: {
+                          enabled: false,
+                          color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                      }
+                  }
+              },
+              series: [{
+                  name: 'Energy Charges ($)',
+                  type: 'column',
+                  data: [8663.3,7818.4,8561.0,8461.3,8740.7,10974.0,14013.5,12659.8,10140.3,8693.5,8325.5,8825.0,14013.5,]              }, {
+                  name: 'Demand Charges ($)',
+                  type: 'column',
+                  data: []              }, {
+                  name: 'Service Changes ($)',
+                  type: 'column',
+                  data: []              },{
+                  name: 'Adjustment ($)',
+                  type: 'column',
+                  data: []              }, {
+                  name: 'Taxes',
+                  type: 'column',
+                  data: []              },{
+                  name: 'Bill ($)',
+                  type: 'spline',
+                  marker: {
+                      symbol: 'square'
+                  },
+                  data: [8663.3,7818.4,8561.0,8461.3,8740.7,10974.0,14013.5,12659.8,10140.3,8693.5,8325.5,8825.0,14013.5,]      
+              }]
+          });
+      });
+
+      // monthly natural gas cost chart -->
+      $(function () {
+          $('#natural_gas_monthly_cost_chart').highcharts({
+              chart: {
+                  zoomType: 'xy'
+              },
+              title: {
+                  text: 'Natural Gas Monthly Cost ($)'
+              },
+              xAxis: {
+                  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Max']
+              },
+              yAxis: {
+                  min: 0,
+                  title: {
+                      text: 'dollars ($) '
+                  },
+                  stackLabels: {
+                      enabled: true,
+                      style: {
+                          fontWeight: 'bold',
+                          color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                      }
+                  }
+              },
+              legend: {
+                  align: 'center',
+                  x: 0,
+                  verticalAlign: 'bottom',
+                  y: 0,
+                  floating: false,
+                  backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                  borderColor: '#CCC',
+                  borderWidth: 1,
+                  shadow: true
+              },
+              tooltip: {
+                  formatter: function() {
+                      return '<b>'+ this.x +'</b><br/>'+
+                          this.series.name +': '+ this.y +'<br/>'+
+                          'Total: '+ this.point.stackTotal;
+                  }
+              },
+              plotOptions: {
+                  column: {
+                      stacking: 'normal',
+                      dataLabels: {
+                          enabled: false,
+                          color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                      }
+                  }
+              },
+              series: [{
+                  name: 'Energy Charges ($)',
+                  type: 'column',
+                  data: [11956.5,8792.5,4628.9,1701.0,135.7,1.0,0.6,0.6,17.8,1657.9,4589.4,7597.6,11956.5,]              }, {
+                  name: 'Demand Charges ($)',
+                  type: 'column',
+                  data: []              }, {
+                  name: 'Service Changes ($)',
+                  type: 'column',
+                  data: []              },{
+                  name: 'Adjustment ($)',
+                  type: 'column',
+                  data: []              }, {
+                  name: 'Taxes',
+                  type: 'column',
+                  data: []              },{
+                  name: 'Bill ($)',
+                  type: 'spline',
+                  marker: {
+                      symbol: 'square'
+                  },
+                  data: [11956.5,8792.5,4628.9,1701.0,135.7,1.0,0.6,0.6,17.8,1657.9,4589.4,7597.6,11956.5,]      
+              }]
+          });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,2267 @@
+<head>
+    <meta charset="utf-8">
+    <title>EEB Hub Simulation Tools: Comprehensive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="_styles.css" media="screen">
+
+    <style>
+	body {
+		background: linear-gradient(to left, #bbb, #fff);
+	}
+
+	.container{
+		width: 90%;
+	}
+
+	.table-striped{
+		background: #eee;
+	}
+
+	.table{
+		text-align: center;
+	}
+
+	#Measure-List input[type='checkbox']{
+		margin: 5px 5px;
+	}
+
+	#filter {
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: #111;
+		min-width: 100%;
+		min-height: 100%;
+		opacity: 0.1;
+	}
+
+	.progress{
+		height: 30px;
+	}
+
+	.loading-div {
+		z-index: 100;
+		position: fixed;
+		top: 55%;
+		display: none;
+		padding: 10px;
+		text-align: center;
+		margin: 0 20%;
+		width: 60%;
+		max-width: 800px;
+		background: #fff;
+	}
+
+    th {
+        text-align:left;
+    }
+    </style>
+  </head>
+
+  <body>
+
+        <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand pull-left" href="./">EEB Hub Simulation Platform</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="">
+                <a href="http://tools.eebhub.org/">Home</a>
+              </li>
+              <li class="">
+                <a href="http://tools.eebhub.org/">Lite</a>
+              </li>
+              <li class="">
+                <a href="http://tools.eebhub.org/">Partial</a>
+              </li>
+              <li class="">
+                <a href="http://tools.eebhub.org/substantial">Substantial</a>
+              </li>
+              <li class="active">
+                <a href="http://tools.eebhub.org/comprehensive">Comprehensive</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container" style="margin-top: 50px;">
+
+        <!-- Sub-Nav-bar -->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <ul class="nav">
+			  <li class="active"><a href="eem_measure.html">Measure</a></li>
+              <li><a href="tracking-sheet.html">Tracking Sheet</a></li>
+              <li><a href="./energy-use.html">Energy</a></li>
+              <li><a href="./zone-component-load.html">Zone Loads</a></li>
+              <li><a href="./energy-intensity.html">Energy Intensity</a></li>
+              <li><a href="./energy-cost.html">Energy Cost</a></li>
+            </ul>
+          </div>
+        </div>
+ 
+    <!-- main content -->
+    
+        <!-- Measure list -->
+        <div id="Measure-List" style="margin-bottom: 20px; padding-bottom: 15px; border-bottom: medium solid #aaa;">
+            <h2>Measure List</h2>
+            Filter by:
+            <input name="Measure_list[]" value="Cost/sf [range]" type="checkbox">Cost/sf [range]
+            <input name="Measure_list[]" value="RX/Comissioning" type="checkbox">RX/Comissioning 
+            <input name="Measure_list[]" value="Low/no-cost" type="checkbox">Low/no-cost
+            <input name="Measure_list[]" value="Causes Noise/Disruptioin" type="checkbox">Causes Noise/Disruption
+            <input name="Measure_list[]" value="Construction Heavy" type="checkbox">Construction Heavy
+        </div>
+
+        <!-- current field -->
+        <div id="tree-menu">
+        <ol class="tree ">
+        <form name="input" action="simulate-eem.html" method="post" onsubmit="$('#baseline-form, header, .top-nav, footer').fadeTo('slow', 0.33);
+                    $('.loading-div').fadeIn('slow');  
+                    $('html,body').css('overflow', 'hidden');
+                    loading(); 
+                    return true; ">
+            <!--################################################  Occupancy/Schedule  ###############################-->
+            <li>
+                <label for="occupancy-schedule">Occupancy/Schedule</label> <input id="occupancy-schedule" name="selected[]" value="occupancyChecked" type="checkbox"> 
+                <ol>
+                    <li>
+                        <label for="hvac-schedule">HVAC Schedule</label> <input id="hvac-schedule" name="selected[]" value="hvacScheduleChecked" type="checkbox"> 
+                        <ol>
+                            <li>
+                                <!-- Ventilation Setback -->
+                                <label for="turn-off-ventilation">Ventilation Setback</label> <input id="turn-off-ventilation" name="selected[]" value="ventilationChecked" type="checkbox"> 
+                                <ol>
+                                    <li>
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>                           
+                                                      <th style="width:460px"></th>
+                                                      <th style="font-size: 15px;">Proposed:</th>
+                                                      <th></th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>     
+                                                      <td>                                     
+                                                        <div class="btn-group" data-toggle="buttons-radio">
+                                                            <button name="type" type="button" class="btn active" value="current-off">OFF</button>
+                                                            <button name="type" type="button" class="btn" value="current-on" disabled="">ON</button>
+                                                        </div>
+                                                      </td>                                           
+                                                      <td>&nbsp;</td>
+                                                      <td>
+                                                        <div class="btn-group" data-toggle="buttons-radio">
+                                                            <button name="type" type="button" class="btn" value="proposed-off" disabled="">OFF</button>
+                                                            <button name="type" type="button" class="btn active" value="propsed-on">ON</button>
+                                                        </div>
+                                                      </td>               
+                                                      <td></td>
+                                                      <td></td>
+                                                    </tr>
+
+                                                    <tr>                                              
+                                                      <td></td>
+                                                      <td>&nbsp;</td>
+                                                      <td></td>      
+                                                      <td></td>
+                                                      <td></td>
+                                                    </tr>
+
+                                                     <tr>                                                         
+                                                      <td></td>
+                                                      <td>&nbsp;</td>
+                                                      <td></td>
+                                                      <td><b>Start Hour</b></td>
+                                                      <td><b>End Hour</b></td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td>&nbsp;</td>
+                                                      <td>Schedule 1:</td>  
+                                                      <td><input name="hvac-current" style="width:50px" value="19:00" disabled="" type="text"></td>
+                                                      <td> <input name="hvac-proposed" style="width:50px" value="6:00" disabled="" type="text"></td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                      <td></td>  
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                      <td></td>  
+                                                    </tr>
+
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </li>
+
+                            <!-- HVAC Schedule -> building-management-system  -->
+                        <!--    <li>
+                                <label for="building-management-system">Building Management System</label> <input type="checkbox" id="building-management-system" name="selected[]" value="bmsChecked"/> 
+                                <ol>
+                                    <li class="file"><a href="">Subfile 1</a></li>
+                                </ol>
+                            </li> -->
+                        </ol>
+                    </li>
+                </ol>
+            </li>
+
+            <!--################################################  Plug & Process Load  ##############################-->
+            <li>
+                <label for="plug-load">Plug Load</label> <input id="plug-load" name="selected[]" value="plugLoadChecked" type="checkbox"> 
+                <ol>
+                    <li>
+                        <!-- Equipment -->
+                        <label for="equipment">Equipment</label> <input id="equipment" name="selected[]" value="equipmentChecked" type="checkbox"> 
+                        <ol>                    
+                            <!-- EnergyStar Equipment  -->
+                            <li>
+                                <label for="energyStar-equipment">EnergyStar Equipment</label> <input id="energyStar-equipment" name="selected[]" value="energyStarEquipmentChecked" type="checkbox"> 
+                                <ol>
+                                    <li>
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>
+                                                      <th></th>
+                                                      <th style="width:250px"></th>
+                                                      <th style="font-size: 15px;">Proposed:</th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>Plug Load Density: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="plug-loan-density" value="1" disabled="" type="number">
+                                                            <span class="add-on"><sup>W</sup>⁄<sub>ft<sup>2</sup></sub></span>                                
+                                                        </div>
+                                                      </td>
+                                                     
+                                                      <td>&nbsp;</td>
+
+                                                      <td>Plug Load Density: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="plug-loan-density" value="0.85" disabled="" type="number">
+                                                            <span class="add-on"><sup>W</sup>⁄<sub>ft<sup>2</sup></sub></span>                                        
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure-cost" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                       
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td>  
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                    </tr>
+
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </li>
+
+                            <!-- Plug Load Control -->
+                            <li>
+                                <label for="plug-load-control">Plug Load Control</label> <input id="plug-load-control" name="selected[]" value="plcChecked" type="checkbox"> 
+                                <ol>                
+                                    <li>
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>
+                                                      <th></th>
+                                                      <th style="width:270px"></th>
+                                                      <th style="font-size: 15px;">Proposed:</th>
+                                                      <th></th>
+                                                      <th></th>
+                                                      <th></th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>
+                                                      <td> </td>
+                                                      <td> </td>
+                                                      <td>&nbsp;</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td style="font-size: 10px;"> <b>Start Hour </b></td>
+                                                      <td style="font-size: 10px;"> <b>End Hour </b></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                      <td>Load Density: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="load-density" value="0.5" disabled="" type="number">
+                                                            <span class="add-on"><sup>W</sup>⁄<sub>ft<sup>2</sup></sub></span>                                
+                                                        </div>
+                                                      </td>
+                                                      <td>&nbsp;</td>
+                                                      <td>Load Density (Weekdays): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="load-density-weekdays" value="0.25" style="width:50px" disabled="" type="number">
+                                                            <span class="add-on"><sup>W</sup>⁄<sub>ft<sup>2</sup></sub></span>                                
+                                                        </div>
+                                                      </td>
+                                                      <td>Schedule:</td>
+                                                      <td><input name="load-density-proposed-schedule1" style="width:50px" value="0:00" disabled="" type="text"></td>
+                                                      <td><input name="load-density-proposed-schedule2" style="width:50px" value="08:00" disabled="" type="text"></td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td>Load Density (Weekends): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="load-density-weekends" value="0.25" style="width:50px" disabled="" type="number">
+                                                            <span class="add-on"><sup>W</sup>⁄<sub>ft<sup>2</sup></sub></span>                            
+                                                        </div>
+                                                      </td>
+                                                      <td>Schedule:</td>
+                                                      <td><input name="load-density-proposed-schedule1" style="width:50px" value="0:00" disabled="" type="text"></td>
+                                                      <td><input name="load-density-proposed-schedule2" style="width:50px" value="23:59" disabled="" type="text"></td>
+                                                    </tr>
+
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure-cost" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td></td> 
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td>
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td> 
+                                                      <td></td> 
+                                                      <td></td>    
+                                                      <td></td> 
+                                                    </tr>
+
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                    </li>           
+                                </ol>
+                            </li>
+
+                        </ol>
+                    </li>
+
+                </ol>
+            </li>   
+
+            <!--################################################  Lighting  #########################################-->
+            <li>
+                <label for="lighting">Lighting</label> <input id="lighting" name="selected[]" value="lightingChecked" type="checkbox"> 
+                <ol>
+                    <!-- schedule -->
+                    <!--<li>
+                        <label for="schedule">Schedule</label> <input type="checkbox" id="schedule" name="selected[]" value="lightingScheduleChecked" /> 
+                        <ol>                
+                            <li class="file"><a href="">Subfile 1</a></li>              
+                        </ol>
+                    </li>-->    
+
+                    <!-- Daylighting -->
+                    <li>
+                        <label for="daylighting">Passive Daylighting</label> <input id="daylighting" name="selected[]" value="dayLightingChecked" type="checkbox"> 
+                        <ol>
+                        
+                            <!-- Daylight Based Dimming -->
+                            <li>
+                                <label for="daylight-based-dimming">Daylight Based Dimming</label> <input id="daylight-based-dimming" name="selected[]" value="daylightDimmingChecked" type="checkbox"> 
+                                <ol>
+                                <li>        
+
+                                    <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>                           
+                                                      <th style="width:460px"></th>
+                                                      <th style="font-size: 15px;">Proposed:</th>
+                                                      <th></th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>     
+                                                      <td>                                     
+                                                        <div class="btn-group" data-toggle="buttons-radio">
+                                                            <button name="type" type="button" class="btn active" value="current-off">OFF</button>
+                                                            <button name="type" type="button" class="btn" value="current-on" disabled="">ON</button>
+                                                        </div>
+                                                      </td>                                           
+                                                      <td>&nbsp;</td>
+                                                      <td>
+                                                        <div class="btn-group" data-toggle="buttons-radio">
+                                                            <button name="type" type="button" class="btn" value="proposed-off" disabled="">OFF</button>
+                                                            <button name="type" type="button" class="btn active" value="propsed-on">ON</button>
+                                                        </div>
+                                                      </td>               
+                                                      <td></td>
+                                                      <td></td>
+                                                    </tr>
+
+                                                    <tr>                                              
+                                                      <td></td>
+                                                      <td>&nbsp;</td>
+                                                      <td></td>      
+                                                      <td></td>
+                                                      <td></td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                      <td></td>  
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                      <td></td>  
+                                                    </tr>
+
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                    </div>                              
+                                </li>   
+                                </ol>
+                            </li>                   
+    
+                        </ol>
+                    </li>
+
+                    <!-- Active Lighting -->
+                    <li>
+                        <label for="active-lighting">Active Lighting</label> <input id="active-lighting" name="selected[]" value="activelightingChecked" type="checkbox"> 
+                        <ol>
+
+                            <!-- Occupancy-Based Lighting Sensors -->
+                            <li>
+                                <label for="occupancy-sensors">Occupancy-Based Lighting Sensors</label> <input id="occupancy-sensors" name="selected[]" value="oblsChecked" type="checkbox"> 
+                                <ol>
+                                    <li>
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>                           
+                                                      <th style="width:480px"></th>
+                                                      <th style="font-size: 15px;">Proposed:</th>
+                                                      <th></th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>     
+                                                      <td>                                     
+                                                        <div class="btn-group" data-toggle="buttons-radio">
+                                                            <button name="type" type="button" class="btn active" value="current-off">OFF</button>
+                                                            <button name="type" type="button" class="btn" value="current-on" disabled="">ON</button>
+                                                        </div>
+                                                      </td>                                           
+                                                      <td>&nbsp;</td>
+                                                      <td>
+                                                        <div class="btn-group" data-toggle="buttons-radio">
+                                                            <button name="type" type="button" class="btn" value="proposed-off" disabled="">OFF</button>
+                                                            <button name="type" type="button" class="btn active" value="propsed-on">ON</button>
+                                                        </div>
+                                                      </td>               
+                                                      <td></td>
+                                                      <td></td>
+                                                    </tr>
+
+                                                    <tr>                                              
+                                                      <td></td>
+                                                      <td>&nbsp;</td>
+                                                      <td></td>      
+                                                      <td></td>
+                                                      <td></td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure-cost" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                      <td></td>  
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                      <td></td>  
+                                                    </tr>
+
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </li> 
+
+                            <!-- Office Lighting Fixture Upgrade -->
+                            <li>
+                                <label for="office-lighting">Office Lighting Fixture Upgrade</label> <input id="office-lighting" name="selected[]" value="OfficefixturedChecked" type="checkbox"> 
+                                <ol>
+                                <li>
+                                    <br>                               
+                                    <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                      <caption></caption>
+                                      <thead>
+                                        <tr>
+                                          <th style="font-size: 15px;">Current:</th>
+                                          <th></th>
+                                          <th style="width:300px"></th>
+                                          <th style="font-size: 15px;">Proposed:</th>
+                                          <th></th>
+                                        </tr>
+                                      </thead>
+
+                                      <tbody>
+                                     <!--   
+                                        <tr>
+                                          <td>W/sf 1.2</td>
+                                          <td></td> 
+                                          <td></td>
+                                          <td> 
+                                            <select name="">
+                                                <option>Package 1</option>
+                                                <option>Package 2</option>
+                                                <option>Package 3</option>
+                                            </select> 
+                                          </td>  
+                                          <td> 
+                                            <button class="btn">Save to package</button> 
+                                            &nbsp;&nbsp;&nbsp;
+                                            <button class="btn">Apply to all packages</button>
+                                          </td>
+    
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td>Fixture type:</td>
+                                          <td>
+                                            <select>
+                                                <option>suspended</option>
+                                            </select>
+                                          </td>  
+                                          <td></td>
+                                          <td>
+                                            <select name="">
+                                                <option>[Same]</option>
+                                                <option>Change</option>
+                                            
+                                            </select> 
+
+                                          </td>  
+                                          <td></td> 
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td>Target lumen level:</td>
+                                          <td><input type="number" name="target_lumen_level" value="300" min="0.0"></input></td>  
+                                          <td></td>
+                                          <td>Measure Cost:</td>  
+                                          <td><input name="Measurer-cost" type="number"> </input></td>
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td>Ballast factor(0.0-1.0):</td>
+                                          <td><input type="number" name="ballast_factor" value="" max="1.0" min="0.0"></td>  
+                                          <td></td>
+                                          <td>Override: </td>  
+                                          <td><input name="override" type="number"> </input></td>
+                                        </tr>
+                                     
+                                        <tr>                                                         
+                                          <td><b>Planned Capital & Maintenance</b></td>
+                                          <td></td>
+                                          <td></td>  
+                                          <td><b>Planned Capital & Maintenance</b></td>  
+                                          <td></td>
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td>Expected Replacement Date(mm/dd/yy)</td>
+                                          <td><input type="date" name="expected_replacement_date" value="" ></td> 
+                                          <td></td> 
+                                          <td>Expected Replacement Date:</td>
+                                          <td><input type="date" name="expexted-replacement-date"> </input></td>  
+                                          
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td>Expected Replacement Cost($):</td>
+                                          <td><input type="number" name="expected_replacement_cost" value="1500" min="0.0"></td>  
+                                          <td></td>
+                                          <td>Expected Yearly Maintenance Cost:</td>  
+                                          <td></td>
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td>Yearly Maintenance Cost($):</td>
+                                          <td><input type="number" name="yearly_maintenance_cost" value="30" min="0.0"></td>  
+                                          <td></td>
+                                          <td>Overide:</td>  
+                                          <td><input type="number" name="expexted-yearly-maintenance-cost" value="24"> </input></td>
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td>Replacement Life(yrs):</td>
+                                          <td><input type="number" name="replacement_life" value="20" min="0.0"></input></td>  
+                                          <td></td>
+                                          <td>Measurer Life(yrs):</td>  
+                                          <td><input type="number" name="expexted-yearly-maintenance-cost" value="20"> </input></td>
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td></td>
+                                          <td></td>  
+                                          <td></td>
+                                          <td>Embodied energy of retrofit materials(GJ):</td>  
+                                          <td><input type="number" name="expexted-yearly-maintenance-cost" value="24.3"> </input></td>
+                                        </tr>
+                                    -->
+
+
+                                        <tr>
+                                          <td>Lamps:</td>
+                                          <td>
+                                            <div class="input-append">
+                                                <input class="span2" id="lamp-current" value="40" disabled="" type="number">
+                                                <span class="add-on">W</span>                               
+                                            </div>
+                                          </td> 
+                                          <td></td>
+                                          <td>Lamps: </td>
+                                          <td> 
+                                            <div class="input-append">
+                                                <input class="span2" id="lamp-proposed" value="28" disabled="" type="number">
+                                                <span class="add-on">W</span>                               
+                                            </div>
+                                          </td>  
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td></td>  
+                                          <td></td> 
+                                          <td></td>  
+                                          <td>Measure Cost:</td>
+                                          <td>
+                                            <div class="input-prepend input-append">
+                                              <span class="add-on">$</span>
+                                              <input name="office-measure-cost" style="width:50px" value="" disabled="" type="text">
+                                              <span class="add-on">.00</span>
+                                            </div>
+                                          </td>
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td></td>  
+                                          <td></td> 
+                                          <td></td> 
+                                          <td>Year of Installation:</td>
+                                          <td><input name="office-year" style="width:50px" value="" disabled="" type="text"></td> 
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <br><br><br>
+                                </li>   
+                                </ol>
+                            </li>
+
+                            <!-- Bathroom Lighting Fixture Upgrade -->
+                            <li>
+                                <label for="bathroom-lighting">Bathroom Lighting Fixture Upgrade</label> <input id="bathroom-lighting" name="selected[]" value="bathroomFixturedChecked" type="checkbox"> 
+                                <ol>
+                                <li>
+                                    <br>                               
+                                    <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                      <caption></caption>
+                                      <thead>
+                                        <tr>
+                                          <th style="font-size: 15px;">Current:</th>
+                                          <th></th>
+                                          <th style="width:300px"></th>
+                                          <th style="font-size: 15px;">Proposed:</th>
+                                          <th></th>
+                                        </tr>
+                                      </thead>
+
+                                      <tbody>
+                                        <tr>
+                                          <td>Lamps:</td>
+                                          <td>
+                                            <div class="input-append">
+                                                <input class="span2" id="lamp-current" value="40" disabled="" type="number">
+                                                <span class="add-on">W</span>                               
+                                            </div>
+                                          </td> 
+                                          <td></td>
+                                          <td>Lamps: </td>
+                                          <td> 
+                                            <div class="input-append">
+                                                <input class="span2" id="lamp-proposed" value="28" disabled="" type="number">
+                                                <span class="add-on">W</span>                               
+                                            </div>
+                                          </td>  
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td></td>  
+                                          <td></td> 
+                                          <td></td> 
+                                          <td>Measure Cost:</td>
+                                          <td>
+                                            <div class="input-prepend input-append">
+                                              <span class="add-on">$</span>
+                                              <input name="bathroom-measure-cost" style="width:50px" value="" disabled="" type="text">
+                                              <span class="add-on">.00</span>
+                                            </div>
+                                          </td> 
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td></td>  
+                                          <td></td> 
+                                          <td></td>  
+                                          <td>Year of Installation:</td>
+                                          <td><input name="bathroom-year" style="width:50px" value="" disabled="" type="text"></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <br><br><br>
+                                </li>   
+                                </ol>
+                            </li>
+
+                            <!-- Emergency Lighting Upgrade -->
+                            <li>
+                                <label for="emergency-lighting">Emergency Lighting Upgrade</label> <input id="emergency-lighting" name="selected[]" value="emergencyLightingChecked" type="checkbox"> 
+                                <ol>
+                                <li>
+                                    <br>                               
+                                    <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                      <caption></caption>
+                                      <thead>
+                                        <tr>
+                                          <th style="font-size: 15px;">Current:</th>
+                                          <th></th>
+                                          <th style="width:280px"></th>
+                                          <th style="font-size: 15px;">Proposed:</th>
+                                          <th></th>
+                                        </tr>
+                                      </thead>
+
+                                      <tbody>
+                                        <tr>
+                                          <td>Type:</td>
+                                          <td>
+                                            <select name="" disabled="">
+                                                <option>CFL</option>
+                                            </select> 
+                                          </td> 
+                                          <td></td>
+                                          <td>Type: </td>
+                                           <td>
+                                            <select name="" disabled="">
+                                                <option>LED</option>
+                                            </select> 
+                                          </td>  
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td></td>  
+                                          <td></td> 
+                                          <td></td> 
+                                          <td>Measure Cost:</td>
+                                          <td>
+                                            <div class="input-prepend input-append">
+                                              <span class="add-on">$</span>
+                                              <input name="emergencing-measure-cost" style="width:50px" value="" disabled="" type="text">
+                                              <span class="add-on">.00</span>
+                                            </div>
+                                          </td> 
+                                        </tr>
+
+                                        <tr>                                                         
+                                          <td></td>  
+                                          <td></td> 
+                                          <td></td>  
+                                          <td>Year of Installation:</td>
+                                          <td><input name="emergencing-year" style="width:50px" value="" disabled="" type="text"></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <br><br><br>
+                                </li>   
+                                </ol>
+                            </li>
+
+                        </ol>
+                    </li>
+
+                </ol>
+            </li>
+
+           <!--################################################  Enclosure  ########################################-->
+            <li>
+                <label for="enclosure">Enclosure</label> <input id="enclosure" name="selected[]" value="enclosureChecked" type="checkbox"> 
+                <ol>
+                    <!-- Roof -->
+                    <li>
+                        <label for="roof">Roof</label> <input id="roof" name="selected[]" value="roofChecked" type="checkbox"> 
+                        <ol>
+                            <!-- Increase Roof Insulation, R-10 -->
+                            <li>
+                                <label for="increase-roof-insulation">Increase Roof Insulation, R-10</label> <input id="increase-roof-insulation" name="selected[]" value="roofInsulationChecked" type="checkbox"> 
+                                <ol>            
+                                    <li>
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>
+                                                      <th></th>   
+                                                      <th style="width:180px"></th>
+                                                      <th style="font-size: 15px;">Proposed (+R-10):</th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>Roof Insulation (R value): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="roof-insulation-current" value="30" disabled="" type="number">
+                                                            <span class="add-on">
+                                                                <sup>h ft<sup>2</sup> °F</sup>⁄<sub>Btu</sub>
+                                                            </span>     
+                                                        </div> 
+                                                      </td>
+                                                      <td>&nbsp;</td>
+                                                      <td>Roof Insulation (R value): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="roof-insulation-proposed" value="10" disabled="" type="number">
+                                                            <span class="add-on">
+                                                                <sup>h ft<sup>2</sup> °F</sup>⁄<sub>Btu</sub>
+                                                            </span>                                 
+                                                        </div> 
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                       
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td>  
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                    </tr>
+
+
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                        <br>        
+                                    </li>
+
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <!-- Exterior Wall -->
+                    <li>
+                        <label for="exterior-wall">Exterior Wall</label> <input id="exterior-wall" name="selected[]" value="exteriorWallChecked" type="checkbox"> 
+                        <ol>
+                            <!-- Increase Wall Insulation, R-10 -->
+                            <li>
+                                <label for="increase-wall-insulation-1">Increase Wall Insulation, R-10</label> <input id="increase-wall-insulation-1" name="selected[]" value="wallInsulation1Checked" type="checkbox"> 
+                                <ol>
+                                    <li>
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>
+                                                      <th></th>
+                                                      <th style="width:180px"></th>
+                                                      <th style="font-size: 15px;">Proposed (+R-10):</th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>Wall Insulation (R value): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="wall-insulation-1" value="3.0906" disabled="" type="number">
+                                                            <span class="add-on">
+                                                                <sup>h ft<sup>2</sup> °F</sup>⁄<sub>Btu</sub>
+                                                            </span>     
+                                                        </div> 
+                                                      </td>
+                                                      <td>&nbsp;</td>
+                                                      <td>Wall Insulation (R value): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="wall-insulation-1" value="10.0" disabled="" type="number">
+                                                            <span class="add-on">
+                                                                <sup>h ft<sup>2</sup> °F</sup>⁄<sub>Btu</sub>
+                                                            </span>                                 
+                                                        </div> 
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                       
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td>  
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                        <br>        
+                                    </li>
+                                </ol>
+                            </li>
+
+                            <!-- Increase Wall Insulation, R-20 -->
+                            <li>
+                                <label for="increase-wall-insulation-2">Increase Wall Insulation, R-20</label> <input id="increase-wall-insulation-2" name="selected[]" value="wallInsulation2Checked" type="checkbox"> 
+                                <ol>
+                                    <li>
+                                        <div>
+                
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>
+                                                      <th></th>
+                                                      <th style="width:180px"></th>
+                                                      <th style="font-size: 15px;">Proposed (+R-20):</th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>Wall Insulation (R value): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="wall-insulation-2" value="3.09060" disabled="" type="number">
+                                                            <span class="add-on">
+                                                                <sup>h ft<sup>2</sup> °F</sup>⁄<sub>Btu</sub>
+                                                            </span>                                 
+                                                        </div> 
+                                                      </td>
+                                                      <td>&nbsp;</td>
+                                                      <td>Wall Insulation (R value): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="wall-insulation-2" value="20.0" disabled="" type="number">
+                                                            <span class="add-on">
+                                                                <sup>h ft<sup>2</sup> °F</sup>⁄<sub>Btu</sub>
+                                                            </span>                             
+                                                        </div> 
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                       
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td>  
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                    </tr>
+
+
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                        <br>    
+                                    </li>
+
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+
+
+                    <!-- Fenestration -->
+                    <li>
+                        <label for="Fenestration">Fenestration</label> <input id="Fenestration" name="selected[]" value="fenestrationChecked" type="checkbox"> 
+                        <ol>
+                            <!-- Window Upgrade -->
+                            <li>
+                                <label for="windows-upgrade">Window Upgrade</label> <input id="windows-upgrade" name="selected[]" value="windowsUpgradelChecked" type="checkbox"> 
+                                <ol>
+                                    <li>
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>
+                                                      <th></th>
+                                                      <th style="width:150px"></th>
+                                                      <th style="font-size: 15px;">Proposed (Windows Replacement):</th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>Windows Insulation (U value): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="windows-insulation" value="0.475" disabled="" type="number">
+                                                            <span class="add-on">
+                                                                <sup>Btu</sup>⁄<sub>h °F </sub><sub>ft<sup>2</sup></sub>
+                                                            </span>                                 
+                                                        </div> 
+                                                      </td>                 
+                                                      <td>&nbsp;</td>
+                                                      <td>Windows Insulation (U value): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="windows-insulation" value="0.2360" disabled="" type="number">
+                                                            <span class="add-on">
+                                                                <sup>Btu</sup>⁄<sub>h °F </sub><sub>ft<sup>2</sup></sub>
+                                                            </span>                                 
+                                                        </div> 
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                      <td>Windows SHGC: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span1" id="windows-SHGC" value="0.7" disabled="" type="number"><span class="add-on">[-]</span>                                   
+                                                        </div> 
+                                                      </td>
+                                                      <td>&nbsp;</td>
+                                                      <td>Windows SHGC: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span1" id="windows-SHGC" value="0.35" disabled="" type="number"><span class="add-on">[-]</span>                                  
+                                                        </div> 
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>    
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td>  
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                    </tr>
+
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                        <br>    
+                                    </li>
+                                </ol>
+                            </li>
+
+                            <!-- Windows Film Replacement -->
+                            <li>
+                                <label for="windows-film-replacement">Windows Film Replacement</label> <input id="windows-film-replacement" name="selected[]" value="windowsFilmChecked" type="checkbox"> 
+                                <ol>
+                                    <li>
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>
+                                                      <th></th>
+                                                      <th style="width:150px"></th>
+                                                      <th style="font-size: 15px;">Proposed (Windows Film Replacement):</th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>Windows Insulation (U value): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="windows-insulation" value="0.475" disabled="" type="number">
+                                                            <span class="add-on">
+                                                                <sup>Btu</sup>⁄<sub>h °F </sub><sub>ft<sup>2</sup></sub>
+                                                            </span>                                 
+                                                        </div> 
+                                                      </td>                 
+                                                      <td>&nbsp;</td>
+                                                      <td>Windows Insulation (U value): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="windows-insulation" value="0.475" disabled="" type="number">
+                                                            <span class="add-on">
+                                                                <sup>Btu</sup>⁄<sub>h °F </sub><sub>ft<sup>2</sup></sub>
+                                                            </span>                                 
+                                                        </div> 
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                      <td>Windows SHGC: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span1" id="windows-SHGC" value="0.7" disabled="" type="number"><span class="add-on">[-]</span>                                   
+                                                        </div> 
+                                                      </td>
+                                                      <td>&nbsp;</td>
+                                                      <td>Windows SHGC: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span1" id="windows-SHGC" value="0.35" disabled="" type="number"><span class="add-on">[-]</span>                                  
+                                                        </div> 
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>    
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td>  
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                    </tr>
+
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                        <br>    
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <!-- Infiltration -->
+                    <li>
+                        <label for="infiltration">Infiltration</label> <input id="infiltration" name="selected[]" value="infiltrationChecked" type="checkbox"> 
+                        <ol>
+                            <li>
+                                <!-- Door Weatherization -->
+                                <label for="doorWeatherization">Door Weatherization</label> <input id="doorWeatherization" name="selected[]" value="doorWeatherizationChecked" type="checkbox">               
+                                <ol>
+                                    <li>
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>
+                                                      <th></th>
+                                                      <th style="width:220px"></th>
+                                                      <th style="font-size: 15px;">Proposed:</th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>Air Change Per Hour: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="infiltration" value="1.8" disabled="" type="number">
+                                                            <span class="add-on"><sup>1</sup>⁄<sub>hr</sub></span>                                
+                                                        </div>
+                                                      </td>
+                                                      <td>&nbsp;</td>
+                                                      <td>Air Change Per Hour: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="infiltration" value="1.7" disabled="" type="number">
+                                                            <span class="add-on"><sup>1</sup>⁄<sub>hr</sub></span>                                    
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                       
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td>  
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </li>   
+
+                            <!-- Enclosure Recommissioning -->
+                            <li>
+                                <label for="enclosureRecommis">Enclosure Recommissioning</label> <input id="enclosureRecommis" name="selected[]" value="enclosureRecommisChecked" type="checkbox">    
+                                <ol>
+                                    <li>
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>
+                                                      <th></th>
+                                                      <th style="width:220px"></th>
+                                                      <th style="font-size: 15px;">Proposed:</th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>Air Change Per Hour: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="infiltration" value="1.8" disabled="" type="number">
+                                                            <span class="add-on"><sup>1</sup>⁄<sub>hr</sub></span>                                
+                                                        </div>
+                                                      </td>
+                                                      <td>&nbsp;</td>
+                                                       <td>Air Change Per Hour: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="infiltration" value="1.35" disabled="" type="number">
+                                                            <span class="add-on"><sup>1</sup>⁄<sub>hr</sub></span>                                        
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                       
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td>  
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                    </li>
+
+                                </ol>
+                            </li>
+
+
+                        </ol>
+                    </li>
+
+                </ol>
+            </li>
+
+            <!--################################################  HVAC  #############################################-->
+            <li>
+                <label for="hvac">HVAC</label> <input id="hvac" name="selected[]" value="hvacChecked" type="checkbox"> 
+                <ol>
+                    <!-- Schedule -->
+                    <!-- <li>
+                        <label for="HVAC-schedule">Schedule</label> <input type="checkbox" id="HVAC-schedule" name="selected[]" value="hvacSchedChecked"/> 
+                        <ol>                
+                            <li class="file"><a href="">Subfile 1</a></li>      
+                        </ol>
+                    </li> -->
+
+                    <!-- Heating -->
+                    <li>
+                        <label for="heating">Heating</label> <input id="heating" name="selected[]" value="heatingChecked" type="checkbox"> 
+                        <ol>
+
+                                <!-- Setting Points -->
+                            <li>
+                                <label for="heating-set-points">Thermostat Setpoints</label> <input id="heating-set-points" name="selected[]" value="heatingSPChecked" type="checkbox"> 
+                                <ol>
+                                    <!-- Heating Set Back -->
+                                    <li>
+                                        <!-- Heating Set Back -->
+                                        <label for="heating-set-back" title="Set heating set point, setback, match to schedule">
+                                            Heating Set Back
+                                        </label> <input id="heating-set-back" name="selected[]" value="heatingSBChecked" type="checkbox"> 
+                                        <ol>
+                                            <li>
+                                                <div>                               
+                                                    <br>
+                                                    <table style="font-size: 11px;" border="0" cellpadding="5"> 
+                                                      <caption></caption>
+                                                      <thead>
+                                                        <tr>
+                                                          <th style="font-size: 15px;">Current:</th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                                          <th></th>
+                                                          <th style="font-size: 15px;">Proposed:</th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th></th>
+                                                        </tr>
+
+                                                         <tr>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th style="font-size: 10px;">Start Hour</th>
+                                                          <th style="font-size: 10px;">End Hour</th>
+                                                          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th style="font-size: 10px;">Start Hour</th>
+                                                          <th style="font-size: 10px;">End Hour</th>
+                                                        </tr>
+                                                      </thead>
+
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>Heating Set Point Temperature 1: </td>
+                                                          <td>
+                                                            <div class="input-append">
+                                                                <input class="span2" id="heating-set-point" value="70" style="width:50px" disabled="" type="number"><span class="add-on">°F</span>                                 
+                                                            </div>
+                                                          </td>
+                                                          <td>Heating Schedule 1:</td>
+                                                          <td><input name="heating-schedule" style="width:50px" value="0:00" disabled="" type="text"></td>
+                                                          <td><input name="heating-schedule" style="width:50px" value="07:00" disabled="" type="text"></td>
+
+                                                          <td>&nbsp;</td>
+
+                                                          <td>Heating Set Point Temperature 1: </td>
+                                                          <td>
+                                                            <div class="input-append">
+                                                                <input class="span2" id="heating-set-point" value="55" style="width:50px" disabled="" type="number"><span class="add-on">°F</span>                                 
+                                                            </div>
+                                                          </td>
+                                                          <td>Heating Schedule 1:</td>
+                                                          <td><input name="heating-schedule" style="width:50px" value="0:00" disabled="" type="text"></td>
+                                                          <td><input name="heating-schedule" style="width:50px" value="07:00" disabled="" type="text"></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                          <td>Heating Set Point Temperature 2: </td>
+                                                          <td>
+                                                            <div class="input-append">
+                                                                <input class="span2" id="heating-set-point" value="70" style="width:50px" disabled="" type="number"><span class="add-on">°F</span>                                 
+                                                            </div>
+                                                          </td>
+                                                          <td>Heating Schedule 2:</td>
+                                                          <td><input name="heating-schedule" style="width:50px" value="07:00" disabled="" type="text"></td>
+                                                          <td><input name="heating-schedule" style="width:50px" value="19:00" disabled="" type="text"></td>
+
+                                                          <td>&nbsp;</td>
+
+                                                          <td>Heating Set Point Temperature 2: </td>
+                                                          <td>
+                                                            <div class="input-append">
+                                                                <input class="span2" id="heating-set-point" value="70" style="width:50px" disabled="" type="number"><span class="add-on">°F</span>                                 
+                                                            </div>
+                                                          </td>
+                                                          <td>Heating Schedule 2:</td>
+                                                          <td><input name="heating-schedule" style="width:50px" value="07:00" disabled="" type="text"></td>
+                                                          <td><input name="heating-schedule" style="width:50px" value="19:00" disabled="" type="text"></td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                          <td>Heating Set Point Temperature 3: </td>
+                                                          <td>
+                                                            <div class="input-append">
+                                                                <input class="span2" id="heating-set-point" value="70" style="width:50px" disabled="" type="number"><span class="add-on">°F</span>                                 
+                                                            </div>
+                                                          </td>
+                                                          <td>Heating Schedule 3:</td>
+                                                          <td><input name="heating-schedule" style="width:50px" value="19:00" disabled="" type="text"></td>
+                                                          <td><input name="heating-schedule" style="width:50px" value="24:00" disabled="" type="text"></td>
+
+                                                          <td>&nbsp;</td>
+
+                                                          <td>Heating Set Point Temperature 3: </td>
+                                                          <td>
+                                                            <div class="input-append">
+                                                                <input class="span2" id="heating-set-point" value="55" style="width:50px" disabled="" type="number"><span class="add-on">°F</span>                                 
+                                                            </div>
+                                                          </td>
+                                                          <td>Heating Schedule 3:</td>
+                                                          <td><input name="heating-schedule" style="width:50px" value="19:00" disabled="" type="text"></td>
+                                                          <td><input name="heating-schedule" style="width:50px" value="24:00" disabled="" type="text"></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+
+                                                    <hr><br>
+
+                                                    <table style="font-size: 11px;" border="0" cellpadding="5"> 
+                                                      <tbody>
+                                                        <tr>
+                                                          <td></td>  
+                                                          <td></td> 
+                                                          <td></td>     
+                                                          <td></td>  
+                                                          <td></td> 
+                                                          <td></td>                                                      
+                                                          <td></td>  
+                                                          <td></td> 
+                                                          <td style="width:480px"></td> 
+                                                          <td>Measure Cost:</td>
+                                                          <td>
+                                                            <div class="input-prepend input-append">
+                                                              <span class="add-on">$</span>
+                                                              <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                              <span class="add-on">.00</span>
+                                                            </div>
+                                                          </td>
+                                                        </tr>
+
+                                                        <tr>    
+                                                          <td></td>  
+                                                          <td></td> 
+                                                          <td></td>     
+                                                          <td></td>  
+                                                          <td></td> 
+                                                          <td></td>                                                      
+                                                          <td></td>  
+                                                          <td></td> 
+                                                          <td></td> 
+                                                          <td>Year of Installation:</td>
+                                                          <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </li>
+                                        </ol>
+                                    </li>
+
+                                </ol>
+                            </li>   
+
+
+                            <li>
+                                <label for="condensingBoiler">Condesing Boiler </label> <input id="condensingBoiler" name="selected[]" value="condensingBoilerChecked" type="checkbox"> 
+                                <ol>
+                                    <li>
+
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>
+                                                      <th></th>
+                                                      <th style="width:250px"></th>
+                                                      <th style="font-size: 15px;">Proposed:</th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>Nominal Efficiency: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="nominal-efficiency" value="0.83" disabled="" type="number">
+                                                            <span class="add-on">[-]</span>                             
+                                                        </div>
+                                                      </td>
+                                                     
+                                                      <td>&nbsp;</td>
+
+                                                      <td>Nominal Efficiency: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="plug-loan-density" value="0.95" disabled="" type="number">
+                                                            <span class="add-on">[-]</span>                                     
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="nominal-efficiency-measure-cost" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                       
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td>  
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="nominal-efficiency-year" style="width:50px" value="" disabled="" type="text"></td>
+                                                    </tr>
+
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+
+                                    </li>
+                                </ol>
+                            </li>
+
+                        </ol>
+                    </li>
+
+                    <!-- Cooling -->
+                    <li>
+                        <label for="cooling">Cooling</label> <input id="cooling" name="selected[]" value="coolingChecked" type="checkbox"> 
+                        <ol>
+                            <!-- Setting Points -->
+                            <li>
+                                <label for="cooling-set-points">Thermostat Setpoints</label> <input id="cooling-set-points" name="selected[]" value="coolingSPChecked" type="checkbox"> 
+                                <ol>
+                                    <!-- Cooling Set Back -->
+                                    <li>
+                                        <label for="cooling-set-back">Cooling Set Back</label> <input id="cooling-set-back" name="selected[]" value="coolingSBChecked" type="checkbox"> 
+                                        <ol>
+                                            <li>
+                                                <div>
+
+                                                    <br>
+                                                    <table style="font-size: 11px;" border="0" cellpadding="5"> 
+                                                      <caption></caption>
+                                                      <thead>
+                                                        <tr>
+                                                          <th style="font-size: 15px;">Current:</th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                                          <th></th>
+                                                          <th style="font-size: 15px;">Proposed:</th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th></th>
+                                                        </tr>
+
+                                                         <tr>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th style="font-size: 10px;">Start Hour</th>
+                                                          <th style="font-size: 10px;">End Hour</th>
+                                                          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th></th>
+                                                          <th style="font-size: 10px;">Start Hour</th>
+                                                          <th style="font-size: 10px;">End Hour</th>
+                                                        </tr>
+                                                      </thead>
+
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>Cooling Set Point Temperature 1: </td>
+                                                          <td>
+                                                            <div class="input-append">
+                                                                <input class="span2" id="cooling-set-point" value="75" style="width:50px" disabled="" type="number"><span class="add-on">°F</span>                                 
+                                                            </div>
+                                                          </td>
+                                                          <td>Cooling Schedule 1:</td>
+                                                          <td><input name="cooling-schedule" style="width:50px" value="0:00" disabled="" type="text"></td>
+                                                          <td><input name="cooling-schedule" style="width:50px" value="07:00" disabled="" type="text"></td>
+
+                                                          <td>&nbsp;</td>
+
+                                                          <td>Cooling Set Point Temperature 1: </td>
+                                                          <td>
+                                                            <div class="input-append">
+                                                                <input class="span2" id="cooling-set-point" value="91" style="width:50px" disabled="" type="number"><span class="add-on">°F</span>                                 
+                                                            </div>
+                                                          </td>
+                                                          <td>Cooling Schedule 1:</td>
+                                                          <td><input name="cooling-schedule" style="width:50px" value="0:00" disabled="" type="text"></td>
+                                                          <td><input name="cooling-schedule" style="width:50px" value="07:00" disabled="" type="text"></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                          <td>Cooling Set Point Temperature 2: </td>
+                                                          <td>
+                                                            <div class="input-append">
+                                                                <input class="span2" id="cooling-set-point" value="75" style="width:50px" disabled="" type="number"><span class="add-on">°F</span>                                 
+                                                            </div>
+                                                          </td>
+                                                          <td>Cooling Schedule 2:</td>
+                                                          <td><input name="cooling-schedule" style="width:50px" value="07:00" disabled="" type="text"></td>
+                                                          <td><input name="cooling-schedule" style="width:50px" value="19:00" disabled="" type="text"></td>
+
+                                                          <td>&nbsp;</td>
+
+                                                          <td>Cooling Set Point Temperature 2: </td>
+                                                          <td>
+                                                            <div class="input-append">
+                                                                <input class="span2" id="cooling-set-point" value="75" style="width:50px" disabled="" type="number"><span class="add-on">°F</span>                                 
+                                                            </div>
+                                                          </td>
+                                                          <td>Cooling Schedule 2:</td>
+                                                          <td><input name="cooling-schedule" style="width:50px" value="07:00" disabled="" type="text"></td>
+                                                          <td><input name="cooling-schedule" style="width:50px" value="19:00" disabled="" type="text"></td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                          <td>Cooling Set Point Temperature 3: </td>
+                                                          <td>
+                                                            <div class="input-append">
+                                                                <input class="span2" id="cooling-set-point" value="75" style="width:50px" disabled="" type="number"><span class="add-on">°F</span>                                 
+                                                            </div>
+                                                          </td>
+                                                          <td>Cooling Schedule 3:</td>
+                                                          <td><input name="cooling-schedule" style="width:50px" value="19:00" disabled="" type="text"></td>
+                                                          <td><input name="cooling-schedule" style="width:50px" value="24:00" disabled="" type="text"></td>
+
+                                                          <td>&nbsp;</td>
+
+                                                          <td>Cooling Set Point Temperature 3: </td>
+                                                          <td>
+                                                            <div class="input-append">
+                                                                <input class="span2" id="cooling-set-point" value="91" style="width:50px" disabled="" type="number"><span class="add-on">°F</span>                                 
+                                                            </div>
+                                                          </td>
+                                                          <td>Cooling Schedule 3:</td>
+                                                          <td><input name="cooling-schedule" style="width:50px" value="19:00" disabled="" type="text"></td>
+                                                          <td><input name="cooling-schedule" style="width:50px" value="24:00" disabled="" type="text"></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+
+                                                    <hr><br><br>
+
+                                                    <table style="font-size: 11px;" border="0" cellpadding="5"> 
+                                                      <tbody>
+                                                        <tr>
+                                                          <td></td>  
+                                                          <td></td> 
+                                                          <td></td>     
+                                                          <td></td>  
+                                                          <td></td> 
+                                                          <td></td>                                                      
+                                                          <td></td>  
+                                                          <td></td> 
+                                                          <td style="width:480px"></td> 
+                                                          <td>Measure Cost:</td>
+                                                          <td>
+                                                            <div class="input-prepend input-append">
+                                                              <span class="add-on">$</span>
+                                                              <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                              <span class="add-on">.00</span>
+                                                            </div>
+                                                          </td>
+                                                        </tr>
+
+                                                        <tr>    
+                                                          <td></td>  
+                                                          <td></td> 
+                                                          <td></td>     
+                                                          <td></td>  
+                                                          <td></td> 
+                                                          <td></td>                                                      
+                                                          <td></td>  
+                                                          <td></td> 
+                                                          <td></td> 
+                                                          <td>Year of Installation:</td>
+                                                          <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                    <br><br>  
+                                                </div>
+                                            </li>
+                                        </ol>
+
+                                    </li>
+                                </ol>
+                            </li>
+
+                            <!-- Condensing Unit Replacement -->
+                            <li>
+                                <label for="system-efficiency">Condensing Unit Replacement</label> <input id="system-efficiency" name="selected[]" value="sysEffChecked" type="checkbox"> 
+                                <ol>
+                                    <!-- Condensing Unit Replacement -->
+                                    <li>
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>
+                                                      <th></th>
+                                                      <th style="width:180px"></th>
+                                                      <th style="font-size: 15px;">Proposed:</th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>
+                                                      <td align="center"><b>Low-Speed</b></td>
+                                                      <td> &nbsp;</td>                           
+                                                      <td>&nbsp;</td>
+                                                      <td align="center"><b>Low-Speed</b></td>
+                                                      <td>&nbsp;</td>
+                                                    </tr>
+
+                                                        <tr>
+                                                      <td>Coefficient of Performance (COP): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="current-cop" value="4.31" disabled="" type="number">
+                                                        </div> 
+                                                      </td>
+                                                     
+                                                      <td>&nbsp;</td>
+
+                                                      <td>Coefficient of Performance (COP):</td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="proposed-cop" value="5.37" disabled="" type="number">                             
+                                                        </div> 
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                      <td align="center"><b>High-Speed</b></td>
+                                                      <td> &nbsp;</td>                           
+                                                      <td>&nbsp;</td>
+                                                      <td align="center"><b>High-Speed</b></td>
+                                                      <td>&nbsp;</td>
+                                                    </tr>
+
+                                                        <tr>
+                                                      <td>Coefficient of Performance (COP): </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="current-cop" value="3.37" disabled="" type="number">
+                                                        </div> 
+                                                      </td>
+                                                     
+                                                      <td>&nbsp;</td>
+
+                                                      <td>Coefficient of Performance (COP):</td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="proposed-cop" value="4.37" disabled="" type="number">                             
+                                                        </div> 
+                                                      </td>
+                                                    </tr>
+
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+
+                                                    <tr>    
+                                                      <td></td>                                                      
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                    </tr>
+
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                        <br>
+                                    </li>
+                                </ol>
+                            </li>  <!-- here -->
+
+
+
+
+
+                        </ol>
+                    </li>
+
+                    <!-- Ventilation -->
+                    <li>
+                        <label for="ventilation">Ventilation</label> <input id="ventilation" name="selected[]" value="ventilationHVACChecked" type="checkbox"> 
+                        <ol>
+                            <!-- Outdoor Air Economizer -->
+                            <li>
+                                <label for="outdoor-air-economizer">Outdoor Air Economizer</label> <input disabled="" id="outdoor-air-economizer" name="selected[]" value="airEconChecked" type="checkbox"> 
+                                <ol>            
+                                    <li>
+                                        <div>
+                                            <br>
+                                                <table style="font-size: 12px;" border="0" cellpadding="5"> 
+                                                  <caption></caption>
+                                                  <thead>
+                                                    <tr>
+                                                      <th style="font-size: 15px;">Current:</th>
+                                                      <th></th>
+                                                      <th style="width:150px"></th>
+                                                      <th></th>
+                                                      <th style="font-size: 15px;">Proposed:</th>
+                                                      <th></th>
+                                                      <th></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <tr>
+                                                      <td>Outdoor Air Type Economizer: </td>
+                                                      <td>
+                                                        <select name="" disabled="">
+                                                            <option>No Economizer</option>
+                                                            <option>Fixed Dry Bulb Temperature</option>
+                                                        </select> 
+                                                      </td>
+                                                      <td><button class="btn">Select</button> </td>
+
+                                                      <td>&nbsp;</td>
+                                                      <td>Outdoor Air Type Economizer: </td>
+
+                                                      <td>
+                                                        <select name="" disabled="">
+                                                            <option>No Economizer</option>
+                                                            <option selected="">Fixed Dry Bulb Temperature</option>
+                                                        </select> 
+                                                      </td>
+
+                                                      <td><button class="btn">Select</button> </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                      <td>Maximum Limit Temperature:  </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span1" id="plug-loan-density" disabled="" type="number"><span class="add-on">°F</span>                                   
+                                                        </div> 
+                                                      </td>
+                                                      <td>&nbsp;</td>
+                                                      <td>&nbsp;</td>
+
+                                                      <td>Maximum Limit Temperature:  </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span1" id="plug-loan-density" value="82.4" disabled="" type="number"><span class="add-on">°F</span>                                  
+                                                        </div> 
+                                                      </td>
+                                                      <td>&nbsp;</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                      <td></td>
+                                                      <td> </td>
+                                                      <td>&nbsp;</td>
+                                                      <td>&nbsp;</td>
+
+                                                      <td>Maximum Outdoor Air Flow Rate: </td>
+                                                      <td>
+                                                        <div class="input-append">
+                                                            <input class="span2" id="air-flow-rate" value="14127" disabled="" type="number"><span class="add-on">CFM</span>                                    
+                                                        </div> 
+                                                      </td>
+                                                      <td>&nbsp;</td>
+                                                    </tr>
+
+                                                    <tr>                                                         
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td></td> 
+                                                      <td>Measure Cost:</td>
+                                                      <td>
+                                                        <div class="input-prepend input-append">
+                                                          <span class="add-on">$</span>
+                                                          <input name="measure" style="width:50px" value="" disabled="" type="text">
+                                                          <span class="add-on">.00</span>
+                                                        </div>
+                                                      </td>
+                                                       <td></td>
+                                                    </tr>
+
+                                                    <tr>    
+                                                      <td></td>  
+                                                      <td></td>                                                      
+                                                      <td></td>  
+                                                      <td></td> 
+                                                      <td>Year of Installation:</td>
+                                                      <td><input name="year" style="width:50px" value="" disabled="" type="text"></td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                            <br><br>
+                                        </div>
+                                        <br>
+                                            
+                                    </li>
+                                </ol>
+                            </li>
+
+                            <!-- Demand Control Ventilation -->
+                        <!--    <li>
+                                <label for="demand-control-ventilation">Demand Control Ventilation</label> <input type="checkbox" id="demand-control-ventilation" /> 
+                                <ol>
+                                    <li class="file"><a href="">Subfile 1</a></li>
+                                </ol>
+                            </li>
+                        -->
+                            <!-- Energy Recovery -->
+                        <!--    <li>
+                                <label for="energy-recovery">Energy Recovery</label> <input type="checkbox" id="energy-recovery" name="selected[]" value="energyRecChecked" /> 
+                                <ol>
+                                    <li class="file"><a href="">Subfile 1</a></li>
+                                </ol>
+                            </li>
+                        -->
+                        </ol>
+                    </li>
+                </ol>
+            </li>
+
+        </form></ol>
+            <!--input type="submit" value="SIMULATE" onclick="this.form.submit();" /-->
+<button type="submit" value="go to tracking sheet" formaction="http://rmt.eebhub.org/comprehensive/tracking-sheet.html" formmethod="post" id="restart-game-button" style="">Save Inputs &amp; Perform EEM Staging</button>
+
+            <br><br>
+        
+        </div>
+  <!-- ################################ Loading Bar ##################################################### -->
+            <div class="loading-div container-fluid">
+                <div id="filter"> 
+                </div>
+            
+                <div class="progress progress-striped active">
+                  <div class="bar"></div>
+                </div>
+            
+                <h4 id="loading-status">Simulation In Progress ...</h4>
+            </div>
+
+        <!-- proposed field -->
+    <!--    <div id="Proposed-Field">       
+            <h2>Proposed:</h2>
+            <select>
+                <option>Package 1</option>
+                <option>Package 2</option>
+                <option>Package 3</option>
+            </select> 
+            <button class="btn">Save to package</button>
+            <button class="btn">Apply to all packages</button>  -->
+
+
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript 
+    ================================================== -->
+   
+
+    <!-- load highchart libs -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="js/Highcharts-3.0.4/js/highcharts.js"></script>
+    <script src="js/Highcharts-3.0.4/js/modules/exporting.js"></script>
+     <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-switch.min.js"></script>
+    
+    <script>
+        // update loading bar
+        function loading() {
+            
+            // current progress number in pixel
+            var num = 0;
+            
+            // update the progress every second
+            var update = setInterval(function(){
+                
+                // update the loading-status (text)
+                $("#loading-status").html("Simulation In Progress "+parseInt(num/$(".loading-div").width()*100)+"%");
+                
+                // loading to the next process
+                if(num>=$(".loading-div").width()) { 
+                        $("#loading-status").html("Loading...");
+                        clearInterval(update);
+                }
+                
+                // update the loading bar 
+                $(".bar").width(num);
+                
+                // increase the loading bar 3 pixes per second.
+                num=num+3;
+            },1000);
+        }
+    </script>
+  
+
+</body>
