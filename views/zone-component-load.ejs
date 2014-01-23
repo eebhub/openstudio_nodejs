@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>EEB Hub Simulation Tools: Comprehensive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="css/comprehensive.css" rel="stylesheet">    
+
+    <style>
+        .selected {
+            background: yellow;
+        }
+    </style>
+    </head>
+
+    <body>
+    <!-- Navbar 
+    ================================================== -->
+    
+            <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+            <div class="container-fluid" >
+              <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="brand pull-left" href="http://tools.eebhub.org/">EEB Hub Simulation Platform</a>
+              <div class="nav-collapse collapse">
+                <ul class="nav">
+                  <li class="">
+                    <a href="http://tools.eebhub.org/lite">LITE</a>
+                  </li>
+                  <li class="">
+                    <a href="http://tools.eebhub.org/partial">PARTIAL</a>
+                  </li>
+                  <li class="">
+                    <a href="http://tools.eebhub.org/substantial">SUBSTANTIAL</a>
+                  </li>
+                  <li class="active">
+                    <a href="http://tools.eebhub.org/comprehensive">COMPREHENSIVE</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            </div>
+            </div>
+    <!-- Container -->
+    <div class="container">
+
+    <!-- Switch Pacakge -->
+        
+            <form action="" method="post">
+                <div style="font-size: 25px; font-weight: bold; color: #eee; margin-top: 20px;">
+                <select id="num_package" name="num_package" onchange="this.form.submit();"><option value="">Simulation_2652.idf</option><option value="Simulation_2652.idf">Simulation_2652.idf</option>                </select></div>
+            </form>
+        <!-- Sub-Nav-bar -->
+        
+            <!-- Sub-Nav-bar -->
+            <div class="navbar">
+              <div class="navbar-inner">
+                <a class="brand" href="#">Open Studio SDK And Energy Plus</a>
+                <ul class="nav">
+                  <li class=""><a href="./energy-use.html">Energy</a></li>
+                  <li class=""><a href="./energy-intensity.html">Energy Intensity</a></li>
+                  <li class="active"><a href="./zone-component-load.html">Zone Loads</a></li>
+                  <li class=""><a href="./energy-cost.html">Energy Cost</a></li>
+                  <li class=""><a href="./tracking-sheet.html">Tracking Sheet</a></li>
+                </ul>
+              </div>
+            </div>      
+
+            <!-- Zone Components Load Summary-->
+            <div class="container-fluid" style="background: white;">
+                <div class="row-fluid">
+                    <!--Sidebar content-->
+                    <div class="span3" >
+                        <legend>Thermal Zones </legend>
+                        <div style="height: 600px; overflow: scroll; overflow-x: hidden; padding-top: 0px; scroller"> 
+                          <!-- Link or button to toggle dropdown -->
+                          <ul class="unstyled" >
+                            <li> <a href='?for=THERMAL ZONE 1'> THERMAL ZONE 1 </a></li><li> <a href='?for=THERMAL ZONE 10'> THERMAL ZONE 10 </a></li><li> <a href='?for=THERMAL ZONE 11'> THERMAL ZONE 11 </a></li><li> <a href='?for=THERMAL ZONE 12'> THERMAL ZONE 12 </a></li><li> <a href='?for=THERMAL ZONE 13'> THERMAL ZONE 13 </a></li><li> <a href='?for=THERMAL ZONE 14'> THERMAL ZONE 14 </a></li><li> <a href='?for=THERMAL ZONE 15'> THERMAL ZONE 15 </a></li><li> <a href='?for=THERMAL ZONE 16'> THERMAL ZONE 16 </a></li><li> <a href='?for=THERMAL ZONE 17'> THERMAL ZONE 17 </a></li><li> <a href='?for=THERMAL ZONE 18'> THERMAL ZONE 18 </a></li><li> <a href='?for=THERMAL ZONE 19'> THERMAL ZONE 19 </a></li><li> <a href='?for=THERMAL ZONE 2'> THERMAL ZONE 2 </a></li><li class='selected'> <a href='?for=THERMAL ZONE 20'> THERMAL ZONE 20 </a></li><li> <a href='?for=THERMAL ZONE 21'> THERMAL ZONE 21 </a></li><li> <a href='?for=THERMAL ZONE 22'> THERMAL ZONE 22 </a></li><li> <a href='?for=THERMAL ZONE 23'> THERMAL ZONE 23 </a></li><li> <a href='?for=THERMAL ZONE 24'> THERMAL ZONE 24 </a></li><li> <a href='?for=THERMAL ZONE 25'> THERMAL ZONE 25 </a></li><li> <a href='?for=THERMAL ZONE 26'> THERMAL ZONE 26 </a></li><li> <a href='?for=THERMAL ZONE 27'> THERMAL ZONE 27 </a></li><li> <a href='?for=THERMAL ZONE 28'> THERMAL ZONE 28 </a></li><li> <a href='?for=THERMAL ZONE 29'> THERMAL ZONE 29 </a></li><li> <a href='?for=THERMAL ZONE 3'> THERMAL ZONE 3 </a></li><li> <a href='?for=THERMAL ZONE 30'> THERMAL ZONE 30 </a></li><li> <a href='?for=THERMAL ZONE 31'> THERMAL ZONE 31 </a></li><li> <a href='?for=THERMAL ZONE 32'> THERMAL ZONE 32 </a></li><li> <a href='?for=THERMAL ZONE 33'> THERMAL ZONE 33 </a></li><li> <a href='?for=THERMAL ZONE 34'> THERMAL ZONE 34 </a></li><li> <a href='?for=THERMAL ZONE 35'> THERMAL ZONE 35 </a></li><li> <a href='?for=THERMAL ZONE 36'> THERMAL ZONE 36 </a></li><li> <a href='?for=THERMAL ZONE 37'> THERMAL ZONE 37 </a></li><li> <a href='?for=THERMAL ZONE 38'> THERMAL ZONE 38 </a></li><li> <a href='?for=THERMAL ZONE 39'> THERMAL ZONE 39 </a></li><li> <a href='?for=THERMAL ZONE 4'> THERMAL ZONE 4 </a></li><li> <a href='?for=THERMAL ZONE 40'> THERMAL ZONE 40 </a></li><li> <a href='?for=THERMAL ZONE 5'> THERMAL ZONE 5 </a></li><li> <a href='?for=THERMAL ZONE 6'> THERMAL ZONE 6 </a></li><li> <a href='?for=THERMAL ZONE 7'> THERMAL ZONE 7 </a></li><li> <a href='?for=THERMAL ZONE 8'> THERMAL ZONE 8 </a></li><li> <a href='?for=THERMAL ZONE 9'> THERMAL ZONE 9 </a></li>                       </ul>
+                        </div>
+                    </div>
+
+                    <!--Body content-->
+                    <div class="span9">
+                    
+                    <!-- Cooling or Heating -->
+                    <ul class="nav nav-tabs">
+                        <li >
+                        <a href="#">Annual</a>
+                        </li>
+                        <li><a href="?table=Estimated Heating Peak Load Components">Heating Design Day</a></li><li class="active"><a href="?table=Estimated Cooling Peak Load Components">Cooling Design Day</a></li>                    </ul>
+                        
+                    <div id="zone_cooling_chart" style="min-width: 310px; width: 100%; min-height: 600px; margin: 0 auto"></div>
+                    </div>
+                </div>
+            </div>
+
+        
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- load highchart libs -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="js/Highcharts-3.0.4/js/highcharts.js"></script>
+    <script src="js/Highcharts-3.0.4/js/modules/exporting.js"></script>
+    
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- Highcharts -->
+    <script>
+     $(function () {
+        $('#zone_cooling_chart').highcharts({
+            chart: {
+                type: 'bar',
+                margin: [ 50, 50, 50, 200]
+            },
+            title: {
+                text: 'Zone Component Load Summary Without Latent (Btu/h) '
+            },
+            xAxis: {
+                categories: [
+                    'People:',
+                    'Lights:',
+                    'Equipment:',
+                    'Refrigeration:',
+                    'Water Use Equipment:',
+                    'HVAC Equipment Losses:',
+                    'Power Generation Equipment:',
+                    'Infiltration:',
+                    'Zone Ventilation',
+                    'Interzone Mixing:',
+                    'Roof:',
+                    'Interzone Ceiling',
+                    'Other Roof:',
+                    'Exterior Wall:',
+                    'Interzone Wall:',
+                    'Ground Contact Wall:',
+                    'Other Wall:',
+                    'Exterior Floor:',
+                    'Interzone Floor:',
+                    'Ground Contact Floor:',
+                    'Other Floor:',
+                    'Fenestration COnduction:',
+                    'Fenestration Solar:',
+                    'Opaque Door:',
+                    'Net Sensible Load:'
+                ],
+                labels: {
+                    rotation: 0,
+                    align: 'right',
+                    style: {
+                        width: '200px',
+                        fontSize: '12px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                min: -613.2,
+                title: {
+                    text: ''
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: 'Load / hour Summary: <b>{point.y:.1f} Btu/h</b>',
+            },
+            series: [{
+                name: 'Energy Per Hour',
+                data: [643.7, 1834.9, 1834.9, 0, 0, 0, 0, 166.1, 0, 0, 221.5, 0, 0, 513.4, -468.8, 0, 0, 0, -613.2, 0, 0, 485.8, 3625.6, 0, 8243.8, ],
+                dataLabels: {
+                    enabled: true,
+                    rotation: 0,
+                    color: 'red',
+                    align: 'left',
+                    x: 10,
+                    y: 8,
+                    style: {
+                        fontSize: '12px',
+                        fontFamily: 'Verdana, sans-serif',
+                        textShadow: '0 0 3px #eee'
+                    }
+                }
+            }]
+        });
+    });
+    </script>
+  </body>
+</html>
