@@ -39,21 +39,6 @@ app.get('/tracking-sheet.html', routes.getTrackingSheet);
 
 app.get('/eplus_out', function(req, res){
 
-   var sqlite3 = require('sqlite3').verbose();
-   var db = new sqlite3.Database('test/eem_1.sql');
-   var str = '';
-   db.serialize(function() {
-
-      db.each("SELECT * FROM Surfaces", function(err, row){
-         str = str + row.SurfaceIndex + ',' + row.SurfaceName + ',' + row.Area + '\n';
-         console.log(str);
-  
-      });
-   });
-   db.close(); 
-   res.send(str);
-
-    
 /*test simple selections*/
 //   var sqlite3 = require('sqlite3').verbose();
 //   var db = new sqlite3.Database('test/eem_1.sql');
@@ -71,15 +56,21 @@ app.get('/eplus_out', function(req, res){
 
 /*test getValue*/
 // var sqlite3= require('./lib/eeb_sqlite3.js');
-// sqlite3.getValues('ENVELOPE%', 'ENTIRE%', 'Opaque Exterior', 'Btu%', 'test/eem_1.sql');
+// sqlite3.getValues('ENVELOPE%', 'ENTIRE%', 'Opaque Exterior', 'Btu%', 'test/eem_1.sql', function(results){
+//     console.log(results);
+// });
 
 /*test getReportForStrings*/
 // var sqlite3= require('./lib/eeb_sqlite3.js');
-// sqlite3.getReportForStrings('ShadingSummary', 'test/eem_1.sql');
+// sqlite3.getReportForStrings('ShadingSummary', 'test/eem_1.sql', function(results){
+//     console.log(results);
+// });
 
 /*test getValuesByMonthly*/
 var sqlite3 = require('./lib/eeb_sqlite3.js');
-sqlite3.getValuesByMonthly('ENVELOPE%', 'ENTIRE%', 'Opaque Exterior', 'Btu%', 'test/eem_1.sql');
+sqlite3.getValuesByMonthly('ENVELOPE%', 'ENTIRE%', 'Opaque Exterior', 'Btu%', 'test/eem_1.sql', function(results){
+    console.log(results);
+});
 
 });
 
