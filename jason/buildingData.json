@@ -1,0 +1,66 @@
+{
+  "__v": 0,
+  "_id": "52a0e3ab5c9ac86f54000002",
+  "username": "eebhub",
+  "building": {
+    "building_info": {
+      "building_name": "JASON",
+      "activity_type": "SmallOffice",
+      "activity_type_specific": "WholeBuilding",
+      "weather_epw_location": "USA_IL_Chicago-OHare.Intl.AP.725300_TMY3",
+      "year_completed": "1911"
+    },
+    "architecture": {
+      "footprint_shape": "Rectangle",
+      "building_length": "100",
+      "building_width": "50",
+      "building_height": "30",
+      "gross_floor_area": "15000",
+      "number_of_floors": "3",
+      "perimeter": "800",
+      "tightness": "Average",
+      "window_to_wall_ratio": "15"
+    },
+    "schedules": {
+      "average_weekly_operating_hours": "55",
+      "open_24_hours_a_day": "off",
+      "open_during_week": "off",
+      "open_on_weekend": "off",
+      "weekday_occupancy_end": "18.0",
+      "weekday_occupancy_hours_day_end": "6PM",
+      "weekday_occupancy_hours_day_start": "7AM",
+      "weekday_occupancy_start": "7.0"
+    },
+    "mechanical": {
+      "equipment_power_density": "15.00",
+      "primary_hvac_type": "VAV w/Reheat",
+      "ventilation_system": "natural"
+    },
+    "lighting": {
+      "illuminance": "500"
+    },
+    "people": {
+      "number_of_employees_during_main_shift": "55",
+      "people_density": "0.025"
+    },
+    "materials": {
+      "roof_type": "Metal",
+      "exterior_wall_type": "Concrete Mass",
+      "roof_insulation_location": "bottom",
+      "roof_insulation_type": "2",
+      "thermal_mass": "low",
+      "wall_insulation_r_value": "2",
+      "window_glass_coating": "clear",
+      "window_glass_type": "dgu_nb"
+    },
+    "typical_room": {
+      "exterior_shading_orientation": "East",
+      "number_of_floors": "4",
+      "overhang_depth": "0",
+      "room_depth": "9.37",
+      "room_height": "4.04",
+      "room_width": "21.6",
+      "window_to_wall_ratio": "0.4"
+    }
+  }
+}
