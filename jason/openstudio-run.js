@@ -21,13 +21,26 @@ console.log(data.building.building_info.activity_type);
 console.log(data.building.building_info.activity_type_specific);
 console.log(data.building.architecture.number_of_floors);
 console.log(data.building.architecture.gross_floor_area);
-console.log(data.building.materials.roof_type);
-console.log(data.building.materials.exterior_wall_type);
-console.log(data.building.typical_room.window_to_wall_ratio);
-console.log(data.building.architecture.footprint_shape);
-console.log(data.building.architecture.building_length);
-console.log(data.building.architecture.building_width);
 //http://stackoverflow.com/questions/14028259/json-response-parsing-in-javascript-to-get-key-value-pair
 
 // 2 - REQUIRE OpenstudioModel.js file ---------------------------------------------------------------------------------
+var OpenStudioModel = require("./openstudio-model.js").OpenStudioModel;
+
+// Disable the gui, this makes the xvfb no longer necessary
+var runmanager = new openstudio.runmanager.RunManager(true, false, false);
+var co = runmanager.getConfigOptions();
+co.fastFindEnergyPlus();
+runmanager.setConfigOptions(co);
+var model = new OpenStudioModel(data, runmanager);
+
+model.save_openstudio_osm("osm_dir", "test.osm");
+model.translate_to_energyplus_and_save_idf("idf_dir", "test.idf");
+
+model.add_load_summary_report("idf_dir/test.idf");
+model.convert_unit_to_ip("idf_dir/test.idf");
+
+var job = model.run_energyplus_simulation("idf_dir", "test.idf");
+
+
+
 
