@@ -7,7 +7,7 @@ class OpenstudioModel < OpenStudio::Model::Model
     merged_params = building_params.merge(merged_params)
     case geo_type
     when 'Rectangle'
-      require 'Set_Rectangle-Shape_Floor_Plan'
+      #require 'Set_Rectangle-Shape_Floor_Plan'
       shape_plan = SetRectangleShapeFloorPlan.new
       shape_plan.add_geometry_rectangle(self, merged_params)
     else
@@ -175,7 +175,9 @@ class OpenstudioModel < OpenStudio::Model::Model
   end  
   def add_densities()
     ventilation=self.getDesignSpecificationOutdoorAirs 
-    ventilation.first.setOutdoorAirFlowAirChangesperHour(1.0)      
+    if (ventilation.first)
+      ventilation.first.setOutdoorAirFlowAirChangesperHour(1.0)      
+    end
   end
   def save_openstudio_osm(params)
     osm_save_directory = params["osm_save_directory"]

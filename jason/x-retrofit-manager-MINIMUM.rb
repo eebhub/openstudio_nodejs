@@ -4,7 +4,7 @@ require 'OpenstudioModel'
 require 'fileutils' #needed for run_eebhub.rb & autosize.rb
 require 'tempfile' #needed for autosize.rb
 #-run_eebhub.rb---------------------------------------------------------------------------------#
-save_dir = "/home/user/outputs"
+save_dir = "/home/jason/outputs"
 FileUtils.mkdir_p save_dir
 #-INPUT VARIABLES-------##-Need to stay to understand what the variables are > make flexible order in JavaScript
 	in_username = ARGV.at(0).to_s

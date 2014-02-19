@@ -26,8 +26,10 @@ console.log(data.building.architecture.gross_floor_area);
 // 2 - REQUIRE OpenstudioModel.js file ---------------------------------------------------------------------------------
 var OpenStudioModel = require("./openstudio-model.js").OpenStudioModel;
 
+openstudio.Logger.instance().standardOutLogger().setLogLevel(-3);
+
 // Disable the gui, this makes the xvfb no longer necessary
-var runmanager = new openstudio.runmanager.RunManager(true, false, false);
+var runmanager = new openstudio.runmanager.RunManager(true, true, true);
 var co = runmanager.getConfigOptions();
 co.fastFindEnergyPlus();
 runmanager.setConfigOptions(co);
@@ -40,6 +42,23 @@ model.add_load_summary_report("idf_dir/test.idf");
 model.convert_unit_to_ip("idf_dir/test.idf");
 
 var job = model.run_energyplus_simulation("idf_dir", "test.idf");
+
+var treeerrors = job.treeErrors();
+
+console.log("Job Succeeded: " + treeerrors.succeeded());
+
+var errors = treeerrors.errors();
+var warnings = treeerrors.warnings();
+
+for (var i = 0; i < errors.size(); ++i)
+{
+  console.log("Error: " + errors.get(i));
+}
+
+for (var i = 0; i < warnings.size(); ++i)
+{
+  console.log("Warning: " + warnings.get(i));
+}
 
 
 

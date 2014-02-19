@@ -207,9 +207,9 @@ function OpenStudioModel(buildingData, runmanager) {
     cooling_coil.setRatedHighSpeedCOP(coil_cool_rated_high_speed_COP);
     cooling_coil.setRatedLowSpeedCOP(coil_cool_rated_low_speed_COP);
 
-    if (economizer_type == "No Economizer"
-        || economizer_type == "Fixed Dry Bulb Temperature Limit")
+    if (economizer_type == "No Economizer")
     {
+    } else if (economizer_type == "Fixed Dry Bulb Temperature Limit") {
       var outdoor_air_system = hvac.supplyComponents(openstudio.model.AirLoopHVACOutdoorAirSystem.iddObjectType()).get(0);
       outdoor_air_system = openstudio.model.toAirLoopHVACOutdoorAirSystem(outdoor_air_system).get();
       var outdoor_air_controller = outdoor_air_system.getControllerOutdoorAir();
@@ -217,7 +217,7 @@ function OpenStudioModel(buildingData, runmanager) {
       outdoor_air_controller.setEconomizerControlType("FixedDryBulb");
       outdoor_air_controller.setEconomizerMaximumLimitDryBulbTemperature(economizer_dry_bulb_temp_limit);
     } else {
-      console.log("#{economizer_type} is not a valid selection for economizer type.");
+      console.log(economizer_type + " is not a valid selection for economizer type.");
     }
   }
 
@@ -390,12 +390,30 @@ function OpenStudioModel(buildingData, runmanager) {
     var output_path = new openstudio.path(idf_directory + "/ENERGYPLUS/" + idf_name);
     var workflow = new openstudio.runmanager.Workflow("EnergyPlusPreProcess->EnergyPlus");
     workflow.add(tools);
-    job = workflow.create(output_path, idf_path, epw_path);
+    var job = workflow.create(output_path, idf_path, epw_path);
     
     this.runManager.enqueue(job, true);
     this.runManager.setPaused(false);
-    this.runManager.waitForFinished();
 
+    /*
+    while (true)
+    {
+      var treeStatus = job.treeStatus();
+//      console.log("Tree Status: " + treeStatus.valueName());
+//      console.log("Tree Success: " + job.treeErrors().succeeded());
+      if (treeStatus.value() == (new openstudio.runmanager.TreeStatusEnum("Finished")).value()
+        || treeStatus.value() == (new openstudio.runmanager.TreeStatusEnum("Failed")).value()
+        || treeStatus.value() == (new openstudio.runmanager.TreeStatusEnum("Canceled")).value()
+        )
+      {
+        break;
+      }
+
+//      openstudio.System.msleep(500);
+      openstudio.Application.instance().processEvents(100);
+    }
+*/
+    this.runManager.waitForFinished();
     return job;
   }
 
