@@ -363,8 +363,8 @@ function OpenStudioModel(buildingData, runmanager) {
         }
         this.model.addObjects(objects_new);
       } else if (stringent_sizing_criteria == "no") {
-       console.log(ddy_model.objects);
-       this.model.addObjects(ddy_model.objects);
+       console.log(ddy_model.objects());
+       this.model.addObjects(ddy_model.objects());
       }
     } else {
       console.log(openstudio.toString(ddy_path) + " couldn't be found");
@@ -395,24 +395,6 @@ function OpenStudioModel(buildingData, runmanager) {
     this.runManager.enqueue(job, true);
     this.runManager.setPaused(false);
 
-    /*
-    while (true)
-    {
-      var treeStatus = job.treeStatus();
-//      console.log("Tree Status: " + treeStatus.valueName());
-//      console.log("Tree Success: " + job.treeErrors().succeeded());
-      if (treeStatus.value() == (new openstudio.runmanager.TreeStatusEnum("Finished")).value()
-        || treeStatus.value() == (new openstudio.runmanager.TreeStatusEnum("Failed")).value()
-        || treeStatus.value() == (new openstudio.runmanager.TreeStatusEnum("Canceled")).value()
-        )
-      {
-        break;
-      }
-
-//      openstudio.System.msleep(500);
-      openstudio.Application.instance().processEvents(100);
-    }
-*/
     this.runManager.waitForFinished();
     return job;
   }

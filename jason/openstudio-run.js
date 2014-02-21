@@ -29,7 +29,7 @@ var OpenStudioModel = require("./openstudio-model.js").OpenStudioModel;
 openstudio.Logger.instance().standardOutLogger().setLogLevel(-3);
 
 // Disable the gui, this makes the xvfb no longer necessary
-var runmanager = new openstudio.runmanager.RunManager(true, true, true);
+var runmanager = new openstudio.runmanager.RunManager(true, false, false);
 var co = runmanager.getConfigOptions();
 co.fastFindEnergyPlus();
 runmanager.setConfigOptions(co);
