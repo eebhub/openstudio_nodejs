@@ -4,7 +4,7 @@ var fs = require("fs");
 module.exports = {
     getHome: function(request, response){
 
-        response.render('index');
+        response.render('comprehensive');
     },
     
     getForm: function(request, response){
