@@ -72,32 +72,6 @@
             }
         </script>
         
-        <script>
-        function buildingInfoPop(){
-            var username = "<%= username %>";
-            if (username!='undefined'){
-                var form = document.forms.platformForm;
-                console.log("<%= bldname %>");
-                form.building_name.value = "<%= bldname %>";
-                form.activity_type.value = "<%=  bld_function %>";
-                form.weather_epw_location.value = "<%= bld_location %>";
-                form.year_completed.value = "<%= bld_year %>";
-  
-                form.number_of_floors.value = "<%= number_of_floors %>"; 
-                form.window_to_wall_ratio.value = "<%= window_to_wall_ratio %>";
-                form.footprint_shape.value = "<%= footprint_shape %>"; 
-                form.tightness.value = "<%= tightness %>"; 
-             
-                form.roof_type.value = "<%= roof_type %>";
-                form.exterior_wall_type.value = "<%= exterior_wall_type %>";
-                form.room_width.value = "<%= room_width %>";
-                form.room_depth.value = "<%= room_depth %>";
-                form.room_height.value = "<%= room_height %>";
-                form.overhang_depth.value = "<%= overhang_depth %>";
-            }
-        }
-        
-        </script>
         
         <script>
             function saveBuildingComprehensive() {
@@ -144,13 +118,7 @@
                 
                     <ul class="nav pull-right">
 						      <script>
-                                        var username = "<%= username %>";
-                                        if (username!='undefined'){
-                                        document.write('<li><a href="/mydashboard">My Dashboard</a></li><li><a href="/logout">LOGOUT</a></li>');
-                                        }else {
-                                            document.write('<li><a href="/signup">SIGNUP</a></li><li><a href="/signin">LOGIN</a></li>');
-                                        }
-                             
+                                        document.write('<li><a href="">SIGNUP</a></li><li><a href="">LOGIN</a></li>');
                                         
                                 </script>
 						</ul>
@@ -1035,12 +1003,7 @@
                     </section>
                     <!-- ###################################### Buttons Group ############################################# -->
                     <div id="box-unit">
-                    <script>
-                        var username = "<%= username %>";
-                        if (username!='undefined'){
-                            document.write('<button type="submit" onclick="saveBuildingComprehensive()" class="btn btn-large btn-success">Save Building (comprehensive)</button>');
-                        }
-                    </script>  
+                   
                         <input type="submit" class="btn btn-large btn-primary" value="SIMULATE">
                         <a target='_blank' href="http://openstudio.nrel.gov/">
                         <img style="text-align:right;float:right;" src="img/doe-engines.png" alt="DOE" width="250" height="58">
