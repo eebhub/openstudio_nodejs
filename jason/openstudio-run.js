@@ -9,21 +9,19 @@
 var fs = require("fs");
 
 //READ Building Input JSON
-var data = JSON.parse(fs.readFileSync('buildingData.json', 'utf8')); //buildingData.json should sit in the same folder directory as openstudio-run.js
-//http://stackoverflow.com/questions/10011011/using-node-js-how-do-i-read-a-json-object-into-server-memory
+var data = JSON.parse(fs.readFileSync('buildingData.json', 'utf8')); 
 
-//USE Building Input JSON Data Object (here for Jason, feel free to delete/re-use)
-console.log(data._id);
-console.log(data.username);
+//USE Building Input JSON Data Object
+console.log("OpenStudio on Node.js starting up...");
+console.log("INPUTS:");
 console.log(data.building.building_info.building_name);
-console.log(data.building.building_info.weather_epw_location);
+console.log(data.building.location.location_filename);
 console.log(data.building.building_info.activity_type);
 console.log(data.building.building_info.activity_type_specific);
-console.log(data.building.architecture.number_of_floors);
-console.log(data.building.architecture.gross_floor_area);
-//http://stackoverflow.com/questions/14028259/json-response-parsing-in-javascript-to-get-key-value-pair
+console.log(data.building.architecture.number_of_floors+" floors");
 
 // 2 - REQUIRE OpenstudioModel.js file ---------------------------------------------------------------------------------
+console.log("SETUP OPENSTUDIO MODEL:");
 var OpenStudioModel = require("./openstudio-model.js").OpenStudioModel;
 
 //Debugging Output Level (High = -3, Medium = -2, Low = -1)
@@ -36,16 +34,19 @@ co.fastFindEnergyPlus();
 runmanager.setConfigOptions(co);
 var model = new OpenStudioModel(data, runmanager);
 
+console.log("CONVERT OPENSTUDIO TO ENERGYPLUS:");
 model.save_openstudio_osm("osm_dir", "test.osm");
 model.translate_to_energyplus_and_save_idf("idf_dir", "test.idf");
 
 model.add_load_summary_report("idf_dir/test.idf");
 model.convert_unit_to_ip("idf_dir/test.idf");
 
+console.log("RUN ENERGYPLUS:");
 var job = model.run_energyplus_simulation("idf_dir", "test.idf");
 
 var treeerrors = job.treeErrors();
 
+console.log("OUTPUT SUMMARY:");
 console.log("Job Succeeded: " + treeerrors.succeeded());
 
 var errors = treeerrors.errors();
@@ -60,7 +61,3 @@ for (var i = 0; i < warnings.size(); ++i)
 {
   console.log("Warning: " + warnings.get(i));
 }
-
-
-
-
