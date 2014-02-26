@@ -349,7 +349,7 @@ function OpenStudioModel(buildingData, runmanager) {
       var ddy_workspace = new openstudio.Workspace(ddy_idf);
       var reverse_translator = new openstudio.energyplus.ReverseTranslator();
       var ddy_model = reverse_translator.translateWorkspace(ddy_workspace);
-      var stringent_sizing_criteria = design_days.stringent_sizing_criteria;
+      var stringent_sizing_criteria = location.stringent_sizing_criteria;
       var objects = ddy_model.objects();
       if (stringent_sizing_criteria == "yes") {
         var objects_new = new openstudio.model.ModelObjectVector();
