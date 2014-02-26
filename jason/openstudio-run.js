@@ -26,7 +26,8 @@ console.log(data.building.architecture.gross_floor_area);
 // 2 - REQUIRE OpenstudioModel.js file ---------------------------------------------------------------------------------
 var OpenStudioModel = require("./openstudio-model.js").OpenStudioModel;
 
-openstudio.Logger.instance().standardOutLogger().setLogLevel(-2);
+//Debugging Output Level (High = -3, Medium = -2, Low = -1)
+openstudio.Logger.instance().standardOutLogger().setLogLevel(-3);
 
 // Disable the gui, this makes the xvfb no longer necessary
 var runmanager = new openstudio.runmanager.RunManager(true, false, false);

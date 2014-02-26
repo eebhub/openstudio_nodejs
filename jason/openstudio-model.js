@@ -246,9 +246,9 @@ function OpenStudioModel(buildingData, runmanager) {
     building.setNorthAxis(degree_to_north);
   },
 
-  this.add_space_type = function(space_type) {
+  this.add_space_type = function(space_type, location) {
     openstudio.Application.instance();
-    var localblc = openstudio.LocalBCL.instance(new openstudio.path("/home/jason"));
+    var localblc = openstudio.LocalBCL.instance(new openstudio.path(location.bcl_path));
     var bcl = new openstudio.RemoteBCL();
     bcl.setProdAuthKey("xsxYuim9hvuuGdVFvhM5GBxNLPnDmNgE");
     var nrel_reference_building_vintage = space_type.NREL_reference_building_vintage;
@@ -409,7 +409,7 @@ function OpenStudioModel(buildingData, runmanager) {
   this.add_hvac(buildingData.building.mechanical);
   this.add_thermostats(buildingData.building.mechanical);
   this.add_constructions(buildingData.building.constructions);
-  this.add_space_type(buildingData.building.space_type);
+  this.add_space_type(buildingData.building.space_type, buildingData.building.location);
   this.add_densities();
   this.add_design_days(buildingData.building.location, openstudio.toString(this.runManager.getConfigOptions().getDefaultEPWLocation()));
 
