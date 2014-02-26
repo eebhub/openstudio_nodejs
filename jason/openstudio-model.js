@@ -341,6 +341,7 @@ function OpenStudioModel(buildingData, runmanager) {
 
   this.add_design_days = function(location, weather_path) {
     var loc_filename = location.location_filename;
+    // now that the location is determined save the filename off for later consumption
     this.loc_filename = loc_filename;
     var ddy_path = new openstudio.path(weather_path + "/" + loc_filename + ".idf"); // sometimes ddy, OpenStudio error Kyle is fixing
     if (openstudio.exists(ddy_path)) {
@@ -384,12 +385,15 @@ function OpenStudioModel(buildingData, runmanager) {
 
   this.run_energyplus_simulation = function(idf_directory, idf_name) {
     var weather_path = this.runManager.getConfigOptions().getDefaultEPWLocation();
-    var epw_path = new openstudio.path(openstudio.toString(weather_path) + "/" + this.location_filename);
+    var epw_path = new openstudio.path(openstudio.toString(weather_path) + "/" + this.loc_filename + ".epw");
     var tools = this.runManager.getConfigOptions().getTools();
     var idf_path = new openstudio.path(idf_directory + "/" + idf_name);
     var output_path = new openstudio.path(idf_directory + "/ENERGYPLUS/" + idf_name);
     var workflow = new openstudio.runmanager.Workflow("EnergyPlusPreProcess->EnergyPlus");
     workflow.add(tools);
+    console.log("EPW path: " + openstudio.toString(epw_path) + " epw exists: " + openstudio.exists(epw_path));
+   
+
     var job = workflow.create(output_path, idf_path, epw_path);
     
     this.runManager.enqueue(job, true);
