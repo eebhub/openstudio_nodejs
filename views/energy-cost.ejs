@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,59 +21,17 @@
   <body>
 	<!-- Navbar 
     ================================================== -->
-    
-			<div class="navbar navbar-inverse navbar-fixed-top">
-		    <div class="navbar-inner">
-		    <div class="container-fluid" >
-		      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		      </button>
-		      <a class="brand pull-left" href="http://tools.eebhub.org/">EEB Hub Simulation Platform</a>
-		      <div class="nav-collapse collapse">
-		        <ul class="nav">
-		          <li class="">
-		            <a href="http://tools.eebhub.org/lite">LITE</a>
-		          </li>
-		          <li class="">
-		            <a href="http://tools.eebhub.org/partial">PARTIAL</a>
-		          </li>
-		          <li class="">
-		            <a href="http://tools.eebhub.org/substantial">SUBSTANTIAL</a>
-		          </li>
-		          <li class="active">
-		            <a href="http://tools.eebhub.org/comprehensive">COMPREHENSIVE</a>
-		          </li>
-		        </ul>
-		      </div>
-		    </div>
-		  	</div>
-			</div>
+    <? $ui->drawNavbar();?>
+
     <!-- Container -->
     <div class="container">
 
     <!-- Switch Pacakge -->
-        
-			<form action="" method="post">
-				<div style="font-size: 25px; font-weight: bold; color: #eee; margin-top: 20px;">
-				<select id="num_package" name="num_package" onchange="this.form.submit();"><option value="">Simulation_2652.idf</option><option value="Simulation_2652.idf">Simulation_2652.idf</option>				</select></div>
-			</form>
+    <? $ui->drawSwitchPackage();?>
+
         <!-- Sub-Nav-bar -->
-        
-			<!-- Sub-Nav-bar -->
-			<div class="navbar">
-			  <div class="navbar-inner">
-			    <a class="brand" href="#">Open Studio SDK And Energy Plus</a>
-			    <ul class="nav">
-			      <li class="active"><a href="energy-use">Energy</a></li>
-				  <li class=""><a href="energy-intensity">Energy Intensity</a></li>
-			      <li class=""><a href="zone-component-load">Zone Loads</a></li>
-			      <li class=""><a href="energy-cost">Energy Cost</a></li>
-			      <li class=""><a href="tracking-sheet">Tracking Sheet</a></li>
-			    </ul>
-			  </div>
-			</div> 
+        <? $page[cost]="active"; $ui->drawSubNavbar($page); ?>
+ 		
         <!-- Energy Intensity div -->
         <div>
           <div id="electricity_monthly_cost_chart" style="min-width: 400px; height: 400px; margin: 40px auto"></div>
@@ -117,27 +73,33 @@
             <tr class="table-row-even">
               <th> Energy Charges ($)
               </th>
-             <td> 8663.3 </td><td> 7818.4 </td><td> 8561.0 </td><td> 8461.3 </td><td> 8740.7 </td><td> 10974.0 </td><td> 14013.5 </td><td> 12659.8 </td><td> 10140.3 </td><td> 8693.5 </td><td> 8325.5 </td><td> 8825.0 </td><td> 115876.2 </td><td> 14013.5 </td>            </tr>
+             <?php printRow($electric_tariff['EnergyCharges (~~$~~)']); ?>
+            </tr>
             <tr class="table-row-odd">
               <th> Demand Charges ($)
               </th>
-              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+              <?php printRow($electric_tariff['DemandCharges (~~$~~)']); ?>
+            </tr>
             <tr class="table-row-even">
               <th> Service Charge ($)
               </th>
-              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+              <?php printRow($electric_tariff['ServiceCharges (~~$~~)']); ?>
+            </tr>
             <tr class="table-row-odd">
               <th> Adjustment ($)
               </th>
-              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+              <?php printRow($electric_tariff['Adjustment (~~$~~)']); ?>
+            </tr>
             <tr class="table-row-odd">
               <th> Taxes ($)
               </th>
-              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+              <?php printRow($electric_tariff['Taxes (~~$~~)']); ?>
+            </tr>
               <tr class="table-row-odd">
               <th> Total ($)
               </th>
-              <td> 8663.3 </td><td> 7818.4 </td><td> 8561.0 </td><td> 8461.3 </td><td> 8740.7 </td><td> 10974.0 </td><td> 14013.5 </td><td> 12659.8 </td><td> 10140.3 </td><td> 8693.5 </td><td> 8325.5 </td><td> 8825.0 </td><td> 115876.2 </td><td> 14013.5 </td>            </tr>
+              <?php printRow($electric_tariff['Total (~~$~~)']); ?>
+            </tr>
            
           </table>
 
@@ -179,27 +141,33 @@
             <tr class="table-row-even">
               <th> Energy Charges ($)
               </th>
-             <td> 11956.5 </td><td> 8792.5 </td><td> 4628.9 </td><td> 1701.0 </td><td> 135.7 </td><td> 1.0 </td><td> 0.6 </td><td> 0.6 </td><td> 17.8 </td><td> 1657.9 </td><td> 4589.4 </td><td> 7597.6 </td><td> 41079.3 </td><td> 11956.5 </td>            </tr>
+             <?php printRow($gas_tariff['EnergyCharges (~~$~~)']); ?>
+            </tr>
             <tr class="table-row-odd">
               <th> Demand Charges ($)
               </th>
-              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+              <?php printRow($gas_tariff['DemandCharges (~~$~~)']); ?>
+            </tr>
             <tr class="table-row-even">
               <th> Service Charge ($)
               </th>
-              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+              <?php printRow($gas_tariff['ServiceCharges (~~$~~)']); ?>
+            </tr>
             <tr class="table-row-odd">
               <th> Adjustment ($)
               </th>
-              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+              <?php printRow($gas_tariff['Adjustment (~~$~~)']); ?>
+            </tr>
             <tr class="table-row-odd">
               <th> Taxes ($)
               </th>
-              <td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td><td> 0.0 </td>            </tr>
+              <?php printRow($gas_tariff['Taxes (~~$~~)']); ?>
+            </tr>
               <tr class="table-row-odd">
               <th> Total ($)
               </th>
-              <td> 11956.5 </td><td> 8792.5 </td><td> 4628.9 </td><td> 1701.0 </td><td> 135.7 </td><td> 1.0 </td><td> 0.6 </td><td> 0.6 </td><td> 17.8 </td><td> 1657.9 </td><td> 4589.4 </td><td> 7597.6 </td><td> 41079.3 </td><td> 11956.5 </td>            </tr>
+              <?php printRow($gas_tariff['Total (~~$~~)']); ?>
+            </tr>
            
             </table>
         </div>
@@ -274,25 +242,31 @@
               series: [{
                   name: 'Energy Charges ($)',
                   type: 'column',
-                  data: [8663.3,7818.4,8561.0,8461.3,8740.7,10974.0,14013.5,12659.8,10140.3,8693.5,8325.5,8825.0,14013.5,]              }, {
+                  data: <?php echo getRowData($electric_tariff['EnergyCharges (~~$~~)']);?>
+              }, {
                   name: 'Demand Charges ($)',
                   type: 'column',
-                  data: []              }, {
+                  data: <?php echo getRowData($electric_tariff['DemandCharges (~~$~~)']);?>
+              }, {
                   name: 'Service Changes ($)',
                   type: 'column',
-                  data: []              },{
+                  data: <?php echo getRowData($electric_tariff['ServiceCharges (~~$~~)']);?>
+              },{
                   name: 'Adjustment ($)',
                   type: 'column',
-                  data: []              }, {
+                  data: <?php echo getRowData($electric_tariff['Adjustment (~~$~~)']);?>
+              }, {
                   name: 'Taxes',
                   type: 'column',
-                  data: []              },{
+                  data: <?php echo getRowData($electric_tariff['Taxes (~~$~~)']);?>
+              },{
                   name: 'Bill ($)',
                   type: 'spline',
                   marker: {
                       symbol: 'square'
                   },
-                  data: [8663.3,7818.4,8561.0,8461.3,8740.7,10974.0,14013.5,12659.8,10140.3,8693.5,8325.5,8825.0,14013.5,]      
+                  data: <?php echo getRowData($electric_tariff['Total (~~$~~)']);?>
+      
               }]
           });
       });
@@ -352,25 +326,31 @@
               series: [{
                   name: 'Energy Charges ($)',
                   type: 'column',
-                  data: [11956.5,8792.5,4628.9,1701.0,135.7,1.0,0.6,0.6,17.8,1657.9,4589.4,7597.6,11956.5,]              }, {
+                  data: <?php echo getRowData($gas_tariff['EnergyCharges (~~$~~)']);?>
+              }, {
                   name: 'Demand Charges ($)',
                   type: 'column',
-                  data: []              }, {
+                  data: <?php echo getRowData($gas_tariff['DemandCharges (~~$~~)']);?>
+              }, {
                   name: 'Service Changes ($)',
                   type: 'column',
-                  data: []              },{
+                  data: <?php echo getRowData($gas_tariff['ServiceCharges (~~$~~)']);?>
+              },{
                   name: 'Adjustment ($)',
                   type: 'column',
-                  data: []              }, {
+                  data: <?php echo getRowData($gas_tariff['Adjustment (~~$~~)']);?>
+              }, {
                   name: 'Taxes',
                   type: 'column',
-                  data: []              },{
+                  data: <?php echo getRowData($gas_tariff['Taxes (~~$~~)']);?>
+              },{
                   name: 'Bill ($)',
                   type: 'spline',
                   marker: {
                       symbol: 'square'
                   },
-                  data: [11956.5,8792.5,4628.9,1701.0,135.7,1.0,0.6,0.6,17.8,1657.9,4589.4,7597.6,11956.5,]      
+                  data: <?php echo getRowData($gas_tariff['Total (~~$~~)']);?>
+      
               }]
           });
       });

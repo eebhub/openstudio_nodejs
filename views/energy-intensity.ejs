@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,66 +23,26 @@
 
     <!-- Navbar 
     ================================================== -->
-    
-			<div class="navbar navbar-inverse navbar-fixed-top">
-		    <div class="navbar-inner">
-		    <div class="container-fluid" >
-		      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		      </button>
-		      <a class="brand pull-left" href="http://tools.eebhub.org/">EEB Hub Simulation Platform</a>
-		      <div class="nav-collapse collapse">
-		        <ul class="nav">
-		          <li class="">
-		            <a href="http://tools.eebhub.org/lite">LITE</a>
-		          </li>
-		          <li class="">
-		            <a href="http://tools.eebhub.org/partial">PARTIAL</a>
-		          </li>
-		          <li class="">
-		            <a href="http://tools.eebhub.org/substantial">SUBSTANTIAL</a>
-		          </li>
-		          <li class="active">
-		            <a href="http://tools.eebhub.org/comprehensive">COMPREHENSIVE</a>
-		          </li>
-		        </ul>
-		      </div>
-		    </div>
-		  	</div>
-			</div>
+    <? $ui->drawNavbar();?>
+
     <!-- Container -->
     <div class="container">
 
     <!-- Switch Pacakge -->
-        
-			<form action="" method="post">
-				<div style="font-size: 25px; font-weight: bold; color: #eee; margin-top: 20px;">
-				<select id="num_package" name="num_package" onchange="this.form.submit();"><option value="">Simulation_2652.idf</option><option value="Simulation_2652.idf">Simulation_2652.idf</option>				</select></div>
-			</form>
+    <? $ui->drawSwitchPackage();?>
+
         <!-- Sub-Nav-bar -->
-        
-			<!-- Sub-Nav-bar -->
-			<div class="navbar">
-			  <div class="navbar-inner">
-			    <a class="brand" href="#">Open Studio SDK And Energy Plus</a>
-			    <ul class="nav">
-			      <li class="active"><a href="energy-use">Energy</a></li>
-				  <li class=""><a href="energy-intensity">Energy Intensity</a></li>
-			      <li class=""><a href="zone-component-load">Zone Loads</a></li>
-			      <li class=""><a href="energy-cost">Energy Cost</a></li>
-			      <li class=""><a href="tracking-sheet">Tracking Sheet</a></li>
-			    </ul>
-			  </div>
-			</div> 	
+        <? $page[intensity]="active"; $ui->drawSubNavbar($page); ?>
+ 		
         <!-- Energy Intensity div -->
         <div>
           <div id="annula_energy_chart" style="min-width: 400px; height: 400px; margin: 40px auto"></div>
 
 	<table class="table table-striped table-bordered" style="margin: 40px auto; ">
 		<caption style="background: purple; color: #fff;"> <h3>Annual Energy Consumption And Intensity<h3> </caption>
-     	       		<tr id="table-row-head">
+     	<?php
+		echo <<<END
+       		<tr id="table-row-head">
               <th> -
               </th>
               <th> Total Electricity [kBtu]
@@ -102,35 +61,38 @@
             <tr class="table-row-even">
               <th> Total Site Energy 
               </th>
-              <td> 2691281.8
+              <td> {$site_vals['Total End Uses']['Electricity']}
               </td>
-              <td> 3044940.6
+              <td> {$site_vals['Total End Uses']['Natural Gas']}
               </td>
-              <td> 5736222.4
+              <td> {$total_vals['Total Site Energy']['Total Energy']}
               </td>
-              <td> 79655.9
+              <td> {$area_vals['Total Building Area']['Area']}
               </td>
-              <td> 72.0
+              <td> {$total_vals['Total Site Energy']['Energy Per Total Building Area']}
               </td>
-              <td> 72.0
+              <td> {$total_vals['Total Site Energy']['Energy Per Conditioned Building Area']}
               </td>
             </tr>
             <tr class="table-row-even">
               <th> Total Source Energy 
               </th>
-                <td> 9624023.6
+                <td> {$source_vals['Total Source Energy End Use Components']['Source Electricity']}
               </td>
-              <td> 3325075.1
+              <td> {$source_vals['Total Source Energy End Use Components']['Source Natural Gas']}
               </td>
-              <td> 12949098.8
+              <td> {$total_vals['Total Source Energy']['Total Energy']}
               </td>
-              <td> 79655.9
+              <td> {$area_vals['Total Building Area']['Area']}
               </td>
-              <td> 162.6
+              <td> {$total_vals['Total Source Energy']['Energy Per Total Building Area']}
               </td>
-              <td> 162.6
+              <td> {$total_vals['Total Source Energy']['Energy Per Conditioned Building Area']}
               </td>
-            </tr>            </table>
+            </tr>
+END;
+			?>
+            </table>
 
           <div id="energy_per_total_building_area_chart" style="min-width: 400px; width: 50%; height: 500px; float: left;"></div>
           <div id="energy_per_conditioned_building_area_chart" style="min-width: 400px; width: 50%; height: 500px; float: left; margin-bottom: 50px;"></div>
@@ -180,67 +142,71 @@
                 }
             },
             // Dynamic Data
-			                series: [{
+			<?php
+			echo <<<END
+                series: [{
                 name: 'Pumps',
 				color: 'orange',
-                data: [41219.7, 147401.8]
+                data: [{$site_vals['Pumps']['Electricity']}, {$source_vals['Pumps']['Source Electricity']}]
             }, {
                 name: 'Fans',
 				color: 'black',
-                data: [110279.0, 394357.8]
+                data: [{$site_vals['Fans']['Electricity']}, {$source_vals['Fans']['Source Electricity']}]
             }, {
                 name: 'Cooling',
 				color: 'green',
-				data: [369686.4, 1321998.5]
+				data: [{$site_vals['Cooling']['Electricity']}, {$source_vals['Cooling']['Source Electricity']}]
             }, {
                 name: 'Heating-Natural-Gas',
 				color: 'red',
-                data: [3044940.6, 3325075.1]
+                data: [{$site_vals['Heating']['Natural Gas']}, {$source_vals['Heating']['Source Natural Gas']}]
             }, {
                 name: 'Iterior Lighting',
 				color: '#3388ff',
-				data: [879846.8, 3146332.2]
+				data: [{$site_vals['Interior Lighting']['Electricity']}, {$source_vals['Interior Lighting']['Source Electricity']}]
             }, {
                 name: 'Interior Equipment',
 				color: 'purple',
-                data: [1290249.8, 4613933.4]
+                data: [{$site_vals['Interior Equipment']['Electricity']}, {$source_vals['Interior Equipment']['Source Electricity']}]
             }, {
                 name: 'Exterior Lighting',
 				visible: false,
-                data: [0.0, 0.0]
+                data: [{$site_vals['Exterior Lighting']['Electricity']}, {$source_vals['Exterior Lighting']['Source Electricity']}]
             }, {
                 name: 'Heating-Electricity',
 				 visible: false,
-                data: [0.0, 0.0]
+                data: [{$site_vals['Heating']['Electricity']}, {$source_vals['Heating']['Source Electricity']}]
             }, {
                 name: 'Exterior Equipment',
  				visible: false,
-                data: [0.0, 0.0]
+                data: [{$site_vals['Exterior Equipment']['Electricity']}, {$source_vals['Exterior Equipment']['Source Electricity']}]
             }, {
                 name: 'Heating Rejecation',
  				visible: false,
-                data: [, ]
+                data: [{$site_vals['Heating Rejecation']['Electricity']}, {$source_vals['Heating Rejecation']['Source Electricity']}]
             }, {
                 name: 'Humidification',
 				visible: false,
-                data: [0.0, 0.0]
+                data: [{$site_vals['Humidification']['Electricity']}, {$source_vals['Humidification']['Source Electricity']}]
             }, {
                 name: 'Heat Recovery',
  				visible: false,
-                data: [0.0, 0.0]
+                data: [{$site_vals['Heat Recovery']['Electricity']}, {$source_vals['Heat Recovery']['Source Electricity']}]
             }, {
                 name: 'Water Systems',
  				visible: false,
-                data: [0.0, 0.0]
+                data: [{$site_vals['Water Systems']['Electricity']}, {$source_vals['Water Systems']['Source Electricity']}]
             }, {
                 name: 'Refrigeration',
  				visible: false,
-                data: [0.0, 0.0]
+                data: [{$site_vals['Refrigeration']['Electricity']}, {$source_vals['Refrigeration']['Source Electricity']}]
             }, {
                 name: 'Generations',
  				visible: false,
-                data: [, ]
-            }] // end of data
+                data: [{$site_vals['Generations']['Electricity']}, {$source_vals['Generations']['Source Electricity']}]
+            }]
+END;
+			?> // end of data
         });
     });
 
@@ -271,14 +237,23 @@
 	            }
 	        },
 			// Dynamic Data
-										series: [{
+			<?php
+			$site_ele_intensity =  $site_vals['Total End Uses']['Electricity'] /  $area_vals['Total Building Area']['Area'];
+			$site_gas_intensity =  $site_vals['Total End Uses']['Natural Gas'] / $area_vals['Total Building Area']['Area'];
+			$source_ele_intensity = $source_vals['Total Source Energy End Use Components']['Source Electricity'] /  $area_vals['Total Building Area']['Area'];
+			$source_gas_intensity = $source_vals['Total Source Energy End Use Components']['Source Natural Gas'] /  $area_vals['Total Building Area']['Area'];
+			echo <<<END
+							series: [{
 							name: 'Electricity',
-							data: [33.786346020822, 120.81997190415]
+							data: [$site_ele_intensity, $source_ele_intensity]
 						}, {
 							name: 'Natural Gas',
 							color: 'red',
-							data: [38.226177847466, 41.742985767533]
-						}]        });
+							data: [$site_gas_intensity, $source_gas_intensity]
+						}]
+END;
+			?>
+        });
     });
     
     $(function () {
@@ -308,14 +283,22 @@
                 }
             },
             // Dynamic Data
-			                series: [{
+			<?php
+			$site_ele_intensity =  $site_vals['Total End Uses']['Electricity'] /  $area_vals['Net Conditioned Building Area']['Area'];
+			$site_gas_intensity =  $site_vals['Total End Uses']['Natural Gas'] / $area_vals['Net Conditioned Building Area']['Area'];
+			$source_ele_intensity = $source_vals['Total Source Energy End Use Components']['Source Electricity'] /  $area_vals['Net Conditioned Building Area']['Area'];
+			$source_gas_intensity = $source_vals['Total Source Energy End Use Components']['Source Natural Gas'] /  $area_vals['Net Conditioned Building Area']['Area'];
+			echo <<<END
+                series: [{
                 name: 'Electricity',
-                data: [33.786346020822, 120.81997190415]
+                data: [$site_ele_intensity, $source_ele_intensity]
             }, {
                 name: 'Natural Gas',
 				color: 'red',
-                data: [38.226177847466, 41.742985767533]
-            }] // end of Data
+                data: [$site_gas_intensity, $source_gas_intensity]
+            }]
+END;
+			?> // end of Data
         });
     });
     </script>
