@@ -11,10 +11,7 @@ module.exports = {
         response.render('form');
     },
 
-    getEnergyUse: function(request, response){
-
-        response.render('energy-use');
-    },
+    
     
     getEnergyIntensity: function(request, response){
         response.render('energy-intensity');

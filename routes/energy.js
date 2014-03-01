@@ -1,9 +1,14 @@
+//Dependencies
 var eebSqlite3 = require('../lib/eeb_sqlite3.js');
-var database = 'Output/baseline.sql';
 var fs = require('fs');
 
 
- var energy = {
+//Starter Test Variables
+var database = 'test/Output/baseline.sql';
+
+//SQL Parsing Functions
+function getEnergyUseData(sqlFile, fn) {
+    var energy = {
         electricity: {
             pumps :[],
             fans : [],
@@ -20,7 +25,7 @@ var fs = require('fs');
             generation:[]
         },
         gas: [{
-           
+            cooling : [],
             interiorEquipment:[],
             heating :[],
             waterSystems:[],
@@ -28,13 +33,13 @@ var fs = require('fs');
         }],
         
     };
+    eebSqlite3.getValuesByMonthly('END USE ENERGY CONSUMPTION ELECTRICITY MONTHLY', 'Meter', '', '%', database, function(results) {
+        energy.electricity = results;
 
-eebSqlite3.getValuesByMonthly('END USE ENERGY CONSUMPTION ELECTRICITY MONTHLY', 'Meter', '', '%', database, function(results) {
-    energy.electricity = results;
-
-    eebSqlite3.getValuesByMonthly('END USE ENERGY CONSUMPTION NATURAL GAS MONTHLY', 'Meter', '', '%', database, function(results) {
-        energy.gas[0] = results;
-        energy.gas.forEach(function(row){
+        eebSqlite3.getValuesByMonthly('END USE ENERGY CONSUMPTION NATURAL GAS MONTHLY', 'Meter', '', '%', database, function(results) {
+            energy.gas = results;
+            
+            /*energy.gas.forEach(function(row){
                 if (row.curColumnName == 'HEATING:GAS'){
                     energy.gas.heating.push(row.value);
                 }else if(row.curColumnName == 'COOLING:GAS'){
@@ -46,7 +51,7 @@ eebSqlite3.getValuesByMonthly('END USE ENERGY CONSUMPTION ELECTRICITY MONTHLY', 
                 }else {
                      energy.gas.generation.push(row.value);
                 }
-            }); 
+            });  
             energy.electricity.forEach(function(row){
                 if (row.curColumnName == 'HEATING:ELECTRICITY'){
                     energy.electricity.heating.push(row.value);
@@ -75,9 +80,26 @@ eebSqlite3.getValuesByMonthly('END USE ENERGY CONSUMPTION ELECTRICITY MONTHLY', 
                 }else {
                      energy.electricity.generation.push(row.value);
                 }
-            });  
-        fs.writeFile("energy.json", JSON.stringify(energy, null, 4), function(err) {
-            if (err) console.log("Error");
+            });  */
+            
+            fn(energy);
+
         });
     });
-});
+}
+
+
+
+//Routing
+module.exports = {
+    getEnergyUse: function(request, response) {
+
+        getEnergyUseData(database, function(energy) {
+            
+            response.render('energy-use', {
+                energy: energy
+            });
+
+        });
+    }
+};

@@ -8,7 +8,7 @@ var http = require('http');
 var path = require('path');
 var routes = require('./routes/routes.js');
 var openstudio = require('./routes/openstudio.js');
-
+var energy = require("./routes/energy");
 var app = express();
 
 // all environments
@@ -27,9 +27,11 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+
+
 app.get('/', routes.getHome);
 app.get('/form', routes.getForm);
-app.get('/energy-use.html', routes.getEnergyUse);
+app.get('/energy-use', energy.getEnergyUse);
 app.get('/energy-intensity.html', routes.getEnergyIntensity);
 app.get('/energy-cost.html', routes.getEnergyCost);
 app.get('/zone-component-load.html', routes.getZoneLoads);
