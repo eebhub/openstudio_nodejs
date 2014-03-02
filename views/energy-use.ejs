@@ -43,7 +43,8 @@
         <!-- Electricity Consumption Table -->
         <table class="table table-striped table-bordered" style="margin: 40px auto; width: 100%">
           <caption style="background: purple; color: #fff;"> <h3>Electricity Energy Consumption (kWh)<h3> </caption>
-          <tr id="table-row-head">
+          <thead>
+              <tr>
             <th> -
             </th>
             <th> Jan
@@ -71,115 +72,112 @@
             <th> Dec
             </th>
           </tr>
-          <tr class="table-row-even">
+          </thead>
+          <tbody>
+          <tr class="">
             <th> Heating
             </th>
-            <% energy.electricity.forEach(function(row){ if (row.curColumnName == 'HEATING:ELECTRICITY') { %>
-                    <th><%= row.value %></th>
-    
-           <% } })%>
-        
+            
+            <% for (var i=0; i<energy.electricity.heating.length; i++) {%>
+            <th> <%= energy.electricity.heating[i] %></th>
+            <% } %>
           </tr>
-          <tr class="table-row-odd">
+          <tr class="">
             <th> Cooling
             </th>
-<% energy.electricity.forEach(function(row){ if (row.curColumnName == 'COOLING:ELECTRICITY') { %>
-                    <th><%= row.value %></th>
-    
-           <% } })%>
-           
+
+            
+            <% for (var i=0; i<energy.electricity.cooling.length; i++) {%>
+            <th> <%= energy.electricity.cooling[i] %></th>
+            <% } %>
           </tr>
-          <tr class="table-row-even">
+          <tr class="">
             <th> Interior Lighting
             </th>
-            <% energy.electricity.forEach(function(row){ if (row.curColumnName == 'INTERIORLIGHTS:ELECTRICITY') { %>
-                    <th><%= row.value %></th>
-    
-           <% } })%>
-           	<?php printRow($e_vals['INTERIORLIGHTS:ELECTRICITY']); ?>
+           
+            
+            <% for (var i=0; i<energy.electricity.interiorEquipment.length; i++) {%>
+            <th> <%= energy.electricity.interiorLighting[i] %></th>
+            <% } %>
           </tr>
-          <tr class="table-row-odd">
+          <tr class="">
             <th> Interior Equipment
             </th>
-            <% energy.electricity.forEach(function(row){ if (row.curColumnName == 'INTERIOREQUIPMENT:ELECTRICITY') { %>
-                    <th><%= row.value %></th>
-    
-           <% } })%>
-            <?php printRow($e_vals['INTERIOREQUIPMENT:ELECTRICITY']); ?>
+           
+            
+            <% for (var i=0; i<energy.electricity.heating.length; i++) {%>
+            <th> <%= energy.electricity.interiorEquipment[i] %></th>
+            <% } %>
           </tr>
-          <tr class="table-row-even">
+          <tr class="">
             <th> Fans
             </th>
-            <% energy.electricity.forEach(function(row){ if (row.curColumnName == 'FANS:ELECTRICITY') { %>
-                    <th><%= row.value %></th>
-    
-           <% } })%>
-             <?php printRow($e_vals['FANS:ELECTRICITY']); ?>
+           
+             
+            <% for (var i=0; i<energy.electricity.fans.length; i++) {%>
+            <th> <%= energy.electricity.fans[i] %></th>
+            <% } %>
           </tr>
-          <tr class="table-row-odd">
+          <tr class="">
             <th> Pumps
             </th>
-            <% energy.electricity.forEach(function(row){ if (row.curColumnName == 'PUMPS:ELECTRICITY') { %>
-                    <th><%= row.value %></th>
-    
-           <% } })%>
-            <?php printRow($e_vals['PUMPS:ELECTRICITY']); ?>
+            
+             
+             
+            <% for (var i=0; i<energy.electricity.pumps.length; i++) {%>
+            <th> <%= energy.electricity.pumps[i] %></th>
+            <% } %>
           </tr>
-          <tr class="table-row-even">
+          <tr class="">
             <th> Heat Rejection
             </th>
-            <% energy.electricity.forEach(function(row){ if (row.curColumnName == 'HEATREJECTION:ELECTRICITY') { %>
-                    <th><%= row.value %></th>
-    
-           <% } })%>
-            <?php printRow($e_vals['HEATREJECTION:ELECTRICITY']); ?>
+            
+            <% for (var i=0; i<energy.electricity.heatRejection.length; i++) {%>
+            <th> <%= energy.electricity.heatRejection[i] %></th>
+            <% } %>
           </tr>
-          <tr class="table-row-odd">
+          <tr class="">
             <th> Humidification
             </th>
-            <% energy.electricity.forEach(function(row){ if (row.curColumnName == 'HUMIDIFIER:ELECTRICITY') { %>
-                    <th><%= row.value %></th>
-    
-           <% } })%>
-            <?php printRow($e_vals['HUMIDIFIER:ELECTRICITY']); ?>
+           <% for (var i=0; i<energy.electricity.humidification.length; i++) {%>
+            <th> <%= energy.electricity.humidification[i] %></th>
+            <% } %>
+            
           </tr>
-          <tr class="table-row-even">
+          <tr class="">
             <th> Heat Recovery
             </th>
-            <% energy.electricity.forEach(function(row){ if (row.curColumnName == 'HEATRECOVERY:ELECTRICITY') { %>
-                    <th><%= row.value %></th>
-    
-           <% } })%>
-             <?php printRow($e_vals['HEATRECOVERY:ELECTRICITY']); ?>
+           <% for (var i=0; i<energy.electricity.heatingRecovery.length; i++) {%>
+            <th> <%= energy.electricity.heatingRecovery[i] %></th>
+            <% } %>
+            
           </tr>
-			<tr class="table-row-odd">
+			<tr class="">
 		    <th> Water Systems
 		    </th>
-		    <% energy.electricity.forEach(function(row){ if (row.curColumnName == 'HUMIDIFIER:ELECTRICITY') { %>
-                    <th><%= row.value %></th>
-    
-           <% } })%>
-		    <?php printRow($e_vals['HUMIDIFIER:ELECTRICITY']); ?>
+		    
+		    <% for (var i=0; i<energy.electricity.waterSystems.length; i++) {%>
+            <th> <%= energy.electricity.waterSystems[i] %></th>
+            <% } %>
 
 		  </tr>
-		  <tr class="table-row-even">
+		  <tr class="">
 		    <th> Regrigeration
 		    </th>
-		    <% energy.electricity.forEach(function(row){ if (row.curColumnName == 'HEATRECOVERY:ELECTRICITY') { %>
-                    <th><%= row.value %></th>
-    
-           <% } })%>
-		     <?php printRow($e_vals['HEATRECOVERY:ELECTRICITY']); ?>
+		   
+		    <% for (var i=0; i<energy.electricity.exteriorEquipment.length; i++) {%>
+            <th> <%= energy.electricity.exteriorEquipment[i] %></th>
+            <% } %>
 		  </tr>
- 		  <tr class="table-row-even">
+ 		  <tr class="">
 		    <th> Generation
 		    </th>
-		    <% energy.electricity.forEach(function(row){ if (row.curColumnName == 'HEATRECOVERY:ELECTRICITY') { %>
-                    <th><%= row.value %></th>
-    
-           <% } })%>
-		     <?php printRow($e_vals['HEATRECOVERY:ELECTRICITY']); ?>
+		    
+		     <% for (var i=0; i<energy.electricity.generation.length; i++) {%>
+            <th> <%= energy.electricity.generation[i] %></th>
+            <% } %>
 		  </tr>
+		  </tbody>
           </table>
     </div> <!-- /container -->
 
@@ -252,53 +250,53 @@
                   },
                   series: [{
                       name: 'Pumps',
-                      data: <%= energy.electricity.pumps %>
+                      data: [ <%= energy.electricity.pumps %> ]
                   },{
                       name: 'Fans',
-                      data: <%= energy.electricity.fans %>
+                      data: [<%= energy.electricity.fans %>]
                   }, {
                       name: 'Cooling',
-                      data: <%= energy.electricity.cooling %>
+                      data: [<%= energy.electricity.cooling %>]
                   }, {
                       name: 'Interior Lighting',
-                      data: <%= energy.electricity.interiorLighting %>
+                      data: [<%= energy.electricity.interiorLighting %>]
                   }, {
                       name: 'Interior Equipment',
-                      data: <%= energy.electricity.fans %>
+                      data: [<%= energy.electricity.fans %>]
                   }, {
                       name: 'Heating',
                       color: 'red',
                        visible: false,
-                      data: <%= energy.electricity.heating %>
+                      data: [<%= energy.electricity.heating %>]
                   }, {
                       name: 'Exterior Lighting',
                  	  visible: false,
-                      data: <%= energy.electricity.exteriorLighting %>
+                      data: [<%= energy.electricity.exteriorLighting %>]
                   }, {
                       name: 'Heat Rejection',
                       color: 'orange',
 	 				  visible: false,
-                      data: <%= energy.electricity.heatRejection %>
+                      data: [<%= energy.electricity.heatRejection %>]
                   }, {
                       name: 'Humidification',
                    visible: false,
-                      data: <%= energy.electricity.humidification %>
+                      data: [<%= energy.electricity.humidification %>]
                   }, {
                       name: 'Heating Recovery',
                       visible: false,
-                      data: <%= energy.electricity.heatingRecovery %>
+                      data: [<%= energy.electricity.heatingRecovery %>]
                   },{
                       name: 'Water Systems',
                        visible: false,
-                      data: <%= energy.electricity.waterSystems %>
+                      data: [<%= energy.electricity.waterSystems %>]
                   }, {
-                      name: 'Refrigeration',
+                      name: 'Exterior Equipment',
                       visible: false,
-                      data: <%= energy.electricity.refrigeration %>
+                      data: [<%= energy.electricity.exteriorEquipment %>]
                   }, {
                       name: 'Generation',
                       visible: false,
-                      data: <%= energy.electricity.generation %>
+                      data: [<%= energy.electricity.generation %>]
                   }]
               });
       });
@@ -358,7 +356,7 @@
                   series: [{
                       name: 'Heating',
                       color: 'red',
-                      data: <%= energy.gas.heating %>
+                      data: [<%= energy.gas.heating %>]
                   }]
               });
       });
