@@ -114,5 +114,9 @@ module.exports = {
             });
 
         });
+    },
+    getEnergyIntensity: function(request, response){
+        
+        response.render('energy-intensity');
     }
 };

@@ -32,7 +32,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.getHome);
 app.get('/form', routes.getForm);
 app.get('/energy-use', energy.getEnergyUse);
-app.get('/energy-intensity.html', routes.getEnergyIntensity);
+app.get('/energy-intensity', energy.getEnergyIntensity);
 app.get('/energy-cost.html', routes.getEnergyCost);
 app.get('/zone-component-load.html', routes.getZoneLoads);
 app.get('/measure-list.html', routes.getMeasureList);
