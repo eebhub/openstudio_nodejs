@@ -8,115 +8,150 @@ var database = 'test/Output/baseline.sql';
 
 //SQL Parsing Functions
 function getEnergyUseData(sqlFile, fn) {
-    var energy = {
-    electricity: {
-        pumps: [],
-        fans: [],
-        cooling: [],
-        interiorLighting: [],
-        interiorEquipment: [],
-        heating: [],
-        exteriorLighting: [],
-        heatRejection: [],
-        humidification: [],
-        heatingRecovery: [],
-        waterSystems: [],
-        exteriorEquipment: [],
-        generation: []
-    },
-    gas: {
+    var energyUse = {
+        electricity: {
+            pumps: [],
+            fans: [],
+            cooling: [],
+            interiorLighting: [],
+            interiorEquipment: [],
+            heating: [],
+            exteriorLighting: [],
+            heatRejection: [],
+            humidification: [],
+            heatingRecovery: [],
+            waterSystems: [],
+            exteriorEquipment: [],
+            generation: []
+        },
+        gas: {
 
-        interiorEquipment: [],
-        heating: [],
-        waterSystems: [],
-        generation: [],
-        cooling:[]
-    },
+            interiorEquipment: [],
+            heating: [],
+            waterSystems: [],
+            generation: [],
+            cooling: []
+        },
 
-};
+    };
     eebSqlite3.getValuesByMonthly('END USE ENERGY CONSUMPTION ELECTRICITY MONTHLY', 'Meter', '', '%', database, function(electResults) {
         electResults.forEach(function(row) {
             if (row.curColumnName == 'HEATING:ELECTRICITY') {
-                energy.electricity.heating.push(row.value);
+                energyUse.electricity.heating.push(row.value);
             }
             else if (row.curColumnName == 'COOLING:ELECTRICITY') {
-                energy.electricity.cooling.push(row.value);
+                energyUse.electricity.cooling.push(row.value);
             }
             else if (row.curColumnName == 'PUMPS:ELECTRICITY') {
-                energy.electricity.pumps.push(row.value);
+                energyUse.electricity.pumps.push(row.value);
             }
             else if (row.curColumnName == 'FANS:ELECTRICITY') {
-                energy.electricity.fans.push(row.value);
+                energyUse.electricity.fans.push(row.value);
             }
             else if (row.curColumnName == 'INTERIORLIGHTS:ELECTRICITY') {
-                energy.electricity.interiorLighting.push(row.value);
+                energyUse.electricity.interiorLighting.push(row.value);
             }
             else if (row.curColumnName == 'INTERIOREQUIPMENT:ELECTRICITY') {
-                energy.electricity.interiorEquipment.push(row.value);
+                energyUse.electricity.interiorEquipment.push(row.value);
             }
             else if (row.curColumnName == 'EXTERIORLIGHTS:ELECTRICITY') {
-                energy.electricity.exteriorLighting.push(row.value);
+                energyUse.electricity.exteriorLighting.push(row.value);
             }
             else if (row.curColumnName == 'HEATREJECTION:ELECTRICITY') {
-                energy.electricity.heatRejection.push(row.value);
+                energyUse.electricity.heatRejection.push(row.value);
             }
             else if (row.curColumnName == 'EXTERIOREQUIPMENT:ELECTRICITY') {
-                energy.electricity.exteriorEquipment.push(row.value);
+                energyUse.electricity.exteriorEquipment.push(row.value);
             }
             else if (row.curColumnName == 'HUMIDIFIER:ELECTRICITY') {
-                energy.electricity.humidification.push(row.value);
+                energyUse.electricity.humidification.push(row.value);
             }
             else if (row.curColumnName == 'HEATRECOVERY:ELECTRICITY') {
-                energy.electricity.heatingRecovery.push(row.value);
+                energyUse.electricity.heatingRecovery.push(row.value);
             }
             else if (row.curColumnName == 'WATERSYSTEMS:ELECTRICITY') {
-                energy.electricity.waterSystems.push(row.value);
+                energyUse.electricity.waterSystems.push(row.value);
             }
             else if (row.curColumnName == 'COGENERATION:ELECTRICITY') {
-                energy.electricity.generation.push(row.value);
+                energyUse.electricity.generation.push(row.value);
             }
         });
 
         eebSqlite3.getValuesByMonthly('END USE ENERGY CONSUMPTION NATURAL GAS MONTHLY', 'Meter', '', '%', database, function(gasResults) {
             gasResults.forEach(function(row) {
                 if (row.curColumnName == 'HEATING:GAS') {
-                    energy.gas.heating.push(row.value);
+                    energyUse.gas.heating.push(row.value);
                 }
                 else if (row.curColumnName == 'COOLING:GAS') {
-                    energy.gas.cooling.push(row.value);
+                    energyUse.gas.cooling.push(row.value);
                 }
                 else if (row.curColumnName == 'INTERIOREQUIPMENT:GAS') {
-                    energy.gas.interiorEquipment.push(row.value);
+                    energyUse.gas.interiorEquipment.push(row.value);
                 }
                 else if (row.curColumnName == 'WATERSYSTEMS:GAS') {
-                    energy.gas.waterSystems.push(row.value);
+                    energyUse.gas.waterSystems.push(row.value);
                 }
-                else if (row.curColumnName == 'COGENERATION:GAS') {
-                    energy.gas.generation.push(row.value);
-                }
+                else if (row.curColumnName == 'COGENERATION:GAS') energyUse
             });
-            fn(energy);
+            fn(energyUse);
 
         });
     });
 }
 
+function getEnergyIntensityData(sqlFile, fn) {
+    var energyIntensity = {
+        totalEnergy: [],
+        siteEnergy: [],
+        sourceEnergy: [],
+        area: []
+    };
 
+    eebSqlite3.getValues('AnnualBuildingUtilityPerformanceSummary', 'Entire Facility', 'Site and Source Energy', '%', database, function(results) {
+        energyIntensity.totalEnergy = results;
+        eebSqlite3.getValues('AnnualBuildingUtilityPerformanceSummary', 'Entire Facility', 'End Uses', 'kBtu', database, function(results) {
+            energyIntensity.siteEnergy = results;
+            eebSqlite3.getValues('SourceEnergyEndUseComponentsSummary', 'Entire Facility', 'Source Energy End Use Components Summary', 'kBtu', database, function(results) {
+                energyIntensity.sourceEnergy = results;
+                eebSqlite3.getValues('AnnualBuildingUtilityPerformanceSummary', 'Entire Facility', 'Building Area', '%', database, function(results) {
+                    energyIntensity.area = results;
+                    fn(energyIntensity);
+                });
+            });
 
+        });
+    });
+}
+function getEnergyValues(buildingObject, type , rowName, colName){
+    buildingObject.type.forEach(function(row){
+        if(row.curRowName == rowName && row.curColumnName == colName){
+            return row.value;
+        }
+    });
+}
 //Routing
 module.exports = {
     getEnergyUse: function(request, response) {
 
-        getEnergyUseData(database, function(energy) {
+        getEnergyUseData(database, function(energyUse) {
 
             response.render('energy-use', {
-                energy: energy
+                energy: energyUse
             });
 
         });
     },
-    getEnergyIntensity: function(request, response){
-        
-        response.render('energy-intensity');
+    getEnergyIntensity: function(request, response) {
+        getEnergyIntensityData(database, function(energyIntensity) {
+            console.log(energyIntensity);
+            var totalElectricityUse = getEnergyValues(energyIntensity, "totalEnergy", "Total End Uses", "Electricity");
+            
+            
+            response.render('energy-intensity', {
+                energyIntensity: energyIntensity,
+                totalElectricityUse:totalElectricityUse
+            });
+        });
+
     }
 };
