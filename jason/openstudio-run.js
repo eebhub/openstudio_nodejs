@@ -4,9 +4,10 @@
 // 3 - RUN OpenStudio & save osm, idf (show terminal output)
 // 4 - RUN EnergyPlus & save sql, html (show terminal output)
 
-// 1 - PARSE DATA from buildingData.json ---------------------------------------------------------------------------------
 //Nodejs File System
 var fs = require("fs");
+
+// 1 - PARSE DATA from buildingData.json ---------------------------------------------------------------------------------
 
 //READ Building Input JSON
 var data = JSON.parse(fs.readFileSync('buildingData.json', 'utf8')); 
@@ -21,18 +22,21 @@ console.log(data.building.building_info.activity_type_specific);
 console.log(data.building.architecture.number_of_floors+" floors");
 
 // 2 - REQUIRE OpenstudioModel.js file ---------------------------------------------------------------------------------
+
 console.log("SETUP OPENSTUDIO MODEL:");
 var OpenStudioModel = require("./openstudio-model.js").OpenStudioModel;
 
 //Debugging Output Level (High = -3, Medium = -2, Low = -1)
 openstudio.Logger.instance().standardOutLogger().setLogLevel(-3);
 
-// Disable the gui, this makes the xvfb no longer necessary
+// Disable the gui (true, false, false) this makes the xvfb no longer necessary
 var runmanager = new openstudio.runmanager.RunManager(true, false, false);
 var co = runmanager.getConfigOptions();
 co.fastFindEnergyPlus();
 runmanager.setConfigOptions(co);
 var model = new OpenStudioModel(data, runmanager);
+
+// 3 - RUN OpenStudio & save osm, idf -----------------------------------------------------------------------------------
 
 console.log("CONVERT OPENSTUDIO TO ENERGYPLUS:");
 model.save_openstudio_osm("osm_dir", "test.osm");
@@ -40,6 +44,8 @@ model.translate_to_energyplus_and_save_idf("idf_dir", "test.idf");
 
 model.add_load_summary_report("idf_dir/test.idf");
 model.convert_unit_to_ip("idf_dir/test.idf");
+
+// 4 - RUN EnergyPlus & save sql, html -----------------------------------------------------------------------------------
 
 console.log("RUN ENERGYPLUS:");
 var job = model.run_energyplus_simulation("idf_dir", "test.idf");
