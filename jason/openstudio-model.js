@@ -388,7 +388,7 @@ function OpenStudioModel(buildingData, runmanager) {
     var epw_path = new openstudio.path(openstudio.toString(weather_path) + "/" + this.loc_filename + ".epw");
     var tools = this.runManager.getConfigOptions().getTools();
     var idf_path = new openstudio.path(idf_directory + "/" + idf_name);
-    var output_path = new openstudio.path(idf_directory + "/ENERGYPLUS/" + idf_name);
+    var output_path = new openstudio.path(idf_directory);
     var workflow = new openstudio.runmanager.Workflow("EnergyPlusPreProcess->EnergyPlus");
     workflow.add(tools);
     console.log("EPW path: " + openstudio.toString(epw_path) + " epw exists: " + openstudio.exists(epw_path));
