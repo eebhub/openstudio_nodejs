@@ -327,15 +327,15 @@ function OpenStudioModel(buildingData, runmanager) {
     ventilation.get(0).setOutdoorAirFlowAirChangesperHour(1.0);
   }
 
-  this.save_openstudio_osm = function(osm_save_directory, osm_name) {
-    var save_path = new openstudio.path(osm_save_directory + "/" + osm_name);
+  this.save_openstudio_osm = function(simulation_directory, osm_name) {
+    var save_path = new openstudio.path(simulation_directory + "/" + osm_name);
     this.model.save(save_path,true);
   }
 
-  this.translate_to_energyplus_and_save_idf = function(idf_save_directory, idf_name) {
+  this.translate_to_energyplus_and_save_idf = function(simulation_directory, idf_name) {
     var forward_translator = new openstudio.energyplus.ForwardTranslator();
     var workspace = forward_translator.translateModel(this.model);
-    var idf_save_path = new openstudio.path(idf_save_directory + "/" + idf_name);
+    var idf_save_path = new openstudio.path(simulation_directory + "/" + idf_name);
     workspace.save(idf_save_path,true);
   }
 
@@ -383,12 +383,12 @@ function OpenStudioModel(buildingData, runmanager) {
     exec("sed -i  's/\\(HTML;.*\\)/HTML,\\n  InchPound;/g'  " + idf_file, puts);
   }
 
-  this.run_energyplus_simulation = function(idf_directory, idf_name) {
+  this.run_energyplus_simulation = function(simulation_directory, idf_name) {
     var weather_path = this.runManager.getConfigOptions().getDefaultEPWLocation();
     var epw_path = new openstudio.path(openstudio.toString(weather_path) + "/" + this.loc_filename + ".epw");
     var tools = this.runManager.getConfigOptions().getTools();
-    var idf_path = new openstudio.path(idf_directory + "/" + idf_name);
-    var output_path = new openstudio.path(idf_directory);
+    var idf_path = new openstudio.path(simulation_directory + "/" + idf_name);
+    var output_path = new openstudio.path(simulation_directory);
     var workflow = new openstudio.runmanager.Workflow("EnergyPlusPreProcess->EnergyPlus");
     workflow.add(tools);
     console.log("EPW path: " + openstudio.toString(epw_path) + " epw exists: " + openstudio.exists(epw_path));
