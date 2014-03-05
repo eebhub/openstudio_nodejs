@@ -36,6 +36,10 @@ module.exports = {
     
     getTrackingSheet: function(request, response){
         response.render('tracking-sheet');
+    },
+
+    getWalls: function(request, response){
+        response.render('walls');
     }
     
 };    

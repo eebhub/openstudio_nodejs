@@ -1303,23 +1303,7 @@
         		$('#extend-img').html(img);
         		$('#extend-div').html(extend_inputs);
         	}
-        	
-        	// AJAX function to return XML request
-			function getXmlHttpRequestObject() 
-			{
-				if (window.XMLHttpRequest) 										// browser is not IE and supports XMLHttpRequest
-				{
-					return new XMLHttpRequest();
-				} 
-				else if(window.ActiveXObject) 									// browser is IE and must use ActiveXObject
-				{
-					return new ActiveXObject("Microsoft.XMLHTTP"); 
-				}
-				else 															// broswer is unsupported (old versions of IE)
-				{
-				alert("Your browser doesn't support the XmlHttpRequest object.");
-				}
-			}	 
+        	 
         	
 			var socket;
 			var count = 0;
