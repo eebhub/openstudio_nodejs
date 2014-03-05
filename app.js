@@ -18,11 +18,15 @@ var path = require('path');
 var routes = require('./routes/routes.js');
 var openstudio = require('./routes/openstudio.js');
 
+
 var app = express()
 , server = require('http').createServer(app)
   , io = socketio.listen(server);
 
   server.listen(9099);
+
+var energy = require("./routes/energy");
+var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -36,15 +40,24 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
+//Show Folders & Files like Apache
+app.use(express.directory('public'));
+app.use('/jason', express.directory('jason', {icons:true}));
+app.use('/jason', express.static('jason'));
+
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+
+
 app.get('/', routes.getHome);
 app.get('/form', routes.getForm);
-app.get('/energy-use.html', routes.getEnergyUse);
-app.get('/energy-intensity.html', routes.getEnergyIntensity);
+app.get('/energy-use', energy.getEnergyUse);
+app.get('/energy-intensity', energy.getEnergyIntensity);
 app.get('/energy-cost.html', routes.getEnergyCost);
 app.get('/zone-component-load.html', routes.getZoneLoads);
 app.get('/measure-list.html', routes.getMeasureList);

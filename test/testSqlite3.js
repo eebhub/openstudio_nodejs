@@ -15,7 +15,7 @@ function queryData (sqlFile, stmt) {
     }
 
     // query statement
-    var stmt = 'select rowname, value, units from tabulardatawithstrings where tablename like "Site and Source Energy";';
+    //var stmt = 'select rowname, value, units from tabulardatawithstrings where tablename like "Site and Source Energy";';
 
     // print data to stdout
     db.each(stmt, function(err, row) {
@@ -25,7 +25,7 @@ function queryData (sqlFile, stmt) {
     db.close(); 
 }
 
-var sqlFile = 'Output/example.sql'; 
+var sqlFile = 'Output/baseline.sql'; 
 var statement = 'select rowname, value, units from tabulardatawithstrings where tablename like "Site and Source Energy";';
 
 console.log('Test sqlite3 \n=====================================\nfile: '+ sqlFile + '\nstatement: ' + statement);

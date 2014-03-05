@@ -4,47 +4,65 @@
 // 3 - RUN OpenStudio & save osm, idf (show terminal output)
 // 4 - RUN EnergyPlus & save sql, html (show terminal output)
 
-// 1 - PARSE DATA from buildingData.json ---------------------------------------------------------------------------------
 //Nodejs File System
 var fs = require("fs");
+//Timestamp code
+var timestp = require("./timestamp.js");
+
+// 1 - PARSE DATA from buildingData.json ---------------------------------------------------------------------------------
 
 //READ Building Input JSON
-var data = JSON.parse(fs.readFileSync('buildingData.json', 'utf8')); //buildingData.json should sit in the same folder directory as openstudio-run.js
-//http://stackoverflow.com/questions/10011011/using-node-js-how-do-i-read-a-json-object-into-server-memory
+var data = JSON.parse(fs.readFileSync('buildingData.json', 'utf8')); 
 
-//USE Building Input JSON Data Object (here for Jason, feel free to delete/re-use)
-console.log(data._id);
-console.log(data.username);
+//USE Building Input JSON Data Object
+console.log("OpenStudio on Node.js starting up...");
+console.log("INPUTS:");
 console.log(data.building.building_info.building_name);
-console.log(data.building.building_info.weather_epw_location);
+console.log(data.building.location.location_filename);
 console.log(data.building.building_info.activity_type);
 console.log(data.building.building_info.activity_type_specific);
-console.log(data.building.architecture.number_of_floors);
-console.log(data.building.architecture.gross_floor_area);
-//http://stackoverflow.com/questions/14028259/json-response-parsing-in-javascript-to-get-key-value-pair
+console.log(data.building.architecture.number_of_floors+" floors");
+
+//CREATE Unique Simulation Name & Folder
+var buildingName = data.building.building_info.building_name.replace(/\s+/g, '') || "NoName";
+var timestamp = timestp.createTimestamp();
+var buildingNameTimestamp =  buildingName+timestamp;
+fs.mkdirSync(buildingNameTimestamp, function(error) {if (error) throw error;}); //simulation_directory in openstudio-model.js
 
 // 2 - REQUIRE OpenstudioModel.js file ---------------------------------------------------------------------------------
+
+console.log("SETUP OPENSTUDIO MODEL:");
 var OpenStudioModel = require("./openstudio-model.js").OpenStudioModel;
 
-openstudio.Logger.instance().standardOutLogger().setLogLevel(-2);
+//Debugging Output Level (High = -3, Medium = -2, Low = -1)
+openstudio.Logger.instance().standardOutLogger().setLogLevel(-3);
 
-// Disable the gui, this makes the xvfb no longer necessary
+// Disable the gui (true, false, false) this makes the xvfb no longer necessary
 var runmanager = new openstudio.runmanager.RunManager(true, false, false);
 var co = runmanager.getConfigOptions();
 co.fastFindEnergyPlus();
 runmanager.setConfigOptions(co);
+
+//Send (data = buildingData.json, runmanager = disable gui) to OpenStudioModel
 var model = new OpenStudioModel(data, runmanager);
 
-model.save_openstudio_osm("osm_dir", "test.osm");
-model.translate_to_energyplus_and_save_idf("idf_dir", "test.idf");
+// 3 - RUN OpenStudio & save osm, idf -----------------------------------------------------------------------------------
 
-model.add_load_summary_report("idf_dir/test.idf");
-model.convert_unit_to_ip("idf_dir/test.idf");
+console.log("CONVERT OPENSTUDIO TO ENERGYPLUS:");
+model.save_openstudio_osm(buildingNameTimestamp, buildingNameTimestamp+"_input.osm");
+model.translate_to_energyplus_and_save_idf(buildingNameTimestamp, buildingNameTimestamp+"_input.idf");
 
-var job = model.run_energyplus_simulation("idf_dir", "test.idf");
+model.add_load_summary_report(buildingNameTimestamp+"/"+buildingNameTimestamp+"_input.idf");
+model.convert_unit_to_ip(buildingNameTimestamp+"/"+buildingNameTimestamp+"_input.idf");
+
+// 4 - RUN EnergyPlus & save sql, html -----------------------------------------------------------------------------------
+
+console.log("RUN ENERGYPLUS:");
+var job = model.run_energyplus_simulation(buildingNameTimestamp, buildingNameTimestamp+"_input.idf");
 
 var treeerrors = job.treeErrors();
 
+console.log("OUTPUT SUMMARY:");
 console.log("Job Succeeded: " + treeerrors.succeeded());
 
 var errors = treeerrors.errors();
@@ -59,7 +77,3 @@ for (var i = 0; i < warnings.size(); ++i)
 {
   console.log("Warning: " + warnings.get(i));
 }
-
-
-
-

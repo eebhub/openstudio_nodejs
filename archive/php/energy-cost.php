@@ -1,3 +1,53 @@
+<?php
+	require 'php/EEB_SQLITE3.php';
+	require 'php/EEB_UI.php';
+
+	session_start();
+	$ui = new EEB_UI;   // default user interface
+
+	// define the sql file path
+	if ($_POST['num_package'] != NULL) {
+		$cur_model = $_SESSION['cur_model'] = $_POST['num_package'];
+	} elseif($_POST['num_package'] == NULL && $_SESSION['cur_model'] == NULL) {
+		$cur_model = $_SESSION[cur_model];
+	} else {
+		$cur_model = $_SESSION[cur_model];
+	}
+	
+  // baseline sql file path
+  if($cur_model == $_SESSION['Model'][0]) {
+     $sql_file="ENERGYPLUS/idf/{$cur_model}/EnergyPlusPreProcess/EnergyPlus-0/eplusout.sql";
+  } else { // eem sql file path
+     $sql_file="eem/$_SESSION[user_dir]/Output/{$cur_model}.sql";
+  }
+
+	$eeb = new EEB_SQLITE3("$sql_file");
+
+	$electric_tariff = $eeb->getValues('Tariff Report', 'BLDG101_ELECTRIC_RATE', 'Categories', '%');
+	$gas_tariff = $eeb->getValues('Tariff Report', 'BLDG101_GAS_RATE',  'Categories', '%');
+
+	function printRow($Row) {
+		foreach ($Row as $r) {
+			if($r > 0){
+				echo "<td> $r </td>";
+			} else {
+				echo "<td> 0.0 </td>";
+			}
+		}
+	}
+
+	function getRowData($Row) {
+		echo '[';
+		foreach ($Row as $r) {
+			if($r < $Row['Sum']){
+					echo "$r,";
+			}
+		}
+		echo ']';
+	}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
