@@ -22,6 +22,11 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Show Folders & Files like Apache
+app.use(express.directory('public'));
+app.use('/outputs', express.directory('jason', {icons:true}));
+app.use('/outputs', express.static('jason'));
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
