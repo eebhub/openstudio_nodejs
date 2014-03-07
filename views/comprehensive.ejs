@@ -130,13 +130,7 @@
                             <a href="#architecture"><i class="icon-home"></i> Architecture</a>
                         </li>
                         <li>
-                            <a href="#materials"><i class="icon-th-large"></i> Enclosure</a>
-                        </li>
-                        <li>
-                            <a href="#typical_room"><i class="icon-user"></i> Typical Room</a>
-                        </li>
-                        <li>
-                            <a href="#lighting"><i class="icon-asterisk"></i> Lighting</a>
+                            <a href="#materials"><i class="icon-th-large"></i> Construction</a>
                         </li>
                         <li>
                             <a href="#mechanical"><i class="icon-cog"></i> Mechanical</a>
@@ -268,11 +262,29 @@
                                 <div class="span4">
                                     <h4>Number of Floors</h4>
                                     <input type="number" id="number_of_floors" name="number_of_floors" min="1" min="170" step="1">
+                                    <h4>% Window to Wall Ratio</h4>
+                                        <ul class="inline">
+                                            <li>
+                                                <input type="range" ng-model="winwall" min="10" max="60" step="1" value=50/>
+                                            </li>
+                                            <li>
+                                                <div class="input-append">
+                                                    <input class="span1" id="window_to_wall_ratio" type="text" value={{winwall}} ng-model="winwall" name="window_to_wall_ratio">
+                                                    <span class="add-on">%</span>
+                                                </div>
+                                            </li>
+                                        </ul>
                                 </div>
                                 <div class="span4">
                                     <h4>Floor to Floor Height</h4>
                                     <div class="input-append">
                                         <input type="number" id="floor_to_floor_height" name="floor_to_floor_height" step="0.001">
+
+                                        <span class="add-on"><span class="unit">m</span></span>
+                                    </div>
+                                    <h4>Plenum Height <small>space for ducts; ceiling to floor above</small></h4>
+                                    <div class="input-append">
+                                        <input type="number" id="plenum_height" name="floor_to_floor_height" step="0.001">
 
                                         <span class="add-on"><span class="unit">m</span></span>
                                     </div>
@@ -283,37 +295,26 @@
                                 <div class="span4" >
                                     <h4>Shape</h4>
                         			<select onchange="changeShape(this.value)" name="footprint_shape" id="footprint_shape" placeholder="footprint_shape">
-                        				<option value=""> - </option>
-                        				<option value="Rectangle"> Rectangle </option>
-                        				<option value="L">L Shape</option>
-                        				<option value="T" selected>T Shape</option>
-                        				<option value="U">U Shape</option>
-                        				<option value="H" >H Shape</option>
-                        				<option value="Pie" >Pie</option>
+                        				<option value="Rectangle" selected> Rectangle </option>
+                        				<option value="L" disabled>L Shape</option>
+                        				<option value="T" disabled>T Shape</option>
+                        				<option value="U" disabled>U Shape</option>
+                        				<option value="H" disabled>H Shape</option>
+                        				<option value="Pie" disabled>Pie</option>
                                         <option value="Polygon" disabled>Geometry From Import</option>
                                     </select>
                                 
                                     <div id="extend-img" >
-                                        <img style="width: 500px;" src="./img/geometry/T_Shape.png" class="img-rounded">
+                                        <img style="width: 500px;" src="./img/geometry/Rectangle.png" class="img-rounded">
                                     </div>
                                 </div>
                                 <div class="span4">
                                     <div id="extend-div" >
                                         <br><br><br>
-                                        <div class="control-group"> <label class="control-label" for="length">Length</label>
-            			                 <div class="controls input-append"> <input type="number" min="1" step="0.001" name="length" id="length"> <span class="add-on"><span class="unit">m</span></span></div> </div>  
-            
-            							 <div class="control-group"> <label class="control-label" for="width">Width</label>
-            			                 <div class="controls input-append"> <input type="number" min="1" step="0.001" name="width" id="width"> <span class="add-on"><span class="unit">m</span></span></div> </div>  
-            
-            							 <div class="control-group"> <label class="control-label" for="end_1">End 1</label>
-            			                 <div class="controls input-append"> <input type="number" min="1" step="0.001" name="end_1" id="end_1"> <span class="add-on"><span class="unit">m</span></span></div> </div>  
-            
-            							 <div class="control-group"> <label class="control-label" for="end_2">End 2</label>
-            			                 <div class="controls input-append"> <input type="number" min="1" step="0.001" name="end_2" id="end_2"> <span class="add-on"><span class="unit">m</span></span></div> </div>  
-            
-            							 <div class="control-group"> <label class="control-label" for="offset">Offset</label>
-            			                 <div class="controls input-append"> <input type="number" min="1" step="0.001" name="offset" id="offset"> <span class="add-on"><span class="unit">m</span></span></div> </div>
+        			                    <div class="control-group"> <label class="control-label" for="length">Length</label>
+        			                    <div class="controls input-append"> <input type="number" min="1" name="length" id="length"><span class="add-on"><span class="unit">m</span></span> </div> </div>  
+        							    <div class="control-group"> <label class="control-label" for="width">Width</label>
+        			                    <div class="controls input-append"> <input type="number" min="1" name="width" id="width"><span class="add-on"><span class="unit">m</span></span> </div> </div>
                                     </div>
                                 </div>
                             </div>
@@ -335,42 +336,6 @@
                                 <br>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="span4">
-                                    <!--<h4>Gross Floor Area</h4>
-                                    <div class="input-append">
-                                        <input type="number" id="gross_floor_area" name="gross_floor_area" step="0.001">
-
-                                        <span class="add-on" id="architect-replace1"><span class="unit">m</span>&#178;</span>
-                                    </div>-->
-                                    <h4>Geometry Import <small>coming soon</small></h4>
-                                    <h2 class="text-right">
-                                        <small>BIMserver will soon extract &
-                                            <a href="http://www.virtualpulse.us/V1">visualize </a>external walls, windows, numbers of floors, gross floor area for simulation.</small>
-                                    </h2>
-                                </div>
-                                <div class="span4">
-                                    <img src="img/BuildingGEO-black.jpg" class="img-polaroid">
-                                    <!--UPLOAD IFC-->
-                                    <div class="fileupload fileupload-new" data-provides="fileupload">
-                                        <div class="input-append">
-                                            <div class="uneditable-input span2">
-                                                <i class="icon-file fileupload-exists"></i>
-                                                <span class="fileupload-preview">not yet active</span>
-                                            </div>
-                                            <span class="btn btn-file">
-                                                <span class="fileupload-new">Upload Building Model (.IFC)</span>
-                                                <span class="fileupload-exists"></span>
-                                                <input type="file" />
-                                            </span>
-                                            <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-                                        </div>
-                                    </div>
-                                    <!--UPLOAD IFC-->
-                                </div>
-                            </div>
-                            
-                          
                         </div>
                     </section>
                     
@@ -378,7 +343,7 @@
                     <section id="materials">
                         <div class="box-unit materials">
                             <div class="page-header">
-                                <h2>Enclosure</h2>
+                                <h2>Construction <small>materials</small></h2>
                             </div>
                             <div class="row">
                                 <div class="span4">
@@ -396,433 +361,14 @@
                                         <option value="Steel Framed">Steel Framed</option>
                                         <option value="Wood Framed" disabled>Wood Framed and Other</option>
                                     </select>
+                                </div>
+                                <div class="span4">
                                     <h4>Roof</h4>
                                     <select value="this.value" name="roof_type" class="span3">
                                         <option value="Metal" selected>Metal Roof</option>
                                         <option disabled>Insulation Entirely Above Deck</option>
                                         <option disabled>Attic and Other</option>
                                     </select>
-                                </div>
-                                <div class="span4">
-                                
-                                <h4>Airtightness Assessment</h4>
-                                    <select class="span3" name="tightness">
-                                        <option>Leaky</option>
-                                        <option selected>Average</option>
-                                        <option>Tight</option>
-                                    </select>
-                                
-                                <h4>Wall Thickness</h4>
-                                    <div class="input-append">
-                                        <input class="span2" id="appendedInput" type="text" name="wall_thickness">
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    
-                    <!-- ##################################### People Section ############################################# -->
-                    <!--section id="people">
-                        <div id="box-unit">
-                            <div class="page-header">
-                                <h2>People</h2>
-                            </div>
-                            <div class="row">
-                                <div class="span4">
-                                    <h4>People Density</h4>
-                                    <div class="input-append">
-                                        <input class="span2" id="appendedInput" type="text" placeholder="building type default" name="people_density" disabled>
-                                        <span class="add-on" id="people-replace">People/<span class="unit">m</span>&sup2;</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section-->
-                    
-                    
-                    <!-- ####################################### Architecture Seciton 2 ################################################## -->
-                    <section id="typical_room">
-                        <div class="box-unit typicalroom">
-                            <div class="page-header">
-                                <h2>Typical Room
-                            </div>
-                            
-                            <ul class="nav nav-tabs">
-                                        <li class="active">
-                                            <a href="#north" data-toggle="tab">North</a>
-                                        </li>
-                                        <li>
-                                            <!--<a href="#east" data-toggle="tab">East</a>-->
-                                            <a style="cursor:not-allowed;">East</a>
-                                        </li>
-                                        <li>
-                                            <a style="cursor:not-allowed;">South</a>
-                                        </li>
-                                        <li>
-                                            <a style="cursor:not-allowed;">West</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="north">
-                                            
-                                            
-                            <div class="row">
-                                <div class="span2">
-                                    <img class="img-rounded" src="img/room_dimensions.png">
-                                </div>
-                                <div class="span3" id="architect2-replace1">
-                                    <h4>Room Width</h4>
-                                    <div class="input-append">
-                                        <input type="number" min="0" step="0.01" class="span2" id="appendedInput"
-                                        name="room_width" />
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                    <h4>Room Depth</h4>
-                                    <div class="input-append">
-                                        <input type="number" min="0" step="0.01" class="span2" id="appendedInput"
-                                        name="room_depth" />
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                    <h4>Room Height</h4>
-                                    <div class="input-append">
-                                        <input type="number" min="0" step="0.01" class="span2" id="appendedInput"
-                                        name="room_height" />
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="span2">
-                                    <img class="img-rounded" src="img/overhang.gif" width="170">
-                                </div>
-                                <div class="span3">
-                                    <h4>Overhang Depth</h4>
-                                    <div class="input-append">
-                                        <input class="span2" id="appendedInput" type="number" name="overhang_depth">
-                                        <span class="add-on" id="architect2-replace2"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                <h4>Window Head Height</h4>
-                                    <div class="input-append">
-                                        <input class="span2" id="appendedInput" type="text" placeholder="floor to top of window" name="window_head_height">
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                    
-                                </div>
-                            </div>    
-                            <div class="row">
-                                <div class="span2">
-                                </div>
-                                <div class="span4">
-                                    <h4>% Window to Wall Ratio</h4>
-                                        <ul class="inline">
-                                            <li>
-                                                <input type="range" ng-model="winwall" min="10" max="60" step="1" value=50/>
-                                            </li>
-                                            <li>
-                                                <div class="input-append">
-                                                    <input class="span1" id="window_to_wall_ratio" type="text" value={{winwall}} ng-model="winwall" name="window_to_wall_ratio">
-                                                    <span class="add-on">%</span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                </div>
-                            </div>
-                                            
-                                            
-                                            
-                                            
-                                        </div>
-                                        <div class="tab-pane" id="east">
-                                            
-                                            
-                                <div class="row">
-                                <div class="span2">
-                                    <img class="img-rounded" src="img/room_dimensions.png">
-                                </div>
-                                <div class="span3" id="architect2-replace1">
-                                    <h4>Room Width</h4>
-                                    <div class="input-append">
-                                        <input type="number" min="0" step="0.01" class="span2" id="appendedInput"
-                                        name="" disabled/>
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                    <h4>Room Depth</h4>
-                                    <div class="input-append">
-                                        <input type="number" min="0" step="0.01" class="span2" id="appendedInput"
-                                        name="" disabled/>
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                    <h4>Room Height</h4>
-                                    <div class="input-append">
-                                        <input type="number" min="0" step="0.01" class="span2" id="appendedInput"
-                                        name="" disabled/>
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="span2">
-                                    <img class="img-rounded" src="img/overhang.gif" width="170">
-                                </div>
-                                <div class="span3">
-                                    <h4>Overhang Depth</h4>
-                                    <div class="input-append">
-                                        <input class="span2" id="appendedInput" type="number" name="" disabled>
-                                        <span class="add-on" id="architect2-replace2"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                <h4>Window Head Height</h4>
-                                    <div class="input-append">
-                                        <input class="span2" id="appendedInput" type="text" placeholder="floor to top of window" name="" disabled>
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                    
-                                </div>
-                            </div>    
-                            <!--div class="row">
-                                <div class="span2">
-                                </div>
-                                <div class="span3">
-                                    <h4>% Window to Wall Ratio</h4>
-                                        <ul class="inline">
-                                            <li>
-                                                <input type="range" ng-model="winwall" min="10" max="60" step="1" value=50/>
-                                            </li>
-                                            <li>
-                                                <div class="input-append">
-                                                    <input class="span1" id="window_to_wall_ratio" type="text" value={{winwall}} ng-model="winwall" name="" disabled>
-                                                    <span class="add-on">%</span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                </div>
-                            </div-->
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                        </div>
-                                        <div class="tab-pane" id="south">
-                                            
-                                            
-
-                                <div class="row">
-                                <div class="span2">
-                                    <img class="img-rounded" src="img/room_dimensions.png">
-                                </div>
-                                <div class="span3" id="architect2-replace1">
-                                    <h4>Room Width</h4>
-                                    <div class="input-append">
-                                        <input type="number" min="0" step="0.01" class="span2" id="appendedInput"
-                                        name="" disabled/>
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                    <h4>Room Depth</h4>
-                                    <div class="input-append">
-                                        <input type="number" min="0" step="0.01" class="span2" id="appendedInput"
-                                        name="" disabled/>
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                    <h4>Room Height</h4>
-                                    <div class="input-append">
-                                        <input type="number" min="0" step="0.01" class="span2" id="appendedInput"
-                                        name="" disabled/>
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="span2">
-                                    <img class="img-rounded" src="img/overhang.gif" width="170">
-                                </div>
-                                <div class="span3">
-                                    <h4>Overhang Depth</h4>
-                                    <div class="input-append">
-                                        <input class="span2" id="appendedInput" type="number" name="" disabled>
-                                        <span class="add-on" id="architect2-replace2"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                <h4>Window Head Height</h4>
-                                    <div class="input-append">
-                                        <input class="span2" id="appendedInput" type="text" placeholder="floor to top of window" name="" disabled>
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                    
-                                </div>
-                            </div>    
-                            <!--div class="row">
-                                <div class="span2">
-                                </div>
-                                <div class="span3">
-                                    <h4>% Window to Wall Ratio</h4>
-                                        <ul class="inline">
-                                            <li>
-                                                <input type="range" ng-model="winwall" min="10" max="60" step="1" value=50/>
-                                            </li>
-                                            <li>
-                                                <div class="input-append">
-                                                    <input class="span1" id="window_to_wall_ratio" type="text" value={{winwall}} ng-model="winwall" name="" disabled>
-                                                    <span class="add-on">%</span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                </div>
-                            </div-->
-
-                                            
-                                            
-                                            
-                                            
-                                            
-                                        </div>
-                                        <div class="tab-pane" id="west">
-                                            
-                                            
-                                <div class="row">
-                                <div class="span2">
-                                    <img class="img-rounded" src="img/room_dimensions.png">
-                                </div>
-                                <div class="span3" id="architect2-replace1">
-                                    <h4>Room Width</h4>
-                                    <div class="input-append">
-                                        <input type="number" min="0" step="0.01" class="span2" id="appendedInput"
-                                        name="" disabled/>
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                    <h4>Room Depth</h4>
-                                    <div class="input-append">
-                                        <input type="number" min="0" step="0.01" class="span2" id="appendedInput"
-                                        name="" disabled/>
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                    <h4>Room Height</h4>
-                                    <div class="input-append">
-                                        <input type="number" min="0" step="0.01" class="span2" id="appendedInput"
-                                        name="" disabled/>
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="span2">
-                                    <img class="img-rounded" src="img/overhang.gif" width="170">
-                                </div>
-                                <div class="span3">
-                                    <h4>Overhang Depth</h4>
-                                    <div class="input-append">
-                                        <input class="span2" id="appendedInput" type="number" name="" disabled>
-                                        <span class="add-on" id="architect2-replace2"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                <h4>Window Head Height</h4>
-                                    <div class="input-append">
-                                        <input class="span2" id="appendedInput" type="text" placeholder="floor to top of window" name="" disabled>
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                    
-                                </div>
-                            </div>    
-                            <!--div class="row">
-                                <div class="span2">
-                                </div>
-                                <div class="span3">
-                                    <h4>% Window to Wall Ratio</h4>
-                                        <ul class="inline">
-                                            <li>
-                                                <input type="range" ng-model="winwall" min="10" max="60" step="1" value=50/>
-                                            </li>
-                                            <li>
-                                                <div class="input-append">
-                                                    <input class="span1" id="window_to_wall_ratio" type="text" value={{winwall}} ng-model="winwall" name="" disabled>
-                                                    <span class="add-on">%</span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                </div>
-                            </div-->
-
-                                            
-                                            
-                                            
-                                        </div>
-                                    </div>
-                            
-
-                            
-                        </div>
-                    </section>
-                    
-                    <!-- ########################################## Lighting Section ##################################### -->
-                    <section id="lighting">
-                        <div class="box-unit lighting">
-                            <div class="page-header">
-                                <h2>Lighting
-                                    <small>for DAYSIM</small>
-                                </h2>
-                            </div>
-                            <div class="row">
-                                <div class="span4" id="lighting-replace">
-                                    <h4>Lighting Power Density</h4>
-                                    <div class="input-append">
-                                        <input class="span2" id="appendedInput" type="text" name="lighting_power_density">
-                                        <span class="add-on">W/<span class="unit">m</span>&sup2;</span>
-                                    </div>
-                                    <h4>Target Illuminance</h4>
-                                    <div class="input-append">
-                                        <select class="span2" id="illuminance" type="text" name="illuminance">
-                                                <option value="150">150 - storage</option>
-                                                <option value="200">200 - casual work</option>
-                                                <option value="300">300 - rough work</option>
-                                                <option value="400">400 - office work (EU)</option>
-                                                <option value="500" selected>500 - office work (US)</option>
-                                            </select>
-                                        <span class="add-on"><span class="illu-unit">lux</span></span>
-                                    </div>
-                                    
-                                    <h4>Shading Device</h4>
-                                    <select class="span3" name="interior_shading_type">
-                                        <option value="Horizontal_Blinds">Horizontal Blinds</option>
-                                        <option value="Fabric_Shades">Fabric Shades</option>
-                                        <option value="None">None</option>
-                                    </select>
-                                </div>
-                                <div class="span4">
-                                    
-                                    <h4>Floor Reflectance</h4>
-                                    <input id="floorSlider" type="range" class="span2"
-                                    min="0" max="1" step="0.01" onchange="printValue('floorSlider','floorRangeValue')"
-                                    />
-                                    <input id="floorRangeValue" name="floor_reflectance" type="number" class="span1" min="0" max="1"
-                                    step="0.01" />
-                                    <h4>Ceiling Reflectance</h4>
-                                    <input id="ceilingSlider" type="range" class="span2"
-                                    min="0" max="1" step="0.01" onchange="printValue('ceilingSlider','ceilingRangeValue')"
-                                    />
-                                    <input id="ceilingRangeValue" name="ceiling_reflectance" type="number" class="span1" min="0" max="1"
-                                    step="0.01" />
-                                    <h4>Wall Reflectance</h4>
-                                    <input id="wallSlider" type="range" class="span2"
-                                    min="0" max="1" step="0.01" onchange="printValue('wallSlider','wallRangeValue')"
-                                    />
-                                    <input id="wallRangeValue" name="wall_reflectance" type="number" class="span1" min="0" max="1"
-                                    step="0.01" />
                                 </div>
                             </div>
                         </div>
@@ -997,11 +543,11 @@
                    
                         <input type="submit" class="btn btn-large btn-primary" value="SIMULATE">
                         <a target='_blank' href="http://openstudio.nrel.gov/">
-                        <img style="text-align:right;float:right;" src="img/doe-engines.png" alt="DOE" width="250" height="58">
+                        <img style="text-align:right;float:right;" src="img/doe-engines.png" alt="DOE"  height="58">
                         </a>
                         <br style="clear:both" />
                         <h2 class="text-right">
-                            <small>powered by <a target='_blank' href="http://openstudio.nrel.gov/" style="color:inherit;">OpenStudio SDK</a> + <a target='_blank' href="http://apps1.eere.energy.gov/buildings/energyplus/" style="color:inherit;">EnergyPlus</a>, <a target='_blank' href="http://daysim.ning.com/" style="color:inherit;">DAYSIM</a>, <a target='_blank' href="http://www.bfrl.nist.gov/IAQanalysis/CONTAM/index.htm" style="color:inherit;">CONTAM</a> Engines</small>
+                            <small>powered by DOE's <a target='_blank' href="http://openstudio.nrel.gov/" style="color:inherit;">OpenStudio SDK</a> & <a target='_blank' href="http://apps1.eere.energy.gov/buildings/energyplus/" style="color:inherit;">EnergyPlus Engine</a></small>
                         </h2>
                     </div>
                   <h3 style="padding-left:20px;">Related Resources</h3>
@@ -1011,7 +557,7 @@
                         <img style="text-align:right;float:right;" src="img/psu-light2.png" alt="PSU" width="132" height="61"> </a>
                         <br>
                         <br>
-                        <h2 class="text-right"><small>powered by DOE's OpenStudio SDK & EnergyPlus Engine</small></h2>
+                        <h2 class="text-right"><small>developed by PSU Architectural Engineering</small></h2>
                     </div>
                     <div style="visibility:hidden"><input name="unit" value = "si" id="si-ip" /></div>
                     
