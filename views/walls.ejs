@@ -1,0 +1,327 @@
+
+
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+  	<link href="css/bootstrap.min.css" rel="stylesheet">
+  	<link href="css/stylesheet.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="css/bootstrap-fileupload.css" rel="stylesheet">
+    <link href="css/partial.css" rel="stylesheet">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/kinetic.js"></script>
+    <script src="js/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
+    
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        padding-bottom: 90px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div id="container"></div>
+    <div style ="position: absolute; top:110px; left:-65px; width:200px; 
+    	-webkit-transform: rotate(270deg);
+		-moz-transform: rotate(270deg);   
+		-o-transform: rotate(270deg);">Width</div>
+	<div style="position: absolute; top:75px; left:285px; width:200px; height:25px">Length</div>
+    <div style="position: absolute; top:120px; left:100px; width:200px; height:25px">Room 1</div>
+    <div style="position: absolute; top:120px; left:460px; width:200px; height:25px">Room 2</div>
+    <div style="position: absolute; top:250px; left:100px; width:200px; height:25px">Room 3</div>
+    <div style="position: absolute; top:250px; left:460px; width:200px; height:25px">Room 4</div>
+    <div class="span4" style="padding-left: 40px;">
+    	<br>
+         <table border="0" cellpadding = "10">
+			<tr>
+				<td>
+					<h4>Room 1</h4>
+    				<h5>Function</h5>
+	    			  <select value="this.value" class="span3" id="activity_type" name="activity_type">
+         			    <option value="SmallOffice">Small Office</option>
+	        			 <option value="MediumOffice">Medium Office</option>
+				         <option value="LargeOffice">Large Office</option>
+			             <option value="Warehouse">Warehouse (non-refrigerated)</option>
+			             <option value="Retail">Core-Retail</option>
+			             <option disabled>Stand-alone Retail</option>
+			             <option disabled>Strip Mall</option>
+			             <option disabled>Primary School</option>
+			             <option disabled>Secondary School</option>
+			             <option disabled>Outpatient Healthcare</option>
+			             <option disabled>Hospital</option>
+      			  		 <option disabled>Small hotel</option>
+			             <option disabled>Large Hotel</option>
+           				  <option disabled>Quick Service Restaurant</option>
+			             <option disabled>Full Service Restaurant</option>
+            			 <option disabled>Mid-Rise Apartment</option>
+			             <option disabled>High-Rise Apartment</option>
+        				 </select>
+					<h5>Percentage</h5>
+       				<h6 id="room-one-percentage"></h6>
+				</td>
+				<td>
+					<h4>Room 2</h4>
+    				<h5>Function</h5>
+	    			  <select value="this.value" class="span3" id="activity_type" name="activity_type">
+         			    <option value="SmallOffice">Small Office</option>
+	        			 <option value="MediumOffice">Medium Office</option>
+				         <option value="LargeOffice">Large Office</option>
+			             <option value="Warehouse">Warehouse (non-refrigerated)</option>
+			             <option value="Retail">Core-Retail</option>
+			             <option disabled>Stand-alone Retail</option>
+			             <option disabled>Strip Mall</option>
+			             <option disabled>Primary School</option>
+			             <option disabled>Secondary School</option>
+			             <option disabled>Outpatient Healthcare</option>
+			             <option disabled>Hospital</option>
+      			  		 <option disabled>Small hotel</option>
+			             <option disabled>Large Hotel</option>
+           				  <option disabled>Quick Service Restaurant</option>
+			             <option disabled>Full Service Restaurant</option>
+            			 <option disabled>Mid-Rise Apartment</option>
+			             <option disabled>High-Rise Apartment</option>
+        				 </select>
+					<h5>Percentage</h5>
+       				<h6 id="room-two-percentage"></h6>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<h4>Room 3</h4>
+    				<h5>Function</h5>
+	    			  <select value="this.value" class="span3" id="activity_type" name="activity_type">
+         			    <option value="SmallOffice">Small Office</option>
+	        			 <option value="MediumOffice">Medium Office</option>
+				         <option value="LargeOffice">Large Office</option>
+			             <option value="Warehouse">Warehouse (non-refrigerated)</option>
+			             <option value="Retail">Core-Retail</option>
+			             <option disabled>Stand-alone Retail</option>
+			             <option disabled>Strip Mall</option>
+			             <option disabled>Primary School</option>
+			             <option disabled>Secondary School</option>
+			             <option disabled>Outpatient Healthcare</option>
+			             <option disabled>Hospital</option>
+      			  		 <option disabled>Small hotel</option>
+			             <option disabled>Large Hotel</option>
+           				  <option disabled>Quick Service Restaurant</option>
+			             <option disabled>Full Service Restaurant</option>
+            			 <option disabled>Mid-Rise Apartment</option>
+			             <option disabled>High-Rise Apartment</option>
+        				 </select>
+					<h5>Percentage</h5>
+       				<h6 id="room-three-percentage"></h6>
+				
+				</td>
+				<td>
+					<h4>Room 4</h4>
+    				<h5>Function</h5>
+	    			  <select value="this.value" class="span3" id="activity_type" name="activity_type">
+         			    <option value="SmallOffice">Small Office</option>
+	        			 <option value="MediumOffice">Medium Office</option>
+				         <option value="LargeOffice">Large Office</option>
+			             <option value="Warehouse">Warehouse (non-refrigerated)</option>
+			             <option value="Retail">Core-Retail</option>
+			             <option disabled>Stand-alone Retail</option>
+			             <option disabled>Strip Mall</option>
+			             <option disabled>Primary School</option>
+			             <option disabled>Secondary School</option>
+			             <option disabled>Outpatient Healthcare</option>
+			             <option disabled>Hospital</option>
+      			  		 <option disabled>Small hotel</option>
+			             <option disabled>Large Hotel</option>
+           				  <option disabled>Quick Service Restaurant</option>
+			             <option disabled>Full Service Restaurant</option>
+            			 <option disabled>Mid-Rise Apartment</option>
+			             <option disabled>High-Rise Apartment</option>
+        				 </select>
+					<h5>Percentage</h5>
+       				<h6 id="room-four-percentage"></h6>
+				</td>
+			</tr>     
+	</div>
+	
+	<body onload="roomPercentage();">					
+    
+    <script defer="defer">
+
+    var socket;
+    $(document).ready(function(){
+				socket = io.connect('http://localhost:9099');
+			});
+
+
+      var stage = new Kinetic.Stage({
+        container: 'container',
+        width: 600,
+        height: 300
+      });
+
+      var layer = new Kinetic.Layer();
+
+      // complex dashed and dotted line
+      var blackLine0 = new Kinetic.Line({
+        y: 50,
+        points: [50, 50, 550, 50],
+        stroke: 'black',
+        strokeWidth: '2',
+        draggable: false
+      });
+
+	  var blackLine1 = new Kinetic.Line({
+        y: 50,
+        points: [550, 50, 550, 250],
+        stroke: 'black',
+        strokeWidth: '2',
+        draggable: false
+      });
+
+	  var blackLine2 = new Kinetic.Line({
+        y: 50,
+        points: [550, 250, 50, 250],
+        stroke: 'black',
+        strokeWidth: '2',
+        draggable: false
+      });
+
+	  var blackLine3 = new Kinetic.Line({
+        y: 50,
+        points: [50, 250, 50, 50],
+        stroke: 'black',
+        strokeWidth: '2',
+        draggable: false
+      });
+
+	  var yLine = new Kinetic.Line({
+        y: 50,
+        points: [250, 50, 250, 550],
+        stroke: 'black',
+        strokeWidth: '6',
+        draggable: true,
+		dragBoundFunc: function(pos) {
+			if(pos.x < -95)						// lower bound
+			{
+				return{
+				x: -95,
+				y: this.getAbsolutePosition().y				
+				}
+			}
+			if(pos.x > 205)							// upper bound
+			{
+				return{
+				x: 205,
+				y: this.getAbsolutePosition().y				
+				}
+			}
+            // console.log('x' + pos.x);
+			return {
+            x: pos.x,
+            y: this.getAbsolutePosition().y
+          }
+        }
+      });
+
+	  var xLine = new Kinetic.Line({
+        y: 50,
+        points: [50, 125, 550, 125],
+        stroke: 'black',
+        strokeWidth: '6',
+        draggable: true,
+		dragBoundFunc: function(pos) {
+			//roomOnePercentage();
+			if(pos.y < 18)							// lower bound
+			{
+				return{
+				x: this.getAbsolutePosition().x,
+				y: 18			
+				}
+			}
+			if(pos.y > 125)							// upper bound
+			{
+				return{
+				x: this.getAbsolutePosition().x,
+				y: 125		
+				}
+			}	
+			//console.log("y" + pos.y);
+            return {
+            x: this.getAbsolutePosition().x,
+            y: pos.y
+
+          }
+        }
+      });
+      
+function roomPercentage()
+{
+
+	// room 1
+	var width = yLine.getPosition().x;
+	width += 196;
+	var height = xLine.getPosition().y;
+	height += 22;
+	
+	var percentage = ((width*height)/95149)*100;
+	percentage = percentage.toFixed(2);
+
+	socket.emit('room1', percentage);
+	
+	$("#room-one-percentage").html(percentage + " %");
+	
+	// room 2
+	width = 493 - width;
+
+	percentage = ((width*height)/95149)*100;
+	percentage = percentage.toFixed(2);
+
+	socket.emit('room2', percentage);
+	
+	$("#room-two-percentage").html(percentage + " %");
+	
+	// room 4
+	height = 193 - height;
+	
+	percentage = ((width*height)/95149)*100;
+	percentage = percentage.toFixed(2);
+
+	socket.emit('room4', percentage);
+	
+	$("#room-four-percentage").html(percentage + " %");
+	
+	// room 3
+	width = yLine.getPosition().x;
+	width += 196;
+	
+	percentage = ((width*height)/95149)*100;
+	percentage = percentage.toFixed(2);
+
+	socket.emit('room3', percentage);
+	
+	$("#room-three-percentage").html(percentage + " %");
+	
+}
+	xLine.on('dragmove', function() {				// update percentages when x line is dragged
+        roomPercentage();
+        console.log('dragstart');
+      });
+      yLine.on('dragmove', function() {				// update percentages when y line is dragged
+        roomPercentage();
+        //console.log('dragend');
+      });
+
+      layer.add(blackLine0);
+	  layer.add(blackLine1);
+      layer.add(blackLine2);
+	  layer.add(xLine);
+	  layer.add(blackLine3);
+	  layer.add(yLine);
+	
+      stage.add(layer);
+
+      
+    
+    </script>
+  </body>
+</html>

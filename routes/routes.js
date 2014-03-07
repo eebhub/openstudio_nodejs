@@ -11,10 +11,7 @@ module.exports = {
         response.render('form');
     },
 
-    getEnergyUse: function(request, response){
-
-        response.render('energy-use');
-    },
+    
     
     getEnergyIntensity: function(request, response){
         response.render('energy-intensity');
@@ -36,6 +33,10 @@ module.exports = {
     
     getTrackingSheet: function(request, response){
         response.render('tracking-sheet');
+    },
+
+    getWalls: function(request, response){
+        response.render('walls');
     }
     
 };    

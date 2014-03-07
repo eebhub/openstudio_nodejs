@@ -7,7 +7,7 @@ class OpenstudioModel < OpenStudio::Model::Model
     merged_params = building_params.merge(merged_params)
     case geo_type
     when 'Rectangle'
-      require 'Set_Rectangle-Shape_Floor_Plan'
+      #require 'Set_Rectangle-Shape_Floor_Plan'
       shape_plan = SetRectangleShapeFloorPlan.new
       shape_plan.add_geometry_rectangle(self, merged_params)
     else
@@ -38,17 +38,17 @@ class OpenstudioModel < OpenStudio::Model::Model
       new_window = s.setWindowToWallRatio(wwr, offset, heightOffsetFromFloor)
     end
   end
-    #-AddIDFTables.rb-------------------------------------------------------------------------------#
-    # add ZoneComponentLoadSummary to summaryreport in idf_file
-    def add_load_summary_report(idf_file)
-      puts `sed  's/\\(Output:Table:SummaryReports,\\)/\\1\\n  ZoneComponentLoadSummary,/g'  #{idf_file} > #{idf_file}_new`
-      `mv #{idf_file}_new #{idf_file}`
-    end
-    # modify the default unit system to I-P unit in idf_file  
-    def convert_unit_to_ip(idf_file)
-      puts `sed  's/\\(HTML;.*\\)/HTML,\\n  InchPound;/g'  #{idf_file} > #{idf_file}_new`
-      `mv #{idf_file}_new #{idf_file}`
-    end
+  #-AddIDFTables.rb-------------------------------------------------------------------------------#
+  # add ZoneComponentLoadSummary to summaryreport in idf_file
+  def add_load_summary_report(idf_file)
+    puts `sed  's/\\(Output:Table:SummaryReports,\\)/\\1\\n  ZoneComponentLoadSummary,/g'  #{idf_file} > #{idf_file}_new`
+    `mv #{idf_file}_new #{idf_file}`
+  end
+  # modify the default unit system to I-P unit in idf_file  
+  def convert_unit_to_ip(idf_file)
+    puts `sed  's/\\(HTML;.*\\)/HTML,\\n  InchPound;/g'  #{idf_file} > #{idf_file}_new`
+    `mv #{idf_file}_new #{idf_file}`
+  end
   def add_hvac(params)
     fan_eff = params["fan_eff"]
     boiler_eff = params["boiler_eff"]
@@ -78,16 +78,16 @@ class OpenstudioModel < OpenStudio::Model::Model
     cooling_coil.setRatedHighSpeedCOP(coil_cool_rated_high_speed_COP)
     cooling_coil.setRatedLowSpeedCOP(coil_cool_rated_low_speed_COP)
     case economizer_type
-      when "No Economizer" :
-      when "Fixed Dry Bulb Temperature Limit" :
-        outdoor_air_system = hvac.supplyComponents(OpenStudio::Model::AirLoopHVACOutdoorAirSystem::iddObjectType())[0]
-        outdoor_air_system = outdoor_air_system.to_AirLoopHVACOutdoorAirSystem.get
-        outdoor_air_controller = outdoor_air_system.getControllerOutdoorAir 
-        outdoor_air_controller = outdoor_air_controller.to_ControllerOutdoorAir.get
-        outdoor_air_controller.setEconomizerControlType("FixedDryBulb")
-        outdoor_air_controller.setEconomizerMaximumLimitDryBulbTemperature(economizer_dry_bulb_temp_limit)
-      else
-        puts "#{economizer_type} is not a valid selection for economizer type."
+    when "No Economizer" :
+    when "Fixed Dry Bulb Temperature Limit" :
+      outdoor_air_system = hvac.supplyComponents(OpenStudio::Model::AirLoopHVACOutdoorAirSystem::iddObjectType())[0]
+      outdoor_air_system = outdoor_air_system.to_AirLoopHVACOutdoorAirSystem.get
+      outdoor_air_controller = outdoor_air_system.getControllerOutdoorAir 
+      outdoor_air_controller = outdoor_air_controller.to_ControllerOutdoorAir.get
+      outdoor_air_controller.setEconomizerControlType("FixedDryBulb")
+      outdoor_air_controller.setEconomizerMaximumLimitDryBulbTemperature(economizer_dry_bulb_temp_limit)
+    else
+      puts "#{economizer_type} is not a valid selection for economizer type."
     end
   end
   def add_constructions(params)
@@ -106,13 +106,13 @@ class OpenstudioModel < OpenStudio::Model::Model
     building = self.getBuilding
     default_construction_set = OpenStudio::Model::getDefaultConstructionSets(self)[0]
     building.setDefaultConstructionSet(default_construction_set)
-	building.setNorthAxis(degree_to_north)
+    building.setNorthAxis(degree_to_north)
   end
   def add_space_type(params)
-  	OpenStudio::Application::instance()
+    OpenStudio::Application::instance()
     localblc = OpenStudio::LocalBCL::instance(OpenStudio::Path.new("/home/virtualpulse"))
-	bcl = OpenStudio::RemoteBCL.new
-  	#puts bcl.setProdAuthKey("xsxYuim9hvuuGdVFvhM5GBxNLPnDmNgE")  
+    bcl = OpenStudio::RemoteBCL.new
+    #puts bcl.setProdAuthKey("xsxYuim9hvuuGdVFvhM5GBxNLPnDmNgE")  
     nrel_reference_building_vintage = params["NREL_reference_building_vintage"]
     climate_zone = params["Climate_zone"]
     nrel_reference_building_primary_space_type = params["NREL_reference_building_primary_space_type"]
@@ -121,7 +121,7 @@ class OpenstudioModel < OpenStudio::Model::Model
     remoteBCL.downloadOnDemandGenerator("bb8aa6a0-6a25-012f-9521-00ff10704b07");
     generator = remoteBCL.waitForOnDemandGenerator();
     if generator.empty?
-	  puts "generator empty"
+      puts "generator empty"
       return false    
     end
     generator = generator.get
@@ -175,7 +175,9 @@ class OpenstudioModel < OpenStudio::Model::Model
   end  
   def add_densities()
     ventilation=self.getDesignSpecificationOutdoorAirs 
-    ventilation.first.setOutdoorAirFlowAirChangesperHour(1.0)      
+    if (ventilation.first)
+      ventilation.first.setOutdoorAirFlowAirChangesperHour(1.0)      
+    end
   end
   def save_openstudio_osm(params)
     osm_save_directory = params["osm_save_directory"]
@@ -193,7 +195,7 @@ class OpenstudioModel < OpenStudio::Model::Model
   end
   def add_design_days(params)
     require 'openstudio/energyplus/find_energyplus'
-	loc_filename = params["loc_filename"]
+    loc_filename = params["loc_filename"]
     ep_hash = OpenStudio::EnergyPlus::find_energyplus(8,0) 	
     weather_path = OpenStudio::Path.new(ep_hash[:energyplus_weatherdata].to_s)
     ddy_path = OpenStudio::Path.new("#{weather_path}/#{loc_filename}.idf") #sometimes ddy, OpenStudio error Kyle is fixing 
@@ -221,7 +223,7 @@ class OpenstudioModel < OpenStudio::Model::Model
   def self.run_energyplus_simulation(params)
     require 'openstudio/energyplus/find_energyplus'
     idf_directory = params["idf_directory"]
-	epw_filename = params['epw_filename']
+    epw_filename = params['epw_filename']
     idf_name = params["idf_name"]
     ep_hash = OpenStudio::EnergyPlus::find_energyplus(8,0) 
     weather_path = OpenStudio::Path.new(ep_hash[:energyplus_weatherdata].to_s)
@@ -260,7 +262,7 @@ class SetRectangleShapeFloorPlan < OpenStudio::Ruleset::ModelUserScript
     perimeter_zone_depth = params["perimeter_zone_depth"]
     shortest_side = [length,width].min
     if perimeter_zone_depth < 0 or 2*perimeter_zone_depth >= (shortest_side - 1e-4)
-	  puts "perimeter_zone_depth error."
+      puts "perimeter_zone_depth error."
       return false
     end
     for floor in (0..num_floors-1)
@@ -273,20 +275,20 @@ class SetRectangleShapeFloorPlan < OpenStudio::Ruleset::ModelUserScript
       se_point = OpenStudio::Point3d.new(length,0,z)
       sw_point = OpenStudio::Point3d.new(0,0,z)
       m = OpenStudio::Matrix.new(4,4,0)
-        m[0,0] = 1
-        m[1,1] = 1
-        m[2,2] = 1
-        m[3,3] = 1
+      m[0,0] = 1
+      m[1,1] = 1
+      m[2,2] = 1
+      m[3,3] = 1
       if perimeter_zone_depth > 0
         perimeter_nw_point = nw_point + OpenStudio::Vector3d.new(perimeter_zone_depth,-perimeter_zone_depth,0)
         perimeter_ne_point = ne_point + OpenStudio::Vector3d.new(-perimeter_zone_depth,-perimeter_zone_depth,0)
         perimeter_se_point = se_point + OpenStudio::Vector3d.new(-perimeter_zone_depth,perimeter_zone_depth,0)
         perimeter_sw_point = sw_point + OpenStudio::Vector3d.new(perimeter_zone_depth,perimeter_zone_depth,0)
         west_polygon = OpenStudio::Point3dVector.new
-          west_polygon << sw_point
-          west_polygon << nw_point
-          west_polygon << perimeter_nw_point
-          west_polygon << perimeter_sw_point
+        west_polygon << sw_point
+        west_polygon << nw_point
+        west_polygon << perimeter_nw_point
+        west_polygon << perimeter_sw_point
         west_space = OpenStudio::Model::Space::fromFloorPrint(west_polygon, floor_to_floor_height, model)
         west_space = west_space.get
         m[0,3] = sw_point.x
@@ -296,10 +298,10 @@ class SetRectangleShapeFloorPlan < OpenStudio::Ruleset::ModelUserScript
         west_space.setBuildingStory(story)
         west_space.setName("Story #{floor+1} West Perimeter Space")
         north_polygon = OpenStudio::Point3dVector.new
-          north_polygon << nw_point
-          north_polygon << ne_point
-          north_polygon << perimeter_ne_point
-          north_polygon << perimeter_nw_point
+        north_polygon << nw_point
+        north_polygon << ne_point
+        north_polygon << perimeter_ne_point
+        north_polygon << perimeter_nw_point
         north_space = OpenStudio::Model::Space::fromFloorPrint(north_polygon, floor_to_floor_height, model)
         north_space = north_space.get
         m[0,3] = perimeter_nw_point.x
@@ -309,10 +311,10 @@ class SetRectangleShapeFloorPlan < OpenStudio::Ruleset::ModelUserScript
         north_space.setBuildingStory(story)
         north_space.setName("Story #{floor+1} North Perimeter Space")
         east_polygon = OpenStudio::Point3dVector.new
-          east_polygon << ne_point
-          east_polygon << se_point
-          east_polygon << perimeter_se_point
-          east_polygon << perimeter_ne_point
+        east_polygon << ne_point
+        east_polygon << se_point
+        east_polygon << perimeter_se_point
+        east_polygon << perimeter_ne_point
         east_space = OpenStudio::Model::Space::fromFloorPrint(east_polygon, floor_to_floor_height, model)
         east_space = east_space.get
         m[0,3] = perimeter_se_point.x
@@ -322,10 +324,10 @@ class SetRectangleShapeFloorPlan < OpenStudio::Ruleset::ModelUserScript
         east_space.setBuildingStory(story)
         east_space.setName("Story #{floor+1} East Perimeter Space")
         south_polygon = OpenStudio::Point3dVector.new
-          south_polygon << se_point
-          south_polygon << sw_point
-          south_polygon << perimeter_sw_point
-          south_polygon << perimeter_se_point
+        south_polygon << se_point
+        south_polygon << sw_point
+        south_polygon << perimeter_sw_point
+        south_polygon << perimeter_se_point
         south_space = OpenStudio::Model::Space::fromFloorPrint(south_polygon, floor_to_floor_height, model)
         south_space = south_space.get
         m[0,3] = sw_point.x
@@ -335,10 +337,10 @@ class SetRectangleShapeFloorPlan < OpenStudio::Ruleset::ModelUserScript
         south_space.setBuildingStory(story)
         south_space.setName("Story #{floor+1} South Perimeter Space")
         core_polygon = OpenStudio::Point3dVector.new
-          core_polygon << perimeter_sw_point
-          core_polygon << perimeter_nw_point
-          core_polygon << perimeter_ne_point
-          core_polygon << perimeter_se_point
+        core_polygon << perimeter_sw_point
+        core_polygon << perimeter_nw_point
+        core_polygon << perimeter_ne_point
+        core_polygon << perimeter_se_point
         core_space = OpenStudio::Model::Space::fromFloorPrint(core_polygon, floor_to_floor_height, model)
         core_space = core_space.get
         m[0,3] = perimeter_sw_point.x
@@ -349,10 +351,10 @@ class SetRectangleShapeFloorPlan < OpenStudio::Ruleset::ModelUserScript
         core_space.setName("Story #{floor+1} Core Space")
       else
         core_polygon = OpenStudio::Point3dVector.new
-          core_polygon << sw_point
-          core_polygon << nw_point
-          core_polygon << ne_point
-          core_polygon << se_point
+        core_polygon << sw_point
+        core_polygon << nw_point
+        core_polygon << ne_point
+        core_polygon << se_point
         core_space = OpenStudio::Model::Space::fromFloorPrint(core_polygon, floor_to_floor_height, model)
         core_space = core_space.get
         m[0,3] = sw_point.x

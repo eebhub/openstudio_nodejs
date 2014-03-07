@@ -1,3 +1,54 @@
+<?php
+	require 'php/EEB_SQLITE3.php';
+	require 'php/EEB_UI.php';
+
+	session_start();
+
+	$ui = new EEB_UI;   // default user interface
+
+	// define the sql file path
+	if ($_POST['num_package'] != NULL) {      
+		$cur_model = $_SESSION['cur_model'] = $_POST['num_package'];
+	} elseif($_POST['num_package'] == NULL && $_SESSION['cur_model'] == NULL) {
+		$cur_model = $_SESSION[cur_model];
+	} else {
+		$cur_model = $_SESSION[cur_model];
+	}
+  
+  // baseline sql file path
+  if($cur_model == $_SESSION['Model'][0]) {
+	   $sql_file="ENERGYPLUS/idf/{$cur_model}/EnergyPlusPreProcess/EnergyPlus-0/eplusout.sql";
+  } else { // eem sql file path
+     $sql_file="eem/$_SESSION[user_dir]/Output/{$cur_model}.sql";
+  }
+
+	$eeb = new EEB_SQLITE3("$sql_file");
+	$e_vals = $eeb->getValuesByMonthly('END USE ENERGY CONSUMPTION ELECTRICITY MONTHLY', 'Meter', '', '%');
+	$ng_vals = $eeb->getValuesByMonthly('END USE ENERGY CONSUMPTION NATURAL GAS MONTHLY', 'Meter', '', '%');
+
+  // echo $eeb->getFilePath();
+	function printRow($row){
+		foreach($row as $v) {
+			if($v >=0) {
+				echo "<td> $v </td>";
+			} else {
+				echo "<td> 0.0 </td>";
+			}
+		}
+	}
+
+	function printMonthlyData($row){
+		echo '[';
+		foreach($row as $v) {
+			if($v > 0)
+				echo "$v, ";
+			else
+				echo "0.0, ";
+		}
+		echo ']';
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,16 +72,16 @@
 
     <!-- Navbar 
     ================================================== -->
-   
+    <? $ui->drawNavbar();?>
 
     <!-- Container -->
     <div class="container">
 
     <!-- Switch Pacakge -->
-   
+    <? $ui->drawSwitchPackage();?>
 
         <!-- Sub-Nav-bar -->
-       
+        <? $page[energy]="active"; $ui->drawSubNavbar($page); ?>
  
 
       <!-- Tab Content -->
@@ -43,8 +94,7 @@
         <!-- Electricity Consumption Table -->
         <table class="table table-striped table-bordered" style="margin: 40px auto; width: 100%">
           <caption style="background: purple; color: #fff;"> <h3>Electricity Energy Consumption (kWh)<h3> </caption>
-          <thead>
-              <tr>
+          <tr id="table-row-head">
             <th> -
             </th>
             <th> Jan
@@ -72,112 +122,67 @@
             <th> Dec
             </th>
           </tr>
-          </thead>
-          <tbody>
-          <tr class="">
+          <tr class="table-row-even">
             <th> Heating
             </th>
-            
-            <% for (var i=0; i<energy.electricity.heating.length; i++) {%>
-            <th> <%= energy.electricity.heating[i] %></th>
-            <% } %>
+           	<?php printRow($e_vals['HEATING:ELECTRICITY']); ?>
           </tr>
-          <tr class="">
+          <tr class="table-row-odd">
             <th> Cooling
             </th>
-
-            
-            <% for (var i=0; i<energy.electricity.cooling.length; i++) {%>
-            <th> <%= energy.electricity.cooling[i] %></th>
-            <% } %>
+            <?php printRow($e_vals['COOLING:ELECTRICITY']); ?>
           </tr>
-          <tr class="">
+          <tr class="table-row-even">
             <th> Interior Lighting
             </th>
-           
-            
-            <% for (var i=0; i<energy.electricity.interiorEquipment.length; i++) {%>
-            <th> <%= energy.electricity.interiorLighting[i] %></th>
-            <% } %>
+           	<?php printRow($e_vals['INTERIORLIGHTS:ELECTRICITY']); ?>
           </tr>
-          <tr class="">
+          <tr class="table-row-odd">
             <th> Interior Equipment
             </th>
-           
-            
-            <% for (var i=0; i<energy.electricity.heating.length; i++) {%>
-            <th> <%= energy.electricity.interiorEquipment[i] %></th>
-            <% } %>
+            <?php printRow($e_vals['INTERIOREQUIPMENT:ELECTRICITY']); ?>
           </tr>
-          <tr class="">
+          <tr class="table-row-even">
             <th> Fans
             </th>
-           
-             
-            <% for (var i=0; i<energy.electricity.fans.length; i++) {%>
-            <th> <%= energy.electricity.fans[i] %></th>
-            <% } %>
+             <?php printRow($e_vals['FANS:ELECTRICITY']); ?>
           </tr>
-          <tr class="">
+          <tr class="table-row-odd">
             <th> Pumps
             </th>
-            
-             
-             
-            <% for (var i=0; i<energy.electricity.pumps.length; i++) {%>
-            <th> <%= energy.electricity.pumps[i] %></th>
-            <% } %>
+            <?php printRow($e_vals['PUMPS:ELECTRICITY']); ?>
           </tr>
-          <tr class="">
+          <tr class="table-row-even">
             <th> Heat Rejection
             </th>
-            
-            <% for (var i=0; i<energy.electricity.heatRejection.length; i++) {%>
-            <th> <%= energy.electricity.heatRejection[i] %></th>
-            <% } %>
+            <?php printRow($e_vals['HEATREJECTION:ELECTRICITY']); ?>
           </tr>
-          <tr class="">
+          <tr class="table-row-odd">
             <th> Humidification
             </th>
-           <% for (var i=0; i<energy.electricity.humidification.length; i++) {%>
-            <th> <%= energy.electricity.humidification[i] %></th>
-            <% } %>
-            
+            <?php printRow($e_vals['HUMIDIFIER:ELECTRICITY']); ?>
           </tr>
-          <tr class="">
+          <tr class="table-row-even">
             <th> Heat Recovery
             </th>
-           <% for (var i=0; i<energy.electricity.heatingRecovery.length; i++) {%>
-            <th> <%= energy.electricity.heatingRecovery[i] %></th>
-            <% } %>
-            
+             <?php printRow($e_vals['HEATRECOVERY:ELECTRICITY']); ?>
           </tr>
-			<tr class="">
+			<tr class="table-row-odd">
 		    <th> Water Systems
 		    </th>
-		    
-		    <% for (var i=0; i<energy.electricity.waterSystems.length; i++) {%>
-            <th> <%= energy.electricity.waterSystems[i] %></th>
-            <% } %>
+		    <?php printRow($e_vals['HUMIDIFIER:ELECTRICITY']); ?>
 
 		  </tr>
-		  <tr class="">
+		  <tr class="table-row-even">
 		    <th> Regrigeration
 		    </th>
-		   
-		    <% for (var i=0; i<energy.electricity.exteriorEquipment.length; i++) {%>
-            <th> <%= energy.electricity.exteriorEquipment[i] %></th>
-            <% } %>
+		     <?php printRow($e_vals['HEATRECOVERY:ELECTRICITY']); ?>
 		  </tr>
- 		  <tr class="">
+ 		  <tr class="table-row-even">
 		    <th> Generation
 		    </th>
-		    
-		     <% for (var i=0; i<energy.electricity.generation.length; i++) {%>
-            <th> <%= energy.electricity.generation[i] %></th>
-            <% } %>
+		     <?php printRow($e_vals['HEATRECOVERY:ELECTRICITY']); ?>
 		  </tr>
-		  </tbody>
           </table>
     </div> <!-- /container -->
 
@@ -250,53 +255,53 @@
                   },
                   series: [{
                       name: 'Pumps',
-                      data: [ <%= energy.electricity.pumps %> ]
+                      data: <?php printMonthlyData($e_vals['PUMPS:ELECTRICITY']);?>
                   },{
                       name: 'Fans',
-                      data: [<%= energy.electricity.fans %>]
+                      data: <?php printMonthlyData($e_vals['FANS:ELECTRICITY']);?>
                   }, {
                       name: 'Cooling',
-                      data: [<%= energy.electricity.cooling %>]
+                      data: <?php printMonthlyData($e_vals['COOLING:ELECTRICITY']);?>
                   }, {
                       name: 'Interior Lighting',
-                      data: [<%= energy.electricity.interiorLighting %>]
+                      data: <?php printMonthlyData($e_vals['INTERIORLIGHTS:ELECTRICITY']);?>
                   }, {
                       name: 'Interior Equipment',
-                      data: [<%= energy.electricity.fans %>]
+                      data: <?php printMonthlyData($e_vals['INTERIOREQUIPMENT:ELECTRICITY']);?>
                   }, {
                       name: 'Heating',
                       color: 'red',
                        visible: false,
-                      data: [<%= energy.electricity.heating %>]
+                      data: <?php printMonthlyData($e_vals['HEATING:ELECTRICITY']);?>
                   }, {
                       name: 'Exterior Lighting',
                  	  visible: false,
-                      data: [<%= energy.electricity.exteriorLighting %>]
+                      data: <?php printMonthlyData($e_vals['EXTERIORLIGHTS:ELECTRICITY']);?>
                   }, {
                       name: 'Heat Rejection',
                       color: 'orange',
 	 				  visible: false,
-                      data: [<%= energy.electricity.heatRejection %>]
+                      data: <?php printMonthlyData($e_vals['HEATREJECTION:ELECTRICITY']);?>
                   }, {
                       name: 'Humidification',
                    visible: false,
-                      data: [<%= energy.electricity.humidification %>]
+                      data: <?php printMonthlyData($e_vals['HUMIDIFICATION:ELECTRICITY']);?>
                   }, {
                       name: 'Heating Recovery',
                       visible: false,
-                      data: [<%= energy.electricity.heatingRecovery %>]
+                      data: <?php printMonthlyData($e_vals['HEATINGRECOVERY:ELECTRICITY']);?>
                   },{
                       name: 'Water Systems',
                        visible: false,
-                      data: [<%= energy.electricity.waterSystems %>]
+                      data: <?php printMonthlyData($e_vals['WATERSYSTEMS:ELECTRICITY']);?>
                   }, {
-                      name: 'Exterior Equipment',
+                      name: 'Refrigeration',
                       visible: false,
-                      data: [<%= energy.electricity.exteriorEquipment %>]
+                      data: <?php printMonthlyData($e_vals['REGRIGERATION:ELECTRICITY']);?>
                   }, {
                       name: 'Generation',
                       visible: false,
-                      data: [<%= energy.electricity.generation %>]
+                      data: <?php printMonthlyData($e_vals['GENERATION:ELECTRICITY']);?>
                   }]
               });
       });
@@ -356,7 +361,7 @@
                   series: [{
                       name: 'Heating',
                       color: 'red',
-                      data: [<%= energy.gas.heating %>]
+                      data: <?php printMonthlyData($ng_vals['HEATING:GAS']);?>
                   }]
               });
       });
