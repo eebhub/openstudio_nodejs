@@ -13,7 +13,7 @@
         <link href="css/bootstrap-fileupload.css" rel="stylesheet">
         <link href="css/partial.css" rel="stylesheet">
         <style type="text/css">
-
+            /******PROGRESS BAR******/
 
             #filter {
             	position: fixed;
@@ -48,10 +48,65 @@
             #detailed-output:hover~#detailed-output-description{
                 display: block;
             }
+            /******GOOGLE MAPS******/
+            .map, #map-canvas {
+                height: 270px;
+                width:100%;
+                margin: 0px;
+                padding: 0px;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+              }
+              .controls {
+                border: 1px solid transparent;
+                border-radius: 2px 0 0 2px;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                height: 32px;
+                outline: none;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+              }
+        
+             #pac-input {
+                background-color: #fff;
+                padding: 4px 6px;
+                width:100%;
+                height: 30px;
+                margin-top: 0px;
+                margin-bottom: 10px;
+                font-size: 14px;
+                line-height: 20px;
+                color: #555;
+                vertical-align: middle;
+                flow: ellipsis;
+              }
+        
+              #pac-input:focus {
+                border-color: #4d90fe;
+              }
+        
+              .pac-container {
+                font-family: Roboto;
+              }
+        
+              #type-selector {
+                color: #fff;
+                background-color: #4d90fe;
+                padding: 5px 11px 0px 11px;
+              }
+        
+              #type-selector label {
+                font-family: Roboto;
+                font-size: 13px;
+                font-weight: 300;
+              }
 
         </style>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
         <script src="js/building101Data.js"></script>
+        
+        <!--PROGRESS BAR----------------------------------->
         <script>
             function printValue(sliderID, textbox) {
                 var x = document.getElementById(textbox);
@@ -71,12 +126,100 @@
                 printValue('obstructionSlider', 'obstructionRangeValue');
             }
         </script>
-        
-        
+        <!--GOOGLE MAPS----------------------------------->
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+        <script>
+            function initialize() {
+              var mapOptions = {
+                center: new google.maps.LatLng(39.893258599099475, -75.17451879743021),
+                zoom: 17,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+                mapTypeControl: false,
+                panControl: false,
+                streetViewControl: false,
+                zoomControl: false
+              };
+              var map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+            
+              var input = /** @type {HTMLInputElement} */(
+                  document.getElementById('pac-input'));
+            
+              var types = document.getElementById('type-selector');
+              map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+              map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+            
+              var autocomplete = new google.maps.places.Autocomplete(input);
+              autocomplete.bindTo('bounds', map);
+            
+              var infowindow = new google.maps.InfoWindow();
+              var marker = new google.maps.Marker({
+                map: map
+              });
+            
+              google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                infowindow.close();
+                marker.setVisible(false);
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                  return;
+                }
+            
+                // If the place has a geometry, then present it on a map.
+                if (place.geometry.viewport) {
+                  map.fitBounds(place.geometry.viewport);
+                } else {
+                  map.setCenter(place.geometry.location);
+                  map.setZoom(17);  // Why 17? Because it looks good.
+                }
+                marker.setIcon(/** @type {google.maps.Icon} */({
+                  url: place.icon,
+                  size: new google.maps.Size(71, 71),
+                  origin: new google.maps.Point(0, 0),
+                  anchor: new google.maps.Point(17, 34),
+                  scaledSize: new google.maps.Size(35, 35)
+                }));
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+            
+                var address = '';
+                if (place.address_components) {
+                  address = [
+                    (place.address_components[0] && place.address_components[0].short_name || ''),
+                    (place.address_components[1] && place.address_components[1].short_name || ''),
+                    (place.address_components[2] && place.address_components[2].short_name || '')
+                  ].join(' ');
+                }
+            
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+                infowindow.open(map, marker);
+              });
+            
+              // Sets a listener on a radio button to change the filter type on Places
+              // Autocomplete.
+              function setupClickListener(id, types) {
+                var radioButton = document.getElementById(id);
+                google.maps.event.addDomListener(radioButton, 'click', function() {
+                  autocomplete.setTypes(types);
+                });
+              }
+            
+              setupClickListener('changetype-all', []);
+              setupClickListener('changetype-establishment', ['establishment']);
+              setupClickListener('changetype-geocode', ['geocode']);
+            }
+            
+            google.maps.event.addDomListener(window, 'load', initialize);
+            
+            function bar(evt){
+            var k=evt.keyCode||evt.which;
+            return k!=13;
+            }
+        </script>
 
     </head>
     
-    <body onload="buildingInfoPop();changeShape(T);" data-spy="scroll" data-target=".bs-docs-sidebar">
+    <body data-spy="scroll" data-target=".bs-docs-sidebar">
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
@@ -98,7 +241,7 @@
                                 <a href="">Parallel Simulations</a>
                             </li>
                             <li>
-                                <a href="energy-use.ejs">EnergyPlus Graphs</a>
+                                <a href="energy-use">EnergyPlus Graphs</a>
                             </li>
                             <li>
                                 <a href="jason">EnergyPlus Files</a>
@@ -182,35 +325,7 @@
                                     <input class="span3" type="text" id="building_name" ng-model="myBuilding" name="building_name">
                                     <br/>
 									<input type="hidden" id="random_number" name="random_number" style="color:gray;">
-                                    <h4>Location</h4>
-                                    <div class="input-append">
-                                        <select class="span3" value="this.value" id="weather_epw_location" name="weather_epw_location">
-                                            <option value="USA_NM_Albuquerque.Intl.AP.723650_TMY3">Albuquerque, NM</option>
-                                            <option value="USA_MD_Baltimore-Washington.Intl.AP.724060_TMY3">Baltimore, MD</option>
-                                            <option value="USA_ID_Boise.Air.Terminal.726810_TMY3">Boise, ID</option>
-                                            <option value="USA_VT_Burlington.Intl.AP.726170_TMY3">Burlington, VT</option>
-                                            <option value="USA_IL_Chicago-OHare.Intl.AP.725300_TMY3">Chicago, IL</option>
-                                            <option value="USA_MN_Duluth.Intl.AP.727450_TMY3">Duluth, MN</option>
-                                            <option value="USA_TX_El.Paso.Intl.AP.722700_TMY3">El Paso, TX</option>
-                                            <option value="USA_AK_Fairbanks.Intl.AP.702610_TMY3">Fairbanks, AK</option>
-                                            <option value="USA_MT_Helena.Rgnl.AP.727720_TMY3">Helena, MT</option>
-                                            <option value="USA_TX_Houston-Bush.Intercontinental.AP.722430_TMY3">Houston, TX</option>
-                                            <option value="USA_TN_Memphis.Intl.AP.723340_TMY3">Memphis, TN</option>
-                                            <option value="USA_FL_Miami.Intl.AP.722020_TMY3">Miami, FL</option>
-                                            <option value="USA_AZ_Phoenix-Sky.Harbor.Intl.AP.722780_TMY3">Pheonix, AZ</option>
-                                            <option value="USA_PA_Philadelphia.Intl.AP.724080_TMY3" selected>Philadelphia, PA</option>
-                                            <option value="SAU_Riyadh.404380_IWEC">Riyadh, SAU</option>
-                                            <option value="USA_OR_Salem-McNary.Field.726940_TMY3">Salem, OR</option>
-                                            <option value="USA_CA_San.Francisco.Intl.AP.724940_TMY3">San Francisco, CA</option>
-                                            <option value="CAN_BC_Vancouver.718920_CWEC">Vancouver, CAN</option>
-                                        </select>
-                                        <span class="add-on">
-                                            <a href="http://developer.eebhub.org/weather.html" target="_blank"><i class="icon-map-marker"></i></a>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="span4">
-                                    <h4>Function</h4>
+									<h4>Function</h4>
                                         <div class="input-append">
                                             <select value="this.value" class="span3" id="activity_type" name="activity_type">
                                                 <option value="SmallOffice" disabled>Small Office</option>
@@ -235,8 +350,43 @@
                                                 <a href="http://www1.eere.energy.gov/buildings/commercial/ref_buildings.html" target="_blank"><i class="icon-info-sign"></i></a>
                                             </span>
                                         </div>
+									<h4>Weather <small>currently only 18 cities supported</small></h4>
+                                    <div class="input-append">
+                                        <select class="span3" value="this.value" id="weather_epw_location" name="weather_epw_location">
+                                            <option value="USA_NM_Albuquerque.Intl.AP.723650_TMY3">Albuquerque, NM</option>
+                                            <option value="USA_MD_Baltimore-Washington.Intl.AP.724060_TMY3">Baltimore, MD</option>
+                                            <option value="USA_ID_Boise.Air.Terminal.726810_TMY3">Boise, ID</option>
+                                            <option value="USA_VT_Burlington.Intl.AP.726170_TMY3">Burlington, VT</option>
+                                            <option value="USA_IL_Chicago-OHare.Intl.AP.725300_TMY3">Chicago, IL</option>
+                                            <option value="USA_MN_Duluth.Intl.AP.727450_TMY3">Duluth, MN</option>
+                                            <option value="USA_TX_El.Paso.Intl.AP.722700_TMY3">El Paso, TX</option>
+                                            <option value="USA_AK_Fairbanks.Intl.AP.702610_TMY3">Fairbanks, AK</option>
+                                            <option value="USA_MT_Helena.Rgnl.AP.727720_TMY3">Helena, MT</option>
+                                            <option value="USA_TX_Houston-Bush.Intercontinental.AP.722430_TMY3">Houston, TX</option>
+                                            <option value="USA_TN_Memphis.Intl.AP.723340_TMY3">Memphis, TN</option>
+                                            <option value="USA_FL_Miami.Intl.AP.722020_TMY3">Miami, FL</option>
+                                            <option value="USA_AZ_Phoenix-Sky.Harbor.Intl.AP.722780_TMY3">Pheonix, AZ</option>
+                                            <option value="USA_PA_Philadelphia.Intl.AP.724080_TMY3" selected>Philadelphia, PA</option>
+                                            <option value="SAU_Riyadh.404380_IWEC">Riyadh, SAU</option>
+                                            <option value="USA_OR_Salem-McNary.Field.726940_TMY3">Salem, OR</option>
+                                            <option value="USA_CA_San.Francisco.Intl.AP.724940_TMY3">San Francisco, CA</option>
+                                            <option value="CAN_BC_Vancouver.718920_CWEC">Vancouver, CAN</option>
+                                        </select>
+                                        <span class="add-on">
+                                            <a href="http://developer.eebhub.org/weather.html" target="_blank"><i class="icon-info-sign"></i></a>
+                                        </span>
+                                    </div>
+                                    
                                     <h4>Year Built</h4>
                                     <input class="span3" type="number" min="1500" max="2020" step="1" id="year_completed" name="year_completed">
+									
+                                </div>
+                                <div class="span4">
+                                    <h4>Address</h4>
+									 <div class="map">
+                                        <input id="pac-input" class="controls" type="text" placeholder="Street, City, State, Zip" onkeypress="return bar(event)">
+                                        <div id="map-canvas"></div>
+                                      </div>
                                 </div>
                             </div>
                         </div>
