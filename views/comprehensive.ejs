@@ -132,7 +132,7 @@
                             <a href="#architecture"><i class="icon-home"></i> Architecture</a>
                         </li>
                         <li>
-                            <a href="#materials"><i class="icon-th-large"></i> Construction</a>
+                            <a href="#construction"><i class="icon-th-large"></i> Construction</a>
                         </li>
                         <li>
                             <a href="#mechanical"><i class="icon-cog"></i> Mechanical</a>
@@ -144,23 +144,12 @@
                             <a href="#conservation"><i class="icon-leaf"></i> Conservation</a>
                         </li>
                         <li><hr style="color:lightgray;background-color:lightgray;height:1px;border:none;"/></li>
-                        <li style="padding-left:13px;">
+                        <li style="padding-left:13px;padding-bottom:15px;">
                         
                              <i class="icon-adjust"></i>  <b>Units</b> &ensp;&ensp;<div class="btn-group" data-toggle="buttons-radio">
                              <input type="button" id="unitoptionSI" name="unitoption" value="SI" class="btn active" onclick='$(".unit").html("m");$("#heating-setpoint").html("<input type=\"number\" min=\"0\" class=\"span2\" id=\"appendedInput\" value=\"24\" name=\"heating_setpoint\" disabled /><span class=\"add-on\">&#186;C</span>");$("#cooling-setpoint").html("<input type=\"number\" min=\"0\" class=\"span2\" id=\"appendedInput\" value=\"26\" name=\"cooling_setpoint\" disabled /><span class=\"add-on\">&#186;C</span>");$(".illu-unit").html("lux");$("#illuminance").html("<option value=\"150\">150 - storage</option><option value=\"200\">200 - casual work</option><option value=\"300\">300 - rough work</option><option value=\"400\">400 - office work (EU)</option><option value=\"500\" selected>500 - office work (US)</option>");$("#si-ip").val("si");'>
                              <input type="button" id="unitoptionIP" name="unitoption" value="IP" class="btn" onclick='$(".unit").html("ft");$("#heating-setpoint").html("<input type=\"number\" min=\"0\" class=\"span2\" id=\"appendedInput\" value=\"75\" name=\"heating_setpoint\" disabled /><span class=\"add-on\">&#186;F</span>");$("#cooling-setpoint").html("<input type=\"number\" min=\"0\" class=\"span2\" id=\"appendedInput\" value=\"79\" name=\"cooling_setpoint\" disabled /><span class=\"add-on\">&#186;F</span>");$(".illu-unit").html("lm/ft&#178;");$("#illuminance").html("<option value=\"150\">15 - storage</option><option value=\"200\">20 - casual work</option><option value=\"300\">30 - rough work</option><option value=\"400\">40 - office work (EU)</option><option value=\"500\" selected>50 - office work (US)</option>");$("#si-ip").val("ip");'>
                          </div>
-                         </li>
-                         <li><hr style="color:lightgray;background-color:lightgray;height:1px;border:none;"/></li>
-                         <li>
-                             <a class="nohover" href="energy-use" target="_blank"><i class="icon-signal"></i>  Example Outputs</a>
-                         </li>
-                         <li><hr style="color:lightgray;background-color:lightgray;height:1px;border:none;"/></li>
-                         <li>
-                            <a class="nohover" href="http://tools.eebhub.org/comprehensive"  target="_blank"><i class="icon-arrow-left"></i>  Predecessor Tool</a>
-                        </li>
-                         <li style="padding-bottom:15px;">
-                             <a class="nohover" href="http://rmt.eebhub.org/game/tracking-sheet.php"><i class="icon-signal"></i>  Example Staging</a>
                          </li>
                     </ul>
                 </div>
@@ -343,7 +332,7 @@
                     </section>
                     
                     <!-- #################################### Materials Section ############################################### -->
-                    <section id="materials">
+                    <section id="construction">
                         <div class="box-unit materials">
                             <div class="page-header">
                                 <h2>Construction <small>materials</small></h2>
@@ -352,16 +341,16 @@
                                 <div class="span4">
                                     <h4>Windows</h4>
                                     <select class="span3" name="window_transmittance">
-                                        <option value="0.89">Single Clear</option>
-                                        <option value="0.80">Double Clear</option>
-                                        <option value="0.60">Double Light Tint</option>
-                                        <option value="0.44">Triple Low-E</option>
+                                        <option value="0.89" disabled>Single Clear</option>
+                                        <option value="0.80" selected>Double Clear</option>
+                                        <option value="0.60" disabled>Double Light Tint</option>
+                                        <option value="0.44" disabled>Triple Low-E</option>
                                     </select>
                                     <h4>Walls</h4>
                                     <select value="this.value" name="exterior_wall_type" class="span3">
                                         <option value="Concrete Mass" selected>Concrete Mass</option>
-                                        <option value="Metal" >Metal</option>
-                                        <option value="Steel Framed">Steel Framed</option>
+                                        <option value="Metal" disabled>Metal</option>
+                                        <option value="Steel Framed" disabled>Steel Framed</option>
                                         <option value="Wood Framed" disabled>Wood Framed and Other</option>
                                     </select>
                                 </div>
@@ -407,67 +396,47 @@
                                     min="0" max="100" onchange="printValue('fanSlider','fanRangeValue')"
                                     />
                                     <div class="input-append">
-                                    <input id="fanRangeValue" name="fan_efficiency" type="number" class="span1" min="0" max="100" value="50"
-                                    disabled /><span class="add-on">%</span>
+                                    <input id="fanRangeValue" name="fan_efficiency" type="number" class="span1" min="0" max="100" value="50" /><span class="add-on">%</span>
                                     </div>
-                                    <!--div class="input-append">
-                                        <input type="number" min="0" class="span2" id="appendedInput" value="50"
-                                        name="fan_efficiency" />
-                                        <span class="add-on">%</span>
-                                    </div-->
                                     <h4>Boiler Efficiency</h4>
-                                    <input id="boilerSlider" type="range" class="span2"
-                                    min="0" max="100" onchange="printValue('boilerSlider','boilerRangeValue')"
-                                    />
+                                    <input id="boilerSlider" type="range" class="span2" min="0" max="100" onchange="printValue('boilerSlider','boilerRangeValue')"/>
                                     <div class="input-append">
-                                    <input id="boilerRangeValue" name="boiler_efficiency" type="number" class="span1" min="0" max="100" value="66"
-                                    disabled /><span class="add-on">%</span>
+                                    <input id="boilerRangeValue" name="boiler_efficiency" type="number" class="span1" min="0" max="100" value="66"/>
+                                    <span class="add-on">%</span>
                                     </div>
-                                    <!--div class="input-append">
-                                        <input type="number" min="0" class="span2" id="appendedInput" value="66"
-                                        name="boiler_efficiency" />
-                                        <span class="add-on">%</span>
-                                    </div-->
                                     <h4>Cooling coil rated high speed COP</h4>
                                     <div class="input-append">
                                         <input type="number" min="0" step="0.1" class="span2" id="appendedInput" value="5.5"
-                                        name="coolingcoil_highspeed" disabled/>
+                                        name="coolingcoil_highspeed"/>
                                         <span class="add-on">Ratio</span>
                                     </div>
                                     <h4>Cooling coil rated low speed COP</h4>
                                     <div class="input-append">
                                         <input type="number" min="0" step="0.1" class="span2" id="appendedInput" value="6.6"
-                                        name="coolingcoil_highspeed" disabled/>
+                                        name="coolingcoil_highspeed"/>
                                         <span class="add-on">Ratio</span>
                                     </div> 
                                 </div>
                                 <div class="span4">
-                                <h4>Heating Set Point</h4>
+                                <h4>Economizer Type</h4>
+                                    <select name="economizerType" class="span3">
+                                        <option value="No Economizer">No Economizer</option>
+                                        <option value="Economizer" disabled>Economizer</option>
+                                    </select>
+                                <h4>Boiler Fuel Type</h4>
+                                    <select name="boilerFuelType" class="span3">
+                                        <option value="NaturalGas">Natural Gas</option>
+                                    </select>
+                                    <h4>Heating Set Point</h4>
                                     <div class="input-append" id="heating-setpoint">
-                                        <input type="number" min="0" class="span2" id="appendedInput" value="24"
-                                        name="heating_setpoint" disabled />
+                                        <input type="number" min="0" class="span2" id="appendedInput" value="24" name="heating_setpoint" />
                                         <span class="add-on">&#186;C</span>
                                     </div>
                                     <h4>Cooling Set Point</h4>
                                     <div class="input-append" id="cooling-setpoint">
-                                        <input type="number" min="0" class="span2" id="appendedInput" value="26"
-                                        name="cooling_setpoint" disabled />
+                                        <input type="number" min="0" class="span2" id="appendedInput" value="26" name="cooling_setpoint" />
                                         <span class="add-on">&#186;C</span>
                                     </div>
-                                    
-                                    <h4>Equipment Power Density</h4>
-                                    <div class="input-append">
-                                        <input class="span2" type="number" name="equipment_power_density" id="appendedInput" min="0" step="0.01" value="15" disabled />
-                                        <span class="add-on" id="mechanical-replace">W/ft&sup2;</span>
-                                    </div>
-                                    
-                                    <h4>People Density</h4>
-                                    <div class="input-append">
-                                        <input class="span2" id="appendedInput" type="number" min="0" step="0.001" name="people_density" value="0.025" disabled />
-                                        <span class="add-on" id="people-replace">People/ft&sup2;</span>
-                                    </div>
-                                    
-                                    
                                 </div>
                             </div>
                             <h2 class="text-right">
@@ -555,9 +524,12 @@
                     </div>
                   <h3 style="padding-left:20px;">Related Resources</h3>
                    <div class="box-unit">
-                         <a class="btn btn-large gray" href="http://tools.eebhub.org/game" target="_blank">Energy Retrofit Game</a>
+                         <a class="btn" href="energy-use" target="_blank"><i class="icon-signal"></i> Example Outputs</a>
+                         <a class="btn" href="http://tools.eebhub.org/game" target="_blank"><i class="icon-list-alt"></i> Energy Retrofit Game</a>
+                         <a class="btn" href="http://tools.eebhub.org/comprehensive" target="_blank"><i class="icon-arrow-left"></i> Predecessor Tool</a>
                          <a target="_blank" href="http://www.engr.psu.edu/ae/">
                         <img style="text-align:right;float:right;" src="img/psu-light2.png" alt="PSU" width="132" height="61"> </a>
+                        <br>
                         <br>
                         <br>
                         <h2 class="text-right"><small>developed by PSU Architectural Engineering</small></h2>
