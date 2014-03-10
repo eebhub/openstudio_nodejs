@@ -6,8 +6,8 @@
         "city": "Philadelphia",
         "weather": "USA_IL_Chicago-OHare.Intl.AP.725300_TMY3",
         "climateZone": "ClimateZone 1-8",
-        "stringentSizingCriteria": "no"
-    }
+        "strictDesignDay": "no"
+    },
     "buildingInfo": {
       "buildingName": "JASON",
       "activityType": "SmallOffice",
@@ -23,6 +23,7 @@
       "buildingHeight": 30,
       "numberOfFloors": 3,
       "floorToFloorHeight": 3.0,
+      "degreeToNorth": 15,
       "plenumHeight": 1.0,
       "perimeterZoneDepth": 3.0,
       "windowToWallRatio": 0.4,
@@ -40,9 +41,8 @@
       "heatingSetpoint": 20,
       "coolingSetpoint": 24
     },
-    "constructions": {
-      "constructionLibraryPath": "VirtualPULSE_default_constructions.osm",
-      "degreeToNorth": 15
+    "construction": {
+      "constructionLibraryPath": "VirtualPULSE_default_constructions.osm"
     },
     "schedules": {
         "occupancy":{
