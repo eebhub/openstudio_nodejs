@@ -45,7 +45,8 @@
     "location": {
       "location_filename": "USA_IL_Chicago-OHare.Intl.AP.725300_TMY3",
       "stringent_sizing_criteria": "no",
-      "bcl_path": "/home/bitnami/bcl"
+      "bcl_path": "/home/bitnami/bcl",
+      "simulationsPath":"/home/bitnami/simulations/"
     }
   }
 }
