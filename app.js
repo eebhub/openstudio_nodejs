@@ -43,8 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Show Folders & Files like Apache
 app.use(express.directory('public'));
-app.use('/jason', express.directory('jason', {icons:true}));
-app.use('/jason', express.static('jason'));
+app.use('/simulations', express.directory('../simulations', {icons:true}));
+app.use('/simulations', express.static('../simulations'));
 
 
 // development only
