@@ -62,7 +62,7 @@ app.get('/energy-cost.html', routes.getEnergyCost);
 app.get('/zone-component-load.html', routes.getZoneLoads);
 app.get('/measure-list.html', routes.getMeasureList);
 app.get('/tracking-sheet.html', routes.getTrackingSheet);
-app.get('/walls.ejs', routes.getWalls);
+app.get('/walls', routes.getWalls);
 
 
 app.get('/eplus_out', function(req, res){
