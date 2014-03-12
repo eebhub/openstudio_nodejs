@@ -1,4 +1,4 @@
-var timestp = require("../lib/timestamp.js");
+var timestp = require("../library/timestamp.js");
 var fs = require("fs");
 
 module.exports = {
