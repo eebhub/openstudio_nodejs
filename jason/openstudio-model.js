@@ -352,7 +352,7 @@ function OpenStudioModel(buildingData, runmanager) {
       var stringent_sizing_criteria = location.stringent_sizing_criteria;
       var objects = ddy_model.objects();
       if (stringent_sizing_criteria == "yes") {
-        var objects_new = new openstudio.model.ModelObjectVector();
+        var objects_new = new openstudio.IdfObjectVector();
         for (var i = 0; i < objects.size(); ++i)
         {
           if (objects.get(i).toString().search("99%") != -1

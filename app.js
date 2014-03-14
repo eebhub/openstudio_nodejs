@@ -43,8 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Show Folders & Files like Apache
 app.use(express.directory('public'));
-app.use('/jason', express.directory('jason', {icons:true}));
-app.use('/jason', express.static('jason'));
+app.use('/simulations', express.directory('../simulations', {icons:true}));
+app.use('/simulations', express.static('../simulations'));
 
 
 // development only
@@ -62,7 +62,7 @@ app.get('/energy-cost.html', routes.getEnergyCost);
 app.get('/zone-component-load.html', routes.getZoneLoads);
 app.get('/measure-list.html', routes.getMeasureList);
 app.get('/tracking-sheet.html', routes.getTrackingSheet);
-app.get('/walls.ejs', routes.getWalls);
+app.get('/walls', routes.getWalls);
 
 
 app.get('/eplus_out', function(req, res){

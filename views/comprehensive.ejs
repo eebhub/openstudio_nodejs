@@ -235,7 +235,7 @@
                                 <a href="">Data Structure</a>
                             </li>
                             <li>
-                                <a href="">Wall Editor</a>
+                                <a href="walls">Wall Editor</a>
                             </li>
                             <li>
                                 <a href="">Parallel Simulations</a>
@@ -244,7 +244,7 @@
                                 <a href="energy-use">EnergyPlus Graphs</a>
                             </li>
                             <li>
-                                <a href="jason">EnergyPlus Files</a>
+                                <a href="simulations">EnergyPlus Files</a>
                             </li>
                         </ul>
                     </div>
@@ -322,7 +322,7 @@
                             <div class="row">
                                 <div class="span4">
                                     <h4>Building Name</h4>
-                                    <input class="span3" type="text" id="building_name" ng-model="myBuilding" name="building_name">
+                                    <input class="span3" type="text" id="building_name" ng-model="myBuilding" name="building_name" onfocus="if (this.value == 'My Building') {this.value = '';}">
                                     <br/>
 									<input type="hidden" id="random_number" name="random_number" style="color:gray;">
 									<h4>Function</h4>

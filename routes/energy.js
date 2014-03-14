@@ -1,5 +1,5 @@
 //Dependencies
-var eebSqlite3 = require('../lib/eeb_sqlite3.js');
+var eebSqlite3 = require('../library/eeb_sqlite3.js');
 var fs = require('fs');
 
 
