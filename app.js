@@ -63,7 +63,7 @@ app.get('/zone-component-load.html', routes.getZoneLoads);
 app.get('/measure-list.html', routes.getMeasureList);
 app.get('/tracking-sheet.html', routes.getTrackingSheet);
 app.get('/walls', routes.getWalls);
-
+app.get('/tracking', routes.getTracking);
 
 app.get('/eplus_out', function(req, res){
 

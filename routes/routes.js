@@ -10,9 +10,9 @@ module.exports = {
     getForm: function(request, response){
         response.render('form');
     },
-
-    
-    
+    getTracking:function(request, response){
+        response.render('tracking-sheet');
+    },
     getEnergyIntensity: function(request, response){
         response.render('energy-intensity');
     },
