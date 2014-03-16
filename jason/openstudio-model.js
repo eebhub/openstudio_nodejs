@@ -343,7 +343,7 @@ function OpenStudioModel(buildingData, runmanager) {
     var loc_filename = location.location_filename;
     // now that the location is determined save the filename off for later consumption
     this.loc_filename = loc_filename;
-    var ddy_path = new openstudio.path(weather_path + "/" + loc_filename + ".idf"); // sometimes ddy, OpenStudio error Kyle is fixing
+    var ddy_path = new openstudio.path(weather_path + "/" + loc_filename + ".ddy"); // sometimes ddy, OpenStudio error Kyle is fixing
     if (openstudio.exists(ddy_path)) {
       var ddy_idf = openstudio.IdfFile.load(ddy_path, new openstudio.IddFileType("EnergyPlus")).get();
       var ddy_workspace = new openstudio.Workspace(ddy_idf);
@@ -355,10 +355,12 @@ function OpenStudioModel(buildingData, runmanager) {
         var objects_new = new openstudio.IdfObjectVector();
         for (var i = 0; i < objects.size(); ++i)
         {
-          if (objects.get(i).toString().search("99%") != -1
-              && objects.get(i).toString().search("2%") != -1
-              && objects.get(i).toString().search("1%") != -1)
+          console.log("ddy_object: " + objects.get(i).briefDescription());
+          if (objects.get(i).briefDescription().search("99%") == -1
+              && objects.get(i).briefDescription().search("2%") == -1
+              && objects.get(i).briefDescription().search("1%") == -1)
           {
+            console.log("kept ddy_object: " + objects.get(i).briefDescription());
             objects_new.add(objects.get(i));
           }
         }
@@ -391,6 +393,7 @@ function OpenStudioModel(buildingData, runmanager) {
     var output_path = new openstudio.path(simulation_directory);
     var workflow = new openstudio.runmanager.Workflow("EnergyPlusPreProcess->EnergyPlus");
     workflow.add(tools);
+    workflow.addParam(new openstudio.runmanager.JobParam("flatoutdir"));
     console.log("EPW path: " + openstudio.toString(epw_path) + " epw exists: " + openstudio.exists(epw_path));
    
 
