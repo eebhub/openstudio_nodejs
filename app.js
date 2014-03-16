@@ -42,6 +42,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Show Folders & Files like Apache
+express.static.mime.define({'text/plain': ['idf', 'osm', 'epw', 'err', 'idd', 'eio','audit','bnd','end', 'eso','mdd','mtd','mtr','rdd','shd']});
+express.static.mime.default_type = "text/plain"; //to render files without an extention, i.e. stdout, stderr
 app.use(express.directory('public'));
 app.use('/simulations', express.directory('../simulations', {icons:true}));
 app.use('/simulations', express.static('../simulations'));
