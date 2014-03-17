@@ -28,42 +28,42 @@ module.exports = {openstudio: function(request, response) {
     "username": "eebhub",
     "site":{
         "city": "Philadelphia",
-        "weather": request.body.weather_epw_location,
+        "weather": request.body.weather,
         "climateZone": "ClimateZone 1-8",
         "strictDesignDay": "no"
     },
     "buildingInfo": {
       "buildingName": request.body.buildingName,
-      "activityType": request.body.activity_type,
+      "activityType": request.body.activityType,
       "activityTypeSecondary": "WholeBuilding",
-      "yearCompleted": request.body.year_completed,
+      "yearCompleted": request.body.yearCompleted,
       "units": "si",
       "ASHRAEStandard": "ASHRAE_90.1-2004"
     },
     "architecture": {
       "footprintShape": "Rectangle",
-      "buildingLength": request.body.length,
-      "buildingWidth": request.body.width,
+      "buildingLength": request.body.buildingLength,
+      "buildingWidth": request.body.buildingWidth,
       "buildingHeight": 30,
-      "numberOfFloors": request.body.number_of_floors,
-      "floorToFloorHeight": request.body.floor_to_floor_height[0],
-      "degreeToNorth": request.body.building_orientation,
-      "plenumHeight": request.body.floor_to_floor_height[1],
+      "numberOfFloors": request.body.numberOfFloors,
+      "floorToFloorHeight": request.body.floorToFloorHeight,
+      "degreeToNorth": request.body.degreeToNorth,
+      "plenumHeight": request.body.plenumHeight,
       "perimeterZoneDepth": 3.0,
-      "windowToWallRatio": request.body.window_to_wall_ratio,
+      "windowToWallRatio": request.body.windowToWallRatio,
       "windowOffset": 1.0,
       "windowOffsetApplicationType": "Above Floor"
     },
     "mechanical": {
-      "fanEfficiency": request.body.fan_efficiency,
-      "boilerEfficiency": request.body.boiler_efficiency,
+      "fanEfficiency": request.body.fanEfficiency,
+      "boilerEfficiency": request.body.boilerEfficiency,
       "boilerFuelType": request.body.boilerFuelType,
-      "coilCoolRatedHighSpeedCOP": request.body.coolingcoil_highspeed[0],
-      "coilCoolRatedLowSpeedCOP": request.body.coolingcoil_highspeed[1],
+      "coilCoolRatedHighSpeedCOP": request.body.coilCoolRatedHighSpeedCOP,
+      "coilCoolRatedLowSpeedCOP": request.body.coilCoolRatedLowSpeedCOP,
       "economizerType": request.body.economizerType,
       "economizerDryBulbTempLimit": 30,
-      "heatingSetpoint": request.body.heating_setpoint,
-      "coolingSetpoint": request.body.cooling_setpoint
+      "heatingSetpoint": request.body.heatingSetpoint,
+      "coolingSetpoint": request.body.coolingSetpoint
     },
     "construction": {
       "constructionLibraryPath": "VirtualPULSE_default_constructions.osm"

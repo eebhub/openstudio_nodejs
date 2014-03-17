@@ -327,7 +327,7 @@
 									<input type="hidden" id="random_number" name="random_number" style="color:gray;">
 									<h4>Function</h4>
                                         <div class="input-append">
-                                            <select value="this.value" class="span3" id="activity_type" name="activity_type">
+                                            <select value="this.value" class="span3" id="activity_type" name="activityType">
                                                 <option value="SmallOffice" disabled>Small Office</option>
                                                 <option value="MediumOffice">Medium Office</option>
                                                 <option value="LargeOffice" disabled>Large Office</option>
@@ -352,7 +352,7 @@
                                         </div>
 									<h4>Weather <small>currently only 18 cities supported</small></h4>
                                     <div class="input-append">
-                                        <select class="span3" value="this.value" id="weather_epw_location" name="weather_epw_location">
+                                        <select class="span3" value="this.value" id="weather_epw_location" name="weather">
                                             <option value="USA_NM_Albuquerque.Intl.AP.723650_TMY3">Albuquerque, NM</option>
                                             <option value="USA_MD_Baltimore-Washington.Intl.AP.724060_TMY3">Baltimore, MD</option>
                                             <option value="USA_ID_Boise.Air.Terminal.726810_TMY3">Boise, ID</option>
@@ -378,7 +378,7 @@
                                     </div>
                                     
                                     <h4>Year Built</h4>
-                                    <input class="span3" type="number" min="1500" max="2020" step="1" id="year_completed" name="year_completed">
+                                    <input class="span3" type="number" min="1500" max="2020" step="1" id="year_completed" name="yearCompleted">
 									
                                 </div>
                                 <div class="span4">
@@ -403,7 +403,7 @@
                             <div class="row">
                                 <div class="span4">
                                     <h4>Number of Floors</h4>
-                                    <input type="number" id="number_of_floors" name="number_of_floors" min="1" min="170" step="1">
+                                    <input type="number" id="number_of_floors" name="numberOfFloors" min="1" min="170" step="1">
                                     <h4>% Window to Wall Ratio</h4>
                                         <ul class="inline">
                                             <li>
@@ -411,7 +411,7 @@
                                             </li>
                                             <li>
                                                 <div class="input-append">
-                                                    <input class="span1" id="window_to_wall_ratio" type="text" value={{winwall}} ng-model="winwall" name="window_to_wall_ratio">
+                                                    <input class="span1" id="window_to_wall_ratio" type="text" value={{winwall}} ng-model="winwall" name="windowToWallRatio">
                                                     <span class="add-on">%</span>
                                                 </div>
                                             </li>
@@ -420,13 +420,13 @@
                                 <div class="span4">
                                     <h4>Floor to Floor Height</h4>
                                     <div class="input-append">
-                                        <input type="number" id="floor_to_floor_height" name="floor_to_floor_height" step="0.001">
+                                        <input type="number" id="floor_to_floor_height" name="floorToFloorHeight" step="0.001">
 
                                         <span class="add-on"><span class="unit">m</span></span>
                                     </div>
                                     <h4>Plenum Height <small>space for ducts; ceiling to floor above</small></h4>
                                     <div class="input-append">
-                                        <input type="number" id="plenum_height" name="floor_to_floor_height" step="0.001">
+                                        <input type="number" id="plenum_height" name="plenumHeight" step="0.001">
 
                                         <span class="add-on"><span class="unit">m</span></span>
                                     </div>
@@ -454,9 +454,9 @@
                                     <div id="extend-div" >
                                         <br><br><br>
         			                    <div class="control-group"> <label class="control-label" for="length">Length</label>
-        			                    <div class="controls input-append"> <input type="number" min="1" name="length" id="length"><span class="add-on"><span class="unit">m</span></span> </div> </div>  
+        			                    <div class="controls input-append"> <input type="number" min="1" name="buildingLength" id="length"><span class="add-on"><span class="unit">m</span></span> </div> </div>  
         							    <div class="control-group"> <label class="control-label" for="width">Width</label>
-        			                    <div class="controls input-append"> <input type="number" min="1" name="width" id="width"><span class="add-on"><span class="unit">m</span></span> </div> </div>
+        			                    <div class="controls input-append"> <input type="number" min="1" name="buildingWidth" id="width"><span class="add-on"><span class="unit">m</span></span> </div> </div>
                                     </div>
                                 </div>
                             </div>
@@ -467,7 +467,7 @@
                                                 
                                                 <li>
                                                     <div class="input-append">
-                                                        <input class="span1" type="text" value={{orientation}} name="building_orientation" ng-model="orientation"/>
+                                                        <input class="span1" type="text" value={{orientation}} name="degreeToNorth" ng-model="orientation"/>
                                                         <span class="add-on">&deg;</span>
                                                     </div>
                                                 </li>
@@ -546,24 +546,24 @@
                                     min="0" max="100" onchange="printValue('fanSlider','fanRangeValue')"
                                     />
                                     <div class="input-append">
-                                    <input id="fanRangeValue" name="fan_efficiency" type="number" class="span1" min="0" max="100" value="50" /><span class="add-on">%</span>
+                                    <input id="fanRangeValue" name="fanEfficiency" type="number" class="span1" min="0" max="100" value="50" /><span class="add-on">%</span>
                                     </div>
                                     <h4>Boiler Efficiency</h4>
                                     <input id="boilerSlider" type="range" class="span2" min="0" max="100" onchange="printValue('boilerSlider','boilerRangeValue')"/>
                                     <div class="input-append">
-                                    <input id="boilerRangeValue" name="boiler_efficiency" type="number" class="span1" min="0" max="100" value="66"/>
+                                    <input id="boilerRangeValue" name="boilerEfficiency" type="number" class="span1" min="0" max="100" value="66"/>
                                     <span class="add-on">%</span>
                                     </div>
                                     <h4>Cooling coil rated high speed COP</h4>
                                     <div class="input-append">
                                         <input type="number" min="0" step="0.1" class="span2" id="appendedInput" value="5.5"
-                                        name="coolingcoil_highspeed"/>
+                                        name="coilCoolRatedHighSpeedCOP"/>
                                         <span class="add-on">Ratio</span>
                                     </div>
                                     <h4>Cooling coil rated low speed COP</h4>
                                     <div class="input-append">
                                         <input type="number" min="0" step="0.1" class="span2" id="appendedInput" value="6.6"
-                                        name="coolingcoil_highspeed"/>
+                                        name="coilCoolRatedHighSpeedCOP"/>
                                         <span class="add-on">Ratio</span>
                                     </div> 
                                 </div>
@@ -579,12 +579,12 @@
                                     </select>
                                     <h4>Heating Set Point</h4>
                                     <div class="input-append" id="heating-setpoint">
-                                        <input type="number" min="0" class="span2" id="appendedInput" value="24" name="heating_setpoint" />
+                                        <input type="number" min="0" class="span2" id="appendedInput" value="24" name="heatingSetpoint" />
                                         <span class="add-on">&#186;C</span>
                                     </div>
                                     <h4>Cooling Set Point</h4>
                                     <div class="input-append" id="cooling-setpoint">
-                                        <input type="number" min="0" class="span2" id="appendedInput" value="26" name="cooling_setpoint" />
+                                        <input type="number" min="0" class="span2" id="appendedInput" value="26" name="coolingSetpoint" />
                                         <span class="add-on">&#186;C</span>
                                     </div>
                                 </div>
@@ -1025,13 +1025,13 @@
             {
             	var f = document.getElementById(theForm);	
             	var buildingName =	f.buildingName.value;
-            	var locationID = f.weather_epw_location.value;
-            	var functionID = f.activity_type.value;
-            	var numberFloors = f.number_of_floors.value;
+            	var locationID = f.weather.value;
+            	var functionID = f.activityType.value;
+            	var numberFloors = f.numberOfFloors.value;
             	//var floorArea = f.gross_floor_area.value;
             	var roofMaterial= f.roof_type.value;
             	var wallMaterial = f.exterior_wall_type.value;
-            	var windowPercent = f.window_to_wall_ratio.value;
+            	var windowPercent = f.windowToWallRatio.value;
                 var shape = f.footprint_shape.value;
             
                 // error message
