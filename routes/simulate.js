@@ -8,8 +8,19 @@ var timestp = require("../library/timestamp.js"); //Timestamp code
 module.exports = {openstudio: function(request, response) {
     
     console.log('hello from simulate.js');
-    //console.log(request.body);
+    console.log(request.body);
     
+    //CREATE unique simulation Name & Timestamp
+    var buildingName = request.body.buildingName.replace(/\s+/g, '') || "NoName";
+    console.log(buildingName);
+    var timestamp = timestp.createTimestamp();
+    var buildingNameTimestamp =  "TEST_"+buildingName+timestamp;
+    
+    //CREATE unique simulation Folder
+    var outputPath = "../simulations/" + buildingNameTimestamp;
+    fs.mkdirSync(outputPath, function(error) {if (error) throw error;}); //simulation_directory in openstudio-model.js
+
+     //FORMAT request.body json to match buildingData2.json 
     var buildingData = 
     {
     "__v": 0,
@@ -22,7 +33,7 @@ module.exports = {openstudio: function(request, response) {
         "strictDesignDay": "no"
     },
     "buildingInfo": {
-      "buildingName": request.body.building_name,
+      "buildingName": request.body.buildingName,
       "activityType": request.body.activity_type,
       "activityTypeSecondary": "WholeBuilding",
       "yearCompleted": request.body.year_completed,
@@ -32,11 +43,11 @@ module.exports = {openstudio: function(request, response) {
     "architecture": {
       "footprintShape": "Rectangle",
       "buildingLength": request.body.length,
-      "buildingWidth": 50,
+      "buildingWidth": request.body.width,
       "buildingHeight": 30,
       "numberOfFloors": request.body.number_of_floors,
       "floorToFloorHeight": request.body.floor_to_floor_height[0],
-      "degreeToNorth": 15,
+      "degreeToNorth": request.body.building_orientation,
       "plenumHeight": request.body.floor_to_floor_height[1],
       "perimeterZoneDepth": 3.0,
       "windowToWallRatio": request.body.window_to_wall_ratio,
@@ -44,15 +55,15 @@ module.exports = {openstudio: function(request, response) {
       "windowOffsetApplicationType": "Above Floor"
     },
     "mechanical": {
-      "fanEfficiency": 0.5,
-      "boilerEfficiency": 0.66,
-      "boilerFuelType": "NaturalGas",
-      "coilCoolRatedHighSpeedCOP": 3.5,
-      "coilCoolRatedLowSpeedCOP": 4.5,
-      "economizerType": "No Economizer",
+      "fanEfficiency": request.body.fan_efficiency,
+      "boilerEfficiency": request.body.boiler_efficiency,
+      "boilerFuelType": request.body.boilerFuelType,
+      "coilCoolRatedHighSpeedCOP": request.body.coolingcoil_highspeed[0],
+      "coilCoolRatedLowSpeedCOP": request.body.coolingcoil_highspeed[1],
+      "economizerType": request.body.economizerType,
       "economizerDryBulbTempLimit": 30,
-      "heatingSetpoint": 20,
-      "coolingSetpoint": 24
+      "heatingSetpoint": request.body.heating_setpoint,
+      "coolingSetpoint": request.body.cooling_setpoint
     },
     "construction": {
       "constructionLibraryPath": "VirtualPULSE_default_constructions.osm"
@@ -84,29 +95,13 @@ module.exports = {openstudio: function(request, response) {
 
     console.log(buildingData);
     
-    var fileString = JSON.stringify(buildingData, null, 4);
-    
-    fs.writeFile('test/Input/test.json', fileString, function (err) {
-        if (err) throw err;
-        console.log('File is saved!');
-    });
-    
-    
-    //CREATE unique simulation Name & Timestamp
-    var buildingName = request.body.buildingName.replace(/\s+/g, '') || "NoName";
-    console.log(buildingName);
-    var timestamp = timestp.createTimestamp();
-    var buildingNameTimestamp =  "TEST_"+buildingName+timestamp;
-    
-    //CREATE unique simulation Folder
-    var outputPath = "../simulations/" + buildingNameTimestamp;
-    fs.mkdirSync(outputPath, function(error) {if (error) throw error;}); //simulation_directory in openstudio-model.js
-
-    //FORMAT request.body json to match buildingData2.json 
-    
-    
     //SAVE formatted json to outputPath with name buildingNameTimestamp_input.json
     
+    var fileString = JSON.stringify(buildingData, null, 4);
+    
+    fs.writeFileSync(outputPath+'/'+buildingNameTimestamp+'_input.json', fileString);
+
+    console.log('Input file saved!');    
     
     //RUN openstudio-run.js & openstudio-model.js
     
