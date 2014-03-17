@@ -12,24 +12,23 @@ var timestp = require("./timestamp.js");
 // 1 - PARSE DATA from buildingData.json ---------------------------------------------------------------------------------
 
 //READ Building Input JSON
-var data = JSON.parse(fs.readFileSync('buildingData.json', 'utf8')); 
+var building = JSON.parse(fs.readFileSync('buildingData2.json', 'utf8')); 
 
 //USE Building Input JSON Data Object
 console.log("OpenStudio on Node.js starting up...");
 console.log("INPUTS:");
-console.log(data.building.building_info.building_name);
-console.log(data.building.location.location_filename);
-console.log(data.building.building_info.activity_type);
-console.log(data.building.building_info.activity_type_specific);
-console.log(data.building.architecture.number_of_floors+" floors");
-console.log("Output path = "+data.building.location.simulationsPath);
+console.log("Name: "+ building.buildingInfo.buildingName);
+console.log("Weather: "+ building.site.weather);
+console.log("Function: "+ building.buildingInfo.activityType);
+console.log("Floors: "+ building.architecture.numberOfFloors+" floors");
+console.log("Window to Wall Ratio: "+ building.architecture.windowToWallRatio);
 
 //CREATE Unique Simulation Name & Folder
-var buildingName = data.building.building_info.building_name.replace(/\s+/g, '') || "NoName";
+var buildingName = building.buildingInfo.buildingName.replace(/\s+/g, '') || "NoName";
 var timestamp = timestp.createTimestamp();
 var buildingNameTimestamp =  buildingName+timestamp;
-var outputPath = data.building.location.simulationsPath + buildingNameTimestamp;
-fs.mkdirSync(outputPath, function(error) {if (error) throw error;}); //simulation_directory in openstudio-model.js
+var outputPath = building.paths.simulationsPath + buildingNameTimestamp;
+fs.mkdirSync(outputPath, function(error) {if (error) throw error;});
 
 // 2 - REQUIRE OpenstudioModel.js file ---------------------------------------------------------------------------------
 
@@ -46,21 +45,21 @@ co.fastFindEnergyPlus();
 runmanager.setConfigOptions(co);
 
 //Send (data = buildingData.json, runmanager = disable gui) to OpenStudioModel
-var model = new OpenStudioModel(data, runmanager);
+var model = new OpenStudioModel(building, runmanager);
 
 // 3 - RUN OpenStudio & save osm, idf -----------------------------------------------------------------------------------
 
 console.log("CONVERT OPENSTUDIO TO ENERGYPLUS:");
-model.save_openstudio_osm(outputPath, buildingNameTimestamp+"_input.osm");
-model.translate_to_energyplus_and_save_idf(outputPath, buildingNameTimestamp+"_input.idf");
+model.save_openstudio_osm(outputPath, buildingNameTimestamp +"_input.osm");
+model.translate_to_energyplus_and_save_idf(outputPath, buildingNameTimestamp +"_input.idf");
 
-model.add_load_summary_report(outputPath+buildingNameTimestamp+"_input.idf");
-model.convert_unit_to_ip(outputPath+buildingNameTimestamp+"_input.idf");
+model.add_load_summary_report(outputPath + buildingNameTimestamp +"_input.idf");
+model.convert_unit_to_ip(outputPath + buildingNameTimestamp +"_input.idf");
 
 // 4 - RUN EnergyPlus & save sql, html -----------------------------------------------------------------------------------
 
 console.log("RUN ENERGYPLUS:");
-var job = model.run_energyplus_simulation(outputPath, buildingNameTimestamp+"_input.idf");
+var job = model.run_energyplus_simulation(outputPath, buildingNameTimestamp +"_input.idf");
 
 var treeerrors = job.treeErrors();
 

@@ -4,20 +4,20 @@ var sys = require('sys');
 var exec = require('child_process').exec;
 
 
-function OpenStudioModel(buildingData, runmanager) {
+function OpenStudioModel(building, runmanager) {
   this.model = new openstudio.model.Model();
   this.runManager = runmanager;
 
   console.log("Constructed openstudio.model.Model()");
 
   this.add_geometry_rectangle = function(architecture) {
-    var length = architecture.building_length;
-    var width = architecture.building_width;
-    var num_floors = architecture.number_of_floors;
-    var floor_to_floor_height = architecture.floor_to_floor_height;
+    var length = architecture.buildingLength;
+    var width = architecture.buildingWidth;
+    var num_floors = architecture.numberOfFloors;
+    var floor_to_floor_height = architecture.floorToFloorHeight;
     console.log("Floor to floor height " + floor_to_floor_height);
-    var plenum_height = architecture.plenum_height;
-    var perimeter_zone_depth = architecture.perimeter_zone_depth;
+    var plenum_height = architecture.plenumHeight;
+    var perimeter_zone_depth = architecture.perimeterZoneDepth;
     var shortest_side = Math.min(length,width);
     if (perimeter_zone_depth < 0 || 2*perimeter_zone_depth >= (shortest_side - 1e-4)) {
       console.log("perimeter_zone_depth error.");
@@ -128,7 +128,7 @@ function OpenStudioModel(buildingData, runmanager) {
   } 
 
   this.add_geometry = function(architecture) {
-    geo_type = architecture.footprint_shape;
+    geo_type = architecture.footprintShape;
 
     if (geo_type == 'Rectangle')
     {
@@ -152,9 +152,10 @@ function OpenStudioModel(buildingData, runmanager) {
   }
 
   this.add_windows = function(architecture) {
-    var wwr = architecture.window_to_wall_ratio;
-    var offset = architecture.window_offset;
-    var application_type = architecture.window_offset_application_type;
+    var wwr = architecture.windowToWallRatio;
+    var offset = architecture.windowOffset;
+    var application_type = architecture.windowOffsetApplicationType;
+    
     heightOffsetFromFloor = false;
     if (application_type == "Above Floor") {
       heightOffsetFromFloor = true;
@@ -174,13 +175,13 @@ function OpenStudioModel(buildingData, runmanager) {
   }
 
   this.add_hvac = function(mechanical) {
-    var fan_eff = mechanical.fan_efficiency;
-    var boiler_eff = mechanical.boiler_efficiency;
-    var boiler_fuel_type = mechanical.boiler_fuel_type;
-    var coil_cool_rated_high_speed_COP = mechanical.coil_cool_rated_high_speed_COP;
-    var coil_cool_rated_low_speed_COP = mechanical.coil_cool_rated_low_speed_COP;
-    var economizer_type = mechanical.economizer_type;
-    var economizer_dry_bulb_temp_limit = mechanical.economizer_dry_bulb_temp_limit;
+    var fan_eff = mechanical.fanEfficiency;
+    var boiler_eff = mechanical.boilerEfficiency;
+    var boiler_fuel_type = mechanical.boilerFuelType;
+    var coil_cool_rated_high_speed_COP = mechanical.coilCoolRatedHighSpeedCOP;
+    var coil_cool_rated_low_speed_COP = mechanical.coilCoolRatedLowSpeedCOP;
+    var economizer_type = mechanical.economizerType;
+    var economizer_dry_bulb_temp_limit = mechanical.economizerDryBulbTempLimit;
     var zones = openstudio.model.getThermalZones(this.model);
     var hvac = openstudio.model.addSystemType5(this.model);
     hvac = openstudio.model.toAirLoopHVAC(hvac).get();
@@ -221,9 +222,9 @@ function OpenStudioModel(buildingData, runmanager) {
     }
   }
 
-  this.add_constructions = function(constructions) {
-    var construction_library_path = constructions.construction_library_path;
-    var degree_to_north = constructions.degree_to_north;
+  this.add_constructions = function(architecture, construction) {
+    var degree_to_north = architecture.degreeToNorth;
+    var construction_library_path = construction.constructionLibraryPath;
 
     if (construction_library_path == undefined) {
       return false;
@@ -246,15 +247,16 @@ function OpenStudioModel(buildingData, runmanager) {
     building.setNorthAxis(degree_to_north);
   },
 
-  this.add_space_type = function(space_type, location) {
+  this.add_space_type = function(buildingInfo, site, paths) {
+    var space_type = buildingInfo;
     openstudio.Application.instance();
-    var localblc = openstudio.LocalBCL.instance(new openstudio.path(location.bcl_path));
+    var localblc = openstudio.LocalBCL.instance(new openstudio.path(paths.buildingComponentLibraryPath));
     var bcl = new openstudio.RemoteBCL();
     bcl.setProdAuthKey("xsxYuim9hvuuGdVFvhM5GBxNLPnDmNgE");
-    var nrel_reference_building_vintage = space_type.NREL_reference_building_vintage;
-    var climate_zone = space_type.climate_zone;
-    var nrel_reference_building_primary_space_type = space_type.NREL_reference_building_primary_space_type;
-    var nrel_reference_building_secondary_space_type = space_type.NREL_reference_building_secondary_space_type;
+    var nrel_reference_building_vintage = buildingInfo.ASHRAEStandard;
+    var climate_zone = site.climateZone;
+    var nrel_reference_building_primary_space_type = buildingInfo.activityType;
+    var nrel_reference_building_secondary_space_type = buildingInfo.activityTypeSecondary;
     bcl.downloadOnDemandGenerator("bb8aa6a0-6a25-012f-9521-00ff10704b07");
     generator = bcl.waitForOnDemandGenerator();
 
@@ -300,8 +302,8 @@ function OpenStudioModel(buildingData, runmanager) {
   }
 
   this.add_thermostats = function(mechanical) {
-    var heating_setpoint = mechanical.heating_setpoint;
-    var cooling_setpoint = mechanical.cooling_setpoint;
+    var heating_setpoint = mechanical.heatingSetpoint;
+    var cooling_setpoint = mechanical.coolingSetpoint;
     var time_24hrs = new openstudio.Time(0,24,0,0);
     var cooling_sch = new openstudio.model.ScheduleRuleset(this.model);
     cooling_sch.setName("Cooling Sch");
@@ -339,8 +341,8 @@ function OpenStudioModel(buildingData, runmanager) {
     workspace.save(idf_save_path,true);
   }
 
-  this.add_design_days = function(location, weather_path) {
-    var loc_filename = location.location_filename;
+  this.add_design_days = function(site, weather_path) {
+    var loc_filename = site.weather;
     // now that the location is determined save the filename off for later consumption
     this.loc_filename = loc_filename;
     var ddy_path = new openstudio.path(weather_path + "/" + loc_filename + ".ddy"); // sometimes ddy, OpenStudio error Kyle is fixing
@@ -349,7 +351,7 @@ function OpenStudioModel(buildingData, runmanager) {
       var ddy_workspace = new openstudio.Workspace(ddy_idf);
       var reverse_translator = new openstudio.energyplus.ReverseTranslator();
       var ddy_model = reverse_translator.translateWorkspace(ddy_workspace);
-      var stringent_sizing_criteria = location.stringent_sizing_criteria;
+      var stringent_sizing_criteria = site.strictDesignDay;
       var objects = ddy_model.objects();
       if (stringent_sizing_criteria == "yes") {
         var objects_new = new openstudio.IdfObjectVector();
@@ -407,14 +409,14 @@ function OpenStudioModel(buildingData, runmanager) {
   }
 
 
-  this.add_geometry(buildingData.building.architecture);
-  this.add_windows(buildingData.building.architecture);
-  this.add_hvac(buildingData.building.mechanical);
-  this.add_thermostats(buildingData.building.mechanical);
-  this.add_constructions(buildingData.building.constructions);
-  this.add_space_type(buildingData.building.space_type, buildingData.building.location);
+  this.add_geometry(building.architecture);
+  this.add_windows(building.architecture);
+  this.add_hvac(building.mechanical);
+  this.add_thermostats(building.mechanical);
+  this.add_constructions(building.architecture, building.construction);
+  this.add_space_type(building.buildingInfo, building.site, building.paths);
   this.add_densities();
-  this.add_design_days(buildingData.building.location, openstudio.toString(this.runManager.getConfigOptions().getDefaultEPWLocation()));
+  this.add_design_days(building.site, openstudio.toString(this.runManager.getConfigOptions().getDefaultEPWLocation()));
 
 
 };
