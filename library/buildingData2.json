@@ -1,0 +1,70 @@
+{
+    "__v": 0,
+    "_id": "52a0e3ab5c9ac86f54000002",
+    "username": "eebhub",
+    "site":{
+        "city": "Philadelphia",
+        "weather": "USA_IL_Chicago-OHare.Intl.AP.725300_TMY3",
+        "climateZone": "ClimateZone 1-8",
+        "strictDesignDay": "no"
+    },
+    "buildingInfo": {
+      "buildingName": "JASON",
+      "activityType": "SmallOffice",
+      "activityTypeSecondary": "WholeBuilding",
+      "yearCompleted": "1911",
+      "units": "si",
+      "ASHRAEStandard": "ASHRAE_90.1-2004"
+    },
+    "architecture": {
+      "footprintShape": "Rectangle",
+      "buildingLength": 100,
+      "buildingWidth": 50,
+      "buildingHeight": 30,
+      "numberOfFloors": 3,
+      "floorToFloorHeight": 3.0,
+      "degreeToNorth": 15,
+      "plenumHeight": 1.0,
+      "perimeterZoneDepth": 3.0,
+      "windowToWallRatio": 0.4,
+      "windowOffset": 1.0,
+      "windowOffsetApplicationType": "Above Floor"
+    },
+    "mechanical": {
+      "fanEfficiency": 0.5,
+      "boilerEfficiency": 0.66,
+      "boilerFuelType": "NaturalGas",
+      "coilCoolRatedHighSpeedCOP": 3.5,
+      "coilCoolRatedLowSpeedCOP": 4.5,
+      "economizerType": "No Economizer",
+      "economizerDryBulbTempLimit": 30,
+      "heatingSetpoint": 20,
+      "coolingSetpoint": 24
+    },
+    "construction": {
+      "constructionLibraryPath": "VirtualPULSE_default_constructions.osm"
+    },
+    "schedules": {
+        "occupancy":{
+          "default":{
+            "weekday": [0,0,0,0,0,0,0.1,0.2,0.95,0.95,0.9,0.95,0.5,0.95,0.95,0.95,0.95,0.3,0.1,0.1,0.05,0.05,0.05,0.05],
+            "saturday": [0,0,0,0,0,0,0.1,0.1,0.3,0.3,0.3,0.3,0.1,0.1,0.1,0.1,0.1,0,0,0,0,0,0,0],
+            "sunday": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            }, 
+          "priority":[
+            {
+                "startDay": "06/01/2013",
+                "endDay": "06/31/2013",
+                "weekday": [0,0,0,0,0,0,0.1,0.2,0.95,0.95,0.9,0.95,0.5,0.95,0.95,0.95,0.95,0.5,0.5,0.3,0.1,0.05,0.05,0.05],
+                "saturday": [0,0,0,0,0,0,0.1,0.1,0.5,0.5,0.5,0.5,0.3,0.3,0.3,0.3,0.3,0,0,0,0,0,0,0],
+                "sunday": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            }
+          ]
+        }
+    },    
+    "paths": {
+      "buildingComponentLibraryPath": "/home/bitnami/bcl",
+      "outputPath": ""
+    }
+
+}
