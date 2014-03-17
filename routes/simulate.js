@@ -31,7 +31,7 @@ module.exports = {openstudio: function(request, response) {
     //APPEND important energyplus output sql tables into original json
     
     //RENDER EnergyPlus Graphs & Files outputs.ejs
-    response.redirect('energy-use');
+    response.redirect(outputPath); //redirecting to folder until outputs.ejs ready
 
 }//end openstudio
 };//end exports
