@@ -18,7 +18,7 @@ module.exports = {openstudio: function(request, response) {
     
     //CREATE unique simulation Folder
     var outputPath = "../simulations/" + buildingNameTimestamp;
-    fs.mkdirSync(outputPath, function(error) {if (error) throw error;}); //simulation_directory in openstudio-model.js
+    fs.mkdirSync(outputPath, function(error) {if (error) throw error;});
 
      //FORMAT request.body json to match buildingData2.json 
     var buildingData = 
