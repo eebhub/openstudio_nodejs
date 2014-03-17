@@ -64,7 +64,8 @@
     },    
     "paths": {
       "buildingComponentLibraryPath": "/home/bitnami/bcl",
-      "outputPath": ""
+      "outputPath": "",
+      "simulationsPath":"/home/bitnami/simulations/"
     }
 
 }
