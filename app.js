@@ -16,7 +16,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var routes = require('./routes/routes.js');
-var openstudio = require('./routes/openstudio.js');
+var testOpenstudio = require('./archive/testOpenstudio.js');
 
 
 var app = express()
@@ -67,6 +67,11 @@ app.get('/tracking-sheet.html', routes.getTrackingSheet);
 app.get('/walls', routes.getWalls);
 app.get('/tracking', routes.getTracking);
 
+//Simulate OpenStudio & EnergyPlus
+var simulate = require("./routes/simulate.js");
+app.post('/simulate', simulate.openstudio);
+
+
 app.get('/eplus_out', function(req, res){
 
 /*test simple selections*/
@@ -105,7 +110,7 @@ sqlite3.getValuesByMonthly('ENVELOPE%', 'ENTIRE%', 'Opaque Exterior', 'Btu%', 't
 
 });
 
-app.post('/rmt', openstudio.simulateOpenstudio);
+app.post('/rmt', testOpenstudio.simulateOpenstudio);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
