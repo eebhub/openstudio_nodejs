@@ -322,7 +322,7 @@
                             <div class="row">
                                 <div class="span4">
                                     <h4>Building Name</h4>
-                                    <input class="span3" type="text" id="building_name" ng-model="myBuilding" name="building_name" onfocus="if (this.value == 'My Building') {this.value = '';}">
+                                    <input class="span3" type="text" id="buildingName" ng-model="myBuilding" name="buildingName" onfocus="if (this.value == 'My Building') {this.value = '';}">
                                     <br/>
 									<input type="hidden" id="random_number" name="random_number" style="color:gray;">
 									<h4>Function</h4>
@@ -1024,7 +1024,7 @@
             function valForm(theForm)
             {
             	var f = document.getElementById(theForm);	
-            	var buildingName =	f.building_name.value;
+            	var buildingName =	f.buildingName.value;
             	var locationID = f.weather_epw_location.value;
             	var functionID = f.activity_type.value;
             	var numberFloors = f.number_of_floors.value;
