@@ -1,331 +1,320 @@
 var sqlite3 = require('sqlite3').verbose();
 var database = '../test/Output/baseline.sql';
 var fs = require('fs');
-var number_format = require('./number_format.js');
 
+module.exports.sqlToJSON = sqlToJSON;
 
 //SQL to JSON functions
-//Get the Energy Use Data
-function getEnergyUse (sqlFile) {
-
-    var db = new sqlite3.Database(sqlFile);
-    var gets = {	electricity: {
-              interiorLights: [],
-            exteriorLights: [],
-            interiorEquipment: [],
-            exteriorEquipment: [],
-            fans: [],
-            pumps: [],
-            heating: [],
-            cooling: [],
-            heatRejection: [],
-            humidifier: [],
-            heatRecovery: [],
-            waterSystems: [],
-            cogeneration: []
-          }, naturalGas: {
-            interiorEquipment: [],
-            exteriorEquipment: [],
-            heating: [],
-            cooling: [],
-            waterSystems: [],
-            cogeneration: []
-          }
-        };
-
-  var stmt = 	'Select columnname, value, units ' +
+function sqlToJSON(sqlFile, fn){
+  //Initialize Database
+  var db = new sqlite3.Database(sqlFile);
+  //JSON Structure
+  var output = {
+    energyUse: {
+      electricity: {
+        interiorLights: [],
+        exteriorLights: [],
+        interiorEquipment: [],
+        exteriorEquipment: [],
+        fans: [],
+        pumps: [],
+        heating: [],
+        cooling: [],
+        heatRejection: [],
+        humidifier: [],
+        heatRecovery: [],
+        waterSystems: [],
+        cogeneration: []
+      },
+      naturalGas: {
+        interiorEquipment: [],
+        exteriorEquipment: [],
+        heating: [],
+        cooling: [],
+        waterSystems: [],
+        cogeneration: []
+      }
+    },
+    energyIntensity:
+    {
+      totalSiteEnergy:{
+        endUses: {
+          electricity: [],
+          naturalGas: []
+        },
+        totalElectricity: 0,
+        totalNaturalGas: 0,
+        buildingArea: 0,
+        totalIntensity: 0,
+        conditionedIntensity: 0
+      },
+      totalSourceEnergy:{
+        endUses: {
+          electricity: [],
+          naturalGas: []
+        },
+        totalElectricity: 0,
+        totalNaturalGas: 0,
+        buildingArea: 0,
+        totalIntensity: 0,
+        conditionedIntensity: 0
+      },
+    },
+    energyCost:{
+      electricity: {
+        energyCharges: [],
+        demandCharges: [],
+        serviceCharges: [],
+        adjustment: [],
+        taxes: [],
+        total: []
+      }, naturalGas: {
+        energyCharges: [],
+        demandCharges: [],
+        serviceCharges: [],
+        adjustment: [],
+        taxes: [],
+        total: []
+      }
+    }
+  };
+  //SQL Statements (Stmt)
+  var energyUseSqlStmt = 'Select columnname, value, units ' +
          'From tabulardatawithstrings ' +
          'Where (reportname Like "%ELECTRICITY MONTHLY%" Or reportname Like "%NATURAL GAS MONTHLY%")' +
-         'And value <> "" ';
-
-    // query statement
+         'And value <> "" ',
+      energyIntensitySqlStmt = 'Select tableName, rowName, columnName, value, units ' +
+             'From tabulardatawithstrings ' +
+             'Where (ReportName Like "%Annual%"  Or ReportName Like "%SourceEnergyEndUse%" ) ' +
+             'And (TableName Like "End Uses" Or TableName Like "Site and Source Energy" ' +
+             'Or TableName Like "Building Area" Or TableName Like "Source Energy End Use Components Summary") ' +
+             'And value <> "" ',
+      energyCostSqlStmt = 'Select reportForString, rowName, value, units ' +
+             'From tabulardatawithstrings ' +
+             'Where reportName Like "%Tariff Report%" ' +
+             'And value <> "" ';
+  //Start SQL Queries
   db.serialize(function() {
-      db.each(stmt, function(err, row) {
-          //gets.push({values: parseFloat(row.value);
-          switch(row.columnname) {
-            case "INTERIORLIGHTS:ELECTRICITY":
-              gets.electricity.interiorLights.push(parseFloat(row.value));
+    //Get Energy Use Data
+    db.each(energyUseSqlStmt, function(err, row){
+      switch(row.columnname) {
+        case "INTERIORLIGHTS:ELECTRICITY":
+          output.energyUse.electricity.interiorLights.push(parseFloat(row.value));
+
+          break;
+        case "EXTERIORLIGHTS:ELECTRICITY":
+          output.energyUse.electricity.exteriorLights.push(parseFloat(row.value));
+          break;
+        case "INTERIOREQUIPMENT:ELECTRICITY":
+          output.energyUse.electricity.interiorEquipment.push(parseFloat(row.value));
+          break;
+        case "EXTERIOREQUIPMENT:ELECTRICITY":
+          output.energyUse.electricity.exteriorEquipment.push(parseFloat(row.value));
+          break;
+        case "FANS:ELECTRICITY":
+          output.energyUse.electricity.fans.push(parseFloat(row.value));
+          break;
+        case "PUMPS:ELECTRICITY":
+          output.energyUse.electricity.pumps.push(parseFloat(row.value));
+          break;
+        case "HEATING:ELECTRICITY":
+          output.energyUse.electricity.heating.push(parseFloat(row.value));
+          break;
+        case "COOLING:ELECTRICITY":
+          output.energyUse.electricity.cooling.push(parseFloat(row.value));
+          break;
+        case "HEATREJECTION:ELECTRICITY":
+          output.energyUse.electricity.heatRejection.push(parseFloat(row.value));
+          break;
+        case "HUMIDIFIER:ELECTRICITY":
+          output.energyUse.electricity.humidifier.push(parseFloat(row.value));
+          break;
+        case "HEATRECOVERY:ELECTRICITY":
+          output.energyUse.electricity.heatRecovery.push(parseFloat(row.value));
+          break;
+        case "WATERSYSTEMS:ELECTRICITY":
+          output.energyUse.electricity.waterSystems.push(parseFloat(row.value));
+          break;
+        case "COGENERATION:ELECTRICITY":
+          output.energyUse.electricity.cogeneration.push(parseFloat(row.value));
+          break;
+        case "INTERIOREQUIPMENT:GAS":
+          output.energyUse.naturalGas.interiorEquipment.push(parseFloat(row.value));
+          break;
+        case "EXTERIOREQUIPMENT:GAS":
+          output.energyUse.naturalGas.exteriorEquipment.push(parseFloat(row.value));
+          break;
+        case "HEATING:GAS":
+          output.energyUse.naturalGas.heating.push(parseFloat(row.value));
+          break;
+        case "COOLING:GAS":
+          output.energyUse.naturalGas.cooling.push(parseFloat(row.value));
+        break;
+        case "WATERSYSTEMS:GAS":
+          output.energyUse.naturalGas.waterSystems.push(parseFloat(row.value));
+          break;
+        case "COGENERATION:GAS":
+          output.energyUse.naturalGas.cogeneration.push(parseFloat(row.value));
+          break;
+        default:
+          console.log("The ColumnName \""+row.columnname+"\"is not applied here!");
+          break;
+      }
+
+    }, function(){console.log("Use Finished")});
+    //Get Energy Instensity for SQL File
+    db.each(energyIntensitySqlStmt, function(err, row){
+      switch(row.tableName) {
+
+        // Total site annual energy
+        case 'End Uses':
+          switch(row.columnName) {
+            case 'Electricity':
+              if(row.rowName == 'Total End Uses') {
+                output.energyIntensity.totalSiteEnergy.totalElectricity= parseFloat(row.value);
+              } else {
+                output.energyIntensity.totalSiteEnergy.endUses.electricity.push(parseFloat(row.value));
+              }
             break;
-            case "EXTERIORLIGHTS:ELECTRICITY":
-              gets.electricity.exteriorLights.push(parseFloat(row.value));
-            break;
-            case "INTERIOREQUIPMENT:ELECTRICITY":
-              gets.electricity.interiorEquipment.push(parseFloat(row.value));
-            break;
-            case "EXTERIOREQUIPMENT:ELECTRICITY":
-              gets.electricity.exteriorEquipment.push(parseFloat(row.value));
-            break;
-            case "FANS:ELECTRICITY":
-              gets.electricity.fans.push(parseFloat(row.value));
-            break;
-            case "PUMPS:ELECTRICITY":
-              gets.electricity.pumps.push(parseFloat(row.value));
-            break;
-            case "HEATING:ELECTRICITY":
-              gets.electricity.heating.push(parseFloat(row.value));
-            break;
-            case "COOLING:ELECTRICITY":
-              gets.electricity.cooling.push(parseFloat(row.value));
-            break;
-            case "HEATREJECTION:ELECTRICITY":
-              gets.electricity.heatRejection.push(parseFloat(row.value));
-            break;
-            case "HUMIDIFIER:ELECTRICITY":
-              gets.electricity.humidifier.push(parseFloat(row.value));
-            break;
-            case "HEATRECOVERY:ELECTRICITY":
-              gets.electricity.heatRecovery.push(parseFloat(row.value));
-            break;
-            case "WATERSYSTEMS:ELECTRICITY":
-              gets.electricity.waterSystems.push(parseFloat(row.value));
-            break;
-            case "COGENERATION:ELECTRICITY":
-              gets.electricity.cogeneration.push(parseFloat(row.value));
-            break;
-            case "INTERIOREQUIPMENT:GAS":
-              gets.naturalGas.interiorEquipment.push(parseFloat(row.value));
-            break;
-            case "EXTERIOREQUIPMENT:GAS":
-              gets.naturalGas.exteriorEquipment.push(parseFloat(row.value));
-            break;
-            case "HEATING:GAS":
-              gets.naturalGas.heating.push(parseFloat(row.value));
-            break;
-            case "COOLING:GAS":
-              gets.naturalGas.cooling.push(parseFloat(row.value));
-            break;
-            case "WATERSYSTEMS:GAS":
-              gets.naturalGas.waterSystems.push(parseFloat(row.value));
-            break;
-            case "COGENERATION:GAS":
-              gets.naturalGas.cogeneration.push(parseFloat(row.value));
+            case 'Natural Gas':
+              if(row.rowName == 'Total End Uses') {
+                output.energyIntensity.totalSiteEnergy.totalNaturalGas= parseFloat(row.value);
+              } else {
+                output.energyIntensity.totalSiteEnergy.endUses.naturalGas.push(parseFloat(row.value));
+              }
             break;
             default:
-              console.log("The ColumnName \""+row.columnname+"\"is not applied here!");
-              //gets.electricity.interiorLights.push(parseFloat(row.value))
             break;
           }
-      }, function() {
-          // All done fetching records, render response
-           console.log(gets)
-      })
-  })
-};
+        break;
 
-//Get the Energy Intensity Data
-function getEnergyIntensity(sqlFile) {
-
-    var db = new sqlite3.Database(sqlFile);
-    var gets = {	totalSiteEnergy: {
-              endUses: {
-                electricity: [],
-                naturalGas: [] },
-              totalElectricity: 0,
-              totalNaturalGas: 0,
-              buildingArea: 0,
-              totalIntensity: 0,
-              conditionedIntensity: 0
-          }, totalSourceEnergy: {
-            endUses: {
-              electricity: [],
-              naturalGas: [] },
-            totalElectricity: 0,
-              totalNaturalGas: 0,
-            buildingArea: 0,
-            totalIntensity: 0,
-            conditionedIntensity: 0
-          }
-        };
-
-  var stmt = 	'Select tableName, rowName, columnName, value, units ' +
-         'From tabulardatawithstrings ' +
-         'Where (ReportName Like "%Annual%"  Or ReportName Like "%SourceEnergyEndUse%" ) ' +
-         'And (TableName Like "End Uses" Or TableName Like "Site and Source Energy" ' +
-         'Or TableName Like "Building Area" Or TableName Like "Source Energy End Use Components Summary") ' +
-         'And value <> "" ';
-
-    // query statement
-  db.serialize(function() {
-      db.each(stmt, function(err, row) {
-          //gets.push({values: parseFloat(row.value)
-
-         switch(row.tableName) {
-
-           // Total site annual energy
-           case 'End Uses':
-             switch(row.columnName) {
-               case 'Electricity':
-                 if(row.rowName == 'Total End Uses') {
-                   gets.totalSiteEnergy.totalElectricity= parseFloat(row.value);
-                 } else {
-                   gets.totalSiteEnergy.endUses.electricity.push(parseFloat(row.value));
-                 }
-               break;
-               case 'Natural Gas':
-                 if(row.rowName == 'Total End Uses') {
-                   gets.totalSiteEnergy.totalNaturalGas= parseFloat(row.value);
-                 } else {
-                   gets.totalSiteEnergy.endUses.naturalGas.push(parseFloat(row.value));
-                 }
-               break;
-               default:
-               break;
-             }
-           break;
-
-           // Total source annual energy
-           case 'Source Energy End Use Components Summary':
-             switch(row.columnName) {
-               case 'Source Electricity':
-                 if(row.rowName == 'Total Source Energy End Use Components') {
-                   gets.totalSourceEnergy.totalElectricity= parseFloat(row.value);
-                 } else {
-                   gets.totalSourceEnergy.endUses.electricity.push(parseFloat(row.value));
-                 }
-               break;
-               case 'Source Natural Gas':
+        // Total source annual energy
+        case 'Source Energy End Use Components Summary':
+          switch(row.columnName) {
+            case 'Source Electricity':
               if(row.rowName == 'Total Source Energy End Use Components') {
-                   gets.totalSourceEnergy.totalNaturalGas= parseFloat(row.value);
-                 } else {
-                   gets.totalSourceEnergy.endUses.naturalGas.push(parseFloat(row.value));
-                 }
-               break;
-               default:
-               break;
-             }
-           break;
+                output.energyIntensity.totalSourceEnergy.totalElectricity= parseFloat(row.value);
+              } else {
+                output.energyIntensity.totalSourceEnergy.endUses.electricity.push(parseFloat(row.value));
+              }
+            break;
+            case 'Source Natural Gas':
+              if(row.rowName == 'Total Source Energy End Use Components') {
+                output.energyIntensity.totalSourceEnergy.totalNaturalGas= parseFloat(row.value);
+              } else {
+                output.energyIntensity.totalSourceEnergy.endUses.naturalGas.push(parseFloat(row.value));
+              }
+              break;
+            default:
+              break;
+          }
+        break;
 
-           // Building area
-           case 'Building Area':
-             if(row.rowName == 'Total Building Area') {
-               gets.totalSiteEnergy.buildingArea = parseFloat(row.value);
-               gets.totalSourceEnergy.buildingArea = parseFloat(row.value);
-             }
-           break;
+        // Building area
+        case 'Building Area':
+          if(row.rowName == 'Total Building Area') {
+            output.energyIntensity.totalSiteEnergy.buildingArea = parseFloat(row.value);
+            output.energyIntensity.totalSourceEnergy.buildingArea = parseFloat(row.value);
+          }
+        break;
 
-           // Total site and source energy intensities
-           case 'Site and Source Energy':
-             if(row.rowName == 'Total Site Energy') {
-               // Total or conditioned intensity
-               switch(row.columnName) {
-                 case 'Energy Per Total Building Area':
-                   gets.totalSiteEnergy.totalIntensity = parseFloat(row.value);
-                 break;
-                 case 'Energy Per Conditioned Building Area':
-                   gets.totalSiteEnergy.conditionedIntensity = parseFloat(row.value);
-                 break;
-                 default:
-                 break;
-               }
-          } else if(row.rowName == 'Total Source Energy') {
+        // Total site and source energy intensities
+        case 'Site and Source Energy':
+          if(row.rowName == 'Total Site Energy') {
             // Total or conditioned intensity
-               switch(row.columnName) {
-                 case 'Energy Per Total Building Area':
-                   gets.totalSourceEnergy.totalIntensity = parseFloat(row.value);
-                 break;
-                 case 'Energy Per Conditioned Building Area':
-                   gets.totalSourceEnergy.conditionedIntensity = parseFloat(row.value);
-                 break;
-                 default:
-                 break;
-               }
-          }
-           break;
-         }
-      }, function() {
-          // All done fetching records, render response
-           console.log(gets.totalSourceEnergy)
-           console.log(gets.totalSiteEnergy)
-      })
-  })
+            switch(row.columnName) {
+              case 'Energy Per Total Building Area':
+                output.energyIntensity.totalSiteEnergy.totalIntensity = parseFloat(row.value);
+                break;
+              case 'Energy Per Conditioned Building Area':
+                output.energyIntensity.totalSiteEnergy.conditionedIntensity = parseFloat(row.value);
+                break;
+              default:
+                break;
+            }
+       } else if(row.rowName == 'Total Source Energy') {
+         // Total or conditioned intensity
+            switch(row.columnName) {
+              case 'Energy Per Total Building Area':
+                output.energyIntensity.totalSourceEnergy.totalIntensity = parseFloat(row.value);
+                break;
+              case 'Energy Per Conditioned Building Area':
+                output.energyIntensity.totalSourceEnergy.conditionedIntensity = parseFloat(row.value);
+                break;
+              default:
+                break;
+            }
+       }
+        break;
+      }
+    },
+
+    function(){console.log("IntensityFinished")});
+    //Get Energy Cost Data
+    db.each(energyCostSqlStmt, function(err, row){
+      if(row.reportForString.search("ELECTRIC") != -1) {
+        switch(row.rowName) {
+          case "EnergyCharges (~~$~~)":
+            output.energyCost.electricity.energyCharges.push(parseFloat(row.value));
+            break;
+          case "DemandCharges (~~$~~)":
+            output.energyCost.electricity.demandCharges.push(parseFloat(row.value));
+            break;
+          case "ServiceCharges (~~$~~)":
+            output.energyCost.electricity.serviceCharges.push(parseFloat(row.value));
+            break;
+          case "Adjustment (~~$~~)":
+            output.energyCost.electricity.adjustment.push(parseFloat(row.value));
+            break;
+          case "Taxes (~~$~~)":
+            output.energyCost.electricity.taxes.push(parseFloat(row.value));
+            break;
+          case "Total (~~$~~)":
+            output.energyCost.electricity.total.push(parseFloat(row.value));
+            break;
+          default:
+            //console.log("The ColumnName \""+row.columnname+"\"is not applied here!");
+            break;
+       }
+      } else {
+        switch(row.rowName) {
+          case "EnergyCharges (~~$~~)":
+            output.energyCost.naturalGas.energyCharges.push(parseFloat(row.value));
+            break;
+          case "DemandCharges (~~$~~)":
+            output.energyCost.naturalGas.demandCharges.push(parseFloat(row.value));
+            break;
+          case "ServiceCharges (~~$~~)":
+            output.energyCost.naturalGas.serviceCharges.push(parseFloat(row.value));
+            break;
+          case "Adjustment (~~$~~)":
+            output.energyCost.naturalGas.adjustment.push(parseFloat(row.value));
+            break;
+          case "Taxes (~~$~~)":
+            output.energyCost.naturalGas.taxes.push(parseFloat(row.value));
+            break;
+          case "Total (~~$~~)":
+            output.energyCost.naturalGas.total.push(parseFloat(row.value));
+            break;
+          default:
+            //console.log("The RowName \""+row.columnname+"\"is not applied here!");
+            break;
+       }
+      }
+
+    }, function(){
+      console.log("Cost Finished");
+      //Callback
+      fn(output);
+    });
+  });
+  //Close Database
+  db.close();
+
 }
 
-//Get Energy Cost Data
-function getEnergyCost(sqlFile) {
 
-    var db = new sqlite3.Database(sqlFile);
-    var gets = {	electricity: {
-              energyCharges: [],
-            demandCharges: [],
-            serviceCharges: [],
-            adjustment: [],
-            taxes: [],
-            total: []
-          }, naturalGas: {
-            energyCharges: [],
-            demandCharges: [],
-            serviceCharges: [],
-            adjustment: [],
-            taxes: [],
-            total: []
-          }
-        };
 
-  var stmt = 	'Select reportForString, rowName, value, units ' +
-         'From tabulardatawithstrings ' +
-         'Where reportName Like "%Tariff Report%" ' +
-         'And value <> "" ';
-
-    // query statement
-  db.serialize(function() {
-      db.each(stmt, function(err, row) {
-          //gets.push({values: parseFloat(row.value)
-          if(row.reportForString == "BLDG101_ELECTRIC_RATE") {
-            switch(row.rowName) {
-              case "EnergyCharges (~~$~~)":
-                gets.electricity.energyCharges.push(parseFloat(row.value));
-              break;
-              case "DemandCharges (~~$~~)":
-                gets.electricity.demandCharges.push(parseFloat(row.value));
-              break;
-              case "ServiceCharges (~~$~~)":
-                gets.electricity.serviceCharges.push(parseFloat(row.value));
-              break;
-              case "Adjustment (~~$~~)":
-                gets.electricity.adjustment.push(parseFloat(row.value));
-              break;
-              case "Taxes (~~$~~)":
-                gets.electricity.taxes.push(parseFloat(row.value));
-              break;
-              case "Total (~~$~~)":
-                gets.electricity.total.push(parseFloat(row.value));
-              break;
-              default:
-                //console.log("The ColumnName \""+row.columnname+"\"is not applied here!");
-                //gets.electricity.interiorLights.push(parseFloat(row.value))
-              break;
-           }
-          } else {
-            switch(row.rowName) {
-              case "EnergyCharges (~~$~~)":
-                gets.naturalGas.energyCharges.push(parseFloat(row.value));
-              break;
-              case "DemandCharges (~~$~~)":
-                gets.naturalGas.demandCharges.push(parseFloat(row.value));
-              break;
-              case "ServiceCharges (~~$~~)":
-                gets.naturalGas.serviceCharges.push(parseFloat(row.value));
-              break;
-              case "Adjustment (~~$~~)":
-                gets.naturalGas.adjustment.push(parseFloat(row.value));
-              break;
-              case "Taxes (~~$~~)":
-                gets.naturalGas.taxes.push(parseFloat(row.value));
-              break;
-              case "Total (~~$~~)":
-                gets.naturalGas.total.push(parseFloat(row.value));
-              break;
-              default:
-                //console.log("The RowName \""+row.columnname+"\"is not applied here!");
-              break;
-           }
-          }
-
-      }, function() {
-          // All done fetching records, render response
-           console.log(gets)
-      })
-  })
-}
-
-//getEnergyUse('../test/eem_1.sql');
+sqlToJSON("../test/eem_1.sql", function(output){
+  console.log(output.energyIntensity);
+})

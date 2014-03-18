@@ -39,7 +39,7 @@ function getEnergyUse (sqlFile) {
     // query statement
 	db.serialize(function() {
     	db.each(stmt, function(err, row) {
-        	//gets.push({values: parseFloat(row.value)
+        	
         	switch(row.columnname) {
         		case "INTERIORLIGHTS:ELECTRICITY":
         			gets.electricity.interiorLights.push(parseFloat(row.value));
@@ -211,12 +211,14 @@ function getEnergyIntensity(sqlFile) {
 	    				buildingArea: 0,
 	    				totalIntensity: 0,
 	    				conditionedIntensity: 0
-					}, totalSourceEnergy: {
+					},
+          totalSourceEnergy: {
 						endUses: {
 							electricity: [],
-							naturalGas: [] },
+							naturalGas: []
+            },
 						totalElectricity: 0,
-	    				totalNaturalGas: 0,
+	    			totalNaturalGas: 0,
 						buildingArea: 0,
 						totalIntensity: 0,
 						conditionedIntensity: 0
