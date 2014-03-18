@@ -1,6 +1,5 @@
 var sqlite3 = require('sqlite3').verbose();
 var database = '../test/Output/baseline.sql';
-var fs = require('fs');
 
 module.exports.sqlToJSON = sqlToJSON;
 
@@ -316,5 +315,5 @@ function sqlToJSON(sqlFile, fn){
 
 
 sqlToJSON("../test/eem_1.sql", function(output){
-  console.log(output.energyIntensity);
+  console.log(output);
 })
