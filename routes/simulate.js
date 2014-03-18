@@ -42,7 +42,7 @@ module.exports = {openstudio: function(request, response) {
       "ASHRAEStandard": "ASHRAE_90.1-2004"
     },
     "architecture": {
-      "footprintShape": "Rectangle",
+      "footprintShape": request.body.footprintShape,
       "buildingLength": request.body.buildingLength,
       "buildingWidth": request.body.buildingWidth,
       "buildingHeight": request.body.floorToFloorHeight*request.body.numberOfFloors,
@@ -98,11 +98,8 @@ module.exports = {openstudio: function(request, response) {
     console.log(buildingData);
 
     //SAVE formatted json to outputPath with name buildingNameTimestamp_input.json
-
     var fileString = JSON.stringify(buildingData, null, 4);
-
     fs.writeFileSync(outputPath+'/'+buildingNameTimestamp+'_input.json', fileString);
-
     console.log('Input file saved!');
 
     //RUN openstudio-run.js & openstudio-model.js

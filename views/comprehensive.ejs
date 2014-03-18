@@ -436,7 +436,7 @@
                             <div class="row">
                                 <div class="span4" >
                                     <h4>Shape</h4>
-                        			<select onchange="changeShape(this.value)" name="footprint_shape" id="footprint_shape" placeholder="footprint_shape">
+                        			<select onchange="changeShape(this.value)" name="footprintShape" id="footprintShape" placeholder="footprintShape">
                         				<option value="Rectangle" selected> Rectangle </option>
                         				<option value="L" disabled>L Shape</option>
                         				<option value="T" disabled>T Shape</option>
@@ -1032,7 +1032,7 @@
             	var roofMaterial= f.roof_type.value;
             	var wallMaterial = f.exterior_wall_type.value;
             	var windowPercent = f.windowToWallRatio.value;
-                var shape = f.footprint_shape.value;
+                var shape = f.footprintShape.value;
             
                 // error message
             	var err_msg = "Please Enter Valid: \n\n";
