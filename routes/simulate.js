@@ -17,7 +17,8 @@ module.exports = {openstudio: function(request, response) {
     var buildingNameTimestamp =  "TEST_"+buildingName+timestamp;
 
     //CREATE unique simulation Folder
-    var outputPath = "../simulations/" + buildingNameTimestamp;
+    var simulationsPath = "/home/bitnami/simulations/";  //CHANGE for your local setup: update bitnami to your username, make simulations directory
+    var outputPath = simulationsPath + buildingNameTimestamp;
     fs.mkdirSync(outputPath, function(error) {if (error) throw error;});
 
      //FORMAT request.body json to match buildingData2.json
@@ -27,7 +28,7 @@ module.exports = {openstudio: function(request, response) {
     "_id": "52a0e3ab5c9ac86f54000002",
     "username": "eebhub",
     "site":{
-        "city": "Philadelphia",
+        "city": request.body.weather,
         "weather": request.body.weather,
         "climateZone": "ClimateZone 1-8",
         "strictDesignDay": "no"
@@ -44,7 +45,7 @@ module.exports = {openstudio: function(request, response) {
       "footprintShape": "Rectangle",
       "buildingLength": request.body.buildingLength,
       "buildingWidth": request.body.buildingWidth,
-      "buildingHeight": 30,
+      "buildingHeight": request.body.floorToFloorHeight*request.body.numberOfFloors,
       "numberOfFloors": request.body.numberOfFloors,
       "floorToFloorHeight": request.body.floorToFloorHeight,
       "degreeToNorth": request.body.degreeToNorth,
@@ -66,7 +67,7 @@ module.exports = {openstudio: function(request, response) {
       "coolingSetpoint": request.body.coolingSetpoint
     },
     "construction": {
-      "constructionLibraryPath": "VirtualPULSE_default_constructions.osm"
+      "constructionLibraryPath": "defaultConstructionMaterials.osm"
     },
     "schedules": {
         "occupancy":{
@@ -88,7 +89,8 @@ module.exports = {openstudio: function(request, response) {
     },
     "paths": {
       "buildingComponentLibraryPath": "/home/bitnami/bcl",
-      "outputPath": ""
+      "simulationsPath": simulationsPath,
+      "outputPath": outputPath
     }
 
     };
