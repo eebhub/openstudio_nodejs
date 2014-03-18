@@ -42,7 +42,7 @@
       "coolingSetpoint": 24
     },
     "construction": {
-      "constructionLibraryPath": "VirtualPULSE_default_constructions.osm"
+      "constructionLibraryPath": "defaultConstructionMaterials.osm"
     },
     "schedules": {
         "occupancy":{
