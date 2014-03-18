@@ -11,7 +11,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link href="css/docs.css" rel="stylesheet">
-	<link href="css/comprehensive.css" rel="stylesheet">    
+	<link href="css/comprehensive.css" rel="stylesheet">
 
     <style>
     </style>
@@ -19,24 +19,24 @@
 
   <body>
 
-    <!-- Navbar 
+    <!-- Navbar
     ================================================== -->
-   
+
 
     <!-- Container -->
     <div class="container">
 
     <!-- Switch Pacakge -->
-   
+
 
         <!-- Sub-Nav-bar -->
-       
- 
+
+
 
       <!-- Tab Content -->
         <!-- Electricity Consumption Bar Chart -->
         <div id="Electricity-Consumption-Bar-Chart" style="width: 50%; min-width: 400px; height: 500px; float:left;"></div>
-         
+
         <!-- Natural Gas Consumption Bar Chart -->
         <div id="Natural-Gas-Consumption-Bar-Chart" style="width: 50%; min-width: 400px; height: 500px; float: left; margin-bottom: 25px;"></div>
 
@@ -77,7 +77,7 @@
           <tr class="">
             <th> Heating
             </th>
-            
+
             <% for (var i=0; i<energy.electricity.heating.length; i++) {%>
             <th> <%= energy.electricity.heating[i] %></th>
             <% } %>
@@ -86,7 +86,7 @@
             <th> Cooling
             </th>
 
-            
+
             <% for (var i=0; i<energy.electricity.cooling.length; i++) {%>
             <th> <%= energy.electricity.cooling[i] %></th>
             <% } %>
@@ -94,8 +94,8 @@
           <tr class="">
             <th> Interior Lighting
             </th>
-           
-            
+
+
             <% for (var i=0; i<energy.electricity.interiorEquipment.length; i++) {%>
             <th> <%= energy.electricity.interiorLighting[i] %></th>
             <% } %>
@@ -103,8 +103,8 @@
           <tr class="">
             <th> Interior Equipment
             </th>
-           
-            
+
+
             <% for (var i=0; i<energy.electricity.heating.length; i++) {%>
             <th> <%= energy.electricity.interiorEquipment[i] %></th>
             <% } %>
@@ -112,8 +112,8 @@
           <tr class="">
             <th> Fans
             </th>
-           
-             
+
+
             <% for (var i=0; i<energy.electricity.fans.length; i++) {%>
             <th> <%= energy.electricity.fans[i] %></th>
             <% } %>
@@ -121,9 +121,9 @@
           <tr class="">
             <th> Pumps
             </th>
-            
-             
-             
+
+
+
             <% for (var i=0; i<energy.electricity.pumps.length; i++) {%>
             <th> <%= energy.electricity.pumps[i] %></th>
             <% } %>
@@ -131,7 +131,7 @@
           <tr class="">
             <th> Heat Rejection
             </th>
-            
+
             <% for (var i=0; i<energy.electricity.heatRejection.length; i++) {%>
             <th> <%= energy.electricity.heatRejection[i] %></th>
             <% } %>
@@ -142,7 +142,7 @@
            <% for (var i=0; i<energy.electricity.humidification.length; i++) {%>
             <th> <%= energy.electricity.humidification[i] %></th>
             <% } %>
-            
+
           </tr>
           <tr class="">
             <th> Heat Recovery
@@ -150,12 +150,12 @@
            <% for (var i=0; i<energy.electricity.heatingRecovery.length; i++) {%>
             <th> <%= energy.electricity.heatingRecovery[i] %></th>
             <% } %>
-            
+
           </tr>
 			<tr class="">
 		    <th> Water Systems
 		    </th>
-		    
+
 		    <% for (var i=0; i<energy.electricity.waterSystems.length; i++) {%>
             <th> <%= energy.electricity.waterSystems[i] %></th>
             <% } %>
@@ -164,7 +164,7 @@
 		  <tr class="">
 		    <th> Regrigeration
 		    </th>
-		   
+
 		    <% for (var i=0; i<energy.electricity.exteriorEquipment.length; i++) {%>
             <th> <%= energy.electricity.exteriorEquipment[i] %></th>
             <% } %>
@@ -172,7 +172,7 @@
  		  <tr class="">
 		    <th> Generation
 		    </th>
-		    
+
 		     <% for (var i=0; i<energy.electricity.generation.length; i++) {%>
             <th> <%= energy.electricity.generation[i] %></th>
             <% } %>

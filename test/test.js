@@ -42,10 +42,10 @@ getValuesByMonth('END USE ENERGY CONSUMPTION ELECTRICITY MONTHLY', 'Meter', '', 
     console.log(results);
 });
 //Energy-Cost
-getValues('Tariff Report', 'BLDG101_ELECTRIC_RATE', 'Categories', '%',database, function(results){
-    console.log(results);
-});
+// getValues('Tariff Report', 'BLDG101_ELECTRIC_RATE', 'Categories', '%',database, function(results){
+//     console.log(results);
+// });
 //Energy-Intensity
-getValues('AnnualBuildingUtilityPerformanceSummary', 'Entire Facility', 'Site and Source Energy', '%', database, function(results){
-    console.log(results);
-});
+// getValues('AnnualBuildingUtilityPerformanceSummary', 'Entire Facility', 'Site and Source Energy', '%', database, function(results){
+//     console.log(results);
+//});

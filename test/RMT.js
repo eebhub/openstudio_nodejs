@@ -8,7 +8,7 @@ function getEnergyUse (sqlFile) {
 
     var db = new sqlite3.Database(sqlFile);
     var gets = {	electricity: {
-	    				interiorLights: [], 
+	    				interiorLights: [],
 						exteriorLights: [],
 						interiorEquipment: [],
 						exteriorEquipment: [],
@@ -20,7 +20,7 @@ function getEnergyUse (sqlFile) {
 						humidifier: [],
 						heatRecovery: [],
 						waterSystems: [],
-						cogeneration: [] 
+						cogeneration: []
 					}, naturalGas: {
 						interiorEquipment: [],
 						exteriorEquipment: [],
@@ -115,14 +115,14 @@ function getEnergyCost(sqlFile) {
 
     var db = new sqlite3.Database(sqlFile);
     var gets = {	electricity: {
-	    				energyCharges: [], 
+	    				energyCharges: [],
 						demandCharges: [],
 						serviceCharges: [],
 						adjustment: [],
 						taxes: [],
 						total: []
 					}, naturalGas: {
-						energyCharges: [], 
+						energyCharges: [],
 						demandCharges: [],
 						serviceCharges: [],
 						adjustment: [],
@@ -190,7 +190,7 @@ function getEnergyCost(sqlFile) {
 	        		break;
      			}
         	}
-        	
+
 	    }, function() {
 	        // All done fetching records, render response
 	       	console.log(gets)
@@ -226,7 +226,7 @@ function getEnergyIntensity(sqlFile) {
 	var stmt = 	'Select tableName, rowName, columnName, value, units ' +
 	 			'From tabulardatawithstrings ' +
 	 			'Where (ReportName Like "%Annual%"  Or ReportName Like "%SourceEnergyEndUse%" ) ' +
-	 			'And (TableName Like "End Uses" Or TableName Like "Site and Source Energy" ' + 
+	 			'And (TableName Like "End Uses" Or TableName Like "Site and Source Energy" ' +
 	 			'Or TableName Like "Building Area" Or TableName Like "Source Energy End Use Components Summary") ' +
 	 			'And value <> "" ';
 
@@ -237,7 +237,7 @@ function getEnergyIntensity(sqlFile) {
 
      		switch(row.tableName) {
 
-     			// Total site annual energy  
+     			// Total site annual energy
      			case 'End Uses':
      				switch(row.columnName) {
      					case 'Electricity':
@@ -256,7 +256,7 @@ function getEnergyIntensity(sqlFile) {
      					break;
      					default:
      					break;
-     				} 
+     				}
      			break;
 
      			// Total source annual energy
@@ -274,7 +274,7 @@ function getEnergyIntensity(sqlFile) {
      							gets.totalSourceEnergy.totalNaturalGas= parseFloat(row.value);
      						} else {
      							gets.totalSourceEnergy.endUses.naturalGas.push(parseFloat(row.value));
-     						}     					
+     						}
      					break;
      					default:
      					break;
@@ -317,7 +317,7 @@ function getEnergyIntensity(sqlFile) {
    						}
 					}
      			break;
-     		}        	
+     		}
 	    }, function() {
 	        // All done fetching records, render response
 	       	console.log(gets.totalSourceEnergy)
@@ -327,16 +327,8 @@ function getEnergyIntensity(sqlFile) {
 }
 
 /* ################################################################################################ */
-var sqlFile   = 'eem_1.sql'; 
+var sqlFile   = 'eem_1.sql';
 console.log('Test sqlite3 \n=====================================\nFile: '+ sqlFile);
 //getEnergyUse(sqlFile);
 //getEnergyCost(sqlFile);
-//getEnergyIntensity(sqlFile);
-
-
-
-
-
-
-
-
+/getEnergyIntensity(sqlFile);
