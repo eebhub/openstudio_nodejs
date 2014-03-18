@@ -409,19 +409,7 @@ function OpenStudioModel(building, runmanager) {
   }
 
 
-  this.add_geometry(building.architecture);
-  this.add_windows(building.architecture);
-  this.add_hvac(building.mechanical);
-  this.add_thermostats(building.mechanical);
-  this.add_constructions(building.architecture, building.construction);
-  this.add_space_type(building.buildingInfo, building.site, building.paths);
-  this.add_densities();
-  this.add_design_days(building.site, openstudio.toString(this.runManager.getConfigOptions().getDefaultEPWLocation()));
-
-
 };
 
 
 exports.OpenStudioModel = OpenStudioModel;
-
-

@@ -46,6 +46,14 @@ runmanager.setConfigOptions(co);
 
 //Send (data = buildingData.json, runmanager = disable gui) to OpenStudioModel
 var model = new OpenStudioModel(building, runmanager);
+model.add_geometry(building.architecture);
+model.add_windows(building.architecture);
+model.add_hvac(building.mechanical);
+model.add_thermostats(building.mechanical);
+model.add_constructions(building.architecture, building.construction);
+model.add_space_type(building.buildingInfo, building.site, building.paths);
+model.add_densities();
+model.add_design_days(building.site, openstudio.toString(model.runManager.getConfigOptions().getDefaultEPWLocation()));
 
 // 3 - RUN OpenStudio & save osm, idf -----------------------------------------------------------------------------------
 
