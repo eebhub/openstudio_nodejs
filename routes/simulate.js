@@ -1,8 +1,6 @@
 //DEPENDENCIES
 var fs = require("fs"); //Nodejs File System
 var timestp = require("../library/timestamp.js"); //Timestamp code
-//var openstudioRun = require("../library/openstudio-run.js");
-//var openstudioModel = require("../library/openstudio-model.js");
 
 //SIMULATE OPENSTUDIO
 module.exports = {openstudio: function(request, response) {
@@ -25,6 +23,7 @@ module.exports = {openstudio: function(request, response) {
 
     //FORMAT request.body json to match buildingData2.json
     console.log("Creating building json document...");
+    var buildingDataFileName = outputPath + simulationID +'_input.json';
     console.log("BUILDING DATA:");
     var buildingData =
     {
@@ -104,10 +103,12 @@ module.exports = {openstudio: function(request, response) {
 
     //SAVE formatted json to outputPath with name buildingNameTimestamp_input.json
     var fileString = JSON.stringify(buildingData, null, 4);
-    fs.writeFileSync(outputPath + buildingNameTimestamp+'_input.json', fileString);
+    fs.writeFileSync(buildingDataFileName, fileString);
     console.log('Input file saved!');
 
     //RUN openstudio-run.js & openstudio-model.js
+    var OpenStudioRun = require("../library/openstudio-run.js").OpenStudioRun;
+    var run = new OpenStudioRun(buildingDataFileName);
 
     //APPEND important energyplus output sql tables into original json
 
