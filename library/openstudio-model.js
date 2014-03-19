@@ -1,3 +1,4 @@
+module.exports.OpenStudioModel = OpenStudioModel;
 
 var openstudio = require("OpenStudio").openstudio;
 var sys = require('sys');
@@ -5,6 +6,7 @@ var exec = require('child_process').exec;
 
 
 function OpenStudioModel(building, runmanager) {
+  console.log("OpenStudio-Model on Node.js starting up...");
   this.model = new openstudio.model.Model();
   this.runManager = runmanager;
 
@@ -409,7 +411,4 @@ function OpenStudioModel(building, runmanager) {
   }
 
 
-};
-
-
-exports.OpenStudioModel = OpenStudioModel;
+}
