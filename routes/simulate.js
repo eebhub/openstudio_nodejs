@@ -7,26 +7,31 @@ var timestp = require("../library/timestamp.js"); //Timestamp code
 //SIMULATE OPENSTUDIO
 module.exports = {openstudio: function(request, response) {
 
-    console.log('hello from simulate.js');
+    console.log('OpenStudio on Node.js Express starting up...');
+    console.log('FORM DATA:');
     console.log(request.body);
 
-    //CREATE unique simulation Name & Timestamp
+    //CREATE unique simulation Name & Timestamp ID
+    console.log("Creating unique Building Name & Folder...");
     var buildingName = request.body.buildingName.replace(/\s+/g, '') || "NoName";
-    console.log(buildingName);
     var timestamp = timestp.createTimestamp();
     var buildingNameTimestamp =  "TEST_"+buildingName+timestamp;
+    var simulationID = buildingNameTimestamp;
 
     //CREATE unique simulation Folder
-    var simulationsPath = "/home/bitnami/simulations/";  //CHANGE for your local setup: update bitnami to your username, make simulations directory
-    var outputPath = simulationsPath + buildingNameTimestamp;
+    var simulationsPath = "../simulations/";  //CHANGE for your local setup: update bitnami to your username, make simulations directory
+    var outputPath = simulationsPath + simulationID +"/";
     fs.mkdirSync(outputPath, function(error) {if (error) throw error;});
 
-     //FORMAT request.body json to match buildingData2.json
+    //FORMAT request.body json to match buildingData2.json
+    console.log("Creating building json document...");
+    console.log("BUILDING DATA:");
     var buildingData =
     {
     "__v": 0,
     "_id": "52a0e3ab5c9ac86f54000002",
     "username": "eebhub",
+    "simulationID": simulationID,
     "site":{
         "city": request.body.weather,
         "weather": request.body.weather,
@@ -99,7 +104,7 @@ module.exports = {openstudio: function(request, response) {
 
     //SAVE formatted json to outputPath with name buildingNameTimestamp_input.json
     var fileString = JSON.stringify(buildingData, null, 4);
-    fs.writeFileSync(outputPath+'/'+buildingNameTimestamp+'_input.json', fileString);
+    fs.writeFileSync(outputPath + buildingNameTimestamp+'_input.json', fileString);
     console.log('Input file saved!');
 
     //RUN openstudio-run.js & openstudio-model.js

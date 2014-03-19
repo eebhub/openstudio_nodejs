@@ -6,16 +6,14 @@
 
 //Nodejs File System
 var fs = require("fs");
-//Timestamp code
-var timestp = require("./timestamp.js");
 
 // 1 - PARSE DATA from buildingData.json ---------------------------------------------------------------------------------
 
 //READ Building Input JSON
-var building = JSON.parse(fs.readFileSync('buildingData2.json', 'utf8')); 
+var building = JSON.parse(fs.readFileSync('buildingData3.json', 'utf8')); 
 
 //USE Building Input JSON Data Object
-console.log("OpenStudio on Node.js starting up...");
+console.log("OpenStudio-Run on Node.js starting up...");
 console.log("INPUTS:");
 console.log("Name: "+ building.buildingInfo.buildingName);
 console.log("Weather: "+ building.site.weather);
@@ -24,11 +22,8 @@ console.log("Floors: "+ building.architecture.numberOfFloors+" floors");
 console.log("Window to Wall Ratio: "+ building.architecture.windowToWallRatio);
 
 //CREATE Unique Simulation Name & Folder
-var buildingName = building.buildingInfo.buildingName.replace(/\s+/g, '') || "NoName";
-var timestamp = timestp.createTimestamp();
-var buildingNameTimestamp =  buildingName+timestamp;
-var outputPath = building.paths.simulationsPath + buildingNameTimestamp;
-fs.mkdirSync(outputPath, function(error) {if (error) throw error;});
+var simulationID = building.simulationID;
+var outputPath = building.paths.outputPath + simulationID;
 
 // 2 - REQUIRE OpenstudioModel.js file ---------------------------------------------------------------------------------
 
@@ -58,16 +53,16 @@ model.add_design_days(building.site, openstudio.toString(model.runManager.getCon
 // 3 - RUN OpenStudio & save osm, idf -----------------------------------------------------------------------------------
 
 console.log("CONVERT OPENSTUDIO TO ENERGYPLUS:");
-model.save_openstudio_osm(outputPath, buildingNameTimestamp +"_input.osm");
-model.translate_to_energyplus_and_save_idf(outputPath, buildingNameTimestamp +"_input.idf");
+model.save_openstudio_osm(outputPath, simulationID +"_input.osm");
+model.translate_to_energyplus_and_save_idf(outputPath, simulationID +"_input.idf");
 
-model.add_load_summary_report(outputPath + buildingNameTimestamp +"_input.idf");
-model.convert_unit_to_ip(outputPath + buildingNameTimestamp +"_input.idf");
+model.add_load_summary_report(outputPath + simulationID +"_input.idf");
+model.convert_unit_to_ip(outputPath + simulationID +"_input.idf");
 
 // 4 - RUN EnergyPlus & save sql, html -----------------------------------------------------------------------------------
 
 console.log("RUN ENERGYPLUS:");
-var job = model.run_energyplus_simulation(outputPath, buildingNameTimestamp +"_input.idf");
+var job = model.run_energyplus_simulation(outputPath, simulationID +"_input.idf");
 
 var treeerrors = job.treeErrors();
 
