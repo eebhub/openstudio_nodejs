@@ -66,6 +66,7 @@ app.get('/measure-list.html', routes.getMeasureList);
 app.get('/tracking-sheet.html', routes.getTrackingSheet);
 app.get('/walls', routes.getWalls);
 app.get('/tracking', routes.getTracking);
+app.get('/output', routes.testOutput);
 
 //Simulate OpenStudio & EnergyPlus
 var simulate = require("./routes/simulate.js");
@@ -83,10 +84,10 @@ app.get('/eplus_out', function(req, res){
 // db.each("SELECT * FROM Surfaces", function(err, row){
 //     str = row.SurfaceIndex + ',' + row.SurfaceName + ',' + row.Area + '\n';
 //   console.log(str);
-  
+
 // });
 // });
-// db.close(); 
+// db.close();
 
 
 /*test getValue*/
@@ -103,10 +104,8 @@ app.get('/eplus_out', function(req, res){
 
 /*test getValuesByMonthly*/
 
-var sqlite3 = require('./lib/eeb_sqlite3.js');
-sqlite3.getValuesByMonthly('ENVELOPE%', 'ENTIRE%', 'Opaque Exterior', 'Btu%', 'test/eem_1.sql', function(results){
-    console.log(results);
-});
+
+
 
 });
 
@@ -139,11 +138,11 @@ io.sockets.on('connection', function(socket) {
 
     var path = "http://128.118.67.241/openstudio/outputs/ENERGYPLUS/idf/Simulation_"+value+".idf/EnergyPlusPreProcess/EnergyPlus-0/stdout";
 
-    if (fs.existsSync(path)) 
+    if (fs.existsSync(path))
     {
         tail = new Tail(path);
         console.log("**********" + value);
-  
+
         tail.on('line', function(data) {
           return io.sockets.emit('new-data', {
           channel: 'stdout',
@@ -155,7 +154,7 @@ io.sockets.on('connection', function(socket) {
     {
       console.log("file not found");
     }
-	
+
 });
 
   return socket.emit('new-data', {

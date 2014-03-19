@@ -1,5 +1,5 @@
 var sqlite3 = require('sqlite3').verbose();
-var database = '../test/Output/baseline.sql';
+
 
 module.exports.sqlToJSON = sqlToJSON;
 
@@ -311,9 +311,3 @@ function sqlToJSON(sqlFile, fn){
   db.close();
 
 }
-
-
-
-sqlToJSON("../test/eem_1.sql", function(output){
-  console.log(output);
-})

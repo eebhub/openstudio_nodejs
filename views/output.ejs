@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>EEB Hub Simulation Tools: Comprehensive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="css/comprehensive.css" rel="stylesheet">
+
+
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/">EEB Hub Retrofit Manager</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li>
+                            <a href="">Data Structure</a>
+                        </li>
+                        <li>
+                            <a href="walls">Wall Editor</a>
+                        </li>
+                        <li>
+                            <a href="">Parallel Simulations</a>
+                        </li>
+                        <li>
+                            <a href="energy-use">EnergyPlus Graphs</a>
+                        </li>
+                        <li>
+                            <a href="simulations">EnergyPlus Files</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+                <div class="pull-right text-right">
+                    <ul class="nav pull-right">
+                        <li>
+                            <a href="http://www.buildsci.us/openstudio-nodejs.html">by PSU & UMd</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div>
+<div id="basicChart" style="height:400px; width:600px">
+</div>
+  <script>
+    window.onload = function () {
+    var chart = new CanvasJS.Chart("basicChart",
+    {
+      title:{
+        text: "A Stacked Area Chart"
+
+      },
+      backgroundColor: "rgba(0,0,0,0)",
+      data: [{
+        name:"Interior Lights",
+        showInLegend:true,
+        type: "stackedArea", //or stackedColumn
+        dataPoints: [
+        { label: "January", y: <%= output.energyUse.electricity.interiorLights[0] %> },
+        { label: "February", y: <%= output.energyUse.electricity.interiorLights[1] %>},
+        { label: "March", y: <%= output.energyUse.electricity.interiorLights[2] %> },
+        { label: "April", y: <%= output.energyUse.electricity.interiorLights[3] %> },
+        { label: "May", y: <%= output.energyUse.electricity.interiorLights[0] %> },
+        { label: "June", y: <%= output.energyUse.electricity.interiorLights[1] %>},
+        { label: "July", y: <%= output.energyUse.electricity.interiorLights[2] %> },
+        { label: "August", y: <%= output.energyUse.electricity.interiorLights[3] %> },
+        { label: "September", y: <%= output.energyUse.electricity.interiorLights[0] %> },
+        { label: "October", y: <%= output.energyUse.electricity.interiorLights[1] %>},
+        { label: "November", y: <%= output.energyUse.electricity.interiorLights[2] %> },
+        { label: "December", y: <%= output.energyUse.electricity.interiorLights[3] %> }
+        ]
+      },{
+        type: "stackedArea", //or stackedColumn
+        name:"Cooling",
+        showInLegend:true,
+        dataPoints: [
+        { label: "January", y: <%= output.energyUse.electricity.cooling[0] %> },
+        { label: "February", y: <%= output.energyUse.electricity.cooling[1] %>},
+        { label: "March", y: <%= output.energyUse.electricity.cooling[2] %> },
+        { label: "April",y:<%= output.energyUse.electricity.cooling[3] %>},
+        { label: "May", y: <%= output.energyUse.electricity.cooling[4] %> },
+        { label: "June", y: <%= output.energyUse.electricity.cooling[5] %>},
+        { label: "July", y: <%= output.energyUse.electricity.cooling[6] %> },
+        { label: "August", y: <%= output.energyUse.electricity.cooling[7] %> },
+        { label: "September", y: <%= output.energyUse.electricity.cooling[8] %> },
+        { label: "October", y: <%= output.energyUse.electricity.cooling[9] %>},
+        { label: "November", y: <%= output.energyUse.electricity.cooling[10] %> },
+        { label: "December", y: <%= output.energyUse.electricity.cooling[11] %> }
+        ]
+      }
+      ]
+    });
+
+    chart.render();
+  }
+  </script>
+  <script src="js/canvasjs.min.js"></script>
+</body>
+
+</html>
