@@ -13,7 +13,7 @@ module.exports = {openstudio: function(request, response) {
     console.log("Creating unique Building Name & Folder...");
     var buildingName = request.body.buildingName.replace(/\s+/g, '') || "NoName";
     var timestamp = timestp.createTimestamp();
-    var buildingNameTimestamp =  "TEST_"+buildingName+timestamp;
+    var buildingNameTimestamp =  buildingName+timestamp;
     var simulationID = buildingNameTimestamp;
 
     //CREATE unique simulation Folder
