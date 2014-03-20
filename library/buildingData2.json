@@ -42,7 +42,7 @@
       "coolingSetpoint": 24
     },
     "construction": {
-      "constructionLibraryPath": "VirtualPULSE_default_constructions.osm"
+      "constructionLibraryPath": "defaultConstructionMaterials.osm"
     },
     "schedules": {
         "occupancy":{
@@ -64,7 +64,8 @@
     },    
     "paths": {
       "buildingComponentLibraryPath": "/home/bitnami/bcl",
-      "outputPath": ""
+      "outputPath": "",
+      "simulationsPath":"/home/bitnami/simulations/"
     }
 
 }

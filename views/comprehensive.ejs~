@@ -232,7 +232,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li>
-                                <a href="data-structure">Data Structure</a>
+                                <a href="">Data Structure</a>
                             </li>
                             <li>
                                 <a href="walls">Wall Editor</a>
@@ -1013,7 +1013,7 @@
 				setTimeout(function(){				// wait 15 seconds until file is created to start loading bar
 					//console.log("waited");			
 					socket.emit('randomNumber', currentRanNum);
-				},3000);
+				},5000);
 				
 							
 			}

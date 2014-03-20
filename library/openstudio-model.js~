@@ -29,7 +29,7 @@ function OpenStudioModel(building, runmanager) {
     for (var floor = 0; floor < num_floors; ++floor) {
       var z = floor_to_floor_height * floor;
       var story = new openstudio.model.BuildingStory(this.model);
-      story.setNominalFloortoFloorHeight(floor_to_floor_height);
+      story.setNominalFloortoFloorHeight(architecture.floorToFloorHeight);
       story.setName("Story " + (floor + 1));
       var nw_point = new openstudio.Point3d(0,width,z);
       var ne_point = new openstudio.Point3d(length,width,z);
