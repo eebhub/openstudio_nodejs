@@ -34,46 +34,46 @@ module.exports = {openstudio: function(request, response) {
     "username": "eebhub",
     "simulationID": simulationID,
     "site":{
-        "city": "Philadelphia",
-        "weather": "USA_IL_Chicago-OHare.Intl.AP.725300_TMY3",
+        "city": request.body.weather,
+        "weather": request.body.weather,
         "climateZone": "ClimateZone 1-8",
         "strictDesignDay": "no"
     },
     "buildingInfo": {
-      "buildingName": "JASON",
-      "activityType": "SmallOffice",
+      "buildingName": request.body.buildingName,
+      "activityType": request.body.activityType,
       "activityTypeSecondary": "WholeBuilding",
-      "yearCompleted": "1911",
+      "yearCompleted": request.body.yearCompleted,
       "units": "si",
       "ASHRAEStandard": "ASHRAE_90.1-2004"
     },
     "architecture": {
-      "footprintShape": "Rectangle",
-      "buildingLength": 100,
-      "buildingWidth": 50,
-      "buildingHeight": 30,
-      "numberOfFloors": 3,
-      "floorToFloorHeight": 3.0,
-      "degreeToNorth": 15,
-      "plenumHeight": 1.0,
+      "footprintShape": request.body.footprintShape,
+      "buildingLength": request.body.buildingLength,
+      "buildingWidth": request.body.buildingWidth,
+      "buildingHeight": request.body.floorToFloorHeight*request.body.numberOfFloors,
+      "numberOfFloors": request.body.numberOfFloors,
+      "floorToFloorHeight": request.body.floorToFloorHeight,
+      "degreeToNorth": request.body.degreeToNorth,
+      "plenumHeight": 0.0,
       "perimeterZoneDepth": 3.0,
-      "windowToWallRatio": 0.4,
+      "windowToWallRatio": request.body.windowToWallRatio,
       "windowOffset": 1.0,
       "windowOffsetApplicationType": "Above Floor"
     },
     "mechanical": {
-      "fanEfficiency": 0.5,
-      "boilerEfficiency": 0.66,
-      "boilerFuelType": "NaturalGas",
-      "coilCoolRatedHighSpeedCOP": 3.5,
-      "coilCoolRatedLowSpeedCOP": 4.5,
-      "economizerType": "No Economizer",
+      "fanEfficiency": request.body.fanEfficiency,
+      "boilerEfficiency": request.body.boilerEfficiency,
+      "boilerFuelType": request.body.boilerFuelType,
+      "coilCoolRatedHighSpeedCOP": request.body.coilCoolRatedHighSpeedCOP,
+      "coilCoolRatedLowSpeedCOP": request.body.coilCoolRatedLowSpeedCOP,
+      "economizerType": request.body.economizerType,
       "economizerDryBulbTempLimit": 30,
-      "heatingSetpoint": 20,
-      "coolingSetpoint": 24
+      "heatingSetpoint": request.body.heatingSetpoint,
+      "coolingSetpoint": request.body.coolingSetpoint
     },
     "construction": {
-      "constructionLibraryPath": "/home/joshuakuiros/Desktop/openstudio_nodjs/library/defaultConstructionMaterials.osm"
+      "constructionLibraryPath": "../library/defaultConstructionMaterials.osm"
     },
     "schedules": {
         "occupancy":{

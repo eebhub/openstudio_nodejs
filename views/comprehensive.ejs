@@ -411,7 +411,7 @@
                                             </li>
                                             <li>
                                                 <div class="input-append">
-                                                    <input class="span1" id="window_to_wall_ratio" type="text" value={{winwall}} ng-model="winwall" name="windowToWallRatio">
+                                                    <input class="span1" id="window_to_wall_ratio" type="number" value={{winwall}} ng-model="winwall" name="windowToWallRatio">
                                                     <span class="add-on">%</span>
                                                 </div>
                                             </li>
@@ -421,12 +421,6 @@
                                     <h4>Floor to Floor Height</h4>
                                     <div class="input-append">
                                         <input type="number" id="floor_to_floor_height" name="floorToFloorHeight" step="0.001">
-
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                    <h4>Plenum Height <small>space for ducts; ceiling to floor above</small></h4>
-                                    <div class="input-append">
-                                        <input type="number" id="plenum_height" name="plenumHeight" step="0.001">
 
                                         <span class="add-on"><span class="unit">m</span></span>
                                     </div>
@@ -467,7 +461,7 @@
                                                 
                                                 <li>
                                                     <div class="input-append">
-                                                        <input class="span1" type="text" value={{orientation}} name="degreeToNorth" ng-model="orientation"/>
+                                                        <input class="span1" type="number" value={{orientation}} name="degreeToNorth" ng-model="orientation"/>
                                                         <span class="add-on">&deg;</span>
                                                     </div>
                                                 </li>
