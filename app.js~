@@ -56,6 +56,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+
+
 app.get('/', routes.getHome);
 app.get('/form', routes.getForm);
 app.get('/energy-use', energy.getEnergyUse);

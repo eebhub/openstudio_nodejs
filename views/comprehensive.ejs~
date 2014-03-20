@@ -1013,7 +1013,7 @@
 				setTimeout(function(){				// wait 15 seconds until file is created to start loading bar
 					//console.log("waited");			
 					socket.emit('randomNumber', currentRanNum);
-				},3000);
+				},5000);
 				
 							
 			}

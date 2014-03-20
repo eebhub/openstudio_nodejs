@@ -21,7 +21,7 @@ module.exports = {openstudio: function(request, response) {
     var outputPath = simulationsPath + simulationID +"/";
     fs.mkdirSync(outputPath, function(error) {if (error) throw error;});
 
-    findStdOut = outputPath;		// set global variable from app.js to simulationID
+    findStdOut = outputPath;
 
     //FORMAT request.body json to match buildingData2.json
     console.log("Creating building json document...");
