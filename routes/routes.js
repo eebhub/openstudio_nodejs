@@ -35,6 +35,10 @@ module.exports = {
         response.render('tracking-sheet');
     },
 
+    getDataStructure: function(request, response){
+        response.render('data-structure');
+    },
+
     getWalls: function(request, response){
         response.render('walls');
     }

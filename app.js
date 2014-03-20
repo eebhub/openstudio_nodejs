@@ -64,6 +64,7 @@ app.get('/energy-cost.html', routes.getEnergyCost);
 app.get('/zone-component-load.html', routes.getZoneLoads);
 app.get('/measure-list.html', routes.getMeasureList);
 app.get('/tracking-sheet.html', routes.getTrackingSheet);
+app.get('/data-structure', routes.getDataStructure);
 app.get('/walls', routes.getWalls);
 app.get('/tracking', routes.getTracking);
 
