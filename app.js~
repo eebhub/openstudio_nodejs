@@ -137,13 +137,14 @@ io.sockets.on('connection', function(socket) {
   socket.on('randomNumber', function(value){
     
     findStdOut = findStdOut + "1-EnergyPlus-0/stdout"; 
-    //console.log('###$$$###$$$###$$' + findStdOut);
+    console.log('###$$$###$$$###$$' + findStdOut);
     
    
 	
     if (fs.existsSync(findStdOut))
     {
         tail = new Tail(findStdOut);
+        console.log("**********" + value);
 
         tail.on('line', function(data) {
           return io.sockets.emit('new-data', {
