@@ -1,0 +1,79 @@
+<div id="electricityMonthlyCostChart" style="width:90%">
+</div>
+<script>
+ $(function () {
+          $('#electricityMonthlyCostChart').highcharts({
+              chart: {
+                  zoomType: 'xy'
+              },
+              title: {
+                  text: 'Electricity Monthly Cost ($)'
+              },
+              xAxis: {
+                  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Max']
+              },
+              yAxis: {
+                  min: 0,
+                  title: {
+                      text: 'dollars ($) '
+                  },
+                  stackLabels: {
+                      enabled: true,
+                      style: {
+                          fontWeight: 'bold',
+                          color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                      }
+                  }
+              },
+              legend: {
+                  align: 'center',
+                  x: 0,
+                  verticalAlign: 'bottom',
+                  y: 0,
+                  floating: false,
+                  backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                  borderColor: '#CCC',
+                  borderWidth: 1,
+                  shadow: true
+              },
+              tooltip: {
+                  formatter: function() {
+                      return '<b>'+ this.x +'</b><br/>'+
+                          this.series.name +': '+ this.y +'<br/>'+
+                          'Total: '+ this.point.stackTotal;
+                  }
+              },
+              plotOptions: {
+                  column: {
+                      stacking: 'normal',
+                      dataLabels: {
+                          enabled: false,
+                          color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                      }
+                  }
+              },
+              series: [{
+                  name: 'Energy Charges ($)',
+                  type: 'column',
+                  data: [8663.3,7818.4,8561.0,8461.3,8740.7,10974.0,14013.5,12659.8,10140.3,8693.5,8325.5,8825.0,14013.5,]              }, {
+                  name: 'Demand Charges ($)',
+                  type: 'column',
+                  data: []              }, {
+                  name: 'Service Changes ($)',
+                  type: 'column',
+                  data: []              },{
+                  name: 'Adjustment ($)',
+                  type: 'column',
+                  data: []              }, {
+                  name: 'Taxes',
+                  type: 'column',
+                  data: []              },{
+                  name: 'Bill ($)',
+                  type: 'spline',
+                  marker: {
+                      symbol: 'square'
+                  },
+                  data: [8663.3,7818.4,8561.0,8461.3,8740.7,10974.0,14013.5,12659.8,10140.3,8693.5,8325.5,8825.0,14013.5,]      
+              }]
+          });
+      });</script>

@@ -1,0 +1,37 @@
+<table class="table table-bordered table-striped">
+    <caption>
+        <h3>Annual Energy Consumption and Intensity</h3>
+    </caption>
+    <thead>
+        <tr class="">
+            <td>-</td>
+            <td>Total Electricity</td>
+            <td>Total Natural Gas</td>
+            <td>Total Energy</td>
+            <td>Area</td>
+            <td>Energy Per Total Building Area</td>
+            <td>Energy Per Conditioned Building Area</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr >
+            <td>Total Site Energy</td>
+            <td><%= output.energyIntensity.totalSiteEnergy.totalElectricity %></td>
+            <td><%= output.energyIntensity.totalSiteEnergy.totalNaturalGas %></td>
+            <td></td>
+            <td><%= output.energyIntensity.totalSiteEnergy.buildingArea %></td>
+            <td><%= output.energyIntensity.totalSiteEnergy.totalIntensity %></td>
+            <td><%= output.energyIntensity.totalSiteEnergy.conditionedIntensity %></td>
+            
+        </tr>
+        <tr>
+            <td>Total Source Energy</td>
+            <td><%= output.energyIntensity.totalSourceEnergy.totalElectricity %></td>
+            <td><%= output.energyIntensity.totalSourceEnergy.totalNaturalGas %></td>
+            <td></td>
+            <td><%= output.energyIntensity.totalSourceEnergy.buildingArea %></td>
+            <td><%= output.energyIntensity.totalSourceEnergy.totalIntensity %></td>
+            <td><%= output.energyIntensity.totalSourceEnergy.conditionedIntensity %></td>
+        </tr>
+    </tbody>
+</table>

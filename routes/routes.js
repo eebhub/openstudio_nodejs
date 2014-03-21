@@ -46,6 +46,7 @@ module.exports = {
     testOutput: function(request, response){
       var database = "test/eem_1.sql";
       sqlToJSON(database, function(ePlusOutputs){
+          console.log(ePlusOutputs.energyUse.naturalGas);
           response.render('output', {
               output: ePlusOutputs
           })

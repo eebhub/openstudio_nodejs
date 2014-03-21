@@ -1,0 +1,80 @@
+<div id="naturalGasMonthlyCostChart" style="width:90%">
+</div>
+<script>
+     $(function () {
+          $('#naturalGasMonthlyCostChart').highcharts({
+              chart: {
+                  zoomType: 'xy'
+              },
+              title: {
+                  text: 'Natural Gas Monthly Cost ($)'
+              },
+              xAxis: {
+                  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Max']
+              },
+              yAxis: {
+                  min: 0,
+                  title: {
+                      text: 'dollars ($) '
+                  },
+                  stackLabels: {
+                      enabled: true,
+                      style: {
+                          fontWeight: 'bold',
+                          color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                      }
+                  }
+              },
+              legend: {
+                  align: 'center',
+                  x: 0,
+                  verticalAlign: 'bottom',
+                  y: 0,
+                  floating: false,
+                  backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                  borderColor: '#CCC',
+                  borderWidth: 1,
+                  shadow: true
+              },
+              tooltip: {
+                  formatter: function() {
+                      return '<b>'+ this.x +'</b><br/>'+
+                          this.series.name +': '+ this.y +'<br/>'+
+                          'Total: '+ this.point.stackTotal;
+                  }
+              },
+              plotOptions: {
+                  column: {
+                      stacking: 'normal',
+                      dataLabels: {
+                          enabled: false,
+                          color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                      }
+                  }
+              },
+              series: [{
+                  name: 'Energy Charges ($)',
+                  type: 'column',
+                  data: [11956.5,8792.5,4628.9,1701.0,135.7,1.0,0.6,0.6,17.8,1657.9,4589.4,7597.6,11956.5,]              }, {
+                  name: 'Demand Charges ($)',
+                  type: 'column',
+                  data: []              }, {
+                  name: 'Service Changes ($)',
+                  type: 'column',
+                  data: []              },{
+                  name: 'Adjustment ($)',
+                  type: 'column',
+                  data: []              }, {
+                  name: 'Taxes',
+                  type: 'column',
+                  data: []              },{
+                  name: 'Bill ($)',
+                  type: 'spline',
+                  marker: {
+                      symbol: 'square'
+                  },
+                  data: [11956.5,8792.5,4628.9,1701.0,135.7,1.0,0.6,0.6,17.8,1657.9,4589.4,7597.6,11956.5,]      
+              }]
+          });
+      });
+    </script>

@@ -1,0 +1,129 @@
+<table class="table table-striped table-border" style="width:100%">
+    <caption>
+        <h3>Electricity Energy Consumption (kWh)</h3>
+    </caption>
+    <thead>
+        <tr>
+            <th>-</th>
+            <th>Jan</th>
+            <th>Feb</th>
+            <th>Mar</th>
+            <th>Apr</th>
+            <th>May</th>
+            <th>Jun</th>
+            <th>Jul</th>
+            <th>Aug</th>
+            <th>Sep</th>
+            <th>Oct</th>
+            <th>Nov</th>
+            <th>Dec</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="">
+            <th> Heating
+            </th>
+
+            <% for (var i=0; i<12; i++) {%>
+            <th> <%= output.energyUse.electricity.heating[i] %></th>
+            <% } %>
+          </tr>
+          <tr class="">
+            <th> Cooling
+            </th>
+
+
+            <% for (var i=0; i<12; i++) {%>
+            <th> <%= Math.round(output.energyUse.electricity.cooling[i]) %></th>
+            <% } %>
+          </tr>
+          <tr class="">
+            <th> Interior Lighting
+            </th>
+
+
+            <% for (var i=0; i<12; i++) {%>
+            <th> <%= output.energyUse.electricity.exteriorLights[i] %></th>
+            <% } %>
+          </tr>
+          <tr class="">
+            <th> Interior Equipment
+            </th>
+
+
+            <% for (var i=0; i<12; i++) {%>
+            <th> <%= output.energyUse.electricity.interiorEquipment[i] %></th>
+            <% } %>
+          </tr>
+          <tr class="">
+            <th> Fans
+            </th>
+
+
+            <% for (var i=0; i<12; i++) {%>
+            <th> <%= output.energyUse.electricity.fans[i] %></th>
+            <% } %>
+          </tr>
+          <tr class="">
+            <th> Pumps
+            </th>
+
+
+
+            <% for (var i=0; i<12; i++) {%>
+            <th> <%= output.energyUse.electricity.pumps[i] %></th>
+            <% } %>
+          </tr>
+          <tr class="">
+            <th> Heat Rejection
+            </th>
+
+            <% for (var i=0; i<12; i++) {%>
+            <th> <%= output.energyUse.electricity.heatRejection[i] %></th>
+            <% } %>
+          </tr>
+          <tr class="">
+            <th> Humidification
+            </th>
+           <% for (var i=0; i<12; i++) {%>
+            <th> <%= output.energyUse.electricity.humidifier[i] %></th>
+            <% } %>
+
+          </tr>
+          <tr class="">
+            <th> Heat Recovery
+            </th>
+           <% for (var i=0; i<12; i++) {%>
+            <th> <%= output.energyUse.electricity.heatRecovery[i] %></th>
+            <% } %>
+
+          </tr>
+			<tr class="">
+		    <th> Water Systems
+		    </th>
+
+		    <% for (var i=0; i<12; i++) {%>
+            <th> <%= output.energyUse.electricity.waterSystems[i] %></th>
+            <% } %>
+
+		  </tr>
+		  <tr class="">
+		    <th> Regrigeration
+		    </th>
+
+		    <% for (var i=0; i<12; i++) {%>
+            <th> <%= output.energyUse.electricity.exteriorEquipment[i] %></th>
+            <% } %>
+		  </tr>
+ 		  <tr class="">
+		    <th> Generation
+		    </th>
+
+		     <% for (var i=0; i<12; i++) {%>
+            <th> <%= Math.round(output.energyUse.electricity.cogeneration[i]) %></th>
+            <% } %>
+		  </tr>
+    </tbody>
+
+
+</table>

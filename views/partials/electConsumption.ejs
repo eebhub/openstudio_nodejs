@@ -1,0 +1,102 @@
+<div id="electConsumption" style="width:100%;height:450px"></div>
+
+<script>
+    $(function() {
+        $('#electConsumption').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Electricity Consumption'
+            },
+            xAxis: {
+                categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'kWh'
+                },
+                stackLabels: {
+                    enabled: true,
+                    rotation:-45,
+                    y:-20,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'center',
+                
+                verticalAlign: 'bottom',
+                y: 0,
+                floating: false,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>' + this.x + '</b><br/>' +
+                        this.series.name + ': ' + this.y + '<br/>' +
+                        'Total: ' + this.point.stackTotal;
+                }
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: false,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                        style: {
+                            textShadow: '0 0 3px black, 0 0 3px black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Interior Lights',
+                data: [<%= output.energyUse.electricity.interiorLights   %>]
+            },{
+                name: 'Exterior Lights',
+                data: [<%= output.energyUse.electricity.exteriorLights   %>]
+            },{
+                name: 'Interior Equipment',
+                data: [<%= output.energyUse.electricity.interiorEquipment   %>]
+            },{
+                name: 'Exterior Equipment',
+                data: [<%= output.energyUse.electricity.exteriorEquipment   %>]
+            },{
+                name: 'Fans',
+                data: [<%= output.energyUse.electricity.fans   %>]
+            },{
+                name: 'Pumps',
+                data: [<%= output.energyUse.electricity.pumps   %>]
+            },{
+                name: 'Heating',
+                data: [<%= output.energyUse.electricity.heating   %>]
+            },{
+                name: 'Cooling',
+                data: [<%= output.energyUse.electricity.cooling   %>]
+            },{
+                name: 'Heat Rejection',
+                data: [<%= output.energyUse.electricity.heatRejection   %>]
+            },{
+                name: 'Humidifier',
+                data: [<%= output.energyUse.electricity.humidifier   %>]
+            },{
+                name: 'Heat Recovery',
+                data: [<%= output.energyUse.electricity.heatRecovery   %>]
+            },{
+                name: 'Water Systems',
+                data: [<%= output.energyUse.electricity.waterSystems   %>]
+            },{
+                name: 'Cogeneration',
+                data: [<%= output.energyUse.electricity.cogeneration   %>]
+            }]
+        });
+    });
+</script>

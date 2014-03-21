@@ -13,6 +13,8 @@
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link href="css/docs.css" rel="stylesheet">
     <link href="css/comprehensive.css" rel="stylesheet">
+    <link href="css/partial.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
 
 
     <style>
@@ -38,7 +40,7 @@
                             <a href="walls">Wall Editor</a>
                         </li>
                         <li>
-                            <a href="">Parallel Simulations</a>
+                            <a href="#">Parallel Simulations</a>
                         </li>
                         <li>
                             <a href="energy-use">EnergyPlus Graphs</a>
@@ -58,62 +60,106 @@
                 </div>
             </div>
         </div>
-</div>
-<div id="basicChart" style="height:400px; width:600px">
-</div>
-  <script>
-    window.onload = function () {
-    var chart = new CanvasJS.Chart("basicChart",
-    {
-      title:{
-        text: "A Stacked Area Chart"
+    </div>
+    <div class="container">
 
-      },
-      backgroundColor: "rgba(0,0,0,0)",
-      data: [{
-        name:"Interior Lights",
-        showInLegend:true,
-        type: "stackedArea", //or stackedColumn
-        dataPoints: [
-        { label: "January", y: <%= output.energyUse.electricity.interiorLights[0] %> },
-        { label: "February", y: <%= output.energyUse.electricity.interiorLights[1] %>},
-        { label: "March", y: <%= output.energyUse.electricity.interiorLights[2] %> },
-        { label: "April", y: <%= output.energyUse.electricity.interiorLights[3] %> },
-        { label: "May", y: <%= output.energyUse.electricity.interiorLights[0] %> },
-        { label: "June", y: <%= output.energyUse.electricity.interiorLights[1] %>},
-        { label: "July", y: <%= output.energyUse.electricity.interiorLights[2] %> },
-        { label: "August", y: <%= output.energyUse.electricity.interiorLights[3] %> },
-        { label: "September", y: <%= output.energyUse.electricity.interiorLights[0] %> },
-        { label: "October", y: <%= output.energyUse.electricity.interiorLights[1] %>},
-        { label: "November", y: <%= output.energyUse.electricity.interiorLights[2] %> },
-        { label: "December", y: <%= output.energyUse.electricity.interiorLights[3] %> }
-        ]
-      },{
-        type: "stackedArea", //or stackedColumn
-        name:"Cooling",
-        showInLegend:true,
-        dataPoints: [
-        { label: "January", y: <%= output.energyUse.electricity.cooling[0] %> },
-        { label: "February", y: <%= output.energyUse.electricity.cooling[1] %>},
-        { label: "March", y: <%= output.energyUse.electricity.cooling[2] %> },
-        { label: "April",y:<%= output.energyUse.electricity.cooling[3] %>},
-        { label: "May", y: <%= output.energyUse.electricity.cooling[4] %> },
-        { label: "June", y: <%= output.energyUse.electricity.cooling[5] %>},
-        { label: "July", y: <%= output.energyUse.electricity.cooling[6] %> },
-        { label: "August", y: <%= output.energyUse.electricity.cooling[7] %> },
-        { label: "September", y: <%= output.energyUse.electricity.cooling[8] %> },
-        { label: "October", y: <%= output.energyUse.electricity.cooling[9] %>},
-        { label: "November", y: <%= output.energyUse.electricity.cooling[10] %> },
-        { label: "December", y: <%= output.energyUse.electricity.cooling[11] %> }
-        ]
-      }
-      ]
-    });
+        <div class="row">
 
-    chart.render();
-  }
-  </script>
-  <script src="js/canvasjs.min.js"></script>
+
+            <div class="navbar">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <a class="brand" href="#">Energy</a>
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="#use" data-toggle="tab">Use</a>
+                            </li>
+                            <li>
+                                <a href="#intensity" data-toggle="tab">Intensity</a>
+                            </li>
+                            <li>
+                                <a href="#costs" data-toggle="tab">Costs</a>
+                            </li>
+                            <li>
+                                <a href="#zones" data-toggle="tab">Zone Loads</a>
+                            </li>
+                            <li>
+                                <a href="#tracking" data-toggle="tab">Tracking</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="use">
+                    <div class="row">
+                        <div class="box-unit span6">
+
+                            <% include partials/electConsumption %>
+                        </div>
+                        <div class="box-unit span6">
+                            <% include partials/ngConsumption %>
+                        </div>
+                    </div>
+                    <div class="box-unit">
+                        <% include partials/electConsumptionTable %>
+                    </div>
+                </div>
+                <div class="tab-pane" id="intensity">
+                    <div class="box-unit">
+                        <% include partials/siteSourceConsumption %>
+                    </div>
+                    <div class="box-unit">
+                        <% include partials/annualEnergyConsumptionIntensityTable %>
+                    </div>
+                    <div class="row">
+                        <div class="box-unit span6">
+
+                            <% include partials/energyTotalBuildingAreaChart %>
+                        </div>
+                        <div class="box-unit span6">
+                            <% include partials/energyConditionedBuildingArea %>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="costs">
+                    <div class="box-unit">
+                        <% include partials/electricityMonthlyCostChart %>
+                    </div>
+                    <div class="box-unit">
+                        <% include partials/electricityMonthlyCostTable %>
+                    </div>
+                    <div class="box-unit">
+                        <% include partials/naturalGasMonthlyCostChart %>
+                    </div>
+                    <div class="box-unit">
+                        <% include partials/naturalGasMonthlyCostTable %>
+                    </div>
+                </div>
+                <div class="tab-pane" id="zones">
+                    <div class="box-unit">
+                        <h1>Zone Loads Coming Soon</h1>
+                        </div>
+                </div>
+                <div class="tab-pane" id="tracking">
+                    <div class="box-unit">
+                        <h1>Tracking Sheet Coming Soon</h1>
+                        </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        
+
+
+    </div>
+
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Highcharts-3.0.4/js/highcharts.js"></script>
+    <script src="js/Highcharts-3.0.4/js/modules/exporting.js"></script>
 </body>
 
 </html>
