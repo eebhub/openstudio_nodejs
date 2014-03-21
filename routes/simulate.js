@@ -49,28 +49,28 @@ module.exports = {openstudio: function(request, response) {
     },
     "architecture": {
       "footprintShape": request.body.footprintShape,
-      "buildingLength": request.body.buildingLength,
-      "buildingWidth": request.body.buildingWidth,
+      "buildingLength": request.body.buildingLength*1,
+      "buildingWidth": request.body.buildingWidth*1,
       "buildingHeight": request.body.floorToFloorHeight*request.body.numberOfFloors,
-      "numberOfFloors": request.body.numberOfFloors,
-      "floorToFloorHeight": request.body.floorToFloorHeight,
-      "degreeToNorth": request.body.degreeToNorth,
+      "numberOfFloors": request.body.numberOfFloors*1,
+      "floorToFloorHeight": request.body.floorToFloorHeight*1,
+      "degreeToNorth": request.body.degreeToNorth*1,
       "plenumHeight": 0.0,
       "perimeterZoneDepth": 3.0,
-      "windowToWallRatio": request.body.windowToWallRatio,
+      "windowToWallRatio": request.body.windowToWallRatio*1,
       "windowOffset": 1.0,
       "windowOffsetApplicationType": "Above Floor"
     },
     "mechanical": {
-      "fanEfficiency": request.body.fanEfficiency,
-      "boilerEfficiency": request.body.boilerEfficiency,
+      "fanEfficiency": request.body.fanEfficiency*1,
+      "boilerEfficiency": request.body.boilerEfficiency*1,
       "boilerFuelType": request.body.boilerFuelType,
-      "coilCoolRatedHighSpeedCOP": request.body.coilCoolRatedHighSpeedCOP,
-      "coilCoolRatedLowSpeedCOP": request.body.coilCoolRatedLowSpeedCOP,
+      "coilCoolRatedHighSpeedCOP": request.body.coilCoolRatedHighSpeedCOP*1,
+      "coilCoolRatedLowSpeedCOP": request.body.coilCoolRatedLowSpeedCOP*1,
       "economizerType": request.body.economizerType,
       "economizerDryBulbTempLimit": 30,
-      "heatingSetpoint": request.body.heatingSetpoint,
-      "coolingSetpoint": request.body.coolingSetpoint
+      "heatingSetpoint": request.body.heatingSetpoint*1,
+      "coolingSetpoint": request.body.coolingSetpoint*1
     },
     "construction": {
       "constructionLibraryPath": "../library/defaultConstructionMaterials.osm"
@@ -115,7 +115,7 @@ module.exports = {openstudio: function(request, response) {
     //APPEND important energyplus output sql tables into original json
 
     //WRITE Output to buildingData.json
-
+    
     //RENDER EnergyPlus Graphs & Files outputs.ejs
     response.redirect(outputPath); //redirecting to folder until outputs.ejs ready
 
