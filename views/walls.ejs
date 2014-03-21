@@ -12,6 +12,8 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="js/kinetic.js"></script>
     <script src="js/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
+    <script src="js/bootstrap.js" rel="stylesheet"></script>
+
     
     <style>
       body {
@@ -23,22 +25,25 @@
   </head>
   
   <body>
+    <h1 style="text-align:center">Wall Editor</h1>
+    <div style="float:left">
     <div id="container"></div>
-    <div style ="position: absolute; top:110px; left:-65px; width:200px; 
+    <div style ="position: absolute;top:170px; left:-65px; width:200px; 
     	-webkit-transform: rotate(270deg);
 		-moz-transform: rotate(270deg);   
 		-o-transform: rotate(270deg);">Width</div>
-	<div style="position: absolute; top:75px; left:285px; width:200px; height:25px">Length</div>
-    <div style="position: absolute; top:120px; left:100px; width:200px; height:25px">Room 1</div>
-    <div style="position: absolute; top:120px; left:460px; width:200px; height:25px">Room 2</div>
-    <div style="position: absolute; top:250px; left:100px; width:200px; height:25px">Room 3</div>
-    <div style="position: absolute; top:250px; left:460px; width:200px; height:25px">Room 4</div>
-    <div class="span4" style="padding-left: 40px;">
+	<div style="position: absolute; top:135px; left:285px; width:200px; height:25px">Length</div>
+    <div style="color:#c0392b; position: absolute; top:170px; left:100px; width:200px; height:25px">Room 1</div>
+    <div style="color:#16a085; position: absolute; top:170px; left:460px; width:200px; height:25px">Room 2</div>
+    <div style="color:#8e44ad; position: absolute; top:320px; left:100px; width:200px; height:25px">Room 3</div>
+    <div style="color:#d35400; position: absolute; top:320px; left:460px; width:200px; height:25px">Room 4</div>
+   </div>
+    <div class="span4" style="padding-left: 40px; float:left">
     	<br>
          <table border="0" cellpadding = "10">
 			<tr>
 				<td>
-					<h4>Room 1</h4>
+					<h4 style="color:#c0392b">Room 1</h4>
     				<h5>Function</h5>
 	    			  <select value="this.value" class="span3" id="activity_type" name="activity_type">
          			    <option value="SmallOffice">Small Office</option>
@@ -46,24 +51,24 @@
 				         <option value="LargeOffice">Large Office</option>
 			             <option value="Warehouse">Warehouse (non-refrigerated)</option>
 			             <option value="Retail">Core-Retail</option>
-			             <option disabled>Stand-alone Retail</option>
-			             <option disabled>Strip Mall</option>
-			             <option disabled>Primary School</option>
-			             <option disabled>Secondary School</option>
-			             <option disabled>Outpatient Healthcare</option>
-			             <option disabled>Hospital</option>
-      			  		 <option disabled>Small hotel</option>
-			             <option disabled>Large Hotel</option>
-           				  <option disabled>Quick Service Restaurant</option>
-			             <option disabled>Full Service Restaurant</option>
-            			 <option disabled>Mid-Rise Apartment</option>
-			             <option disabled>High-Rise Apartment</option>
+			             <option value="">Stand-alone Retail</option>
+			             <option value="">Strip Mall</option>
+			             <option value="">Primary School</option>
+			             <option value="">Secondary School</option>
+			             <option value="">Outpatient Healthcare</option>
+			             <option value="">Hospital</option>
+      			  		 <option value="">Small hotel</option>
+			             <option value="">Large Hotel</option>
+           				  <option value="">Quick Service Restaurant</option>
+			             <option value="">Full Service Restaurant</option>
+            			 <option value="">Mid-Rise Apartment</option>
+			             <option value="">High-Rise Apartment</option>
         				 </select>
 					<h5>Percentage</h5>
        				<h6 id="room-one-percentage"></h6>
 				</td>
 				<td>
-					<h4>Room 2</h4>
+					<h4 style="color:#16a085;">Room 2</h4>
     				<h5>Function</h5>
 	    			  <select value="this.value" class="span3" id="activity_type" name="activity_type">
          			    <option value="SmallOffice">Small Office</option>
@@ -71,18 +76,18 @@
 				         <option value="LargeOffice">Large Office</option>
 			             <option value="Warehouse">Warehouse (non-refrigerated)</option>
 			             <option value="Retail">Core-Retail</option>
-			             <option disabled>Stand-alone Retail</option>
-			             <option disabled>Strip Mall</option>
-			             <option disabled>Primary School</option>
-			             <option disabled>Secondary School</option>
-			             <option disabled>Outpatient Healthcare</option>
-			             <option disabled>Hospital</option>
-      			  		 <option disabled>Small hotel</option>
-			             <option disabled>Large Hotel</option>
-           				  <option disabled>Quick Service Restaurant</option>
-			             <option disabled>Full Service Restaurant</option>
-            			 <option disabled>Mid-Rise Apartment</option>
-			             <option disabled>High-Rise Apartment</option>
+			             <option value="">Stand-alone Retail</option>
+			             <option value="">Strip Mall</option>
+			             <option value="">Primary School</option>
+			             <option value="">Secondary School</option>
+			             <option value="">Outpatient Healthcare</option>
+			             <option value="">Hospital</option>
+      			  		 <option value="">Small hotel</option>
+			             <option value="">Large Hotel</option>
+           				  <option value="">Quick Service Restaurant</option>
+			             <option value="">Full Service Restaurant</option>
+            			 <option value="">Mid-Rise Apartment</option>
+			             <option value="">High-Rise Apartment</option>
         				 </select>
 					<h5>Percentage</h5>
        				<h6 id="room-two-percentage"></h6>
@@ -90,7 +95,7 @@
 				</tr>
 				<tr>
 				<td>
-					<h4>Room 3</h4>
+					<h4 style="color:#8e44ad;">Room 3</h4>
     				<h5>Function</h5>
 	    			  <select value="this.value" class="span3" id="activity_type" name="activity_type">
          			    <option value="SmallOffice">Small Office</option>
@@ -98,25 +103,25 @@
 				         <option value="LargeOffice">Large Office</option>
 			             <option value="Warehouse">Warehouse (non-refrigerated)</option>
 			             <option value="Retail">Core-Retail</option>
-			             <option disabled>Stand-alone Retail</option>
-			             <option disabled>Strip Mall</option>
-			             <option disabled>Primary School</option>
-			             <option disabled>Secondary School</option>
-			             <option disabled>Outpatient Healthcare</option>
-			             <option disabled>Hospital</option>
-      			  		 <option disabled>Small hotel</option>
-			             <option disabled>Large Hotel</option>
-           				  <option disabled>Quick Service Restaurant</option>
-			             <option disabled>Full Service Restaurant</option>
-            			 <option disabled>Mid-Rise Apartment</option>
-			             <option disabled>High-Rise Apartment</option>
+			             <option value="">Stand-alone Retail</option>
+			             <option value="">Strip Mall</option>
+			             <option value="">Primary School</option>
+			             <option value="">Secondary School</option>
+			             <option value="">Outpatient Healthcare</option>
+			             <option value="">Hospital</option>
+      			  		 <option value="">Small hotel</option>
+			             <option value="">Large Hotel</option>
+           				  <option value="">Quick Service Restaurant</option>
+			             <option value="">Full Service Restaurant</option>
+            			 <option value="">Mid-Rise Apartment</option>
+			             <option value="">High-Rise Apartment</option>
         				 </select>
 					<h5>Percentage</h5>
        				<h6 id="room-three-percentage"></h6>
 				
 				</td>
 				<td>
-					<h4>Room 4</h4>
+					<h4 style="color:#d35400">Room 4</h4>
     				<h5>Function</h5>
 	    			  <select value="this.value" class="span3" id="activity_type" name="activity_type">
          			    <option value="SmallOffice">Small Office</option>
@@ -124,23 +129,23 @@
 				         <option value="LargeOffice">Large Office</option>
 			             <option value="Warehouse">Warehouse (non-refrigerated)</option>
 			             <option value="Retail">Core-Retail</option>
-			             <option disabled>Stand-alone Retail</option>
-			             <option disabled>Strip Mall</option>
-			             <option disabled>Primary School</option>
-			             <option disabled>Secondary School</option>
-			             <option disabled>Outpatient Healthcare</option>
-			             <option disabled>Hospital</option>
-      			  		 <option disabled>Small hotel</option>
-			             <option disabled>Large Hotel</option>
-           				  <option disabled>Quick Service Restaurant</option>
-			             <option disabled>Full Service Restaurant</option>
-            			 <option disabled>Mid-Rise Apartment</option>
-			             <option disabled>High-Rise Apartment</option>
+			             <option value="">Stand-alone Retail</option>
+			             <option value="">Strip Mall</option>
+			             <option value="">Primary School</option>
+			             <option value="">Secondary School</option>
+			             <option value="">Outpatient Healthcare</option>
+			             <option value="">Hospital</option>
+      			  		 <option value="">Small hotel</option>
+			             <option value="">Large Hotel</option>
+           				  <option value="">Quick Service Restaurant</option>
+			             <option value="">Full Service Restaurant</option>
+            			 <option value="">Mid-Rise Apartment</option>
+			             <option value="">High-Rise Apartment</option>
         				 </select>
 					<h5>Percentage</h5>
        				<h6 id="room-four-percentage"></h6>
 				</td>
-			</tr>     
+			</tr>  
 	</div>
 	
 	<body onload="roomPercentage();">					
