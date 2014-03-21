@@ -11,7 +11,7 @@ function sqlToJSON(sqlFile, fn){
   var output = {
     energyUse: {
       electricity: {
-        interiorLights: [],
+        interiorLights: {},
         exteriorLights: [],
         interiorEquipment: [],
         exteriorEquipment: [],
@@ -99,9 +99,11 @@ function sqlToJSON(sqlFile, fn){
         
       switch(row.columnname) {
         case "INTERIORLIGHTS:ELECTRICITY":
+              month = new Object();
               
-          output.energyUse.electricity.interiorLights.push(parseFloat(row.value));
-
+              var interLights = 
+          output.energyUse.electricity.interiorLights.month.value = parseFloat(row.value);
+              
           break;
         case "EXTERIORLIGHTS:ELECTRICITY":
           output.energyUse.electricity.exteriorLights.push(parseFloat(row.value));
@@ -314,4 +316,5 @@ function sqlToJSON(sqlFile, fn){
   db.close();
 
 }
+
 

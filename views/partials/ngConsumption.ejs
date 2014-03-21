@@ -1,66 +1,61 @@
 <div id="ngComsumption" style="width:100%;height:450px"></div>
 
 <script>
-    $(function() {
-        $('#ngComsumption').highcharts({
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Natural Gas Consumption'
-            },
-            xAxis: {
-                categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'MBtu'
-                },
-                stackLabels: {
-                    enabled: true,
-                    rotation:-45,
-                    y:-20,
-                    style: {
-                        fontWeight: 'bold',
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                    }
-                }
-            },
-            legend: {
-                align: 'center',
-                
-                verticalAlign: 'bottom',
-                y: 0,
-                floating: false,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
-                borderColor: '#CCC',
-                borderWidth: 1,
-                shadow: false
-            },
-            tooltip: {
-                formatter: function() {
-                    return '<b>' + this.x + '</b><br/>' +
-                        this.series.name + ': ' + this.y + '<br/>' +
-                        'Total: ' + this.point.stackTotal;
-                }
-            },
-            plotOptions: {
-                column: {
-                    stacking: 'normal',
-                    dataLabels: {
-                        enabled: false,
-                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-                        style: {
-                            textShadow: '0 0 3px black, 0 0 3px black'
-                        }
-                    }
-                }
-            },
-            series: [{
-                name: 'Heating',
-                data: [<%= output.energyUse.naturalGas.heating  %>]
-            }]
-        });
-    });
+    $(function () {
+              $('#ngComsumption').highcharts({
+                  chart: {
+                      type: 'column'
+                  },
+                  title: {
+                      text: 'Natural Gas Consumption (MBtu)'
+                  },
+                  xAxis: {
+                      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                  },
+                  yAxis: {
+                      min: 0,
+                      title: {
+                          text: '(x000,000)'
+                      },
+                      stackLabels: {
+                          enabled: true,
+                          style: {
+                              fontWeight: 'bold',
+                              color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                          }
+                      }
+                  },
+                  legend: {
+                      align: 'center',
+                      x: 0,
+                      verticalAlign: 'bottom',
+                      y: 0,
+                      floating: false,
+                      backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                      borderColor: '#CCC',
+                      borderWidth: 1,
+                      shadow: true
+                  },
+                  tooltip: {
+                      formatter: function() {
+                          return '<b>'+ this.x +'</b><br/>'+
+                              this.series.name +': '+ this.y +'<br/>'+
+                              'Total: '+ this.point.stackTotal;
+                      }
+                  },
+                  plotOptions: {
+                      column: {
+                          stacking: 'normal',
+                          dataLabels: {
+                              enabled: false,
+                              color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                          }
+                      }
+                  },
+                  series: [{
+                      name: 'Heating',
+                      color: 'red',
+                      data: [8862.6, 6517.3, 3431.1, 1260.8, 100.6, 0.7, 0.4, 0.5, 13.2, 1228.9, 3401.8, 5631.6, ]                  }]
+              });
+      });
 </script>

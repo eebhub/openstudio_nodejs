@@ -1,6 +1,7 @@
 //DEPENDENCIES
 var fs = require("fs"); //Nodejs File System
 var timestp = require("../library/timestamp.js"); //Timestamp code
+var sqlToJSON = require("../library/outputs.js").sqlToJSON;
 
 //SIMULATE OPENSTUDIO
 module.exports = {openstudio: function(request, response) {
@@ -113,7 +114,10 @@ module.exports = {openstudio: function(request, response) {
     var run = new OpenStudioRun(buildingDataFileName);
 
     //APPEND important energyplus output sql tables into original json
-
+    //SQLite3 Database
+    var databasePath = simulationsPath + simulationID +"/eplusout.sql";
+   
+    
     //WRITE Output to buildingData.json
     
     //RENDER EnergyPlus Graphs & Files outputs.ejs
