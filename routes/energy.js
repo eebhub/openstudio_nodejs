@@ -1,5 +1,5 @@
 //Dependencies
-var eebSqlite3 = require('../lib/eeb_sqlite3.js');
+var eebSqlite3 = require('../library/eeb_sqlite3.js');
 var fs = require('fs');
 
 
@@ -115,6 +115,7 @@ function getEnergyIntensityData(sqlFile, fn) {
                 energyIntensity.sourceEnergy = results;
                 eebSqlite3.getValues('AnnualBuildingUtilityPerformanceSummary', 'Entire Facility', 'Building Area', '%', database, function(results) {
                     energyIntensity.area = results;
+                    fs.writeFile("energy.json", energyIntensity, null, 4);
                     fn(energyIntensity);
                 });
             });
@@ -144,12 +145,14 @@ module.exports = {
     getEnergyIntensity: function(request, response) {
         getEnergyIntensityData(database, function(energyIntensity) {
             console.log(energyIntensity);
-            var totalElectricityUse = getEnergyValues(energyIntensity, "totalEnergy", "Total End Uses", "Electricity");
-            
+            //var totalElectricityUse = getEnergyValues(energyIntensity, "totalEnergy", "Total End Uses", "Electricity");
+            fs.writeFile("energys.json", JSON.stringify(energyIntensity), null, 4), function(err){
+                if(err) throw err;
+            };
             
             response.render('energy-intensity', {
-                energyIntensity: energyIntensity,
-                totalElectricityUse:totalElectricityUse
+                energyIntensity: energyIntensity
+                //totalElectricityUse:totalElectricityUse
             });
         });
 

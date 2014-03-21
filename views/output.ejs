@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>EEB Hub Simulation Tools: Comprehensive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="css/comprehensive.css" rel="stylesheet">
+    <link href="css/partial.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+
+
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/">EEB Hub Retrofit Manager</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li>
+                            <a href="">Data Structure</a>
+                        </li>
+                        <li>
+                            <a href="walls">Wall Editor</a>
+                        </li>
+                        <li>
+                            <a href="#">Parallel Simulations</a>
+                        </li>
+                        <li>
+                            <a href="energy-use">EnergyPlus Graphs</a>
+                        </li>
+                        <li>
+                            <a href="simulations">EnergyPlus Files</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+                <div class="pull-right text-right">
+                    <ul class="nav pull-right">
+                        <li>
+                            <a href="http://www.buildsci.us/openstudio-nodejs.html">by PSU & UMd</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="row">
+
+
+            <div class="navbar">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <a class="brand" href="#">Energy</a>
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="#use" data-toggle="tab">Use</a>
+                            </li>
+                            <li>
+                                <a href="#intensity" data-toggle="tab">Intensity</a>
+                            </li>
+                            <li>
+                                <a href="#costs" data-toggle="tab">Costs</a>
+                            </li>
+                            <li>
+                                <a href="#zones" data-toggle="tab">Zone Loads</a>
+                            </li>
+                            <li>
+                                <a href="#tracking" data-toggle="tab">Tracking</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="use">
+                    <div class="row">
+                        <div class="box-unit span6">
+
+                            <% include partials/electConsumption %>
+                        </div>
+                        <div class="box-unit span6">
+                            <% include partials/ngConsumption %>
+                        </div>
+                    </div>
+                    <div class="box-unit">
+                        <% include partials/electConsumptionTable %>
+                    </div>
+                </div>
+                <div class="tab-pane" id="intensity">
+                    <div class="box-unit">
+                        <% include partials/siteSourceConsumption %>
+                    </div>
+                    <div class="box-unit">
+                        <% include partials/annualEnergyConsumptionIntensityTable %>
+                    </div>
+                    <div class="row">
+                        <div class="box-unit span6">
+
+                            <% include partials/energyTotalBuildingAreaChart %>
+                        </div>
+                        <div class="box-unit span6">
+                            <% include partials/energyConditionedBuildingArea %>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="costs">
+                    <div class="box-unit">
+                        <% include partials/electricityMonthlyCostChart %>
+                    </div>
+                    <div class="box-unit">
+                        <% include partials/electricityMonthlyCostTable %>
+                    </div>
+                    <div class="box-unit">
+                        <% include partials/naturalGasMonthlyCostChart %>
+                    </div>
+                    <div class="box-unit">
+                        <% include partials/naturalGasMonthlyCostTable %>
+                    </div>
+                </div>
+                <div class="tab-pane" id="zones">
+                    <div class="box-unit">
+                        <h1 style="text-align:center">Zone Loads Under Construction </h1>
+                        </div>
+                </div>
+                <div class="tab-pane" id="tracking">
+                    <div class="box-unit">
+                        <h1 style="text-align:center">Tracking Sheet Under Construction </h1>
+                        </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        
+
+
+    </div>
+
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Highcharts-3.0.4/js/highcharts.js"></script>
+    <script src="js/Highcharts-3.0.4/js/modules/exporting.js"></script>
+</body>
+
+</html>

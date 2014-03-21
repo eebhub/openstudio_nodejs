@@ -1,0 +1,257 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  	<link href="css/bootstrap.min.css" rel="stylesheet">
+  	<link href="css/stylesheet.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="css/bootstrap-fileupload.css" rel="stylesheet">
+    <link href="css/partial.css" rel="stylesheet">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/kinetic.js"></script>
+    <script src="js/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    
+    
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        padding-bottom: 90px;
+      }
+      
+      .container{
+          padding-top: 40px;
+      }
+      
+      .accordion {
+        margin:1em 0
+        }
+        .accordion h3 {
+            background:url('http://www.epa.gov/region1/images2/misc/accordion-default.jpg') no-repeat right top #559b6a;
+            color:#fff;
+            cursor:pointer;
+            margin:0;
+            padding:4px 10px;
+            font-size: 100%;
+            line-height: 20px;
+        }
+        .accordion h3.current {
+            background:url('http://www.epa.gov/region1/images2/misc/accordion-active.jpg') no-repeat right top #4289aa;
+            cursor:default
+        }
+        .accordion div.pane {
+            padding:5px 10px
+        }
+        canvas { width: 30%; 
+        height: 30%;
+        padding-left: 120px;
+        padding-top: 30px;}
+    </style>
+    
+    <script type="text/javascript">
+        $(function () {
+    //  Accordion Panels
+    $(".accordion div").show();
+    setTimeout("$('.accordion div').slideToggle('slow');", 1000);
+    $(".accordion h3").click(function () {
+        $(this).next(".pane").slideToggle("slow").siblings(".pane:visible").slideUp("slow");
+        $(this).toggleClass("current");
+        $(this).siblings("h3").removeClass("current");
+    });
+    });
+    
+    </script>
+
+    
+  </head>
+  
+    <body>
+
+            <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="/">EEB Hub Retrofit Manager</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="data-structure">Data Structure</a>
+                            </li>
+                            <li>
+                                <a href="walls">Wall Editor</a>
+                            </li>
+                            <li>
+                                <a href="">Parallel Simulations</a>
+                            </li>
+                            <li>
+                                <a href="energy-use">EnergyPlus Graphs</a>
+                            </li>
+                            <li>
+                                <a href="simulations">EnergyPlus Files</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                    <div class="pull-right text-right">
+
+                        <!--input type="radio" name="unitoption" value="si" checked="checked" onclick='$(".unit").html("m");$("#heating-setpoint").html("<input type=\"number\" min=\"0\" class=\"span2\" id=\"appendedInput\" value=\"24\" name=\"heating_setpoint\" /><span class=\"add-on\">&#186;C</span>");$("#cooling-setpoint").html("<input type=\"number\" min=\"0\" class=\"span2\" id=\"appendedInput\" value=\"26\" name=\"cooling_setpoint\" /><span class=\"add-on\">&#186;C</span>");$(".illu-unit").html("lux");$("#illuminance").html("<option value=\"150\">150 - storage</option><option value=\"200\">200 - casual work</option><option value=\"300\">300 - rough work</option><option value=\"400\">400 - office work (EU)</option><option value=\"500\" selected>500 - office work (US)</option>");$("#si-ip").val("si");$("body").css("background", "rgb(229, 229, 229)");'/><font color="yellow"> SI</font>
+                        <input type="radio" name="unitoption" value="ip" onclick='$(".unit").html("ft");$("#heating-setpoint").html("<input type=\"number\" min=\"0\" class=\"span2\" id=\"appendedInput\" value=\"75\" name=\"heating_setpoint\" /><span class=\"add-on\">&#186;F</span>");$("#cooling-setpoint").html("<input type=\"number\" min=\"0\" class=\"span2\" id=\"appendedInput\" value=\"79\" name=\"cooling_setpoint\" /><span class=\"add-on\">&#186;F</span>");$(".illu-unit").html("lm/ft&#178;");$("#illuminance").html("<option value=\"150\">15 - storage</option><option value=\"200\">20 - casual work</option><option value=\"300\">30 - rough work</option><option value=\"400\">40 - office work (EU)</option><option value=\"500\" selected>50 - office work (US)</option>");$("#si-ip").val("ip");$("body").css("background", "rgb(194, 194, 194)");'/><font color="yellow"> IP</font-->
+                
+                    <ul class="nav pull-right">
+                        <li><a href="http://www.buildsci.us/openstudio-nodejs.html">by PSU & UMd</a></li>
+						</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container">
+        <!--collapse-->
+        <div class="span8">   
+        <h2>Building Document</h2>
+               <div class="accordion">
+                 <h3>site</h3>
+            
+                <div class="pane">
+                   <ul>
+                    <li>city</li>
+                    <li>weather</li>
+                    <li>climateZone</li>
+                    <li>strictDesignDay</li>
+                   </ul>
+                </div>
+                 <h3>buildingInfo</h3>
+                <div class="pane">
+                  <ul>
+
+                    <li>buildingName</li>
+                    <li>activityType</li>
+                    <li>activityTypeSecondary</li>
+                    <li>yearCompleted</li>
+                    <li>units</li>
+                    <li>ASHRAEStandard</li>
+                  </ul>
+                </div>
+                 <h3>architecture</h3>
+            
+                <div class="pane">
+                    <ul>
+                        <li>footprintShape</li>
+                        <li>buildingLength</li>
+                        <li>buildingWidth</li>
+                        <li>buildingHeight</li>
+                        <li>numberOfFloors</li>
+                        <li>floorToFloorHeight</li>
+                        <li>degreeToNorth</li>
+                        <li>plenumHeight</li>
+                        <li>perimeterZoneDepth</li>
+                        <li>windowToWallRatio</li>
+                        <li>windowOffset</li>
+                        <li>windowOffsetApplicationType</li>
+                    </ul>
+                </div>
+                <h3>mechanical</h3>
+            
+                <div class="pane">
+                    <ul>
+                        <li>fanEfficiency</li>
+                        <li>boilerEfficiency</li>
+                        <li>boilerFuelType</li>
+                        <li>coilCoolRatedHighSpeedCOP</li>
+                        <li>coilCoolRatedLowSpeedCOP</li>
+                        <li>economizerType</li>
+                        <li>economizerDryBulbTempLimit</li>
+                        <li>heatingSetpoint</li>
+                        <li>coolingSetpoint</li>
+                    </ul>
+                </div>
+                
+                <h3>construction</h3>
+            
+                <div class="pane">
+                    <ul>
+                        <li>constructionLibraryPath</li>
+                    </ul>
+                </div>
+                
+                <h3>schedules</h3>
+            
+                <div class="pane">
+                    <ul>
+                        <li>occupancy
+                            <ul><li>default</li>
+                            <li>priority</li>
+                            <ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <h3>paths</h3>
+            
+                <div class="pane">
+                    <ul>
+                        <li>buildingComponentLibraryPath</li>
+                        <li>simulationsPath</li>
+                        <li>outputPath</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <h2>Explore Database</h2>
+            
+            <a href="http://128.118.67.242/rockmongo/index.php" class="btn btn-large btn-success">Rock Mongo !</a>
+            
+        </div>    
+        <!--collapse end-->
+        <br><br><br>
+        <script src="https://rawgithub.com/mrdoob/three.js/master/build/three.js"></script>
+		<script>
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize(window.innerWidth, window.innerHeight); //resolution
+			document.body.appendChild(renderer.domElement);
+
+			var geometry = new THREE.CubeGeometry(1,1,1);
+			var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+			var cube = new THREE.Mesh(geometry, material);
+			scene.add(cube);
+
+			camera.position.z = 0;
+			var label = 0;
+
+			var render = function () {
+				requestAnimationFrame(render);
+
+				//cube.rotation.x += 0.01;
+				//cube.rotation.y += 0.01;
+				cube.rotation.z += -0.01;
+
+				if (label == 0){
+					camera.position.z += 0.5;
+					if (camera.position.z==10) label =1;
+				}
+				else{
+					camera.position.z -= 0.5;
+					if (camera.position.z==3) label =0;
+				}
+
+				renderer.render(scene, camera);
+			};
+
+			render();
+            </script>
+        
+        </div>
+
+        
+    </body>
+</html>

@@ -232,7 +232,7 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li>
-                                <a href="data-structure">Data Structure</a>
+                                <a href="">Data Structure</a>
                             </li>
                             <li>
                                 <a href="walls">Wall Editor</a>
@@ -401,6 +401,39 @@
                                 </h2>
                             </div>
                             <div class="row">
+                                <div class="span4">
+                                    <h4>Number of Floors</h4>
+                                    <input type="number" id="number_of_floors" name="numberOfFloors" min="1" min="170" step="1">
+                                    <h4>% Window to Wall Ratio</h4>
+                                        <ul class="inline">
+                                            <li>
+                                                <input type="range" ng-model="winwall" min="10" max="60" step="1" value=50/>
+                                            </li>
+                                            <li>
+                                                <div class="input-append">
+                                                    <input class="span1" id="window_to_wall_ratio" type="text" value={{winwall}} ng-model="winwall" name="windowToWallRatio">
+                                                    <span class="add-on">%</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </div>
+                                <div class="span4">
+                                    <h4>Floor to Floor Height</h4>
+                                    <div class="input-append">
+                                        <input type="number" id="floor_to_floor_height" name="floorToFloorHeight" step="0.001">
+
+                                        <span class="add-on"><span class="unit">m</span></span>
+                                    </div>
+                                    <h4>Plenum Height <small>space for ducts; ceiling to floor above</small></h4>
+                                    <div class="input-append">
+                                        <input type="number" id="plenum_height" name="plenumHeight" step="0.001">
+
+                                        <span class="add-on"><span class="unit">m</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
                                 <div class="span4" >
                                     <h4>Shape</h4>
                         			<select onchange="changeShape(this.value)" name="footprintShape" id="footprintShape" placeholder="footprintShape">
@@ -428,37 +461,21 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="span4">
-                                    <h4>Number of Floors</h4>
-                                    <input type="number" id="number_of_floors" name="numberOfFloors" min="1" min="170" step="1">
-                                </div>
-                                <div class="span4">
-                                    <h4>Floor to Floor Height</h4>
-                                    <div class="input-append">
-                                        <input type="number" id="floor_to_floor_height" name="floorToFloorHeight" step="0.001">
-
-                                        <span class="add-on"><span class="unit">m</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="span4">
+                                <div class="span9">
                                     <h4>Orientation <small>clockwise degrees from North</small></h4>
-                                        <ul class="inline">
-                                             <input id="degreeSlider" type="range" class="span2" min="0" max="360" step="1" onchange="printValue('degreeSlider','degreeRangeValue')"/>
-                                            <div class="input-append">
-                                            <input id="degreeRangeValue" name="degreeToNorth" type="number" class="span1" min="0" max="360" step="1"/><span class="add-on">&deg;</span>
-                                            </div>
-                                        </ul>
-                                </div>
-                                <div class="span4">
-                                    <h4>% Window to Wall Ratio</h4>
-                                        <ul class="inline">
-                                             <input id="winSlider" type="range" class="span2" min="0" max="60" step="1" onchange="printValue('winSlider','winRangeValue')"/>
-                                            <div class="input-append">
-                                            <input id="winRangeValue" name="windowToWallRatio" type="number" class="span1" min="0" max="100" /><span class="add-on">%</span>
-                                            </div>
-                                        </ul>
+                                            <ul class="inline">
+                                                
+                                                <li>
+                                                    <div class="input-append">
+                                                        <input class="span1" type="text" value={{orientation}} name="degreeToNorth" ng-model="orientation"/>
+                                                        <span class="add-on">&deg;</span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <input class="span7" type="range" ng-model="orientation" min="0" max="360" step="1" value={{orientation}}/>
+                                                </li>
+                                            </ul>
+                                <br>
                                 </div>
                             </div>
                         </div>
@@ -525,7 +542,9 @@
                             <div class="row">
                                 <div class="span4">
                                     <h4>Fan Efficiency</h4>
-                                    <input id="fanSlider" type="range" class="span2" min="0" max="100" onchange="printValue('fanSlider','fanRangeValue')"/>
+                                    <input id="fanSlider" type="range" class="span2"
+                                    min="0" max="100" onchange="printValue('fanSlider','fanRangeValue')"
+                                    />
                                     <div class="input-append">
                                     <input id="fanRangeValue" name="fanEfficiency" type="number" class="span1" min="0" max="100" value="50" /><span class="add-on">%</span>
                                     </div>
@@ -544,7 +563,7 @@
                                     <h4>Cooling coil rated low speed COP</h4>
                                     <div class="input-append">
                                         <input type="number" min="0" step="0.1" class="span2" id="appendedInput" value="6.6"
-                                        name="coilCoolRatedLowSpeedCOP"/>
+                                        name="coilCoolRatedHighSpeedCOP"/>
                                         <span class="add-on">Ratio</span>
                                     </div> 
                                 </div>
@@ -655,7 +674,7 @@
                     </div>
                   <h3 style="padding-left:20px;">Related Resources</h3>
                    <div class="box-unit">
-                         <a class="btn" href="output" target="_blank"><i class="icon-signal"></i> Example Outputs</a>
+                         <a class="btn" href="energy-use" target="_blank"><i class="icon-signal"></i> Example Outputs</a>
                          <a class="btn" href="http://tools.eebhub.org/game" target="_blank"><i class="icon-list-alt"></i> Energy Retrofit Game</a>
                          <a class="btn" href="http://tools.eebhub.org/comprehensive" target="_blank"><i class="icon-arrow-left"></i> Predecessor Tool</a>
                          <a target="_blank" href="http://www.engr.psu.edu/ae/">
@@ -994,7 +1013,7 @@
 				setTimeout(function(){				// wait 15 seconds until file is created to start loading bar
 					//console.log("waited");			
 					socket.emit('randomNumber', currentRanNum);
-				},3000);
+				},5000);
 				
 							
 			}

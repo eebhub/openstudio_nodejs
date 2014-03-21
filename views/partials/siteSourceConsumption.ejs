@@ -1,0 +1,94 @@
+<div id="annualEnergyChart" style="width:90%"></div>
+<script>
+     // Annual Total Site and Source Energy
+     $(function () {
+        $('#annualEnergyChart').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Annual Site and Source Energy Consumption (kBtu)'
+            },
+            xAxis: {
+                categories: ['Total Site Energy', 'Total Source Energy' ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Energy Consumption (kBtu)'
+                }
+            },
+            legend: {
+                backgroundColor: '#FFFFFF',
+                reversed: true
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+            // Dynamic Data
+			                series: [{
+                name: 'Pumps',
+				color: 'orange',
+                data: [41219.7, 147401.8]
+            }, {
+                name: 'Fans',
+				color: 'black',
+                data: [110279.0, 394357.8]
+            }, {
+                name: 'Cooling',
+				color: 'green',
+				data: [369686.4, 1321998.5]
+            }, {
+                name: 'Heating-Natural-Gas',
+				color: 'red',
+                data: [3044940.6, 3325075.1]
+            }, {
+                name: 'Iterior Lighting',
+				color: '#3388ff',
+				data: [879846.8, 3146332.2]
+            }, {
+                name: 'Interior Equipment',
+				color: 'purple',
+                data: [1290249.8, 4613933.4]
+            }, {
+                name: 'Exterior Lighting',
+				visible: false,
+                data: [0.0, 0.0]
+            }, {
+                name: 'Heating-Electricity',
+				 visible: false,
+                data: [0.0, 0.0]
+            }, {
+                name: 'Exterior Equipment',
+ 				visible: false,
+                data: [0.0, 0.0]
+            }, {
+                name: 'Heating Rejecation',
+ 				visible: false,
+                data: [, ]
+            }, {
+                name: 'Humidification',
+				visible: false,
+                data: [0.0, 0.0]
+            }, {
+                name: 'Heat Recovery',
+ 				visible: false,
+                data: [0.0, 0.0]
+            }, {
+                name: 'Water Systems',
+ 				visible: false,
+                data: [0.0, 0.0]
+            }, {
+                name: 'Refrigeration',
+ 				visible: false,
+                data: [0.0, 0.0]
+            }, {
+                name: 'Generations',
+ 				visible: false,
+                data: [, ]
+            }] // end of data
+        });
+    });
+</script>
