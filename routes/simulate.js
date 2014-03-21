@@ -73,7 +73,7 @@ module.exports = {openstudio: function(request, response) {
       "coolingSetpoint": request.body.coolingSetpoint*1
     },
     "construction": {
-      "constructionLibraryPath": "../library/defaultConstructionMaterials.osm"
+      "constructionLibraryPath": "./library/defaultConstructionMaterials.osm"
     },
     "schedules": {
         "occupancy":{
