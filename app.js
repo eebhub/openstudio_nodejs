@@ -5,15 +5,10 @@
 findStdOut = 'before';				// global variable for simulationID
 
 var  fileName, io, socketio, tail;
-
 var connect = require('connect');
-
 var socketio = require('socket.io');
-
 var Tail = require('tail').Tail;
-
 var fs = require('fs');
-
 var express = require('express');
 var http = require('http');
 var path = require('path');
