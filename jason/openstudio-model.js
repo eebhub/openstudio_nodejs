@@ -332,13 +332,6 @@ function OpenStudioModel(buildingData, runmanager) {
     this.model.save(save_path,true);
   }
 
-  this.translate_to_energyplus_and_save_idf = function(simulation_directory, idf_name) {
-    var forward_translator = new openstudio.energyplus.ForwardTranslator();
-    var workspace = forward_translator.translateModel(this.model);
-    var idf_save_path = new openstudio.path(simulation_directory + "/" + idf_name);
-    workspace.save(idf_save_path,true);
-  }
-
   this.add_design_days = function(location, weather_path) {
     var loc_filename = location.location_filename;
     // now that the location is determined save the filename off for later consumption
@@ -379,21 +372,104 @@ function OpenStudioModel(buildingData, runmanager) {
     exec("sed -i 's/\\(Output:Table:SummaryReports,\\)/\\1\\n  ZoneComponentLoadSummary,/g'  " + idf_file, puts);
   }
 
-  //modify the default unit system to I-P unit in idf_file
-  this.convert_unit_to_ip = function(idf_file) {
-    function puts(error, stdout, stderr) { sys.puts(stdout); }
-    exec("sed -i  's/\\(HTML;.*\\)/HTML,\\n  InchPound;/g'  " + idf_file, puts);
-  }
-
   this.run_energyplus_simulation = function(simulation_directory, idf_name) {
     var weather_path = this.runManager.getConfigOptions().getDefaultEPWLocation();
     var epw_path = new openstudio.path(openstudio.toString(weather_path) + "/" + this.loc_filename + ".epw");
     var tools = this.runManager.getConfigOptions().getTools();
+
+    // unfortunately there isn't a much better way to specify this right now
+    var rubyTool = openstudio.runmanager.ConfigOptions.makeTools(
+        new openstudio.path(),
+        new openstudio.path(),
+        new openstudio.path(),
+        new openstudio.path("/usr/bin"),
+        new openstudio.path()
+        );
+
     var idf_path = new openstudio.path(simulation_directory + "/" + idf_name);
     var output_path = new openstudio.path(simulation_directory);
-    var workflow = new openstudio.runmanager.Workflow("EnergyPlusPreProcess->EnergyPlus");
+
+    var workflow = new openstudio.runmanager.Workflow();
+
+    // let's create some sample measures to run
+
+    ////// MEASURE 1: SetWindowToWallRadioByFacade
+    measuredir = new openstudio.path("measures/SetWindowToWallRatioByFacade");
+    measure = openstudio.BCLMeasure.load(measuredir);
+
+    args = new openstudio.ruleset.OSArgumentVector();
+    args.add(openstudio.ruleset.OSArgument.makeDoubleArgument("wwr"));
+    args.add(openstudio.ruleset.OSArgument.makeDoubleArgument("sillHeight"));
+    args.add(openstudio.ruleset.OSArgument.makeStringArgument("facade"));
+
+    args.get(0).setValue(0.1);
+    args.get(1).setValue(0.2);
+    args.get(2).setValue("North");
+
+    // Add measure job 
+    rubyjobbuilder  = new openstudio.runmanager.RubyJobBuilder(measure.get(), args);
+    rubyjobbuilder.setIncludeDir(openstudio.getOpenStudioRubyIncludePath());
+    workflow.addJob(rubyjobbuilder.toWorkItem());
+
+
+    ////// MEASURE 2: AddOutputVariable
+    measuredir = new openstudio.path("measures/AddOutputVariable");
+    measure = openstudio.BCLMeasure.load(measuredir);
+
+    args = new openstudio.ruleset.OSArgumentVector();
+    args.add(openstudio.ruleset.OSArgument.makeStringArgument("variable_name"));
+    args.add(openstudio.ruleset.OSArgument.makeStringArgument("reporting_frequency"));
+
+    args.get(0).setValue("SomeVariable");
+    args.get(1).setValue("hourly");
+
+    // Add measure job 
+    rubyjobbuilder  = new openstudio.runmanager.RubyJobBuilder(measure.get(), args);
+    rubyjobbuilder.setIncludeDir(openstudio.getOpenStudioRubyIncludePath());
+    workflow.addJob(rubyjobbuilder.toWorkItem());
+
+    ////// MEASURE 3: ReduceLightingLoadsByPercentage
+    measuredir = new openstudio.path("measures/ReduceLightingLoadsByPercentage");
+    measure = openstudio.BCLMeasure.load(measuredir);
+
+    args = new openstudio.ruleset.OSArgumentVector();
+    args.add(openstudio.ruleset.OSArgument.makeStringArgument("space_type"));
+    args.add(openstudio.ruleset.OSArgument.makeDoubleArgument("lighting_power_reduction_percent"));
+    args.add(openstudio.ruleset.OSArgument.makeDoubleArgument("material_and_installation_cost"));
+    args.add(openstudio.ruleset.OSArgument.makeDoubleArgument("demolition_cost"));
+    args.add(openstudio.ruleset.OSArgument.makeDoubleArgument("years_until_costs_start"));
+    args.add(openstudio.ruleset.OSArgument.makeBoolArgument("demo_cost_initial_const"));
+    args.add(openstudio.ruleset.OSArgument.makeDoubleArgument("expected_life"));
+    args.add(openstudio.ruleset.OSArgument.makeDoubleArgument("om_cost"));
+    args.add(openstudio.ruleset.OSArgument.makeDoubleArgument("om_frequency"));
+
+
+
+    args.get(0).setValue("*Entire Building*")
+    args.get(0).setValue(95.0)
+    args.get(0).setValue(0.0)
+    args.get(0).setValue(0.0)
+    args.get(0).setValue(0)
+    args.get(0).setValue(false)
+    args.get(0).setValue(20)
+    args.get(0).setValue(0.0)
+    args.get(0).setValue(1)
+
+
+    // Add measure job 
+    rubyjobbuilder  = new openstudio.runmanager.RubyJobBuilder(measure.get(), args);
+    rubyjobbuilder.setIncludeDir(openstudio.getOpenStudioRubyIncludePath());
+    workflow.addJob(rubyjobbuilder.toWorkItem());
+
+    //// Add the rest of the workflow
+
+    // ModelToIdf job enables AllSummary so it shouldn't be necessary to add our own Summary object for ZoneComponentLoad
+    workflow.addWorkflow(new openstudio.runmanager.Workflow("ModelToIdf->EnergyPlusPreProcess->EnergyPlus"));
+
     workflow.add(tools);
-    workflow.addParam(new openstudio.runmanager.JobParam("flatoutdir"));
+    workflow.add(rubyTool);
+    workflow.addParam(new openstudio.runmanager.JobParam("IPTabularOutput")); // Tell the translator to use IP in HTML
+    workflow.addParam(new openstudio.runmanager.JobParam("flatoutdir")); // don't create hierarchical output folders
     console.log("EPW path: " + openstudio.toString(epw_path) + " epw exists: " + openstudio.exists(epw_path));
    
 

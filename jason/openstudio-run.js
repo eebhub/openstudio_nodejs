@@ -48,19 +48,21 @@ runmanager.setConfigOptions(co);
 //Send (data = buildingData.json, runmanager = disable gui) to OpenStudioModel
 var model = new OpenStudioModel(data, runmanager);
 
-// 3 - RUN OpenStudio & save osm, idf -----------------------------------------------------------------------------------
+// 3 - RUN OpenStudio & save osm -----------------------------------------------------------------------------------
 
 console.log("CONVERT OPENSTUDIO TO ENERGYPLUS:");
 model.save_openstudio_osm(outputPath, buildingNameTimestamp+"_input.osm");
-model.translate_to_energyplus_and_save_idf(outputPath, buildingNameTimestamp+"_input.idf");
 
-model.add_load_summary_report(outputPath+buildingNameTimestamp+"_input.idf");
-model.convert_unit_to_ip(outputPath+buildingNameTimestamp+"_input.idf");
+// these are no longer necessary, see notes in the "run_energyplus_simulation" code
+
+//model.translate_to_energyplus_and_save_idf(outputPath, buildingNameTimestamp+"_input.idf");
+//model.add_load_summary_report(outputPath+buildingNameTimestamp+"_input.idf");
+//model.convert_unit_to_ip(outputPath+buildingNameTimestamp+"_input.idf");
 
 // 4 - RUN EnergyPlus & save sql, html -----------------------------------------------------------------------------------
 
 console.log("RUN ENERGYPLUS:");
-var job = model.run_energyplus_simulation(outputPath, buildingNameTimestamp+"_input.idf");
+var job = model.run_energyplus_simulation(outputPath, buildingNameTimestamp+"_input.osm");
 
 var treeerrors = job.treeErrors();
 
