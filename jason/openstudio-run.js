@@ -81,3 +81,10 @@ for (var i = 0; i < warnings.size(); ++i)
 {
   console.log("Warning: " + warnings.get(i));
 }
+
+// use this to find whatever output files that were generated that you want
+// "getLastByFilename" also exists, as well as "getAllBy*" versions if you are
+// looking for a set of files that have the same extension, etc.
+var sqlfile = job.treeOutputFiles().getLastByExtension("sql");
+console.log("SQL ouput file created at: " + openstudio.toString(sqlfile.fullPath));
+
