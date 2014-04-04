@@ -446,14 +446,14 @@ function OpenStudioModel(buildingData, runmanager) {
 
 
     args.get(0).setValue("*Entire Building*")
-    args.get(0).setValue(95.0)
-    args.get(0).setValue(0.0)
-    args.get(0).setValue(0.0)
-    args.get(0).setValue(0)
-    args.get(0).setValue(false)
-    args.get(0).setValue(20)
-    args.get(0).setValue(0.0)
-    args.get(0).setValue(1)
+    args.get(1).setValue(95.0)
+    args.get(2).setValue(0.0)
+    args.get(3).setValue(0.0)
+    args.get(4).setValue(0)
+    args.get(5).setValue(false)
+    args.get(6).setValue(20)
+    args.get(7).setValue(0.0)
+    args.get(8).setValue(1)
 
 
     // Add measure job 
