@@ -63,6 +63,7 @@ app.get('/data-structure', routes.getDataStructure);
 app.get('/walls', routes.getWalls);
 app.get('/tracking', routes.getTracking);
 app.get('/output', routes.testOutput);
+app.get('/outputs', routes.testOutput);
 
 //Simulate OpenStudio & EnergyPlus
 var simulate = require("./routes/simulate.js");
