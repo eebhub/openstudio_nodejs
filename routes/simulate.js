@@ -130,7 +130,7 @@ module.exports = {openstudio: function(request, response) {
 
     //APPEND important energyplus output sql tables into original json
     //SQLite3 Database
-    var databasePath = simulationsPath + simulationID +"/eplusout.sql";
+    var databasePath = outputPath+"1-EnergyPlus-0/eplusout.sql";
    
     
     //WRITE Output to buildingData.json
