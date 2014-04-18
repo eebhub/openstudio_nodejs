@@ -110,8 +110,23 @@ module.exports = {openstudio: function(request, response) {
     console.log('Input file saved!');
 
     //RUN openstudio-run.js & openstudio-model.js
-    var OpenStudioRun = require("../library/openstudio-run.js").OpenStudioRun;
-    var run = new OpenStudioRun(buildingDataFileName);
+    //var OpenStudioRun = require("../library/openstudio-run.js").OpenStudioRun;
+    //var run = new OpenStudioRun(buildingDataFileName); //This new OpenStudio JavaScript instance computationally consumed all of app.js, so we moved to child_process.fork...
+    var fork = require('child_process').fork;
+    var command = fork("./library/openstudio-run.js", [buildingDataFileName], {silent: true }); //silent because http://stackoverflow.com/questions/22275556/node-js-forked-pipe
+    command.stdout.pipe(process.stdout);
+    command.stderr.pipe(process.stderr);
+    //CREATE write file for stdout, LISTEN to stdout, WRITE to file
+    var file = fs.createWriteStream(outputPath+'progress.txt');
+    command.stdout.on('data', function(data) {file.write(data);});
+    command.stderr.on('data', function(data) {file.write(data);});
+    command.stdout.on('end', function(data) {file.end();});
+    command.stderr.on('end', function(data) {file.end();});
+    
+    // when child process exits, check if there were any errors and close the writeable stream
+    command.on('exit', function(code) {
+        if (code !== 0) {console.log('Failed: ' + code);}
+    });
 
     //APPEND important energyplus output sql tables into original json
     //SQLite3 Database

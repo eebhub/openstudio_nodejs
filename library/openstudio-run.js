@@ -4,15 +4,15 @@
 // 3 - RUN OpenStudio & save osm, idf (show terminal output)
 // 4 - RUN EnergyPlus & save sql, html (show terminal output)
 
-module.exports.OpenStudioRun = OpenStudioRun;
+//module.exports.OpenStudioRun = OpenStudioRun; //This new OpenStudio JavaScript instance computationally consumed all of app.js, so we moved to child_process.fork, which elimated a need for a function.
 
 //Nodejs File System
 var fs = require("fs");
 
-function OpenStudioRun(buildingDataFileName) {
+//function OpenStudioRun(buildingDataFileName) {
 
     // 1 - PARSE DATA from buildingData.json ---------------------------------------------------------------------------------
-    
+    var buildingDataFileName = process.argv[2];
     //READ Building Input JSON
     var building = JSON.parse(fs.readFileSync(buildingDataFileName, 'utf8')); 
     var simulationID = building.simulationID;
@@ -84,4 +84,4 @@ function OpenStudioRun(buildingDataFileName) {
       console.log("Warning: " + warnings.get(i));
     }
 
-}
+//}
