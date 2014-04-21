@@ -1,0 +1,40 @@
+<div id="energyConditionedBuildingArea" style="width:550px;height:450px"></div>
+<script>
+    $(function () {
+        $('#energyConditionedBuildingArea').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Energy Per Conditioned Building Area (kBtu/ft2s)'
+            },
+            xAxis: {
+                categories: ['Total Site Energy', 'Total Source Energy' ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Energy Consumption (kBtu/ft2)'
+                }
+            },
+            legend: {
+                backgroundColor: '#FFFFFF',
+                reversed: true
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+            // Dynamic Data
+			                series: [{
+                name: 'Electricity',
+                data: [33.786346020822, 120.81997190415]
+            }, {
+                name: 'Natural Gas',
+				color: 'red',
+                data: [38.226177847466, 41.742985767533]
+            }] // end of Data
+        });
+    });
+</script>

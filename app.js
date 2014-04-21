@@ -5,15 +5,10 @@
 findStdOut = 'before';				// global variable for simulationID
 
 var  fileName, io, socketio, tail;
-
 var connect = require('connect');
-
 var socketio = require('socket.io');
-
 var Tail = require('tail').Tail;
-
 var fs = require('fs');
-
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -68,6 +63,7 @@ app.get('/data-structure', routes.getDataStructure);
 app.get('/walls', routes.getWalls);
 app.get('/tracking', routes.getTracking);
 app.get('/output', routes.testOutput);
+app.get('/outputs', routes.testOutput);
 
 //Simulate OpenStudio & EnergyPlus
 var simulate = require("./routes/simulate.js");

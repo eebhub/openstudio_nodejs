@@ -1,6 +1,7 @@
 //DEPENDENCIES
 var fs = require("fs"); //Nodejs File System
 var timestp = require("../library/timestamp.js"); //Timestamp code
+var sqlToJSON = require("../library/outputs.js").sqlToJSON;
 
 //SIMULATE OPENSTUDIO
 module.exports = {openstudio: function(request, response) {
@@ -13,7 +14,7 @@ module.exports = {openstudio: function(request, response) {
     console.log("Creating unique Building Name & Folder...");
     var buildingName = request.body.buildingName.replace(/\s+/g, '') || "NoName";
     var timestamp = timestp.createTimestamp();
-    var buildingNameTimestamp =  "TEST_"+buildingName+timestamp;
+    var buildingNameTimestamp =  buildingName+timestamp;
     var simulationID = buildingNameTimestamp;
 
     //CREATE unique simulation Folder
@@ -34,46 +35,46 @@ module.exports = {openstudio: function(request, response) {
     "username": "eebhub",
     "simulationID": simulationID,
     "site":{
-        "city": "Philadelphia",
-        "weather": "USA_IL_Chicago-OHare.Intl.AP.725300_TMY3",
+        "city": request.body.weather,
+        "weather": request.body.weather,
         "climateZone": "ClimateZone 1-8",
         "strictDesignDay": "no"
     },
     "buildingInfo": {
-      "buildingName": "JASON",
-      "activityType": "SmallOffice",
+      "buildingName": request.body.buildingName,
+      "activityType": request.body.activityType,
       "activityTypeSecondary": "WholeBuilding",
-      "yearCompleted": "1911",
+      "yearCompleted": request.body.yearCompleted,
       "units": "si",
       "ASHRAEStandard": "ASHRAE_90.1-2004"
     },
     "architecture": {
-      "footprintShape": "Rectangle",
-      "buildingLength": 100,
-      "buildingWidth": 50,
-      "buildingHeight": 30,
-      "numberOfFloors": 3,
-      "floorToFloorHeight": 3.0,
-      "degreeToNorth": 15,
-      "plenumHeight": 1.0,
+      "footprintShape": request.body.footprintShape,
+      "buildingLength": request.body.buildingLength*1,
+      "buildingWidth": request.body.buildingWidth*1,
+      "buildingHeight": request.body.floorToFloorHeight*request.body.numberOfFloors,
+      "numberOfFloors": request.body.numberOfFloors*1,
+      "floorToFloorHeight": request.body.floorToFloorHeight*1,
+      "degreeToNorth": request.body.degreeToNorth*1,
+      "plenumHeight": 0.0,
       "perimeterZoneDepth": 3.0,
-      "windowToWallRatio": 0.4,
+      "windowToWallRatio": request.body.windowToWallRatio*1,
       "windowOffset": 1.0,
       "windowOffsetApplicationType": "Above Floor"
     },
     "mechanical": {
-      "fanEfficiency": 0.5,
-      "boilerEfficiency": 0.66,
-      "boilerFuelType": "NaturalGas",
-      "coilCoolRatedHighSpeedCOP": 3.5,
-      "coilCoolRatedLowSpeedCOP": 4.5,
-      "economizerType": "No Economizer",
+      "fanEfficiency": request.body.fanEfficiency*1,
+      "boilerEfficiency": request.body.boilerEfficiency*1,
+      "boilerFuelType": request.body.boilerFuelType,
+      "coilCoolRatedHighSpeedCOP": request.body.coilCoolRatedHighSpeedCOP*1,
+      "coilCoolRatedLowSpeedCOP": request.body.coilCoolRatedLowSpeedCOP*1,
+      "economizerType": request.body.economizerType,
       "economizerDryBulbTempLimit": 30,
-      "heatingSetpoint": 20,
-      "coolingSetpoint": 24
+      "heatingSetpoint": request.body.heatingSetpoint*1,
+      "coolingSetpoint": request.body.coolingSetpoint*1
     },
     "construction": {
-      "constructionLibraryPath": "/home/joshuakuiros/Desktop/openstudio_nodjs/library/defaultConstructionMaterials.osm"
+      "constructionLibraryPath": "./library/defaultConstructionMaterials.osm"
     },
     "schedules": {
         "occupancy":{
@@ -109,15 +110,33 @@ module.exports = {openstudio: function(request, response) {
     console.log('Input file saved!');
 
     //RUN openstudio-run.js & openstudio-model.js
-    var OpenStudioRun = require("../library/openstudio-run.js").OpenStudioRun;
-    var run = new OpenStudioRun(buildingDataFileName);
+    //var OpenStudioRun = require("../library/openstudio-run.js").OpenStudioRun;
+    //var run = new OpenStudioRun(buildingDataFileName); //This new OpenStudio JavaScript instance computationally consumed all of app.js, so we moved to child_process.fork...
+    var fork = require('child_process').fork;
+    var command = fork("./library/openstudio-run.js", [buildingDataFileName], {silent: true }); //silent because http://stackoverflow.com/questions/22275556/node-js-forked-pipe
+    command.stdout.pipe(process.stdout);
+    command.stderr.pipe(process.stderr);
+    //CREATE write file for stdout, LISTEN to stdout, WRITE to file
+    var file = fs.createWriteStream(outputPath+'progress.txt');
+    command.stdout.on('data', function(data) {file.write(data);});
+    command.stderr.on('data', function(data) {file.write(data);});
+    command.stdout.on('end', function(data) {file.end();});
+    command.stderr.on('end', function(data) {file.end();});
+    
+    // when child process exits, check if there were any errors and close the writeable stream
+    command.on('exit', function(code) {
+        if (code !== 0) {console.log('Failed: ' + code);}
+    });
 
     //APPEND important energyplus output sql tables into original json
-
+    //SQLite3 Database
+    var databasePath = outputPath+"1-EnergyPlus-0/eplusout.sql";
+   
+    
     //WRITE Output to buildingData.json
-
+    
     //RENDER EnergyPlus Graphs & Files outputs.ejs
-    response.redirect(outputPath); //redirecting to folder until outputs.ejs ready
+    response.redirect(outputPath); //redirecting to +"1-EnergyPlus-0/" folder until outputs.ejs ready
 
 }//end openstudio
 };//end exports
