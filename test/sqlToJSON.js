@@ -44,7 +44,8 @@ var building = {
         "site": {},
         "source": {},
         "area": {}
-    }
+    },
+    "tariff":{}
 }
 //Monthly SQL Commands
 var monthlyElSql = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'END USE ENERGY CONSUMPTION ELECTRICITY MONTHLY'";
@@ -60,6 +61,12 @@ function siteSource(type, value, units) {
     this.type = type;
     this.value = value;
     this.units = units;
+}
+
+function tariffs(type, value){
+    this.type = type;
+    this.value = value;
+    this.units = "$";
 }
 
 
@@ -167,14 +174,20 @@ db.all(sourceSQL, function (err, rows) {
 var tariffSQL = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'Tariff Report' AND TableName Like 'Categories'";
 //Tariff DB read
 db.all(tariffSQL, function (err, rows) {
-        rows.forEach(function (row) {
-            delete row.ReportName;
-            delete row.TableName;
-            delete row.ReportForString;
-            delete row.RowId;
-            row.Value = parseInt(row.Value);
-            delete row.Units
-            row.RowName = row.RowName.substring(0, row.RowName.search(" "));
-            console.log(row);
-        })
-    });
+    rows.forEach(function (row) {
+        delete row.ReportName;
+        delete row.TableName;
+        delete row.ReportForString;
+        delete row.RowId;
+        row.Value = parseInt(row.Value);
+        delete row.Units
+        row.RowName = row.RowName.substring(0, row.RowName.search(" "));
+        if (building.tariff[row.RowName]) {
+            building.tariff[row.RowName].push(new tariffs(row.ColumnName, row.Value));
+        } else {
+            building.tariff[row.RowName] = [];
+            building.tariff[row.RowName].push(new tariffs(row.ColumnName, row.Value));
+        }
+    })
+    fs.writeFileSync('buildingOutput.json', JSON.stringify(building,null, 4));
+});
