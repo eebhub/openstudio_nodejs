@@ -66,9 +66,10 @@ app.get('/output', routes.testOutput);
 app.get('/outputs', routes.testOutput);
 
 //Simulate OpenStudio & EnergyPlus
+console.log("*********BEFORE");
 var simulate = require("./routes/simulate.js");
 app.post('/simulate', simulate.openstudio);
-
+console.log("*********After");
 
 app.get('/eplus_out', function(req, res){
 
@@ -132,14 +133,17 @@ io.sockets.on('connection', function(socket) {
   });
 
   socket.on('randomNumber', function(value){
+
+    console.log("#################################EMITTED");
     
-    findStdOut = findStdOut + "1-EnergyPlus-0/stdout"; 
-    //console.log('###$$$###$$$###$$' + findStdOut);
+    findStdOut = findStdOut + "progress.txt"; 
+    console.log('###$$$###$$$###$$' + findStdOut);
     
    
 	
     if (fs.existsSync(findStdOut))
     {
+	console.log('###$$$###$$$###$$ FILE FOUND ');
         tail = new Tail(findStdOut);
 
         tail.on('line', function(data) {

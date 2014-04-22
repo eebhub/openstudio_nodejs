@@ -968,7 +968,7 @@
 				socket = io.connect('http://localhost:9099');
 				
 				socket.on('new-data', function(data) {
-					console.log(data.value);
+					//console.log(data.value);
 					count++;					// increase log count
 					if(count == 1)				// server callback function return, simluation has started
 					{
