@@ -11,6 +11,7 @@
     "sqlite3": "*",
 	"socket.io": "*",
 	"connect": "*",
-	"tail":	"*"
+	"tail":	"*",
+	"async": "*"
   }
 }
