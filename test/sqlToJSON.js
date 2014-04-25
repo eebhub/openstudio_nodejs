@@ -6,38 +6,8 @@ var databasePath = './eem_1.sql';
 var db = new sqlite3.Database(databasePath);
 var building = {
     "elec": {
-        "jan": [],
-        "feb": [],
-        "mar": [],
-        "apr": [],
-        "may": [],
-        "jun": [],
-        "jul": [],
-        "aug": [],
-        "sep": [],
-        "oct": [],
-        "nov": [],
-        "dec": [],
-        "ann": [],
-        "min": [],
-        "max": []
     },
     "ng": {
-        "jan": [],
-        "feb": [],
-        "mar": [],
-        "apr": [],
-        "may": [],
-        "jun": [],
-        "jul": [],
-        "aug": [],
-        "sep": [],
-        "oct": [],
-        "nov": [],
-        "dec": [],
-        "ann": [],
-        "min": [],
-        "max": []
     },
     "energyIntensity": {
         "total": {},
@@ -45,7 +15,7 @@ var building = {
         "source": {},
         "area": {}
     },
-    "tariff":{}
+    "tariff": {}
 }
 //Monthly SQL Commands
 var monthlyElSql = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'END USE ENERGY CONSUMPTION ELECTRICITY MONTHLY'";
@@ -63,7 +33,7 @@ function siteSource(type, value, units) {
     this.units = units;
 }
 
-function tariffs(type, value){
+function tariffs(type, value) {
     this.type = type;
     this.value = value;
     this.units = "$";
@@ -77,15 +47,15 @@ db.all(monthlyElSql, function (err, rows) {
         delete row.TableName;
         delete row.ReportForString;
         delete row.RowId;
-        var value = parseInt(row.Value);
-        row.Value = value;
+        row.Value =  parseInt(row.Value);
         row.ColumnName = row.ColumnName.substring(0, row.ColumnName.search(":"));
         var curMonth = row.RowName.substring(0, 3).toLowerCase();
-        if (row.Value !== 0) {
-            if (curMonth) {
-                building.elec[curMonth].push(new month(row.ColumnName, row.Value, row.Units));
-            }
-        };
+        if (building.elec[curMonth]) {
+            building.elec[curMonth].push(new month(row.ColumnName, row.Value, row.Units));
+        } else {
+            building.elec[curMonth] = [];
+            building.elec[curMonth].push(new month(row.ColumnName, row.Value, row.Units));
+        }
     });
 });
 
@@ -99,12 +69,12 @@ db.all(monthlyNGSql, function (err, rows) {
         row.Value = value;
         row.ColumnName = row.ColumnName.substring(0, row.ColumnName.search(":"));
         var curMonth = row.RowName.substring(0, 3).toLowerCase();
-
-        if (row.Value !== 0) {
-            if (curMonth) {
-                building.ng[curMonth].push(new month(row.ColumnName, row.Value, row.Units));
-            }
-        };
+        if (building.ng[curMonth]) {
+            building.ng[curMonth].push(new month(row.ColumnName, row.Value, row.Units));
+        } else {
+            building.ng[curMonth] = [];
+            building.ng[curMonth].push(new month(row.ColumnName, row.Value, row.Units));
+        }
     });
 });
 
@@ -151,7 +121,7 @@ db.all(eISql, function (err, rows) {
         };
     });
 });
-
+//Source DB read
 db.all(sourceSQL, function (err, rows) {
     rows.forEach(function (row) {
         delete row.ReportName;
@@ -189,5 +159,6 @@ db.all(tariffSQL, function (err, rows) {
             building.tariff[row.RowName].push(new tariffs(row.ColumnName, row.Value));
         }
     })
-    fs.writeFileSync('buildingOutput.json', JSON.stringify(building,null, 4));
+    fs.writeFileSync('buildingOutput.json', JSON.stringify(building, null, 4));
+    console.log(building.elec);
 });

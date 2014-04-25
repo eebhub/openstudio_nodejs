@@ -1,0 +1,315 @@
+{
+    "AnnualBuildingUtilityPerformanceSummary": {
+        "Site and Source Energy": [
+            {
+                "type": "Total Energy",
+                "value": 5691636,
+                "units": "kBtu"
+            }
+        ],
+        "Site to Source Energy Conversion Factors": [],
+        "Building Area": [],
+        "End Uses": [],
+        "End Uses By Subcategory": [],
+        "Utility Use Per Conditioned Floor Area": [],
+        "Utility Use Per Total Floor Area": [],
+        "Electric Loads Satisfied": [],
+        "On-Site Thermal Sources": [],
+        "Water Source Summary": [],
+        "Comfort and Setpoint Not Met Summary": []
+    },
+    "InputVerificationandResultsSummary": {
+        "General": [
+            {
+                "type": "Value",
+                "value": null,
+                "units": ""
+            }
+        ],
+        "Window-Wall Ratio": [],
+        "Conditioned Window-Wall Ratio": [],
+        "Skylight-Roof Ratio": [],
+        "Zone Summary": []
+    },
+    "DemandEndUseComponentsSummary": {
+        "End Uses": [
+            {
+                "type": "Electricity",
+                "value": 7,
+                "units": "kBtuh"
+            }
+        ],
+        "End Uses By Subcategory": []
+    },
+    "SourceEnergyEndUseComponentsSummary": {
+        "Source Energy End Use Components Summary": [
+            {
+                "type": "Source Electricity",
+                "value": 0,
+                "units": "kBtu"
+            }
+        ],
+        "Source Energy End Use Component Per Conditioned Floor Area": [],
+        "Source Energy End Use Components Per Total Floor Area": []
+    },
+    "ClimaticDataSummary": {
+        "SizingPeriod:DesignDay": [
+            {
+                "type": "Maximum Dry Bulb",
+                "value": 93,
+                "units": "F"
+            }
+        ],
+        "Weather Statistics File": []
+    },
+    "EnvelopeSummary": {
+        "Opaque Exterior": [
+            {
+                "type": "Construction",
+                "value": null,
+                "units": ""
+            }
+        ],
+        "Exterior Fenestration": [],
+        "Interior Fenestration": [],
+        "Exterior Door": []
+    },
+    "ShadingSummary": {
+        "Sunlit Fraction": [
+            {
+                "type": "March 21 9am",
+                "value": 0,
+                "units": ""
+            }
+        ],
+        "Window Control": []
+    },
+    "LightingSummary": {
+        "Interior Lighting": [
+            {
+                "type": "Zone",
+                "value": null,
+                "units": ""
+            }
+        ],
+        "Daylighting": [],
+        "Exterior Lighting": []
+    },
+    "EquipmentSummary": {
+        "Central Plant": [
+            {
+                "type": "Type",
+                "value": null,
+                "units": ""
+            }
+        ],
+        "Cooling Coils": [],
+        "DX Cooling Coils": [],
+        "DX Heating Coils": [],
+        "Heating Coils": [],
+        "Fans": [],
+        "Pumps": [],
+        "Service Water Heating": [],
+        "VAV DX Cooling Standard Rating Details": []
+    },
+    "HVACSizingSummary": {
+        "Zone Cooling": [
+            {
+                "type": "Calculated Design Load",
+                "value": 10901,
+                "units": "Btu/h"
+            }
+        ],
+        "Zone Heating": [],
+        "System Design Air Flow Rates": []
+    },
+    "SystemSummary": {
+        "Economizer": [
+            {
+                "type": "High Limit Shutoff Control",
+                "value": null,
+                "units": ""
+            }
+        ],
+        "Demand Controlled Ventilation using Controller:MechanicalVentilation": [],
+        "Time Not Comfortable Based on Simple ASHRAE 55-2004": [],
+        "Time Setpoint Not Met": []
+    },
+    "OutdoorAirSummary": {
+        "Average Outdoor Air During Occupied Hours": [
+            {
+                "type": "Average Number of Occupants",
+                "value": 2,
+                "units": ""
+            }
+        ],
+        "Minimum Outdoor Air During Occupied Hours": []
+    },
+    "ObjectCountSummary": {
+        "Surfaces by Class": [
+            {
+                "type": "Total",
+                "value": 160,
+                "units": ""
+            }
+        ],
+        "HVAC": [],
+        "Input Fields": []
+    },
+    "EnergyMeters": {
+        "Annual and Peak Values - Electricity": [
+            {
+                "type": "Electricity Annual Value",
+                "value": 761769,
+                "units": "kWh"
+            }
+        ],
+        "Annual and Peak Values - Gas": [],
+        "Annual and Peak Values - Cooling": [],
+        "Annual and Peak Values - Water": [],
+        "Annual and Peak Values - Other by Weight/Mass": [],
+        "Annual and Peak Values - Other Volumetric": [],
+        "Annual and Peak Values - Other Liquid/Gas": [],
+        "Annual and Peak Values - Other": []
+    },
+    "SensibleHeatGainSummary": {
+        "Annual Building Sensible Heat Gain Components": [
+            {
+                "type": "HVAC Input Sensible Air Heating",
+                "value": 2786,
+                "units": "kBtu"
+            }
+        ],
+        "Peak Cooling Sensible Heat Gain Components": [],
+        "Peak Heating Sensible Heat Gain Components": []
+    },
+    "Standard62.1Summary": {
+        "System Ventilation Requirements for Cooling": [
+            {
+                "type": "Sum of Zone Primary Air Flow - Vpz-sum",
+                "value": null,
+                "units": "ft3/min"
+            }
+        ],
+        "System Ventilation Requirements for Heating": [],
+        "Zone Ventilation Parameters": [],
+        "System Ventilation Parameters": [],
+        "Zone Ventilation Calculations for Cooling Design": [],
+        "System Ventilation Calculations for Cooling Design": [],
+        "Zone Ventilation Calculations for Heating Design": [],
+        "System Ventilation Calculations for Heating Design": []
+    },
+    "LEEDsummary": {
+        "Sec1.1A-General Information": [
+            {
+                "type": "Data",
+                "value": null,
+                "units": ""
+            }
+        ],
+        "EAp2-1. Space Usage Type": [],
+        "EAp2-2. Advisory Messages": [],
+        "EAp2-3. Energy Type Summary": [],
+        "EAp2-4/5. Performance Rating Method Compliance": [],
+        "EAp2-6. Energy Use Summary": [],
+        "EAp2-7. Energy Cost Summary": [],
+        "L-1. Renewable Energy Source Summary": [],
+        "EAp2-17a. Energy Use Intensity - Electricity": [],
+        "EAp2-17b. Energy Use Intensity - Natural Gas": [],
+        "EAp2-17c. Energy Use Intensity - Additional": [],
+        "EAp2-18. End Use Percentage": []
+    },
+    "ComponentSizingSummary": {
+        "AirTerminal:SingleDuct:VAV:Reheat": [
+            {
+                "type": "Maximum Flow per Zone Floor Area during Reheat",
+                "value": 0,
+                "units": "ft3/min-ft2"
+            }
+        ],
+        "Branch": [],
+        "PlantLoop": []
+    },
+    "SurfaceShadowingSummary": {
+        "Surfaces (Walls, Roofs, etc) that may be Shadowed by Other Surfaces": [
+            {
+                "type": "Possible Shadow Receivers",
+                "value": null,
+                "units": ""
+            }
+        ],
+        "Subsurfaces (Windows and Doors) that may be Shadowed by Surfaces": []
+    },
+    "ZoneComponentLoadSummary": {
+        "Estimated Cooling Peak Load Components": [
+            {
+                "type": "Sensible - Instant",
+                "value": 510,
+                "units": "Btu/h"
+            }
+        ],
+        "Cooling Peak Conditions": [],
+        "Estimated Heating Peak Load Components": [],
+        "Heating Peak Conditions": []
+    },
+    "END USE ENERGY CONSUMPTION ELECTRICITY MONTHLY": {
+        "": [
+            {
+                "type": "INTERIORLIGHTS:ELECTRICITY",
+                "value": 19704,
+                "units": "kWh"
+            }
+        ]
+    },
+    "END USE ENERGY CONSUMPTION NATURAL GAS MONTHLY": {
+        "": [
+            {
+                "type": "INTERIOREQUIPMENT:GAS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            }
+        ]
+    },
+    "Economics Results Summary Report": {
+        "Annual Cost": [
+            {
+                "type": "Electric",
+                "value": 111989,
+                "units": "~~$~~"
+            }
+        ],
+        "Tariff Summary": []
+    },
+    "Tariff Report": {
+        "": [
+            {
+                "type": "Parameter",
+                "value": null,
+                "units": ""
+            }
+        ],
+        "Categories": [],
+        "Charges": [],
+        "Corresponding Sources for Charges": [],
+        "Native Variables": [],
+        "Other Variables": []
+    },
+    "Life-Cycle Cost Report": {
+        "Life-Cycle Cost Parameters": [
+            {
+                "type": "Value",
+                "value": null,
+                "units": ""
+            }
+        ],
+        "Use Price Escalation": [],
+        "Cash Flow for Recurring and Nonrecurring Costs (Without Escalation)": [],
+        "Energy Cost Cash Flows (Without Escalation)": [],
+        "Capital Cash Flow by Category (Without Escalation)": [],
+        "Operating Cash Flow by Category (Without Escalation)": [],
+        "Monthly Total Cash Flow (Without Escalation)": [],
+        "Present Value for Recurring, Nonrecurring and Energy Costs (Before Tax)": [],
+        "Present Value by Category": [],
+        "Present Value by Year": []
+    }
+}

@@ -7,9 +7,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 32062,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -22,9 +32,39 @@
                 "units": "kWh"
             },
             {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 15,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "feb": [
@@ -34,9 +74,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 28976,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -49,9 +99,39 @@
                 "units": "kWh"
             },
             {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 1,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "mar": [
@@ -61,9 +141,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 31938,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -76,9 +166,39 @@
                 "units": "kWh"
             },
             {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 127,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "apr": [
@@ -88,9 +208,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 31365,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -103,9 +233,39 @@
                 "units": "kWh"
             },
             {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 1160,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "may": [
@@ -115,9 +275,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 31441,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -130,9 +300,39 @@
                 "units": "kWh"
             },
             {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 4160,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "jun": [
@@ -142,9 +342,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 31365,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -157,9 +367,39 @@
                 "units": "kWh"
             },
             {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 19057,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "jul": [
@@ -169,9 +409,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 32560,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -179,9 +429,44 @@
                 "units": "kWh"
             },
             {
+                "energyType": "PUMPS",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 37342,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "aug": [
@@ -191,9 +476,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 31441,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -201,9 +496,44 @@
                 "units": "kWh"
             },
             {
+                "energyType": "PUMPS",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 30708,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "sep": [
@@ -213,9 +543,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 31365,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -228,9 +568,39 @@
                 "units": "kWh"
             },
             {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 13425,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "oct": [
@@ -240,9 +610,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 32062,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -255,9 +635,39 @@
                 "units": "kWh"
             },
             {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 1397,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "nov": [
@@ -267,9 +677,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 30744,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -282,9 +702,39 @@
                 "units": "kWh"
             },
             {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 840,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "dec": [
@@ -294,9 +744,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 32560,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -309,9 +769,106 @@
                 "units": "kWh"
             },
             {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 162,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            }
+        ],
+        "": [
+            {
+                "energyType": "INTERIORLIGHTS",
+                "value": null,
+                "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIORLIGHTS",
+                "value": null,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": null,
+                "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": null,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "FANS",
+                "value": null,
+                "units": "kWh"
+            },
+            {
+                "energyType": "PUMPS",
+                "value": null,
+                "units": "kWh"
+            },
+            {
+                "energyType": "HEATING",
+                "value": null,
+                "units": "kWh"
+            },
+            {
+                "energyType": "COOLING",
+                "value": null,
+                "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": null,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": null,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": null,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": null,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": null,
+                "units": "Invalid/Undefined"
             }
         ],
         "ann": [
@@ -321,9 +878,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 377882,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -336,9 +903,39 @@
                 "units": "kWh"
             },
             {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 108399,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "min": [
@@ -348,9 +945,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 28976,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -358,9 +965,44 @@
                 "units": "kWh"
             },
             {
+                "energyType": "PUMPS",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 1,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "max": [
@@ -370,9 +1012,19 @@
                 "units": "kWh"
             },
             {
+                "energyType": "EXTERIORLIGHTS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "INTERIOREQUIPMENT",
                 "value": 32560,
                 "units": "kWh"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
             },
             {
                 "energyType": "FANS",
@@ -385,92 +1037,553 @@
                 "units": "kWh"
             },
             {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "kWh"
+            },
+            {
                 "energyType": "COOLING",
                 "value": 37342,
                 "units": "kWh"
+            },
+            {
+                "energyType": "HEATREJECTION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HUMIDIFIER",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATRECOVERY",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ]
     },
     "ng": {
         "jan": [
             {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "HEATING",
                 "value": 8965,
                 "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "feb": [
             {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "HEATING",
                 "value": 6607,
                 "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "mar": [
             {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "HEATING",
                 "value": 3493,
                 "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "apr": [
             {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "HEATING",
                 "value": 1281,
                 "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "may": [
             {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "HEATING",
                 "value": 101,
                 "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
-        "jun": [],
-        "jul": [],
-        "aug": [],
+        "jun": [
+            {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            }
+        ],
+        "jul": [
+            {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            }
+        ],
+        "aug": [
+            {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            }
+        ],
         "sep": [
+            {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
             {
                 "energyType": "HEATING",
                 "value": 13,
                 "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "oct": [
             {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "HEATING",
                 "value": 1251,
                 "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "nov": [
             {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "HEATING",
                 "value": 3464,
                 "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
         "dec": [
             {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "HEATING",
                 "value": 5724,
                 "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            }
+        ],
+        "": [
+            {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": null,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": null,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATING",
+                "value": null,
+                "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": null,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": null,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": null,
+                "units": "Invalid/Undefined"
             }
         ],
         "ann": [
             {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
                 "energyType": "HEATING",
                 "value": 30906,
                 "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ],
-        "min": [],
+        "min": [
+            {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "HEATING",
+                "value": 0,
+                "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            }
+        ],
         "max": [
+            {
+                "energyType": "INTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "EXTERIOREQUIPMENT",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
             {
                 "energyType": "HEATING",
                 "value": 8965,
                 "units": "therm"
+            },
+            {
+                "energyType": "COOLING",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "WATERSYSTEMS",
+                "value": 0,
+                "units": "Invalid/Undefined"
+            },
+            {
+                "energyType": "COGENERATION",
+                "value": 0,
+                "units": "Invalid/Undefined"
             }
         ]
     },
