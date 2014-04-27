@@ -1,5 +1,5 @@
 {
-    "elec": {
+    "elecConsumption": {
         "jan": [
             {
                 "energyType": "INTERIORLIGHTS",
@@ -1073,7 +1073,7 @@
             }
         ]
     },
-    "ng": {
+    "ngConsumtion": {
         "jan": [
             {
                 "energyType": "INTERIOREQUIPMENT",
@@ -3405,26 +3405,26 @@
                     "units": "kBtu/ft2"
                 }
             ]
-        },
-        "area": {
-            "Total Building Area": {
-                "type": "Area",
-                "value": 79655,
-                "units": "ft2"
-            },
-            "Net Conditioned Building Area": {
-                "type": "Area",
-                "value": 79655,
-                "units": "ft2"
-            },
-            "Unconditioned Building Area": {
-                "type": "Area",
-                "value": 0,
-                "units": "ft2"
-            }
         }
     },
-    "tariff": {
+    "area": {
+        "Total Building Area": {
+            "type": "Area",
+            "value": 79655,
+            "units": "ft2"
+        },
+        "Net Conditioned Building Area": {
+            "type": "Area",
+            "value": 79655,
+            "units": "ft2"
+        },
+        "Unconditioned Building Area": {
+            "type": "Area",
+            "value": 0,
+            "units": "ft2"
+        }
+    },
+    "tariffs": {
         "EnergyCharges": [
             {
                 "type": "Jan",
@@ -4703,5 +4703,20 @@
                 "units": "$"
             }
         ]
+    },
+    "siteToSourceConversion": {
+        "Electricity": 3.167,
+        "Natural Gas": 1.084,
+        "District Cooling": 1.056,
+        "District Heating": 3.613,
+        "Steam": 0.3,
+        "Gasoline": 1.05,
+        "Diesel": 1.05,
+        "Coal": 1.05,
+        "Fuel Oil #1": 1.05,
+        "Fuel Oil #2": 1.05,
+        "Propane": 1.05,
+        "Other Fuel 1": 1,
+        "Other Fuel 2": 1
     }
 }
