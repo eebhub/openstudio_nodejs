@@ -112,49 +112,66 @@ module.exports = {openstudio: function(request, response) {
     //RUN openstudio-run.js & openstudio-model.js
     
     //ATTEMPT#1:  This new OpenStudio/EnergyPlus JavaScript instance computationally consumed all of app.js, so we moved to child_process.fork...
-    //var OpenStudioRun = require("../library/openstudio-run.js").OpenStudioRun;
-    //var run = new OpenStudioRun(buildingDataFileName); 
+        //var OpenStudioRun = require("../library/openstudio-run.js").OpenStudioRun;
+        //var run = new OpenStudioRun(buildingDataFileName); 
     
-    //ATTEMPT#2:  Since Node is asynchronous and the OpenStudio/EnergyPlus fork takes 5+ minutes, the response.redirect happened before EnergyPlus was finished
-    // var fork = require('child_process').fork;
-    // var command = fork("./library/openstudio-run.js", [buildingDataFileName], {silent: true });
+    //ATTEMPT#2:  Since Node is asynchronous and the OpenStudio/EnergyPlus fork takes 5+ minutes, the response.redirect happened before EnergyPlus was finished, so we blocked redirect with a procedural module...
+        // var fork = require('child_process').fork;
+        // var command = fork("./library/openstudio-run.js", [buildingDataFileName], {silent: true });
 
-    //ATTEMPT#3:  Syncronously (or async.series): 1st Run EnergyPlus, 2nd response.redirect
-    var async = require('async');
-    async.series([
-        function(callback){ 
-            var fork = require('child_process').fork;
-            var command = fork("./library/openstudio-run.js", [buildingDataFileName], {silent: true }); //silent because http://stackoverflow.com/questions/22275556/node-js-forked-pipe
-            command.stdout.pipe(process.stdout);
-            command.stderr.pipe(process.stderr);
-            
-            //CREATE write file for stdout, LISTEN to stdout, WRITE to file
-            var file = fs.createWriteStream(outputPath+'progress.txt');
-            command.stdout.on('data', function(data) {file.write(data);});
-            command.stderr.on('data', function(data) {file.write(data);});
-            command.stdout.on('end', function(data) {file.end();});
-            command.stderr.on('end', function(data) {file.end();});
-            
-            //when child process exits, check if there were any errors and close the writeable stream
-            command.on('exit', function(code) {
-                if (code !== 0) {console.log('Failed: ' + code);}
-                callback();
-            });
-        },
-        function(callback){ 
-            //APPEND important energyplus output sql tables into original json
-            //SQLite3 Database
-            var databasePath = outputPath+"1-EnergyPlus-0/eplusout.sql";
-           
-            
-            //WRITE Output to buildingData.json
-            
-            //RENDER EnergyPlus Graphs & Files outputs.ejs
-            response.redirect(outputPath+"1-EnergyPlus-0/eplustbl.htm"); //redirecting to output HTML until outputs.ejs ready
-            
-            callback();
-        }
-    ]);
-            
+    //ATTEMPT#3:  Syncronously (or async.series): 1st Run EnergyPlus, 2nd response.redirect.  This also blocked client side progress bar, so we removed async module...
+        // var async = require('async');
+        // async.series([
+        //     function(callback){ 
+        //         var fork = require('child_process').fork;
+        //         var command = fork("./library/openstudio-run.js", [buildingDataFileName], {silent: true }); //silent because http://stackoverflow.com/questions/22275556/node-js-forked-pipe
+        //         command.stdout.pipe(process.stdout);
+        //         command.stderr.pipe(process.stderr);
+                
+        //         //CREATE write file for stdout, LISTEN to stdout, WRITE to file
+        //         var file = fs.createWriteStream(outputPath+'progress.txt');
+        //         command.stdout.on('data', function(data) {file.write(data);});
+        //         command.stderr.on('data', function(data) {file.write(data);});
+        //         command.stdout.on('end', function(data) {file.end();});
+        //         command.stderr.on('end', function(data) {file.end();});
+                
+        //         //when child process exits, check if there were any errors and close the writeable stream
+        //         command.on('exit', function(code) {
+        //             if (code !== 0) {console.log('Failed: ' + code);}
+        //             callback();
+        //         });
+        //     },
+        //     function(callback){ 
+                
+        //         //RENDER EnergyPlus Graphs & Files outputs.ejs
+        //         response.redirect(outputPath+"1-EnergyPlus-0/eplustbl.htm"); //redirecting to output HTML until outputs.ejs ready
+                
+        //         callback();
+        //     }
+        // ]);
+    
+    //ATTEMPT#4:  Fork OpenStudio/EnergyPlus process to free up memory for app.js & redirect on CLIENT side javascript (when E+ stdout finishes).
+    var fork = require('child_process').fork;
+    var command = fork("./library/openstudio-run.js", [buildingDataFileName], {silent: true }); //silent because http://stackoverflow.com/questions/22275556/node-js-forked-pipe
+    command.stdout.pipe(process.stdout);
+    command.stderr.pipe(process.stderr);
+    //CREATE write file for stdout, LISTEN to stdout, WRITE to file
+    var file = fs.createWriteStream(outputPath+'progress.txt');
+    command.stdout.on('data', function(data) {file.write(data);});
+    command.stderr.on('data', function(data) {file.write(data);});
+    command.stdout.on('end', function(data) {file.end();});
+    command.stderr.on('end', function(data) {file.end();});
+    
+    // when child process exits, check if there were any errors and close the writeable stream
+    command.on('exit', function(code) {
+        if (code !== 0) {console.log('Failed: ' + code);}
+    });
+    
+    //WRITE Output to buildingData.json / APPEND important energyplus output sql tables into original json
+    var databasePath = outputPath+"1-EnergyPlus-0/eplusout.sql";
+   
+    //RENDER EnergyPlus Graphs & Files outputs.ejs
+    //Logic now in loading() javascript function on client side
+
 }//end openstudio
 };//end exports
