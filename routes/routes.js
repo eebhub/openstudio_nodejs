@@ -1,6 +1,6 @@
 var timestp = require("../library/timestamp.js");
 var fs = require("fs");
-var sqlToJSON = require("../library/outputs.js").sqlToJSON;
+var sqlToJSON = require("../library/sqlToJSON.js").sqlToJSON;
 
 module.exports = {
     getHome: function(request, response){
@@ -23,10 +23,6 @@ module.exports = {
         response.render('energy-cost');
     },
 
-    getZoneLoads: function(request, response){
-        response.render('zone-component-load');
-    },
-
     getMeasureList: function(request, response){
 
         response.render('measure-list');
@@ -46,7 +42,7 @@ module.exports = {
     testOutput: function(request, response){
       var database = "test/eem_1.sql";
       sqlToJSON(database, function(ePlusOutputs){
-          console.log(ePlusOutputs.energyUse.naturalGas);
+          console.log(ePlusOutputs.area);
           response.render('output', {
               output: ePlusOutputs
           })

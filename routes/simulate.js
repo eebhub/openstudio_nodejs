@@ -1,7 +1,7 @@
 //DEPENDENCIES
 var fs = require("fs"); //Nodejs File System
 var timestp = require("../library/timestamp.js"); //Timestamp code
-var sqlToJSON = require("../library/outputs.js").sqlToJSON;
+
 
 //SIMULATE OPENSTUDIO
 module.exports = {openstudio: function(request, response) {
