@@ -955,7 +955,8 @@
         	
 			var socket;
 			var count = 0;
-			var maxFileLines = 503;									// maximum amount of lines written to stdout
+			var redirectUrl;
+			var maxFileLines = 220;									// maximum amount of lines written to stdout
 			var percentage = 100;									// multiplie to obtain percentage
 			var currentRanNum = Math.floor((Math.random()*10000)+1);				// random number 1->10,000 sent to simulate-openstudio.php to designate a path 
 			document.getElementById("random_number").value = currentRanNum;			// set hidden div "random_number" so that it can be retrieved by ruby script
@@ -966,9 +967,14 @@
 				var num;
 				$("#real-time-output").html("");
 				socket = io.connect('http://localhost:9099');
+
+				socket.on('redirectPath', function(data){
+					console.log('we got the path @ ' + data.value);
+					redirectUrl = data.value;
+				});
 				
 				socket.on('new-data', function(data) {
-					//console.log(data.value);
+					console.log('(' + count + ')	' + data.value);
 					count++;					// increase log count
 					if(count == 1)				// server callback function return, simluation has started
 					{
@@ -976,10 +982,32 @@
 					}
 					else						// output from stdout
 					{
+					
 						num= (count/maxFileLines)*$(".loading-div").width();
 						$(".bar").width(num);
-						$("#loading-status").html("Simulation in Progress " +parseInt(num/$(".loading-div").width()*percentage)+"%");
+
+						var currentPercentage = parseInt(num/$(".loading-div").width()*percentage);
 						$("#real-time-output").html(data.value);
+						var temp = data.value
+						if(currentPercentage < 100)
+						{
+							$("#loading-status").html("Simulation in Progress " + currentPercentage+"%");
+						}
+						else
+						{
+							$("#loading-status").html("Simulation in Progress " + "100%");
+						}
+
+						if( temp.indexOf("EnergyPlus Run") > -1)
+						{
+							console.log('sim complete');
+							$(".bar").width($(".loading-div").width());
+							$("#loading-status").html("Simulation in Progress " +"100%");
+							$("#real-time-output").html("COMPLETE");
+
+							window.location.href=redirectUrl; 
+								
+						}
 					}
 				});	
 			});
@@ -989,9 +1017,9 @@
 			function loading() 
 			{
 				setTimeout(function(){				// wait 15 seconds until file is created to start loading bar
-					//console.log("waited");			
+					console.log("waited");			
 					socket.emit('randomNumber', currentRanNum);
-				},500);
+				},30000);
 				
 							
 			}

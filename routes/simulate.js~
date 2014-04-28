@@ -136,7 +136,7 @@ module.exports = {openstudio: function(request, response) {
     //WRITE Output to buildingData.json
     
     //RENDER EnergyPlus Graphs & Files outputs.ejs
-    //response.redirect(outputPath); //redirecting to +"1-EnergyPlus-0/" folder until outputs.ejs ready
+    response.redirect(outputPath); //redirecting to +"1-EnergyPlus-0/" folder until outputs.ejs ready
 
 }//end openstudio
 };//end exports

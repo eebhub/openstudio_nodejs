@@ -149,9 +149,7 @@ io.sockets.on('connection', function(socket) {
         tail = new Tail(outputFilePath);
 
 
-	io.sockets.emit('redirectPath', {
-		channel: 'stdout',
-		value: findStdOut});
+	socket.emit('redirectPath', findStdOut);
 
         tail.on('line', function(data) {
           return io.sockets.emit('new-data', {
