@@ -27,7 +27,7 @@ console.log("Window to Wall Ratio: "+ building.architecture.windowToWallRatio);
 var buildingName = building.buildingInfo.buildingName.replace(/\s+/g, '') || "NoName";
 var timestamp = timestp.createTimestamp();
 var buildingNameTimestamp =  buildingName+timestamp;
-var outputPath = building.paths.simulationsPath + "SOLO_"buildingNameTimestamp;
+var outputPath = building.paths.simulationsPath + "SOLO_"+buildingNameTimestamp;
 fs.mkdirSync(outputPath, function(error) {if (error) throw error;});
 
 // 2 - REQUIRE OpenstudioModel.js file ---------------------------------------------------------------------------------
