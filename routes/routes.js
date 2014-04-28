@@ -42,7 +42,7 @@ module.exports = {
     testOutput: function(request, response){
       var database = "test/eem_1.sql";
       sqlToJSON(database, function(ePlusOutputs){
-          console.log(ePlusOutputs.area);
+          console.log(ePlusOutputs.general);
           response.render('output', {
               buildingName: "My Building",
               output: ePlusOutputs
