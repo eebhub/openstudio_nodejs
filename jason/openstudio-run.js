@@ -48,19 +48,21 @@ runmanager.setConfigOptions(co);
 //Send (data = buildingData.json, runmanager = disable gui) to OpenStudioModel
 var model = new OpenStudioModel(data, runmanager);
 
-// 3 - RUN OpenStudio & save osm, idf -----------------------------------------------------------------------------------
+// 3 - RUN OpenStudio & save osm -----------------------------------------------------------------------------------
 
 console.log("CONVERT OPENSTUDIO TO ENERGYPLUS:");
 model.save_openstudio_osm(outputPath, buildingNameTimestamp+"_input.osm");
-model.translate_to_energyplus_and_save_idf(outputPath, buildingNameTimestamp+"_input.idf");
 
-model.add_load_summary_report(outputPath+buildingNameTimestamp+"_input.idf");
-model.convert_unit_to_ip(outputPath+buildingNameTimestamp+"_input.idf");
+// these are no longer necessary, see notes in the "run_energyplus_simulation" code
+
+//model.translate_to_energyplus_and_save_idf(outputPath, buildingNameTimestamp+"_input.idf");
+//model.add_load_summary_report(outputPath+buildingNameTimestamp+"_input.idf");
+//model.convert_unit_to_ip(outputPath+buildingNameTimestamp+"_input.idf");
 
 // 4 - RUN EnergyPlus & save sql, html -----------------------------------------------------------------------------------
 
 console.log("RUN ENERGYPLUS:");
-var job = model.run_energyplus_simulation(outputPath, buildingNameTimestamp+"_input.idf");
+var job = model.run_energyplus_simulation(outputPath, buildingNameTimestamp+"_input.osm");
 
 var treeerrors = job.treeErrors();
 
@@ -79,3 +81,10 @@ for (var i = 0; i < warnings.size(); ++i)
 {
   console.log("Warning: " + warnings.get(i));
 }
+
+// use this to find whatever output files that were generated that you want
+// "getLastByFilename" also exists, as well as "getAllBy*" versions if you are
+// looking for a set of files that have the same extension, etc.
+var sqlfile = job.treeOutputFiles().getLastByExtension("sql");
+console.log("SQL ouput file created at: " + openstudio.toString(sqlfile.fullPath));
+
