@@ -3,7 +3,7 @@ var number_format = require('./number_format.js');
 
 module.exports = {
     /*
-     *  get an array of Object(curRowname, curColumnName, value), 
+     *  get an array of Object(curRowname, curColumnName, value),
      *  return an array of object {curRowname: , curColumnName: , value: }
      */
     getValues: function(reportName, reportForString, tableName, units, db_path, fn) {
