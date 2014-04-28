@@ -291,6 +291,8 @@
                              <input type="button" id="unitoptionIP" name="unitoption" value="IP" class="btn" onclick='$(".unit").html("ft");$("#heating-setpoint").html("<input type=\"number\" min=\"0\" class=\"span2\" id=\"appendedInput\" value=\"75\" name=\"heating_setpoint\" disabled /><span class=\"add-on\">&#186;F</span>");$("#cooling-setpoint").html("<input type=\"number\" min=\"0\" class=\"span2\" id=\"appendedInput\" value=\"79\" name=\"cooling_setpoint\" disabled /><span class=\"add-on\">&#186;F</span>");$(".illu-unit").html("lm/ft&#178;");$("#illuminance").html("<option value=\"150\">15 - storage</option><option value=\"200\">20 - casual work</option><option value=\"300\">30 - rough work</option><option value=\"400\">40 - office work (EU)</option><option value=\"500\" selected>50 - office work (US)</option>");$("#si-ip").val("ip");'>
                          </div>
                          </li>
+                        <hr style="color:lightgray;background-color:lightgray;height:1px;border:none;"/>
+                    <li><button type="button" class="btn" onclick="TogetherJS(this); return false;"  data-toggle="button">Collaborate</button></li>
                     </ul>
                 </div>
                 
@@ -693,9 +695,8 @@
 			<script src="https://rawgithub.com/highslide-software/draggable-points/master/draggable-points.js"></script>
 		    <script src="js/exporting.js"></script>
    			<script type="text/javascript" src="js/bootstrap.min.js"></script>
-
             <script src="http://code.jquery.com/jquery.js"></script>
-            <script src="js/bootstrap.min.js"></script>
+            <script src="https://togetherjs.com/togetherjs-min.js"></script>
             <script src="js/bootstrap-scrollspy.js"></script>
             <script src="js/bootstrap-fileupload.js"></script>
 			<script src="js/socket.io.js"></script>
