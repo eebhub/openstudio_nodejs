@@ -9,6 +9,10 @@ function sqlToJSON(sqlFilePath, callback) {
     var db = new sqlite3.Database(sqlFilePath);
     //Construction Initial Building Data Object
     var building = {
+        "general": {},
+        "windowWallRatio": {},
+        "skylightRoofRatio": {},
+        "zoneSummary": {},
         "elecConsumption": {},
         "ngConsumtion": {},
         "energyIntensity": {
@@ -43,6 +47,8 @@ function sqlToJSON(sqlFilePath, callback) {
     var sourceSQL = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'SourceEnergyEndUseComponentsSummary'";
     //Tariff SQL
     var tariffSQL = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'Tariff Report' AND TableName Like 'Categories'";
+    //General Data SQL
+    var summarySQL = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'InputVerificationandResultsSummary'";
     //Object Constuctors
     function month(energyType, value, units) {
         this.energyType = energyType;
@@ -62,6 +68,77 @@ function sqlToJSON(sqlFilePath, callback) {
         this.units = "$";
     };
 
+    function generalData(value, units) {
+        if (isNaN(value)) {
+            this.value = value;
+        } else {
+            this.value = parseInt(value);
+        };
+
+        this.units = units;
+    }
+
+    function wwRatioData(type, value, units) {
+        if (isNaN(value)) {
+            this.value = value;
+        } else {
+            this.value = parseInt(value);
+        };
+        this.type = type;
+        this.value = value;
+        this.units = units;
+    }
+
+    function skyRatioData(value, units) {
+        if (isNaN(value)) {
+            this.value = value;
+        } else {
+            this.value = parseInt(value);
+        };
+        this.units = units;
+    }
+
+    function zoneSumData(type, value, units) {
+
+        if (isNaN(value)) {
+            this.value = value;
+        } else {
+            this.value = parseInt(value);
+        };
+        this.type = type;
+        this.units = units;
+    }
+    //General Data SQL
+    var summarySQL = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'InputVerificationandResultsSummary'";
+    db.all(summarySQL, function (err, rows) {
+        rows.forEach(function (row) {
+            if (row.TableName == "General") {
+                building.general[row.RowName] = new generalData(row.Value, row.Units);
+            }
+            if (row.TableName == "Window-Wall Ratio") {
+                if (building.windowWallRatio[row.RowName]) {
+                    building.windowWallRatio[row.RowName].push(new wwRatioData(row.ColumnName, row.Value, row.Units));
+                } else {
+                    building.windowWallRatio[row.RowName] = [];
+                    building.windowWallRatio[row.RowName].push(new wwRatioData(row.ColumnName, row.Value, row.Units));
+                };
+
+            }
+            if (row.TableName == "Skylight-Roof Ratio") {
+                building.skylightRoofRatio[row.RowName] = new skyRatioData(row.Value, row.Units);
+            }
+            if (row.TableName == "Zone Summary") {
+                if (building.zoneSummary[row.RowName]) {
+                    building.zoneSummary[row.RowName].push(new zoneSumData(row.ColumnName, row.Value, row.Units));
+                } else {
+                    building.zoneSummary[row.RowName] = [];
+                    building.zoneSummary[row.RowName].push(new zoneSumData(row.ColumnName, row.Value, row.Units));
+                };
+
+            }
+        });
+
+    });
     //Monthly Consumption DB queries
     //Electricity
     db.all(monthlyElSql, function (err, rows) {
