@@ -44,6 +44,7 @@ module.exports = {
       sqlToJSON(database, function(ePlusOutputs){
           console.log(ePlusOutputs.area);
           response.render('output', {
+              buildingName: "My Building",
               output: ePlusOutputs
           })
       });
