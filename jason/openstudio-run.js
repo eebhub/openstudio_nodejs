@@ -55,9 +55,9 @@ model.save_openstudio_osm(outputPath, buildingNameTimestamp+"_input.osm");
 
 // these are no longer necessary, see notes in the "run_energyplus_simulation" code
 
-//model.translate_to_energyplus_and_save_idf(outputPath, buildingNameTimestamp+"_input.idf");
-//model.add_load_summary_report(outputPath+buildingNameTimestamp+"_input.idf");
-//model.convert_unit_to_ip(outputPath+buildingNameTimestamp+"_input.idf");
+//model.translate_to_energyplus_and_save_idf(outputPath, buildingNameTimestamp+"_input.idf"); "Save IDF" now in File [openstudio-model.js] Function [run_energyplus_simulation] Line [467]: workflow.addWorkflow(new openstudio.runmanager.Workflow("ModelToIdf->EnergyPlusPreProcess->EnergyPlus")); // ModelToIdf job enables AllSummary reports including ZoneComponentLoad
+//model.add_load_summary_report(outputPath+buildingNameTimestamp+"_input.idf"); "Add Load Summary" now in File [openstudio-model.js] Function [run_energyplus_simulation] Line [467]: workflow.addWorkflow(new openstudio.runmanager.Workflow("ModelToIdf->EnergyPlusPreProcess->EnergyPlus")); // ModelToIdf job enables AllSummary reports including ZoneComponentLoad
+//model.convert_unit_to_ip(outputPath+buildingNameTimestamp+"_input.idf"); "Convert Units to IP / English" now in File [openstudio-model.js] Function [run_energyplus_simulation] Line [471]: workflow.addParam(new openstudio.runmanager.JobParam("IPTabularOutput")); //Tell the translator to use IP in HTML
 
 // 4 - RUN EnergyPlus & save sql, html -----------------------------------------------------------------------------------
 
