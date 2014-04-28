@@ -15,7 +15,9 @@ From terminal:
 
 2. `cd openstudio_nodejs/library/`
 
-3. From this current directory, run:
+3. Set paths for your username [here](https://github.com/eebhub/openstudio_nodejs/blob/develop/library/buildingData2.json#L66-L68)
+
+4. From this library directory, run:
 
     ```sh
     node openstudio-run-solo.js
