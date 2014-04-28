@@ -1,4 +1,4 @@
-<table>
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th></th>
@@ -10,5 +10,23 @@
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td>Gross Wall Area</td>
+            <% for(var i=0;i<output.windowWallRatio["Gross Wall Area"].length; i++){ %>
+            <td> <%=output.windowWallRatio["Gross Wall Area"][i].value %>  <%=output.windowWallRatio["Gross Wall Area"][i].units %>  </td>
+            <%}%>
+        </tr>
+        <tr>
+            <td>Window Opening Area</td>
+            <% for(var i=0;i<output.windowWallRatio["Window Opening Area"].length; i++){ %>
+            <td> <%=output.windowWallRatio["Window Opening Area"][i].value %>  <%=output.windowWallRatio["Window Opening Area"][i].units %>  </td>
+            <%}%>
+        </tr>
+        <tr>
+            <td>Window-Wall Ratio</td>
+            <% for(var i=0;i<output.windowWallRatio["Window-Wall Ratio"].length; i++){ %>
+            <td> <%=output.windowWallRatio["Window-Wall Ratio"][i].value %>  <%=output.windowWallRatio["Window-Wall Ratio"][i].units %>  </td>
+            <%}%>
+        </tr>
     </tbody>
 </table>

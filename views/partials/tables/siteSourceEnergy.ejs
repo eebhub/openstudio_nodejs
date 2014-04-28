@@ -1,0 +1,37 @@
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Total Energy</th>
+            <th>Energy Per Total Building Area</th>
+            <th>Energy Per Conditioned Building Area</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr>
+            <td>Total Site Energy</td>
+            <% for(var i=0;i<output.energyIntensity.total["Total Site Energy"].length; i++){ %>
+            <td> <%=output.energyIntensity.total["Total Site Energy"][i].value %>  <%=output.energyIntensity.total["Total Site Energy"][i].units %>  </td>
+            <%}%>
+        </tr>
+        <tr>
+            <td>Net Site Energy</td>
+            <% for(var i=0;i<output.energyIntensity.total["Net Site Energy"].length; i++){ %>
+            <td> <%=output.energyIntensity.total["Net Site Energy"][i].value %>  <%=output.energyIntensity.total["Net Site Energy"][i].units %>  </td>
+            <%}%>
+        </tr>
+        <tr>
+            <td>Total Source Energy</td>
+            <% for(var i=0;i<output.energyIntensity.total["Total Source Energy"].length; i++){ %>
+            <td> <%=output.energyIntensity.total["Total Source Energy"][i].value %>  <%=output.energyIntensity.total["Total Source Energy"][i].units %>  </td>
+            <%}%>
+        </tr>
+        <tr>
+            <td>Net Source Energy</td>
+            <% for(var i=0;i<output.energyIntensity.total["Net Source Energy"].length; i++){ %>
+            <td> <%=output.energyIntensity.total["Net Source Energy"][i].value %>  <%=output.energyIntensity.total["Net Source Energy"][i].units %>  </td>
+            <%}%>
+        </tr>
+    </tbody>
+</table>

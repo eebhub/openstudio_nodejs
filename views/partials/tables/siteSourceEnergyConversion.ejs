@@ -1,0 +1,15 @@
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Site To Source Conversion Factors</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var engType in output.siteToSourceConversion){ %>
+        <tr><td><%= engType %> </td><td> <%= output.siteToSourceConversion[engType] %> </td>
+        </tr>
+            <%} %>
+
+    </tbody>
+</table>
