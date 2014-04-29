@@ -11,6 +11,11 @@ function OpenStudioModel(building, runmanager) {
   this.runManager = runmanager;
 
   console.log("Constructed openstudio.model.Model()");
+  
+  //Set Building Name in OpenStudio/EnergyPlus
+  var buildingName = building.buildingInfo.buildingName;
+  openstudio.model.getBuilding(this.model).setName(buildingName); 
+  console.log("EnergyPlus Building Name: "+buildingName);
 
   this.add_geometry_rectangle = function(architecture) {
     var length = architecture.buildingLength;
