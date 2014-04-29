@@ -37,6 +37,7 @@ module.exports = {openstudio: function(request, response) {
     "site":{
         "city": request.body.weather,
         "weather": request.body.weather,
+        "address": request.body.address,
         "climateZone": "ClimateZone 1-8",
         "strictDesignDay": "no"
     },
