@@ -1,0 +1,36 @@
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Jan</th>
+            <th>Feb</th>
+            <th>Mar</th>
+            <th>Apr</th>
+            <th>May</th>
+            <th>Jun</th>
+            <th>Jul</th>
+            <th>Aug</th>
+            <th>Sep</th>
+            <th>Oct</th>
+            <th>Nov</th>
+            <th>Dec</th>
+            <th>Sum</th>
+            <th>Max</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var type in output.tariffs){ %>
+            <tr>
+                <td>
+                    <%=type %>[$]
+                </td>
+                <% for(var i=14 ;i<output.tariffs[type].length ; i++){ %>
+                    <td>
+                        <%=output.tariffs[type][i].value %>
+                    </td>
+                    <%}%>
+            </tr>
+            <%} %>
+
+    </tbody>
+</table>
