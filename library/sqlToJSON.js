@@ -55,24 +55,36 @@ function sqlToJSON(sqlFilePath, callback) {
     //Object Constuctors
     function month(energyType, value, units) {
         this.energyType = energyType;
-        this.value = value;
+        if (isNaN(parseInt(value))) {
+            this.value = value;
+        } else {
+            this.value = parseInt(value);
+        };
         this.units = units;
     };
 
     function siteSource(type, value, units) {
         this.type = type;
-        this.value = value;
+        if (isNaN(parseInt(value))) {
+            this.value = value;
+        } else {
+            this.value = parseInt(value);
+        };
         this.units = units;
     };
 
     function tariffs(type, value) {
         this.type = type;
-        this.value = value;
+        if (isNaN(parseInt(value))) {
+            this.value = value;
+        } else {
+            this.value = parseInt(value);
+        };
         this.units = "$";
     };
 
     function generalData(value, units) {
-        if (isNaN(value)) {
+        if (isNaN(parseInt(value))) {
             this.value = value;
         } else {
             this.value = parseInt(value);
@@ -83,7 +95,7 @@ function sqlToJSON(sqlFilePath, callback) {
 
     function wwRatioData(type, value, units) {
         this.type = type;
-        if (isNaN(value)) {
+        if (isNaN(parseInt(value))) {
             this.value = value;
         } else {
             this.value = parseInt(value);
@@ -92,7 +104,7 @@ function sqlToJSON(sqlFilePath, callback) {
     }
 
     function skyRatioData(value, units) {
-        if (isNaN(value)) {
+        if (isNaN(parseInt(value))) {
             this.value = value;
         } else {
             this.value = parseInt(value);
@@ -102,7 +114,7 @@ function sqlToJSON(sqlFilePath, callback) {
 
     function zoneSumData(type, value, units) {
         this.type = type;
-        if (isNaN(value)) {
+        if (isNaN(parseInt(value))) {
             this.value = value;
         } else {
             this.value = parseInt(value);
@@ -111,7 +123,7 @@ function sqlToJSON(sqlFilePath, callback) {
     }
 
     function setpoint(value, units) {
-        if (isNaN(value)) {
+        if (isNaN(parseInt(value))) {
             this.value = value;
         } else {
             this.value = parseInt(value);
@@ -152,37 +164,25 @@ function sqlToJSON(sqlFilePath, callback) {
     //Electricity
     db.all(monthlyElSql, function (err, rows) {
         rows.forEach(function (row) {
-            delete row.ReportName;
-            delete row.TableName;
-            delete row.ReportForString;
-            delete row.RowId;
-            row.Value = parseInt(row.Value);
             row.ColumnName = row.ColumnName.substring(0, row.ColumnName.search(":"));
-            var curMonth = row.RowName.substring(0, 3).toLowerCase();
-            if (building.elecConsumption[curMonth]) {
-                building.elecConsumption[curMonth].push(new month(row.ColumnName, row.Value, row.Units));
+
+            if (building.elecConsumption[row.RowName]) {
+                building.elecConsumption[row.RowName].push(new month(row.ColumnName, row.Value, row.Units));
             } else {
-                building.elecConsumption[curMonth] = [];
-                building.elecConsumption[curMonth].push(new month(row.ColumnName, row.Value, row.Units));
+                building.elecConsumption[row.RowName] = [];
+                building.elecConsumption[row.RowName].push(new month(row.ColumnName, row.Value, row.Units));
             }
         });
     });
     //Natural Gas
     db.all(monthlyNGSql, function (err, rows) {
         rows.forEach(function (row) {
-            delete row.ReportName;
-            delete row.TableName;
-            delete row.ReportForString;
-            delete row.RowId;
-            var value = parseInt(row.Value);
-            row.Value = value;
             row.ColumnName = row.ColumnName.substring(0, row.ColumnName.search(":"));
-            var curMonth = row.RowName.substring(0, 3).toLowerCase();
-            if (building.ngConsumtion[curMonth]) {
-                building.ngConsumtion[curMonth].push(new month(row.ColumnName, row.Value, row.Units));
+            if (building.ngConsumtion[row.RowName]) {
+                building.ngConsumtion[row.RowName].push(new month(row.ColumnName, row.Value, row.Units));
             } else {
-                building.ngConsumtion[curMonth] = [];
-                building.ngConsumtion[curMonth].push(new month(row.ColumnName, row.Value, row.Units));
+                building.ngConsumtion[row.RowName] = [];
+                building.ngConsumtion[row.RowName].push(new month(row.ColumnName, row.Value, row.Units));
             }
         });
     });
@@ -190,58 +190,37 @@ function sqlToJSON(sqlFilePath, callback) {
     //Energy Intensity DB Queries
     db.all(eISql, function (err, rows) {
         rows.forEach(function (row) {
-            delete row.ReportName;
-            delete row.ReportForString;
-            delete row.RowId;
             if (row.TableName == "Site and Source Energy") {
-                row.Value = parseInt(row.Value);
-                var rowName = row.RowName;
-                if (building.energyIntensity.total[rowName]) {
-                    building.energyIntensity.total[rowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
+                if (building.energyIntensity.total[row.RowName]) {
+                    building.energyIntensity.total[row.RowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
                 } else {
-                    row.Value = parseInt(row.Value);
-                    var rowName = row.RowName;
-                    building.energyIntensity.total[rowName] = [];
-                    building.energyIntensity.total[rowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
+                    building.energyIntensity.total[row.RowName] = [];
+                    building.energyIntensity.total[row.RowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
                 }
             };
             if (row.TableName == "End Uses") {
-                var rowName = row.RowName;
-                if (building.energyIntensity.site[rowName]) {
-                    row.Value = parseInt(row.Value);
-                    var rowName = row.RowName;
-                    building.energyIntensity.site[rowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
+                if (building.energyIntensity.site[row.RowName]) {
+
+                    building.energyIntensity.site[row.RowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
                 } else {
-                    row.Value = parseInt(row.Value);
-                    var rowName = row.RowName;
-                    building.energyIntensity.site[rowName] = [];
-                    building.energyIntensity.site[rowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
+                    building.energyIntensity.site[row.RowName] = [];
+                    building.energyIntensity.site[row.RowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
                 }
 
             };
             if (row.TableName == "Building Area") {
-                var rowName = row.RowName;
-                row.Value = parseInt(row.Value);
-                var rowName = row.RowName;
-                building.area[rowName] = new siteSource(row.ColumnName, row.Value, row.Units);
+                building.area[row.RowName] = new siteSource(row.ColumnName, row.Value, row.Units);
             };
         });
     });
     //Source DB read
     db.all(sourceSQL, function (err, rows) {
         rows.forEach(function (row) {
-            delete row.ReportName;
-            //delete row.TableName;
-            delete row.ReportForString;
-            delete row.RowId;
-            var value = parseInt(row.Value);
-            row.Value = value;
-            var rowName = row.RowName;
-            if (building.energyIntensity.source[rowName]) {
-                building.energyIntensity.source[rowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
+            if (building.energyIntensity.source[row.RowName]) {
+                building.energyIntensity.source[row.RowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
             } else {
-                building.energyIntensity.source[rowName] = [];
-                building.energyIntensity.source[rowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
+                building.energyIntensity.source[row.RowName] = [];
+                building.energyIntensity.source[row.RowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
             }
         });
     });
@@ -254,12 +233,6 @@ function sqlToJSON(sqlFilePath, callback) {
     //Tariff DB read
     db.all(tariffSQL, function (err, rows) {
         rows.forEach(function (row) {
-            delete row.ReportName;
-            delete row.TableName;
-            delete row.ReportForString;
-            delete row.RowId;
-            row.Value = parseInt(row.Value);
-            delete row.Units
             row.RowName = row.RowName.substring(0, row.RowName.search(" "));
             if (building.tariffs[row.RowName]) {
                 building.tariffs[row.RowName].push(new tariffs(row.ColumnName, row.Value));

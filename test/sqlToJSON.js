@@ -4,37 +4,37 @@ var fs = require('fs');
 var databasePath = './eem_1.sql';
 
 var db = new sqlite3.Database(databasePath);
-var building = {
-    "elecConsumption": {},
-    "ngConsumtion": {},
-    "energyIntensity": {
-        "total": {},
-        "site": {},
-        "source": {}
-    },
-    "area": {},
-    "tariffs": {},
-    "siteToSourceConversion": {
-        "Electricity": 3.167,
-        "Natural Gas": 1.084,
-        "District Cooling": 1.056,
-        "District Heating": 3.613,
-        "Steam": 0.300,
-        "Gasoline": 1.050,
-        "Diesel": 1.050,
-        "Coal": 1.050,
-        "Fuel Oil #1": 1.050,
-        "Fuel Oil #2": 1.050,
-        "Propane": 1.050,
-        "Other Fuel 1": 1.000,
-        "Other Fuel 2": 1.000
-    },
-    "general": {},
-    "windowWallRatio": {},
-    "skylightRoofRatio": {},
-    "zoneSummary": {},
-    "comfortSetpointSummary":{}
-}
+ var building = {
+        "general": {},
+        "windowWallRatio": {},
+        "skylightRoofRatio": {},
+        "zoneSummary": {},
+        "elecConsumption": {},
+        "ngConsumtion": {},
+        "energyIntensity": {
+            "total": {},
+            "site": {},
+            "source": {}
+        },
+        "area": {},
+        "tariffs": {},
+        "comfortSetpointSummary":{},
+        "siteToSourceConversion": {
+            "Electricity": 3.167,
+            "Natural Gas": 1.084,
+            "District Cooling": 1.056,
+            "District Heating": 3.613,
+            "Steam": 0.300,
+            "Gasoline": 1.050,
+            "Diesel": 1.050,
+            "Coal": 1.050,
+            "Fuel Oil #1": 1.050,
+            "Fuel Oil #2": 1.050,
+            "Propane": 1.050,
+            "Other Fuel 1": 1.000,
+            "Other Fuel 2": 1.000
+        }
+    };
 //Monthly SQL Commands
 var monthlyElSql = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'END USE ENERGY CONSUMPTION ELECTRICITY MONTHLY'";
 var monthlyNGSql = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'END USE ENERGY CONSUMPTION NATURAL GAS MONTHLY'";
@@ -238,12 +238,13 @@ db.all(summarySQL, function (err, rows) {
         }
     });
     //console.log(building.zoneSummary);
-    //fs.writeFileSync('buildingOutput.json', JSON.stringify(building, 4,4));
+
 });
 var setpointSql = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'AnnualBuildingUtilityPerformanceSummary' and TableName Like 'Comfort and Setpoint Not Met Summary'";
 db.all(setpointSql, function(err, rows){
     rows.forEach(function(row){
         building.comfortSetpointSummary[row.RowName] = new setpoint(row.ColumnName, row.Value, row.Units);
     });
+    fs.writeFileSync('buildingOutput.json', JSON.stringify(building, null,4));
 });
 
