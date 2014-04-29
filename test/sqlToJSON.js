@@ -199,7 +199,6 @@ function zoneSumData(type, value, units) {
     };
     this.type = type;
     this.units = units;
-
 }
 var summarySQL = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'InputVerificationandResultsSummary'";
 db.all(summarySQL, function (err, rows) {
@@ -230,5 +229,5 @@ db.all(summarySQL, function (err, rows) {
         }
     });
     //console.log(building.zoneSummary);
-    fs.writeFileSync('buildingOutput.json', JSON.stringify(building, 4,4));
+    //fs.writeFileSync('buildingOutput.json', JSON.stringify(building, 4,4));
 });

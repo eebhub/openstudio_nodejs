@@ -1,162 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-<head>
-    <meta charset="utf-8">
-    <title>EEB Hub Simulation Tools: Comprehensive</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- Le styles -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="css/docs.css" rel="stylesheet">
-    <link href="css/comprehensive.css" rel="stylesheet">
-    <link href="css/partial.css" rel="stylesheet">
-    <script src="js/jquery.js"></script>
+    <head>
+        <title>EEB Hub Retrofit Manager</title>
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/stylesheet.css" rel="stylesheet">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="css/partial.css" rel="stylesheet">
+       <script src="js/jquery.js"></script>
 
 
-    <style>
-    </style>
-</head>
-
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="brand" href="/">EEB Hub Retrofit Manager</a>
-                <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <li>
-                            <a href="data-structure">Data Structure</a>
-                        </li>
-                        <li>
-                            <a href="walls">Wall Editor</a>
-                        </li>
-                        <li class="active">
-                            <a href="outputs">EnergyPlus Graphs</a>
-                        </li>
-                        <li>
-                            <a href="simulations">EnergyPlus Files</a>
-                        </li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
-                <div class="pull-right text-right">
-                    <ul class="nav pull-right">
-                        <li>
-                            <a href="http://www.buildsci.us/openstudio-nodejs.html">by PSU & UMd</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-
-        <div class="row">
 
 
-            <div class="navbar">
-                <div class="navbar">
-                    <div class="navbar-inner">
-                        <a class="brand" href="#">Energy</a>
+    </head>
+
+    <body data-spy="scroll" data-target=".bs-docs-sidebar">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="/">EEB Hub Retrofit Manager</a>
+                    <div class="nav-collapse collapse">
                         <ul class="nav">
+                            <li>
+                                <a href="data-structure">Data Structure</a>
+                            </li>
+                            <li>
+                                <a href="walls">Wall Editor</a>
+                            </li>
                             <li class="active">
-                                <a href="#use" data-toggle="tab">Use</a>
+                                <a href="output">EnergyPlus Graphs</a>
                             </li>
                             <li>
-                                <a href="#intensity" data-toggle="tab">Intensity</a>
-                            </li>
-                            <li>
-                                <a href="#costs" data-toggle="tab">Costs</a>
-                            </li>
-                            <li>
-                                <a href="#zones" data-toggle="tab">Zone Loads</a>
-                            </li>
-                            <li>
-                                <a href="#tracking" data-toggle="tab">Tracking</a>
+                                <a href="simulations">EnergyPlus Files</a>
                             </li>
                         </ul>
                     </div>
+                    <!--/.nav-collapse -->
+                    <div class="pull-right text-right">
+
+                    <ul class="nav pull-right">
+                        <li><a href="http://www.buildsci.us/openstudio-nodejs.html">by PSU & UMd</a></li>
+						</ul>
+                    </div>
                 </div>
             </div>
-            <div class="tab-content">
-                <div class="tab-pane active" id="use">
-                    <div class="row">
-                        <div class="box-unit span6">
-
-                            <% include partials/electConsumption %>
-                        </div>
-                        <div class="box-unit span6">
-                            <% include partials/ngConsumption %>
-                        </div>
-                    </div>
-                    <div class="box-unit">
-                        <% include partials/electConsumptionTable %>
-                    </div>
-                </div>
-                <div class="tab-pane" id="intensity">
-                    <div class="box-unit">
-                        <% include partials/siteSourceConsumption %>
-                    </div>
-                    <div class="box-unit">
-                        <% include partials/annualEnergyConsumptionIntensityTable %>
-                    </div>
-                    <div class="row">
-                        <div class="box-unit span6">
-
-                            <% include partials/energyTotalBuildingAreaChart %>
-                        </div>
-                        <div class="box-unit span6">
-                            <% include partials/energyConditionedBuildingArea %>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane" id="costs">
-                    <div class="box-unit">
-                        <% include partials/electricityMonthlyCostChart %>
-                    </div>
-                    <div class="box-unit">
-                        <% include partials/electricityMonthlyCostTable %>
-                    </div>
-                    <div class="box-unit">
-                        <% include partials/naturalGasMonthlyCostChart %>
-                    </div>
-                    <div class="box-unit">
-                        <% include partials/naturalGasMonthlyCostTable %>
-                    </div>
-                </div>
-                <div class="tab-pane" id="zones">
-                    <div class="box-unit">
-                        <h1 style="text-align:center">Zone Loads Under Construction </h1>
-                        </div>
-                </div>
-                <div class="tab-pane" id="tracking">
-                    <div class="box-unit">
-                        <h1 style="text-align:center">Tracking Sheet Under Construction </h1>
-                        </div>
-                </div>
-            </div>
-
-
-
         </div>
         
+        <!-- Intro -->
+        <div class="container">
+            <div class="row">
+                <div class="span3 bs-docs-sidebar">
+                    <ul class="nav nav-list bs-docs-sidenav">
+                        <h3><%= buildingName %></h3>
+                        <li>
+                            <a href="#building"><i class="icon-map-marker"></i> Building</a>
+                        </li>
+                        <li>
+                            <a href="#architecture"><i class="icon-home"></i> Architecture</a>
+                        </li>
+                        <li>
+                            <a href="#construction"><i class="icon-th-large"></i> Construction</a>
+                        </li>
+                        <li>
+                            <a href="#mechanical"><i class="icon-cog"></i> Mechanical</a>
+                        </li>
+                        <li>
+                            <a href="#schedules"><i class="icon-time"></i> Schedules</a>
+                        </li>
+                        <li>
+                            <a href="#conservation"><i class="icon-leaf"></i> Conservation</a>
+                        </li>
+
+                        <hr style="color:lightgray;background-color:lightgray;height:1px;border:none;"/>
+                    <li><button type="button" class="btn" onclick="TogetherJS(this); return false;"  data-toggle="button">Collaborate</button></li>
+                    </ul>
+                </div>
+                <div class="span9">
+                    <div class="box-unit">
+                         <!--<% include partials/tables/general %>-->
+                        <% include partials/tables/windowWallRatio %>
+                        <!--<% include partials/tables/skylightRoofRatio %>-->
+                        <% include partials/tables/buildingArea %>
+                        <% include partials/tables/siteSourceEnergyConversion %>
+                        <% include partials/tables/siteSourceEnergy %>
+                        </div>
+                </div>
 
 
-    </div>
+            <!-- Javascript: HighChart, Bootstrap, Jquery -->
+		    <script src="js/highcharts.js"></script>
+		    <script src="js/exporting.js"></script>
+   			<script type="text/javascript" src="js/bootstrap.min.js"></script>
+            <script src="https://togetherjs.com/togetherjs-min.js"></script>
+            <script src="js/bootstrap-scrollspy.js"></script>
 
 
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/Highcharts-3.0.4/js/highcharts.js"></script>
-    <script src="js/Highcharts-3.0.4/js/modules/exporting.js"></script>
-</body>
+    </body>
 
 </html>
+
