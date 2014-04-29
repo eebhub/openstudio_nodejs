@@ -1,6 +1,6 @@
 Run OpenStudio Ruby Measures from Node.js
 -----------------------------------------
-[NREL's Building Component Library](https://bcl.nrel.gov/nrel/types/measure) is a growing database of measures that make modeling building energy efficiency with OpenStudio much easier.  Today, the measures are only coded in Ruby.  Documentation and code logic below shows how to call OpenStudio Ruby Measures from Node.js.  This will make it possible to use the measures as off-the-shelf code and build your fully JavaScript web application around it.
+[NREL's Building Component Library](https://bcl.nrel.gov/nrel/types/measure) is a growing database of measures that make modeling building energy efficiency with OpenStudio much easier.  In 2014, the measures are only coded in Ruby.  Documentation and code logic below shows how to call OpenStudio Ruby Measures from Node.js.  This will make it possible to use the measures as off-the-shelf code and build your fully JavaScript web application around it.
 
 Energy Efficiency Measures
 -------------------------

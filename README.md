@@ -11,7 +11,7 @@ This project began by porting a minimum version of the DOE Energy Efficient Buil
 * **OpenStudio** = a software development kit to support whole building energy modeling using EnergyPlus and advanced daylight analysis using Radiance (developed by NREL)
 * **Node.js** = a server-side implementation of JavaScript running on Google's V8 Engine
 
-Today, the working web application above uses one language, JavaScript, on both the front-end (browser) and back-end (server).
+As of April 2014, the working web application above uses one language, JavaScript, on both the front-end (browser) and back-end (server).
 
 Learn More at http://www.buildsci.us/openstudio-nodejs.html.
 
