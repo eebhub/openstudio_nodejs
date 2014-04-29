@@ -699,7 +699,7 @@
             <script src="https://togetherjs.com/togetherjs-min.js"></script>
             <script src="js/bootstrap-scrollspy.js"></script>
             <script src="js/bootstrap-fileupload.js"></script>
-			<script src="js/socket.io.js"></script>
+			<script src="http://128.118.67.202:9099/socket.io/socket.io.js"></script>
             	<script>
             	var chart = new Highcharts.Chart
 				({
@@ -967,11 +967,15 @@
 			$(document).ready(function(){
 				var num;
 				$("#real-time-output").html("");
-				socket = io.connect('http://localhost:9099');
+				socket = io.connect('http://128.118.67.202:9099');
 
 				socket.on('redirectPath', function(data){
 					console.log('we got the path @ ' + data.value);
 					redirectUrl = data.value;
+				});
+
+				socket.on('fileNotFound', function(data){
+					$("#loading-status").html(data.value);
 				});
 				
 				socket.on('new-data', function(data) {

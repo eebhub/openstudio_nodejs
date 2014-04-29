@@ -21,7 +21,6 @@ var app = express()
 
   server.listen(9099);
 
-var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -60,10 +59,10 @@ app.get('/output', routes.testOutput);
 app.get('/outputs', routes.testOutput);
 
 //Simulate OpenStudio & EnergyPlus
-console.log("*********BEFORE");
+//console.log("*********BEFORE");
 var simulate = require("./routes/simulate.js");
 app.post('/simulate', simulate.openstudio);
-console.log("*********After");
+//console.log("*********After");
 
 
 app.post('/rmt', testOpenstudio.simulateOpenstudio);
@@ -94,16 +93,16 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('randomNumber', function(value){
 
-    console.log("#################################EMITTED");
+    //console.log("#################################EMITTED");
     
     var outputFilePath = findStdOut + "1-EnergyPlus-0/stdout"; 
-    console.log('###$$$###$$$###$$' + outputFilePath);
+    //console.log('###$$$###$$$###$$' + outputFilePath);
     
    
 	
     if (fs.existsSync(outputFilePath))
     {
-	console.log('###$$$###$$$###$$ FILE FOUND ');
+	//console.log('###$$$###$$$###$$ FILE FOUND ');
         tail = new Tail(outputFilePath);
 
 
@@ -120,7 +119,10 @@ io.sockets.on('connection', function(socket) {
     }
     else
     {
-      console.log("file not found");
+	io.sockets.emit('fileNotFound', {
+		channel: 'stdout',
+		value: 'Stdout file not found'});
+     // console.log("file not found");
     }
 
 });
