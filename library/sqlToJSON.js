@@ -22,6 +22,7 @@ function sqlToJSON(sqlFilePath, callback) {
         },
         "area": {},
         "tariffs": {},
+        "comfortSetpointSummary":{},
         "siteToSourceConversion": {
             "Electricity": 3.167,
             "Natural Gas": 1.084,
@@ -49,6 +50,8 @@ function sqlToJSON(sqlFilePath, callback) {
     var tariffSQL = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'Tariff Report' AND TableName Like 'Categories'";
     //General Data SQL
     var summarySQL = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'InputVerificationandResultsSummary'";
+    //SQL for Comfort and Setpoints
+    var setpointSql = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'AnnualBuildingUtilityPerformanceSummary' and TableName Like 'Comfort and Setpoint Not Met Summary'";
     //Object Constuctors
     function month(energyType, value, units) {
         this.energyType = energyType;
@@ -79,13 +82,12 @@ function sqlToJSON(sqlFilePath, callback) {
     }
 
     function wwRatioData(type, value, units) {
+        this.type = type;
         if (isNaN(value)) {
             this.value = value;
         } else {
             this.value = parseInt(value);
         };
-        this.type = type;
-        this.value = value;
         this.units = units;
     }
 
@@ -99,17 +101,24 @@ function sqlToJSON(sqlFilePath, callback) {
     }
 
     function zoneSumData(type, value, units) {
-
+        this.type = type;
         if (isNaN(value)) {
             this.value = value;
         } else {
             this.value = parseInt(value);
         };
-        this.type = type;
         this.units = units;
     }
-    //General Data SQL
-    var summarySQL = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'InputVerificationandResultsSummary'";
+
+    function setpoint(value, units) {
+        if (isNaN(value)) {
+            this.value = value;
+        } else {
+            this.value = parseInt(value);
+        };
+        this.units = units;
+    }
+    //DB Read for general data
     db.all(summarySQL, function (err, rows) {
         rows.forEach(function (row) {
             if (row.TableName == "General") {
@@ -235,7 +244,14 @@ function sqlToJSON(sqlFilePath, callback) {
                 building.energyIntensity.source[rowName].push(new siteSource(row.ColumnName, row.Value, row.Units));
             }
         });
-    }); //Tariff DB read
+    });
+    //Comfort and Setpoint DB read
+    db.all(setpointSql, function (err, rows) {
+        rows.forEach(function (row) {
+            building.comfortSetpointSummary[row.RowName] = new setpoint(row.Value, row.Units);
+        });
+    });
+    //Tariff DB read
     db.all(tariffSQL, function (err, rows) {
         rows.forEach(function (row) {
             delete row.ReportName;

@@ -32,7 +32,8 @@ var building = {
     "general": {},
     "windowWallRatio": {},
     "skylightRoofRatio": {},
-    "zoneSummary": {}
+    "zoneSummary": {},
+    "comfortSetpointSummary":{}
 }
 //Monthly SQL Commands
 var monthlyElSql = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'END USE ENERGY CONSUMPTION ELECTRICITY MONTHLY'";
@@ -68,6 +69,14 @@ function tariffs(type, value) {
     };
     this.type = type;
     this.units = "$";
+}
+function setpoint(value, units) {
+    if (isNaN(value)) {
+        this.value = value;
+    } else {
+        this.value = parseInt(value);
+    };
+    this.units = units;
 }
 
 
@@ -231,3 +240,10 @@ db.all(summarySQL, function (err, rows) {
     //console.log(building.zoneSummary);
     //fs.writeFileSync('buildingOutput.json', JSON.stringify(building, 4,4));
 });
+var setpointSql = "Select Distinct * From TabularDataWithStrings Where ReportName Like 'AnnualBuildingUtilityPerformanceSummary' and TableName Like 'Comfort and Setpoint Not Met Summary'";
+db.all(setpointSql, function(err, rows){
+    rows.forEach(function(row){
+        building.comfortSetpointSummary[row.RowName] = new setpoint(row.ColumnName, row.Value, row.Units);
+    });
+});
+
