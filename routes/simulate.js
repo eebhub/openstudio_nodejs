@@ -22,7 +22,7 @@ module.exports = {openstudio: function(request, response) {
     var outputPath = simulationsPath + simulationID +"/";
     fs.mkdirSync(outputPath, function(error) {if (error) throw error;});
 
-    findStdOut = outputPath;		// set global variable from app.js to simulationID
+    //findStdOut = outputPath;		// set global variable from app.js to simulationID
 
     //FORMAT request.body json to match buildingData2.json
     console.log("Creating building json document...");
@@ -37,6 +37,7 @@ module.exports = {openstudio: function(request, response) {
     "site":{
         "city": request.body.weather,
         "weather": request.body.weather,
+        "address": request.body.address,
         "climateZone": "ClimateZone 1-8",
         "strictDesignDay": "no"
     },
@@ -171,7 +172,7 @@ module.exports = {openstudio: function(request, response) {
     var databasePath = outputPath + "1-EnergyPlus-0/eplusout.sql";
     sqlToJSON(databasePath, function (buildingSimData) {
         fs.writeFile(outputPath + "simulationOutput.json", JSON.stringify(buildingSimData, null, 4), function (err) {
-        response.redirect(outputPath);
+         findStdOut = outputPath;
     });
 });
    

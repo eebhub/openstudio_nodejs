@@ -1,0 +1,25 @@
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Interior Equipment  [<%=output.ngConsumtion["January"][2].units %>]</th>
+            <th>Exterior Equipment [<%=output.ngConsumtion["January"][2].units %>]</th>
+            <th>Heating [<%=output.ngConsumtion["January"][2].units %>]</th>
+            <th>Cooling [<%=output.ngConsumtion["January"][2].units %>]</th>
+            <th>Water Systems [<%=output.ngConsumtion["January"][2].units %>]</th>
+            <th>Cogeneration [<%=output.ngConsumtion["January"][2].units %>]</th>
+        </tr>
+    </thead>
+    <tbody>
+         <% for (var month in output.ngConsumtion){ %>
+            <tr>
+                <td>
+                    <%=month %>
+                </td>
+                <% for (var i in output.ngConsumtion[month]){ %>
+                    <td><%=output.ngConsumtion[month][i].value %></td>
+                <%}%>
+            </tr>
+            <%} %>
+    </tbody>
+</table>

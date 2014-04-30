@@ -1,0 +1,25 @@
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+        <tr class="success">
+            <th></th>
+            <th>Electricity [<%=output.energyIntensity.site["Heating"][0].units %>] </th>
+            <th>Natural Gas [<%=output.energyIntensity.site["Heating"][0].units %>] </th>
+            <th>Additional Fuel [<%=output.energyIntensity.site["Heating"][0].units %>] </th>
+            <th>District Cooling [<%=output.energyIntensity.site["Heating"][0].units %>] </th>
+            <th>District Heating [<%=output.energyIntensity.site["Heating"][0].units %>] </th>
+            <th>Water  [gal]</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var type in output.energyIntensity.site){ %>
+            <tr>
+                <td>
+                    <%=type %>
+                </td>
+                <% for (var i in output.energyIntensity.site[type]){ %>
+                    <td><%=output.energyIntensity.site[type][i].value %></td>
+                <%}%>
+            </tr>
+            <%} %>
+    </tbody>
+</table>

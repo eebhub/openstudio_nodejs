@@ -1,4 +1,2433 @@
 {
+    "general": {
+        "Program Version and Build": {
+            "value": "EnergyPlus-Linux-OMP-64 8.0.0.008, YMD=2013.12.10 13:20",
+            "units": ""
+        },
+        "RunPeriod": {
+            "value": "RUN PERIOD 1",
+            "units": ""
+        },
+        "Weather File": {
+            "value": "Philadelphia International Ap PA USA TMY3 WMO#=724080",
+            "units": ""
+        },
+        "Latitude": {
+            "value": 39,
+            "units": "deg"
+        },
+        "Longitude": {
+            "value": -75,
+            "units": "deg"
+        },
+        "Elevation": {
+            "value": 6,
+            "units": "ft"
+        },
+        "Time Zone": {
+            "value": -5,
+            "units": ""
+        },
+        "North Axis Angle": {
+            "value": 15,
+            "units": "deg"
+        },
+        "Rotation for Appendix G": {
+            "value": 0,
+            "units": "deg"
+        },
+        "Hours Simulated": {
+            "value": 8760,
+            "units": "hrs"
+        }
+    },
+    "windowWallRatio": {
+        "Gross Wall Area": [
+            {
+                "value": "    66707.62",
+                "type": "Total",
+                "units": "ft2"
+            },
+            {
+                "value": "    28317.36",
+                "type": "North (315 to 45 deg)",
+                "units": "ft2"
+            },
+            {
+                "value": "     5036.45",
+                "type": "East (45 to 135 deg)",
+                "units": "ft2"
+            },
+            {
+                "value": "    28317.36",
+                "type": "South (135 to 225 deg)",
+                "units": "ft2"
+            },
+            {
+                "value": "     5036.45",
+                "type": "West (225 to 315 deg)",
+                "units": "ft2"
+            }
+        ],
+        "Window Opening Area": [
+            {
+                "value": "    10006.14",
+                "type": "Total",
+                "units": "ft2"
+            },
+            {
+                "value": "     4247.60",
+                "type": "North (315 to 45 deg)",
+                "units": "ft2"
+            },
+            {
+                "value": "      755.47",
+                "type": "East (45 to 135 deg)",
+                "units": "ft2"
+            },
+            {
+                "value": "     4247.60",
+                "type": "South (135 to 225 deg)",
+                "units": "ft2"
+            },
+            {
+                "value": "      755.47",
+                "type": "West (225 to 315 deg)",
+                "units": "ft2"
+            }
+        ],
+        "Window-Wall Ratio": [
+            {
+                "value": "       15.00",
+                "type": "Total",
+                "units": "%"
+            },
+            {
+                "value": "       15.00",
+                "type": "North (315 to 45 deg)",
+                "units": "%"
+            },
+            {
+                "value": "       15.00",
+                "type": "East (45 to 135 deg)",
+                "units": "%"
+            },
+            {
+                "value": "       15.00",
+                "type": "South (135 to 225 deg)",
+                "units": "%"
+            },
+            {
+                "value": "       15.00",
+                "type": "West (225 to 315 deg)",
+                "units": "%"
+            }
+        ]
+    },
+    "skylightRoofRatio": {
+        "Gross Roof Area": {
+            "value": 19913,
+            "units": "ft2"
+        },
+        "Skylight Area": {
+            "value": 0,
+            "units": "ft2"
+        },
+        "Skylight-Roof Ratio": {
+            "value": 0,
+            "units": "%"
+        }
+    },
+    "zoneSummary": {
+        "THERMAL ZONE 1": [
+            {
+                "value": 615,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 7671,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 748,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 112,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 10": [
+            {
+                "value": 1013,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 12639,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 308,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 46,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 11": [
+            {
+                "value": 615,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 7671,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 748,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 112,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 12": [
+            {
+                "value": 1640,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 20454,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3117,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 467,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 13": [
+            {
+                "value": 496,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 6195,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 635,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 95,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 14": [
+            {
+                "value": 615,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 7671,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 748,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 112,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 15": [
+            {
+                "value": 537,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 6705,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 510,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 76,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 16": [
+            {
+                "value": 3725,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 46454,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3703,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 555,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 17": [
+            {
+                "value": 496,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 6195,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 635,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 95,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 18": [
+            {
+                "value": 537,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 6705,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 510,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 76,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 19": [
+            {
+                "value": 9141,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 113980,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3376,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 506,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 2": [
+            {
+                "value": 1013,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 12639,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 308,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 46,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 20": [
+            {
+                "value": 537,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 6705,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 510,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 76,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 21": [
+            {
+                "value": 615,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 7671,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 748,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 112,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 22": [
+            {
+                "value": 1640,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 20454,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3117,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 467,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 23": [
+            {
+                "value": 615,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 7671,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 748,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 112,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 24": [
+            {
+                "value": 9141,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 113980,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3376,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 506,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 25": [
+            {
+                "value": 1588,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 19804,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3018,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 452,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 26": [
+            {
+                "value": 1588,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 19804,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3018,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 452,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 27": [
+            {
+                "value": 1588,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 19804,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3018,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 452,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 28": [
+            {
+                "value": 537,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 6705,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 510,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 76,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 29": [
+            {
+                "value": 496,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 6195,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 635,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 95,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 3": [
+            {
+                "value": 9141,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 113980,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3376,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 506,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 30": [
+            {
+                "value": 537,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 6705,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 510,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 76,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 31": [
+            {
+                "value": 1640,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 20454,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3117,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 467,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 32": [
+            {
+                "value": 615,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 7671,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 748,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 112,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 33": [
+            {
+                "value": 537,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 6705,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 510,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 76,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 34": [
+            {
+                "value": 537,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 6705,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 510,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 76,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 35": [
+            {
+                "value": 9141,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 113980,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3376,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 506,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 36": [
+            {
+                "value": 615,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 7671,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 748,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 112,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 37": [
+            {
+                "value": 3725,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 46454,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3703,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 555,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 38": [
+            {
+                "value": 1588,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 19804,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3018,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 452,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 39": [
+            {
+                "value": 537,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 6705,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 510,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 76,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 4": [
+            {
+                "value": 3725,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 46454,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3703,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 555,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 40": [
+            {
+                "value": 1013,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 12639,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 308,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 46,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 5": [
+            {
+                "value": 1013,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 12639,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 308,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 46,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 6": [
+            {
+                "value": 3725,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 46454,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3703,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 555,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 7": [
+            {
+                "value": 1640,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 20454,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 3117,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 467,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 8": [
+            {
+                "value": 615,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 7671,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 748,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 112,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "THERMAL ZONE 9": [
+            {
+                "value": 496,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": "Yes",
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": "Yes",
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 6195,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": 1,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 635,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 95,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "Total": [
+            {
+                "value": 79655,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": null,
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": null,
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 993133,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": null,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 66707,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 10006,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "Conditioned Total": [
+            {
+                "value": 79655,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": null,
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": null,
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 993133,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": null,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 66707,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 10006,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": 3,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": 200,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": 3,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "Unconditioned Total": [
+            {
+                "value": 0,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": null,
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": null,
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 0,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": null,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 0,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 0,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": null,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": null,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": null,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ],
+        "Not Part of Total": [
+            {
+                "value": 0,
+                "type": "Area",
+                "units": "ft2"
+            },
+            {
+                "value": null,
+                "type": "Conditioned (Y/N)",
+                "units": ""
+            },
+            {
+                "value": null,
+                "type": "Part of Total Floor Area (Y/N)",
+                "units": ""
+            },
+            {
+                "value": 0,
+                "type": "Volume",
+                "units": "ft3"
+            },
+            {
+                "value": null,
+                "type": "Multipliers",
+                "units": ""
+            },
+            {
+                "value": 0,
+                "type": "Gross Wall Area",
+                "units": "ft2"
+            },
+            {
+                "value": 0,
+                "type": "Window Glass Area",
+                "units": "ft2"
+            },
+            {
+                "value": null,
+                "type": "Lighting",
+                "units": "Btu/h-ft2"
+            },
+            {
+                "value": null,
+                "type": "People",
+                "units": "ft2 per person"
+            },
+            {
+                "value": null,
+                "type": "Plug and Process",
+                "units": "Btu/h-ft2"
+            }
+        ]
+    },
     "elecConsumption": {
         "jan": [
             {
@@ -4704,6 +7133,20 @@
             }
         ]
     },
+    "comfortSetpointSummary": {
+        "Time Setpoint Not Met During Occupied Heating": {
+            "value": "Facility",
+            "units": "        0.00"
+        },
+        "Time Setpoint Not Met During Occupied Cooling": {
+            "value": "Facility",
+            "units": "        0.00"
+        },
+        "Time Not Comfortable Based on Simple ASHRAE 55-2004": {
+            "value": "Facility",
+            "units": "     3713.75"
+        }
+    },
     "siteToSourceConversion": {
         "Electricity": 3.167,
         "Natural Gas": 1.084,
@@ -4718,2434 +7161,5 @@
         "Propane": 1.05,
         "Other Fuel 1": 1,
         "Other Fuel 2": 1
-    },
-    "general": {
-        "Program Version and Build": {
-            "value": "EnergyPlus-Linux-OMP-64 8.0.0.008, YMD=2013.12.10 13:20",
-            "units": ""
-        },
-        "RunPeriod": {
-            "value": "RUN PERIOD 1",
-            "units": ""
-        },
-        "Weather File": {
-            "value": "Philadelphia International Ap PA USA TMY3 WMO#=724080",
-            "units": ""
-        },
-        "Latitude": {
-            "value": 39,
-            "units": "deg"
-        },
-        "Longitude": {
-            "value": -75,
-            "units": "deg"
-        },
-        "Elevation": {
-            "value": 6,
-            "units": "ft"
-        },
-        "Time Zone": {
-            "value": -5,
-            "units": ""
-        },
-        "North Axis Angle": {
-            "value": 15,
-            "units": "deg"
-        },
-        "Rotation for Appendix G": {
-            "value": 0,
-            "units": "deg"
-        },
-        "Hours Simulated": {
-            "value": 8760,
-            "units": "hrs"
-        }
-    },
-    "windowWallRatio": {
-        "Gross Wall Area": [
-            {
-                "value": "    66707.62",
-                "type": "Total",
-                "units": "ft2"
-            },
-            {
-                "value": "    28317.36",
-                "type": "North (315 to 45 deg)",
-                "units": "ft2"
-            },
-            {
-                "value": "     5036.45",
-                "type": "East (45 to 135 deg)",
-                "units": "ft2"
-            },
-            {
-                "value": "    28317.36",
-                "type": "South (135 to 225 deg)",
-                "units": "ft2"
-            },
-            {
-                "value": "     5036.45",
-                "type": "West (225 to 315 deg)",
-                "units": "ft2"
-            }
-        ],
-        "Window Opening Area": [
-            {
-                "value": "    10006.14",
-                "type": "Total",
-                "units": "ft2"
-            },
-            {
-                "value": "     4247.60",
-                "type": "North (315 to 45 deg)",
-                "units": "ft2"
-            },
-            {
-                "value": "      755.47",
-                "type": "East (45 to 135 deg)",
-                "units": "ft2"
-            },
-            {
-                "value": "     4247.60",
-                "type": "South (135 to 225 deg)",
-                "units": "ft2"
-            },
-            {
-                "value": "      755.47",
-                "type": "West (225 to 315 deg)",
-                "units": "ft2"
-            }
-        ],
-        "Window-Wall Ratio": [
-            {
-                "value": "       15.00",
-                "type": "Total",
-                "units": "%"
-            },
-            {
-                "value": "       15.00",
-                "type": "North (315 to 45 deg)",
-                "units": "%"
-            },
-            {
-                "value": "       15.00",
-                "type": "East (45 to 135 deg)",
-                "units": "%"
-            },
-            {
-                "value": "       15.00",
-                "type": "South (135 to 225 deg)",
-                "units": "%"
-            },
-            {
-                "value": "       15.00",
-                "type": "West (225 to 315 deg)",
-                "units": "%"
-            }
-        ]
-    },
-    "skylightRoofRatio": {
-        "Gross Roof Area": {
-            "value": 19913,
-            "units": "ft2"
-        },
-        "Skylight Area": {
-            "value": 0,
-            "units": "ft2"
-        },
-        "Skylight-Roof Ratio": {
-            "value": 0,
-            "units": "%"
-        }
-    },
-    "zoneSummary": {
-        "THERMAL ZONE 1": [
-            {
-                "value": 615,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 7671,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 748,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 112,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 10": [
-            {
-                "value": 1013,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 12639,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 308,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 46,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 11": [
-            {
-                "value": 615,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 7671,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 748,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 112,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 12": [
-            {
-                "value": 1640,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 20454,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3117,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 467,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 13": [
-            {
-                "value": 496,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 6195,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 635,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 95,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 14": [
-            {
-                "value": 615,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 7671,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 748,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 112,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 15": [
-            {
-                "value": 537,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 6705,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 510,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 76,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 16": [
-            {
-                "value": 3725,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 46454,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3703,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 555,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 17": [
-            {
-                "value": 496,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 6195,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 635,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 95,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 18": [
-            {
-                "value": 537,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 6705,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 510,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 76,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 19": [
-            {
-                "value": 9141,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 113980,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3376,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 506,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 2": [
-            {
-                "value": 1013,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 12639,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 308,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 46,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 20": [
-            {
-                "value": 537,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 6705,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 510,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 76,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 21": [
-            {
-                "value": 615,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 7671,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 748,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 112,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 22": [
-            {
-                "value": 1640,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 20454,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3117,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 467,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 23": [
-            {
-                "value": 615,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 7671,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 748,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 112,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 24": [
-            {
-                "value": 9141,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 113980,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3376,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 506,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 25": [
-            {
-                "value": 1588,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 19804,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3018,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 452,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 26": [
-            {
-                "value": 1588,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 19804,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3018,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 452,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 27": [
-            {
-                "value": 1588,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 19804,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3018,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 452,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 28": [
-            {
-                "value": 537,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 6705,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 510,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 76,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 29": [
-            {
-                "value": 496,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 6195,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 635,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 95,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 3": [
-            {
-                "value": 9141,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 113980,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3376,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 506,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 30": [
-            {
-                "value": 537,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 6705,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 510,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 76,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 31": [
-            {
-                "value": 1640,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 20454,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3117,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 467,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 32": [
-            {
-                "value": 615,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 7671,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 748,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 112,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 33": [
-            {
-                "value": 537,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 6705,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 510,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 76,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 34": [
-            {
-                "value": 537,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 6705,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 510,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 76,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 35": [
-            {
-                "value": 9141,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 113980,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3376,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 506,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 36": [
-            {
-                "value": 615,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 7671,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 748,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 112,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 37": [
-            {
-                "value": 3725,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 46454,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3703,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 555,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 38": [
-            {
-                "value": 1588,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 19804,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3018,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 452,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 39": [
-            {
-                "value": 537,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 6705,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 510,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 76,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 4": [
-            {
-                "value": 3725,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 46454,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3703,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 555,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 40": [
-            {
-                "value": 1013,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 12639,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 308,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 46,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 5": [
-            {
-                "value": 1013,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 12639,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 308,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 46,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 6": [
-            {
-                "value": 3725,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 46454,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3703,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 555,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 7": [
-            {
-                "value": 1640,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 20454,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 3117,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 467,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 8": [
-            {
-                "value": 615,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 7671,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 748,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 112,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "THERMAL ZONE 9": [
-            {
-                "value": 496,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": "Yes",
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": "Yes",
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 6195,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": 1,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 635,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 95,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "Total": [
-            {
-                "value": 79655,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": null,
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": null,
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 993133,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": null,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 66707,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 10006,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "Conditioned Total": [
-            {
-                "value": 79655,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": null,
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": null,
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 993133,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": null,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 66707,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 10006,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": 3,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": 200,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": 3,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "Unconditioned Total": [
-            {
-                "value": 0,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": null,
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": null,
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 0,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": null,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 0,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 0,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": null,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": null,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": null,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ],
-        "Not Part of Total": [
-            {
-                "value": 0,
-                "type": "Area",
-                "units": "ft2"
-            },
-            {
-                "value": null,
-                "type": "Conditioned (Y/N)",
-                "units": ""
-            },
-            {
-                "value": null,
-                "type": "Part of Total Floor Area (Y/N)",
-                "units": ""
-            },
-            {
-                "value": 0,
-                "type": "Volume",
-                "units": "ft3"
-            },
-            {
-                "value": null,
-                "type": "Multipliers",
-                "units": ""
-            },
-            {
-                "value": 0,
-                "type": "Gross Wall Area",
-                "units": "ft2"
-            },
-            {
-                "value": 0,
-                "type": "Window Glass Area",
-                "units": "ft2"
-            },
-            {
-                "value": null,
-                "type": "Lighting",
-                "units": "Btu/h-ft2"
-            },
-            {
-                "value": null,
-                "type": "People",
-                "units": "ft2 per person"
-            },
-            {
-                "value": null,
-                "type": "Plug and Process",
-                "units": "Btu/h-ft2"
-            }
-        ]
     }
 }

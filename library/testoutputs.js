@@ -3,5 +3,5 @@ var sqlToJSON = require('./sqlToJSON.js').sqlToJSON;
 
 
 sqlToJSON('../test/eem_1.sql', function(buildingData){
-    console.log(buildingData.general);
+    console.log(buildingData.comfortSetpointSummary);
 });
