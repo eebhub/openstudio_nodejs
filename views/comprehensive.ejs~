@@ -957,7 +957,7 @@
 			var socket;
 			var count = 0;
 			var redirectUrl;
-			var maxFileLines = 295;									// maximum amount of lines written to stdout
+			var maxFileLines = 367;									// maximum amount of lines written to stdout
 			var percentage = 100;									// multiplie to obtain percentage
 			var currentRanNum = Math.floor((Math.random()*10000)+1);				// random number 1->10,000 sent to simulate-openstudio.php to designate a path 
 			document.getElementById("random_number").value = currentRanNum;			// set hidden div "random_number" so that it can be retrieved by ruby script
@@ -1024,7 +1024,7 @@
 				setTimeout(function(){				// wait 30 seconds until file is created to start loading bar
 					console.log("waited");			
 					socket.emit('randomNumber', currentRanNum);
-				},13000);
+				},30000);
 				
 							
 			}
