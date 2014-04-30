@@ -21,7 +21,7 @@ var app = express()
 
   server.listen(9099);
 
-//module.exports.io = io;
+module.exports.io = io;
 
 
 // all environments
