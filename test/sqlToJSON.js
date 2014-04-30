@@ -245,6 +245,6 @@ db.all(setpointSql, function(err, rows){
     rows.forEach(function(row){
         building.comfortSetpointSummary[row.RowName] = new setpoint(row.ColumnName, row.Value, row.Units);
     });
-    fs.writeFileSync('buildingOutput.json', JSON.stringify(building, null,4));
+    fs.writeFileSync('buildingOutput.json', JSON.stringify(building));
 });
 
