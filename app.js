@@ -58,6 +58,10 @@ app.get('/tracking', routes.getTracking);
 app.get('/output', routes.testOutput);
 app.get('/outputs', routes.testOutput);
 
+app.get("/presentation", function(req, res) {
+    res.redirect("http://developer.eebhub.org/archives/presentations/OpenStudio-Node.js-to-DOE-NREL-4.30.14.pdf");
+});
+
 //Simulate OpenStudio & EnergyPlus
 //console.log("*********BEFORE");
 var simulate = require("./routes/simulate.js");
