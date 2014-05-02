@@ -1,0 +1,32 @@
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Interior Lights  [<%=output.elecConsumption["January"][0].units %>]</th>
+            <th>Exterior Lights  [<%=output.elecConsumption["January"][0].units %>]</th>
+            <th>Interior Equipment  [<%=output.elecConsumption["January"][0].units %>]</th>
+            <th>Exterior Equipment  [<%=output.elecConsumption["January"][0].units %>]</th>
+            <th>Fans  [<%=output.elecConsumption["January"][0].units %>]</th>
+            <th>Pumps  [<%=output.elecConsumption["January"][0].units %>]</th>
+            <th>Heating  [<%=output.elecConsumption["January"][0].units %>]</th>
+            <th>Cooling  [<%=output.elecConsumption["January"][0].units %>]</th>
+            <th>Heat Rejection  [<%=output.elecConsumption["January"][0].units %>]</th>
+            <th>Humidifier  [<%=output.elecConsumption["January"][0].units %>]</th>
+            <th>Heat Recovery  [<%=output.elecConsumption["January"][0].units %>]</th>
+            <th>Water Systems  [<%=output.elecConsumption["January"][0].units %>]</th>
+            <th>Cogeneration  [<%=output.elecConsumption["January"][0].units %>]</th>
+        </tr>
+    </thead>
+    <tbody>
+         <% for (var month in output.elecConsumption){ %>
+            <tr>
+                <td>
+                    <%=month %>
+                </td>
+                <% for (var i in output.elecConsumption[month]){ %>
+                    <td><%=output.elecConsumption[month][i].value %></td>
+                <%}%>
+            </tr>
+            <%} %>
+    </tbody>
+</table>

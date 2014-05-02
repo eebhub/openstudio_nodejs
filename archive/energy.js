@@ -149,7 +149,7 @@ module.exports = {
             fs.writeFile("energys.json", JSON.stringify(energyIntensity), null, 4), function(err){
                 if(err) throw err;
             };
-            
+
             response.render('energy-intensity', {
                 energyIntensity: energyIntensity
                 //totalElectricityUse:totalElectricityUse

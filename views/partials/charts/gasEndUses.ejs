@@ -1,0 +1,46 @@
+<div id="gasEndUses" style="width: 100%;">
+</div>
+<script type="text/javascript">
+    window.onload = function() {
+        var chart = new CanvasJS.Chart("gasEndUses", {
+            title: {
+                text: "Annual Gas Consumption by End Use"
+            },
+            data: [{
+                type: "pie",
+                showInLegend: false,
+                dataPoints: [
+
+                        {
+                            y: <%=output.energyIntensity.site["Heating"][1].value %>,
+                            indexLabel: "Heating"
+                        },
+                    {
+                            y: <%=output.energyIntensity.site["Cooling"][1].value %>,
+                            indexLabel: "Cooling"
+                        },
+                    {
+                            y: <%=output.energyIntensity.site["Interior Lighting"][1].value %>,
+                            indexLabel: "Interior Lighting"
+                        },
+                    {
+                            y: <%=output.energyIntensity.site["Exterior Lighting"][1].value %>,
+                            indexLabel: "Exterior Lighting"
+                        },
+                    {
+                            y: <%=output.energyIntensity.site["Interior Equipment"][1].value %>,
+                            indexLabel: "Interior Equipment"
+                        },
+                    {
+                            y: <%=output.energyIntensity.site["Exterior Equipment"][1].value %>,
+                            indexLabel: "Exterior Equipment"
+                        },
+
+
+                ]
+            }]
+        });
+
+        chart.render();
+    }
+</script>

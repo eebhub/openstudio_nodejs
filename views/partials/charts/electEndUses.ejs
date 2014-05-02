@@ -1,0 +1,70 @@
+<div id="elecEndUses" style="width:100%;">
+</div>
+<script type="text/javascript">
+    window.onload = function() {
+        var chart = new CanvasJS.Chart("elecEndUses", {
+            title: {
+                text: "Annual Electricty Consumption by End Use [kWh]"
+            },
+            data: [{
+                type: "pie",
+                showInLegend: false,
+                dataPoints: [
+
+                    {
+                        y: <%= output.energyIntensity.site["Heating"][0].value %> ,
+                        indexLabel: "Heating"
+                    }, {
+                        y: <%= output.energyIntensity.site["Cooling"][0].value %> ,
+                        indexLabel: "Cooling"
+                    }, {
+                        y: <%= output.energyIntensity.site["Interior Lighting"][0].value %> ,
+                        indexLabel: "Interior Lighting"
+                    }, {
+                        y: <%= output.energyIntensity.site["Exterior Lighting"][0].value %> ,
+                        indexLabel: "Exterior Lighting"
+                    }, {
+                        y: <%= output.energyIntensity.site["Interior Equipment"][0].value %> ,
+                        indexLabel: "Interior Equipment"
+                    }, {
+                        y: <%= output.energyIntensity.site["Exterior Equipment"][0].value %> ,
+                        indexLabel: "Exterior Equipment"
+                    }, {
+                        y: <%= output.energyIntensity.site["Fans"][0].value %> ,
+                        indexLabel: "Fans"
+                    }, {
+                        y: <%= output.energyIntensity.site["Pumps"][0].value %> ,
+                        indexLabel: "Pumps"
+                    }, {
+                        y: <%= output.energyIntensity.site["Heat Rejection"][0].value %> ,
+                        indexLabel: "Heat Rejection"
+                    }, {
+                        y: <%= output.energyIntensity.site["Humidification"][0].value %> ,
+                        indexLabel: "Humidification"
+                    }, {
+                        y: <%= output.energyIntensity.site["Heat Recovery"][0].value %> ,
+                        indexLabel: "Heat Recovery"
+                    },
+
+                    {
+                        y: <%= output.energyIntensity.site["Water Systems"][0].value %> ,
+                        indexLabel: "Water Systems"
+                    },
+
+                    {
+                        y: <%= output.energyIntensity.site["Refrigeration"][0].value %> ,
+                        indexLabel: "Refrigeration"
+                    },
+
+                    {
+                        y: <%= output.energyIntensity.site["Generators"][0].value %> ,
+                        indexLabel: "Generators"
+                    }
+
+                ]
+            }]
+        });
+
+        chart.render();
+    }
+</script>

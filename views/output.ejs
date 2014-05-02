@@ -66,40 +66,94 @@
             <div class="navbar">
                 <div class="navbar">
                     <div class="navbar-inner">
-                        <a class="brand" href="#">Energy</a>
+                        <a class="brand" href="#">Simulation Results</a>
                         <ul class="nav">
                             <li class="active">
-                                <a href="#use" data-toggle="tab">Use</a>
+                                <a href="#general" data-toggle="tab">General Information</a>
                             </li>
                             <li>
-                                <a href="#intensity" data-toggle="tab">Intensity</a>
+                                <a href="#use" data-toggle="tab">Energy Use</a>
                             </li>
                             <li>
-                                <a href="#costs" data-toggle="tab">Costs</a>
+                                <a href="#intensity" data-toggle="tab">Energy Intensity</a>
                             </li>
                             <li>
-                                <a href="#zones" data-toggle="tab">Zone Loads</a>
+                                <a href="#costs" data-toggle="tab">Utility Costs</a>
                             </li>
-                            <li>
-                                <a href="#tracking" data-toggle="tab">Tracking</a>
-                            </li>
+
+
+
                         </ul>
+                        <div class="pull-right text-right">
+                            <ul class="nav pull-right">
+                                <li>
+                                    <button type="button" class="btn btn-info" data-toggle="button" onclick="TogetherJS(this); return false;">Collaborate</button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+
                 </div>
             </div>
             <div class="tab-content">
-                <div class="tab-pane active" id="use">
+                <div class="tab-pane active" id="general">
                     <div class="row">
-                        <div class="box-unit span6">
+                        <div class="box-unit span5">
+                            <h3 style="text-align:center">General Simulation Info</h3>
+                            <% include partials/tables/general %>
+                        </div>
+                        <div class="box-unit span5">
+                            <h3 style="text-align:center">Building Area</h3>
+                            <% include partials/tables/buildingArea %>
+                                <h3 style="text-align:center">Skylight Roof Ratio</h3>
+                                <% include partials/tables/skylightRoofRatio %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="box-unit">
+                            <h3 style="text-align:center">Window Wall Ratio</h3>
+                            <% include partials/tables/windowWallRatio %>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="box-unit">
+                            <h3 style="text-align:center">Comfort and Setpoint Summary</h3>
+                            <% include partials/tables/comfortandSetpointSummary %>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="use">
+                    <div class="row">
+                        <div class="box-unit">
 
                             <% include partials/electConsumption %>
                         </div>
-                        <div class="box-unit span6">
+                    </div>
+                    <div class="row">
+                        <div class="box-unit">
+                            <h3 style="text-align:center">Electricity Consumption by End Use</h3>
+                            <% include partials/tables/buildingElectricityPerformance %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="box-unit">
                             <% include partials/ngConsumption %>
                         </div>
                     </div>
-                    <div class="box-unit">
-                        <% include partials/electConsumptionTable %>
+
+                    <div class="row">
+                        <div class="box-unit">
+                            <h3 style="text-align:center">Natural Gas Consumption by End Use</h3>
+                            <% include partials/tables/buildingNatGasPerformance %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="">
+                            <% include partials/charts/electEndUses %>
+                        </div>
                     </div>
                 </div>
                 <div class="tab-pane" id="intensity">
@@ -107,15 +161,17 @@
                         <% include partials/siteSourceConsumption %>
                     </div>
                     <div class="box-unit">
-                        <% include partials/annualEnergyConsumptionIntensityTable %>
+                        <h3 style="text-align:center">Site and Source Energy Use and Intensity</h3>
+                        <% include partials/tables/siteSourceEnergy %>
                     </div>
                     <div class="row">
                         <div class="box-unit span6">
 
                             <% include partials/energyTotalBuildingAreaChart %>
                         </div>
-                        <div class="box-unit span6">
-                            <% include partials/energyConditionedBuildingArea %>
+                        <div class="box-unit span5">
+<h3 style="text-align:center">Site to Source Energy Conversions</h3>
+                        <% include partials/tables/siteSourceEnergyConversion %>
                         </div>
                     </div>
                 </div>
@@ -124,36 +180,23 @@
                         <% include partials/electricityMonthlyCostChart %>
                     </div>
                     <div class="box-unit">
-                        <% include partials/electricityMonthlyCostTable %>
+                        <h3 style="text-align:center">Monthly Electricity Utility Cost</h3>
+                        <% include partials/tables/electricCostMonthly %>
                     </div>
                     <div class="box-unit">
                         <% include partials/naturalGasMonthlyCostChart %>
                     </div>
                     <div class="box-unit">
-                        <% include partials/naturalGasMonthlyCostTable %>
+                        <h3 style="text-align:center">Monthly Gas Utility Cost</h3>
+                        <% include partials/tables/gasCostMonthly %>
                     </div>
                 </div>
-                <div class="tab-pane" id="zones">
-                    <div class="box-unit">
-                        <h1 style="text-align:center">Zone Loads Under Construction </h1>
-                        </div>
-                </div>
-                <div class="tab-pane" id="tracking">
-                    <div class="box-unit">
-                        <h1 style="text-align:center">Tracking Sheet Under Construction </h1>
-                        </div>
-                </div>
             </div>
-
-
-
         </div>
-        
-
-
     </div>
 
-
+    <script src="https://togetherjs.com/togetherjs-min.js"></script>
+    <script src="js/canvasjs.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/Highcharts-3.0.4/js/highcharts.js"></script>
     <script src="js/Highcharts-3.0.4/js/modules/exporting.js"></script>

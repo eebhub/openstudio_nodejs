@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -22,8 +21,8 @@ var app = express()
 
   server.listen(9099);
 
-var energy = require("./routes/energy");
-var app = express();
+//module.exports.io = io;
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -53,10 +52,6 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.getHome);
 app.get('/form', routes.getForm);
-app.get('/energy-use', energy.getEnergyUse);
-app.get('/energy-intensity', energy.getEnergyIntensity);
-app.get('/energy-cost.html', routes.getEnergyCost);
-app.get('/zone-component-load.html', routes.getZoneLoads);
 app.get('/measure-list.html', routes.getMeasureList);
 app.get('/tracking-sheet.html', routes.getTrackingSheet);
 app.get('/data-structure', routes.getDataStructure);
@@ -65,47 +60,16 @@ app.get('/tracking', routes.getTracking);
 app.get('/output', routes.testOutput);
 app.get('/outputs', routes.testOutput);
 
+app.get("/presentation", function(req, res) {
+    res.redirect("http://developer.eebhub.org/archives/presentations/OpenStudio-Node.js-to-DOE-NREL-4.30.14.pdf");
+});
+
 //Simulate OpenStudio & EnergyPlus
-console.log("*********BEFORE");
+//console.log("*********BEFORE");
 var simulate = require("./routes/simulate.js");
 app.post('/simulate', simulate.openstudio);
-console.log("*********After");
+//console.log("*********After");
 
-app.get('/eplus_out', function(req, res){
-
-/*test simple selections*/
-//   var sqlite3 = require('sqlite3').verbose();
-//   var db = new sqlite3.Database('test/eem_1.sql');
-// var str = '';
-// db.serialize(function() {
-
-// db.each("SELECT * FROM Surfaces", function(err, row){
-//     str = row.SurfaceIndex + ',' + row.SurfaceName + ',' + row.Area + '\n';
-//   console.log(str);
-
-// });
-// });
-// db.close();
-
-
-/*test getValue*/
-// var sqlite3= require('./lib/eeb_sqlite3.js');
-// sqlite3.getValues('ENVELOPE%', 'ENTIRE%', 'Opaque Exterior', 'Btu%', 'test/eem_1.sql', function(results){
-//     console.log(results);
-// });
-
-/*test getReportForStrings*/
-// var sqlite3= require('./lib/eeb_sqlite3.js');
-// sqlite3.getReportForStrings('ShadingSummary', 'test/eem_1.sql', function(results){
-//     console.log(results);
-// });
-
-/*test getValuesByMonthly*/
-
-
-
-
-});
 
 app.post('/rmt', testOpenstudio.simulateOpenstudio);
 
@@ -132,19 +96,25 @@ io.sockets.on('connection', function(socket) {
   console.log("****room4: " + value + "%");
   });
 
+
   socket.on('randomNumber', function(value){
 
-    console.log("#################################EMITTED");
+    //console.log("#################################EMITTED");
     
-    findStdOut = findStdOut + "progress.txt"; 
-    console.log('###$$$###$$$###$$' + findStdOut);
+    var outputFilePath = findStdOut + "1-EnergyPlus-0/stdout"; 
+    //console.log('###$$$###$$$###$$' + outputFilePath);
     
    
 	
-    if (fs.existsSync(findStdOut))
+    if (fs.existsSync(outputFilePath))
     {
-	console.log('###$$$###$$$###$$ FILE FOUND ');
-        tail = new Tail(findStdOut);
+	//console.log('###$$$###$$$###$$ FILE FOUND ');
+        tail = new Tail(outputFilePath);
+
+
+	io.sockets.emit('redirectPath', {
+		channel: 'stdout',
+		value: findStdOut});
 
         tail.on('line', function(data) {
           return io.sockets.emit('new-data', {
@@ -155,7 +125,10 @@ io.sockets.on('connection', function(socket) {
     }
     else
     {
-      console.log("file not found");
+	io.sockets.emit('fileNotFound', {
+		channel: 'stdout',
+		value: 'Stdout file not found'});
+     // console.log("file not found");
     }
 
 });

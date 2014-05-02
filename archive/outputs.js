@@ -96,10 +96,10 @@ function sqlToJSON(sqlFile, fn){
   db.serialize(function() {
     //Get Energy Use Data
     db.each(energyUseSqlStmt, function(err, row){
-        
+
       switch(row.columnname) {
         case "INTERIORLIGHTS:ELECTRICITY":
-              
+
           output.energyUse.electricity.interiorLights.push(parseFloat(row.value));
 
           break;

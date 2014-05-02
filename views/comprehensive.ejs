@@ -291,6 +291,8 @@
                              <input type="button" id="unitoptionIP" name="unitoption" value="IP" class="btn" onclick='$(".unit").html("ft");$("#heating-setpoint").html("<input type=\"number\" min=\"0\" class=\"span2\" id=\"appendedInput\" value=\"75\" name=\"heating_setpoint\" disabled /><span class=\"add-on\">&#186;F</span>");$("#cooling-setpoint").html("<input type=\"number\" min=\"0\" class=\"span2\" id=\"appendedInput\" value=\"79\" name=\"cooling_setpoint\" disabled /><span class=\"add-on\">&#186;F</span>");$(".illu-unit").html("lm/ft&#178;");$("#illuminance").html("<option value=\"150\">15 - storage</option><option value=\"200\">20 - casual work</option><option value=\"300\">30 - rough work</option><option value=\"400\">40 - office work (EU)</option><option value=\"500\" selected>50 - office work (US)</option>");$("#si-ip").val("ip");'>
                          </div>
                          </li>
+                        <hr style="color:lightgray;background-color:lightgray;height:1px;border:none;"/>
+                    <li><button type="button" class="btn btn-info" onclick="TogetherJS(this); return false;"  data-toggle="button">Collaborate</button></li>
                     </ul>
                 </div>
                 
@@ -324,7 +326,7 @@
 									<input type="hidden" id="random_number" name="random_number" style="color:gray;">
 									<h4>Function</h4>
                                         <div class="input-append">
-                                            <select value="this.value" class="span3" id="activity_type" name="activityType">
+                                            <select value="this.value" class="span3" id="activityType" name="activityType">
                                                 <option value="SmallOffice" disabled>Small Office</option>
                                                 <option value="MediumOffice">Medium Office</option>
                                                 <option value="LargeOffice" disabled>Large Office</option>
@@ -349,7 +351,7 @@
                                         </div>
 									<h4>Weather <small>currently only 18 cities supported</small></h4>
                                     <div class="input-append">
-                                        <select class="span3" value="this.value" id="weather_epw_location" name="weather">
+                                        <select class="span3" value="this.value" id="weather" name="weather">
                                             <option value="USA_NM_Albuquerque.Intl.AP.723650_TMY3">Albuquerque, NM</option>
                                             <option value="USA_MD_Baltimore-Washington.Intl.AP.724060_TMY3">Baltimore, MD</option>
                                             <option value="USA_ID_Boise.Air.Terminal.726810_TMY3">Boise, ID</option>
@@ -375,13 +377,13 @@
                                     </div>
                                     
                                     <h4>Year Built</h4>
-                                    <input class="span3" type="number" min="1500" max="2020" step="1" id="year_completed" name="yearCompleted">
+                                    <input class="span3" type="number" min="1500" max="2020" step="1" id="yearCompleted" name="yearCompleted">
 									
                                 </div>
                                 <div class="span4">
                                     <h4>Address</h4>
 									 <div class="map">
-                                        <input id="pac-input" class="controls" type="text" placeholder="Street, City, State, Zip" onkeypress="return bar(event)">
+                                        <input name="address" id="pac-input" class="controls" type="text" placeholder="Street, City, State, Zip" onkeypress="return bar(event)">
                                         <div id="map-canvas"></div>
                                       </div>
                                 </div>
@@ -418,21 +420,21 @@
                                     <div id="extend-div" >
                                         <br><br><br>
         			                    <div class="control-group"> <label class="control-label" for="length">Length</label>
-        			                    <div class="controls input-append"> <input type="number" min="1" name="buildingLength" id="length"><span class="add-on"><span class="unit">m</span></span> </div> </div>  
+        			                    <div class="input-append"> <input type="number" min="1" name="buildingLength" id="length"><span class="add-on"><span class="unit">m</span></span> </div> </div>
         							    <div class="control-group"> <label class="control-label" for="width">Width</label>
-        			                    <div class="controls input-append"> <input type="number" min="1" name="buildingWidth" id="width"><span class="add-on"><span class="unit">m</span></span> </div> </div>
+        			                    <div class="input-append"> <input type="number" min="1" name="buildingWidth" id="width"><span class="add-on"><span class="unit">m</span></span> </div> </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="span4">
                                     <h4>Number of Floors</h4>
-                                    <input type="number" id="number_of_floors" name="numberOfFloors" min="1" min="170" step="1">
+                                    <input type="number" id="numberOfFloors" name="numberOfFloors" min="1" min="170" step="1">
                                 </div>
                                 <div class="span4">
                                     <h4>Floor to Floor Height</h4>
                                     <div class="input-append">
-                                        <input type="number" id="floor_to_floor_height" name="floorToFloorHeight" step="0.001">
+                                        <input type="number" id="floorToFloorHeight" name="floorToFloorHeight" step="0.001">
 
                                         <span class="add-on"><span class="unit">m</span></span>
                                     </div>
@@ -442,18 +444,18 @@
                                 <div class="span4">
                                     <h4>Orientation <small>clockwise degrees from North</small></h4>
                                         <ul class="inline">
-                                             <input id="degreeSlider" type="range" class="span2" min="0" max="360" step="1" onchange="printValue('degreeSlider','degreeRangeValue')"/>
+                                             <input id="degreeSlider" type="range" class="span2" min="0" max="360" step="1" onchange="printValue('degreeSlider','degreeToNorth')"/>
                                             <div class="input-append">
-                                            <input id="degreeRangeValue" name="degreeToNorth" type="number" class="span1" min="0" max="360" step="1"/><span class="add-on">&deg;</span>
+                                            <input id="degreeToNorth" name="degreeToNorth" type="number" class="span1" min="0" max="360" step="1"/><span class="add-on">&deg;</span>
                                             </div>
                                         </ul>
                                 </div>
                                 <div class="span4">
                                     <h4>% Window to Wall Ratio</h4>
                                         <ul class="inline">
-                                             <input id="winSlider" type="range" class="span2" min="0" max="60" step="1" onchange="printValue('winSlider','winRangeValue')"/>
+                                             <input id="winSlider" type="range" class="span2" min="0" max="60" step="1" onchange="printValue('winSlider','windowToWallRatio')"/>
                                             <div class="input-append">
-                                            <input id="winRangeValue" name="windowToWallRatio" type="number" class="span1" min="0" max="100" /><span class="add-on">%</span>
+                                            <input id="windowToWallRatio" name="windowToWallRatio" type="number" class="span1" min="0" max="100" /><span class="add-on">%</span>
                                             </div>
                                         </ul>
                                 </div>
@@ -470,14 +472,14 @@
                             <div class="row">
                                 <div class="span4">
                                     <h4>Windows</h4>
-                                    <select class="span3" name="window_transmittance">
+                                    <select class="span3" name="windowConstruction" id="windowConstruction">
                                         <option value="0.89" disabled>Single Clear</option>
                                         <option value="0.80" selected>Double Clear</option>
                                         <option value="0.60" disabled>Double Light Tint</option>
                                         <option value="0.44" disabled>Triple Low-E</option>
                                     </select>
                                     <h4>Walls</h4>
-                                    <select value="this.value" name="exterior_wall_type" class="span3">
+                                    <select value="this.value" name="wallConstruction" id="wallConstruction" class="span3">
                                         <option value="Concrete Mass" selected>Concrete Mass</option>
                                         <option value="Metal" disabled>Metal</option>
                                         <option value="Steel Framed" disabled>Steel Framed</option>
@@ -486,10 +488,10 @@
                                 </div>
                                 <div class="span4">
                                     <h4>Roof</h4>
-                                    <select value="this.value" name="roof_type" class="span3">
+                                    <select value="this.value" name="roofConstruction" id="roofConstruction" class="span3">
                                         <option value="Metal" selected>Metal Roof</option>
-                                        <option disabled>Insulation Entirely Above Deck</option>
-                                        <option disabled>Attic and Other</option>
+                                        <option value="Insulation Entirely Above Deck" disabled>Insulation Entirely Above Deck</option>
+                                        <option value="Attic and Other" disabled>Attic and Other</option>
                                     </select>
                                 </div>
                             </div>
@@ -505,7 +507,7 @@
                             <div class="row">
                             <div class="span4">
                                 <h4>Primary HVAC System</h4>
-                                    <select name="primary_hvac_type" class="span4">
+                                    <select name="primaryHvacType" id="primaryHvacType" class="span4">
                                         <option value="SystemType1" disabled>PTAC Packaged Terminal Air Conditioner</option>
                                         <option value="SystemType2" disabled>PTHP Packaged Terminal Heat Pump</option>
                                         <option value="SystemType3" disabled>Packaged Rooftop Air Conditioner + DX</option>
@@ -522,47 +524,47 @@
                             <div class="row">
                                 <div class="span4">
                                     <h4>Fan Efficiency</h4>
-                                    <input id="fanSlider" type="range" class="span2" min="0" max="100" onchange="printValue('fanSlider','fanRangeValue')"/>
+                                    <input id="fanSlider" type="range" class="span2" min="0" max="100" onchange="printValue('fanSlider','fanEfficiency')"/>
                                     <div class="input-append">
-                                    <input id="fanRangeValue" name="fanEfficiency" type="number" class="span1" min="0" max="100" value="50" /><span class="add-on">%</span>
+                                    <input id="fanEfficiency" name="fanEfficiency" type="number" class="span1" min="0" max="100" value="50" /><span class="add-on">%</span>
                                     </div>
                                     <h4>Boiler Efficiency</h4>
-                                    <input id="boilerSlider" type="range" class="span2" min="0" max="100" onchange="printValue('boilerSlider','boilerRangeValue')"/>
+                                    <input id="boilerSlider" type="range" class="span2" min="0" max="100" onchange="printValue('boilerSlider','boilerEfficiency')"/>
                                     <div class="input-append">
-                                    <input id="boilerRangeValue" name="boilerEfficiency" type="number" class="span1" min="0" max="100" value="66"/>
+                                    <input id="boilerEfficiency" name="boilerEfficiency" type="number" class="span1" min="0" max="100" value="66"/>
                                     <span class="add-on">%</span>
                                     </div>
                                     <h4>Cooling coil rated high speed COP</h4>
                                     <div class="input-append">
-                                        <input type="number" min="0" step="0.1" class="span2" id="appendedInput" value="5.5"
+                                        <input type="number" min="0" step="0.1" class="span2" id="coilCoolRatedHighSpeedCOP" value="5.5"
                                         name="coilCoolRatedHighSpeedCOP"/>
                                         <span class="add-on">Ratio</span>
                                     </div>
                                     <h4>Cooling coil rated low speed COP</h4>
                                     <div class="input-append">
-                                        <input type="number" min="0" step="0.1" class="span2" id="appendedInput" value="6.6"
+                                        <input type="number" min="0" step="0.1" class="span2" id="coilCoolRatedLowSpeedCOP" value="6.6"
                                         name="coilCoolRatedLowSpeedCOP"/>
                                         <span class="add-on">Ratio</span>
                                     </div> 
                                 </div>
                                 <div class="span4">
                                 <h4>Economizer Type</h4>
-                                    <select name="economizerType" class="span3">
+                                    <select name="economizerType" id="economizerType" class="span3">
                                         <option value="No Economizer">No Economizer</option>
                                         <option value="Economizer" disabled>Economizer</option>
                                     </select>
                                 <h4>Boiler Fuel Type</h4>
-                                    <select name="boilerFuelType" class="span3">
+                                    <select name="boilerFuelType" id="boilerFuelType" class="span3">
                                         <option value="NaturalGas">Natural Gas</option>
                                     </select>
                                     <h4>Heating Set Point</h4>
                                     <div class="input-append" id="heating-setpoint">
-                                        <input type="number" min="0" class="span2" id="appendedInput" value="24" name="heatingSetpoint" />
+                                        <input type="number" min="0" class="span2" id="heatingSetpoint" value="24" name="heatingSetpoint" />
                                         <span class="add-on">&#186;C</span>
                                     </div>
                                     <h4>Cooling Set Point</h4>
                                     <div class="input-append" id="cooling-setpoint">
-                                        <input type="number" min="0" class="span2" id="appendedInput" value="26" name="coolingSetpoint" />
+                                        <input type="number" min="0" class="span2" id="coolingSetpoint" value="26" name="coolingSetpoint" />
                                         <span class="add-on">&#186;C</span>
                                     </div>
                                 </div>
@@ -693,12 +695,11 @@
 			<script src="https://rawgithub.com/highslide-software/draggable-points/master/draggable-points.js"></script>
 		    <script src="js/exporting.js"></script>
    			<script type="text/javascript" src="js/bootstrap.min.js"></script>
-
             <script src="http://code.jquery.com/jquery.js"></script>
-            <script src="js/bootstrap.min.js"></script>
+            <script src="https://togetherjs.com/togetherjs-min.js"></script>
             <script src="js/bootstrap-scrollspy.js"></script>
             <script src="js/bootstrap-fileupload.js"></script>
-			<script src="js/socket.io.js"></script>
+			<script src="http://128.118.67.202:9099/socket.io/socket.io.js"></script>
             	<script>
             	var chart = new Highcharts.Chart
 				({
@@ -955,7 +956,8 @@
         	
 			var socket;
 			var count = 0;
-			var maxFileLines = 503;									// maximum amount of lines written to stdout
+			var redirectUrl;
+			var maxFileLines = 295;									// maximum amount of lines written to stdout
 			var percentage = 100;									// multiplie to obtain percentage
 			var currentRanNum = Math.floor((Math.random()*10000)+1);				// random number 1->10,000 sent to simulate-openstudio.php to designate a path 
 			document.getElementById("random_number").value = currentRanNum;			// set hidden div "random_number" so that it can be retrieved by ruby script
@@ -965,10 +967,19 @@
 			$(document).ready(function(){
 				var num;
 				$("#real-time-output").html("");
-				socket = io.connect('http://localhost:9099');
+				socket = io.connect('http://128.118.67.202:9099');
+
+				socket.on('redirectPath', function(data){
+					console.log('we got the path @ ' + data.value);
+					redirectUrl = data.value;
+				});
+
+				socket.on('fileNotFound', function(data){
+					$("#loading-status").html(data.value);
+				});
 				
 				socket.on('new-data', function(data) {
-					console.log(data.value);
+					console.log('(' + count + ')	' + data.value);
 					count++;					// increase log count
 					if(count == 1)				// server callback function return, simluation has started
 					{
@@ -976,10 +987,32 @@
 					}
 					else						// output from stdout
 					{
+					
 						num= (count/maxFileLines)*$(".loading-div").width();
 						$(".bar").width(num);
-						$("#loading-status").html("Simulation in Progress " +parseInt(num/$(".loading-div").width()*percentage)+"%");
+
+						var currentPercentage = parseInt(num/$(".loading-div").width()*percentage);
 						$("#real-time-output").html(data.value);
+						var temp = data.value
+						if(currentPercentage < 100)
+						{
+							$("#loading-status").html("Simulation in Progress " + currentPercentage+"%");
+						}
+						else
+						{
+							$("#loading-status").html("Simulation in Progress " + "100%");
+						}
+
+						if( temp.indexOf("EnergyPlus Run") > -1)
+						{
+							console.log('sim complete');
+							$(".bar").width($(".loading-div").width());
+							$("#loading-status").html("Simulation in Progress " +"100%");
+							$("#real-time-output").html("COMPLETE");
+
+							window.location.href=redirectUrl; 
+								
+						}
 					}
 				});	
 			});
@@ -988,10 +1021,10 @@
 
 			function loading() 
 			{
-				setTimeout(function(){				// wait 15 seconds until file is created to start loading bar
-					//console.log("waited");			
+				setTimeout(function(){				// wait 30 seconds until file is created to start loading bar
+					console.log("waited");			
 					socket.emit('randomNumber', currentRanNum);
-				},500);
+				},13000);
 				
 							
 			}
@@ -1174,7 +1207,6 @@
             }
            
         	</script>
-        	   <script src="js/uservoice-contact.js"></script>
         	   <script>
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
               (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
