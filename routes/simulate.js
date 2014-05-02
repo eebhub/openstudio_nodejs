@@ -168,13 +168,14 @@ module.exports = {openstudio: function(request, response) {
         if (code !== 0) {console.log('Failed: ' + code);}
     });
     
+    //COMMENTED OUT Database Reroute because this synchronous code kills the simulation
     //WRITE Output to buildingData.json / APPEND important energyplus output sql tables into original json
-    var databasePath = outputPath + "1-EnergyPlus-0/eplusout.sql";
-    sqlToJSON(databasePath, function (buildingSimData) {
-        fs.writeFile(outputPath + "simulationOutput.json", JSON.stringify(buildingSimData, null, 4), function (err) {
-         //findStdOut = outputPath;
-    });
-});
+    // var databasePath = outputPath + "1-EnergyPlus-0/eplusout.sql";
+    // sqlToJSON(databasePath, function (buildingSimData) {
+    //     fs.writeFile(outputPath + "simulationOutput.json", JSON.stringify(buildingSimData, null, 4), function (err) {
+    //      //findStdOut = outputPath;
+    //     });
+    // });
    
     //RENDER EnergyPlus Graphs & Files outputs.ejs
 
