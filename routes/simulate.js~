@@ -172,7 +172,7 @@ module.exports = {openstudio: function(request, response) {
     var databasePath = outputPath + "1-EnergyPlus-0/eplusout.sql";
     sqlToJSON(databasePath, function (buildingSimData) {
         fs.writeFile(outputPath + "simulationOutput.json", JSON.stringify(buildingSimData, null, 4), function (err) {
-         //findStdOut = outputPath;
+         findStdOut = outputPath;
     });
 });
    
