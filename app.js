@@ -55,6 +55,8 @@ app.get('/form', routes.getForm);
 app.get('/measure-list.html', routes.getMeasureList);
 app.get('/tracking-sheet.html', routes.getTrackingSheet);
 app.get('/data-structure', routes.getDataStructure);
+app.get('/data', routes.getDataStructure);
+app.get('/json', routes.getDataStructure);
 app.get('/walls', routes.getWalls);
 app.get('/tracking', routes.getTracking);
 app.get('/output', routes.testOutput);
